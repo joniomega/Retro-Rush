@@ -1,9 +1,7 @@
-[gd_scene load_steps=32 format=3 uid="uid://dbcq5x0px65b6"]
+[gd_scene load_steps=12 format=3 uid="uid://dbcq5x0px65b6"]
 
 [ext_resource type="Script" path="res://assets/characters/player/player.gd" id="1_yncs3"]
 [ext_resource type="Texture2D" uid="uid://55u4pfu5hwgs" path="res://assets/characters/player/skin1.png" id="2_ierk0"]
-[ext_resource type="Texture2D" uid="uid://br32qys1gpop4" path="res://assets/characters/player/cat/IDLE.png" id="2_vjxnq"]
-[ext_resource type="Texture2D" uid="uid://bolmbr24x8qd4" path="res://assets/characters/player/cat/WALK.png" id="4_ian4s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tnmqm"]
 size = Vector2(22, 29)
@@ -15,38 +13,6 @@ region = Rect2(0, 32, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_kl8vr"]
 atlas = ExtResource("2_ierk0")
 region = Rect2(32, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u8fcs"]
-atlas = ExtResource("2_vjxnq")
-region = Rect2(0, 0, 80, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mlthm"]
-atlas = ExtResource("2_vjxnq")
-region = Rect2(80, 0, 80, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yjf73"]
-atlas = ExtResource("2_vjxnq")
-region = Rect2(160, 0, 80, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_61ce7"]
-atlas = ExtResource("2_vjxnq")
-region = Rect2(240, 0, 80, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ndl6l"]
-atlas = ExtResource("2_vjxnq")
-region = Rect2(320, 0, 80, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hkrm0"]
-atlas = ExtResource("2_vjxnq")
-region = Rect2(400, 0, 80, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dvcwt"]
-atlas = ExtResource("2_vjxnq")
-region = Rect2(480, 0, 80, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4df8w"]
-atlas = ExtResource("2_vjxnq")
-region = Rect2(560, 0, 80, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tbl1t"]
 atlas = ExtResource("2_ierk0")
@@ -60,53 +26,13 @@ region = Rect2(32, 0, 32, 32)
 atlas = ExtResource("2_ierk0")
 region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vxhu1"]
-atlas = ExtResource("4_ian4s")
-region = Rect2(0, 0, 80, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_105tk"]
+atlas = ExtResource("2_ierk0")
+region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_17cgl"]
-atlas = ExtResource("4_ian4s")
-region = Rect2(80, 0, 80, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o5kx3"]
-atlas = ExtResource("4_ian4s")
-region = Rect2(160, 0, 80, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yxy8h"]
-atlas = ExtResource("4_ian4s")
-region = Rect2(240, 0, 80, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cjeuj"]
-atlas = ExtResource("4_ian4s")
-region = Rect2(320, 0, 80, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wabn2"]
-atlas = ExtResource("4_ian4s")
-region = Rect2(400, 0, 80, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v5sgf"]
-atlas = ExtResource("4_ian4s")
-region = Rect2(480, 0, 80, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fp2ic"]
-atlas = ExtResource("4_ian4s")
-region = Rect2(560, 0, 80, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fdtad"]
-atlas = ExtResource("4_ian4s")
-region = Rect2(640, 0, 80, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ylur7"]
-atlas = ExtResource("4_ian4s")
-region = Rect2(720, 0, 80, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7pnnl"]
-atlas = ExtResource("4_ian4s")
-region = Rect2(800, 0, 80, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2uctv"]
-atlas = ExtResource("4_ian4s")
-region = Rect2(880, 0, 80, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qxd5"]
+atlas = ExtResource("2_ierk0")
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nfuji"]
 animations = [{
@@ -128,35 +54,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_u8fcs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mlthm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yjf73")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_61ce7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ndl6l")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hkrm0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dvcwt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4df8w")
-}],
-"loop": true,
-"name": &"idle2",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_tbl1t")
 }],
 "loop": true,
@@ -169,51 +66,16 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_btk3d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_105tk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qxd5")
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vxhu1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_17cgl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o5kx3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yxy8h")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cjeuj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wabn2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v5sgf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fp2ic")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fdtad")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ylur7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7pnnl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2uctv")
-}],
-"loop": true,
-"name": &"walk2",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [node name="player" type="CharacterBody2D"]
@@ -227,7 +89,7 @@ shape = SubResource("RectangleShape2D_tnmqm")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(16, 16)
 sprite_frames = SubResource("SpriteFrames_nfuji")
-animation = &"idle"
+animation = &"walk"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(80, 107)
