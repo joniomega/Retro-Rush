@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://duae36wgy5yji"]
+
+[ext_resource type="Texture2D" uid="uid://dvjvps02a6eb0" path="res://assets/relic.png" id="1_i85ih"]
+[ext_resource type="Texture2D" uid="uid://55u4pfu5hwgs" path="res://assets/characters/player/skin1.png" id="2_0lvoh"]
+
+[node name="mainmenu" type="Node2D"]
+
+[node name="Relic" type="Sprite2D" parent="."]
+position = Vector2(45, 42)
+texture = ExtResource("1_i85ih")
+
+[node name="Skin1" type="Sprite2D" parent="."]
+position = Vector2(61, 68)
+texture = ExtResource("2_0lvoh")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 21.0
+offset_top = 90.0
+offset_right = 72.0
+offset_bottom = 111.0
+text = "PLAY"
