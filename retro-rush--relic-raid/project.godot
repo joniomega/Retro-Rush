@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Retro Rush: Descend"
-run/main_scene="res://menus/mainmenu.tscn"
+run/main_scene="res://scenes/lvl_0.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
@@ -22,6 +22,10 @@ window/size/viewport_height=390
 window/size/window_width_override=360
 window/size/window_height_override=640
 window/stretch/mode="canvas_items"
+
+[physics]
+
+2d/default_gravity=680.0
 
 [rendering]
 
