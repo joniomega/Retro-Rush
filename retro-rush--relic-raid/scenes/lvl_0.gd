@@ -5,6 +5,7 @@ extends Node2D
 @onready var levels_path: String = "res://scenes/levels/"
 @onready var spike_facingup_path: String = "res://assets/obstacles/spike.tscn"
 @onready var coin_vase_path: String = "res://assets/obstacles/coin_vase.tscn"
+@onready var decoration_path: String = "res://assets/obstacles/decoration.tscn"
 
 # Replace this with your actual tile source ID for your "Auto" tile.
 const AUTO_TILE_SOURCE_ID: int = 0
@@ -31,6 +32,8 @@ func load_level(level_number: int):
 		spike.queue_free()
 	for vase in get_tree().get_nodes_in_group("vases"):
 		vase.queue_free()
+	for deco in get_tree().get_nodes_in_group("decorations"):
+		deco.queue_free()
 	# Preload the spike scene once for efficiency.
 	var spike_scene = load(spike_facingup_path)
 	if spike_scene == null:
@@ -39,6 +42,10 @@ func load_level(level_number: int):
 	var vase_scene = load(coin_vase_path)
 	if vase_scene == null:
 		push_error("Vase scene not found at path")
+		return
+	var decoration_scene = load(decoration_path)
+	if decoration_scene == null:
+		push_error("Decoration scene not found at path")
 		return
 
 	# Collect all positions where you want to place your terrain tile.
@@ -64,6 +71,11 @@ func load_level(level_number: int):
 				# Add the spike to the "spikes" group for easier management.
 				spike_instance.add_to_group("spikes")
 				add_child(spike_instance)
+			elif char == '4':
+				var decoration_instance = decoration_scene.instantiate()
+				decoration_instance.position = Vector2(x * 32, y * 32)
+				decoration_instance.add_to_group("decorations")
+				add_child(decoration_instance)
 		y += 1
 
 	# Now update all these positions in one call for the terrain tile.
