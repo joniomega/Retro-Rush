@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://dxph11aiwaewu"]
+
+[ext_resource type="Script" path="res://assets/obstacles/spike.gd" id="1_o3c0e"]
+[ext_resource type="Texture2D" uid="uid://bgg0jhv1gsjdw" path="res://assets/tilesets/obstacles.png" id="1_stpbp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j70aq"]
+atlas = ExtResource("1_stpbp")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y78ge"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j70aq")
+}],
+"loop": true,
+"name": &"spike",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vj7cf"]
+size = Vector2(29, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_frlxf"]
+size = Vector2(23, 10)
+
+[node name="spike" type="Node2D"]
+script = ExtResource("1_o3c0e")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(16, 17)
+sprite_frames = SubResource("SpriteFrames_y78ge")
+animation = &"spike"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.5, 12)
+shape = SubResource("RectangleShape2D_vj7cf")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, 11)
+shape = SubResource("RectangleShape2D_frlxf")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

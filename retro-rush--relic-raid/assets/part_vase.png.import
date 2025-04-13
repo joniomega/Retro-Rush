@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dylpcixxaxcoi"
-path="res://.godot/imported/ruins1.png-146299facb12e201c01663d694bc2b19.ctex"
+uid="uid://1so7ahbocbrp"
+path="res://.godot/imported/part_vase.png-a5ceecfb0e3ba249ac579f806ba78b9d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilesets/ruins1.png"
-dest_files=["res://.godot/imported/ruins1.png-146299facb12e201c01663d694bc2b19.ctex"]
+source_file="res://assets/part_vase.png"
+dest_files=["res://.godot/imported/part_vase.png-a5ceecfb0e3ba249ac579f806ba78b9d.ctex"]
 
 [params]
 

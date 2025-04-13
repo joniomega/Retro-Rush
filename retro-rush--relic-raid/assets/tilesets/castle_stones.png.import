@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dylpcixxaxcoi"
-path="res://.godot/imported/ruins1.png-146299facb12e201c01663d694bc2b19.ctex"
+uid="uid://bblt06h3g5o85"
+path="res://.godot/imported/castle_stones.png-81159723c1da830e3d28ec10868b3295.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilesets/ruins1.png"
-dest_files=["res://.godot/imported/ruins1.png-146299facb12e201c01663d694bc2b19.ctex"]
+source_file="res://assets/tilesets/castle_stones.png"
+dest_files=["res://.godot/imported/castle_stones.png-81159723c1da830e3d28ec10868b3295.ctex"]
 
 [params]
 

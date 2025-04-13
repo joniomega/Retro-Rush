@@ -1,0 +1,53 @@
+don't leave spaces between lines. and paste each one after the other randomly but following the rules.
+If there are any problem with the rules or some dont connect tell me before writing.
+type: start level, rules: at the start of the level
+1110111
+1110111
+1110111
+1110111
+1110111
+1110111
+1110111
+1000001
+
+type: right fall: cannot be placed if the previous lines are a right fall but a left fall is ok
+1000001
+1111101
+
+type: left fall: cannot be placed if the previous lines are a left fall but a right fall is ok
+1000001
+1011111
+
+type: right and left fall, rules: only if the previous lines are any of the middle fall types
+1000001
+1011101
+
+type: middle fall normal left, rules: only if the previous lines are a type left fall
+1001111
+1000001
+1000001
+1000001
+1300031
+1110111
+
+type: middle fall normal right, rules: only if the previous lines are a type right fall
+1111001
+1000001
+1000001
+1000001
+1300031
+1110111
+
+type: middle fall right spikes, rules: only if the previous lines are a type right and left fall
+1000001
+1000331
+1110111
+
+type: middle fall left spikes, rules: only if the previous lines are a type right and left fall
+1000001
+1330001
+1110111
+
+type: end of the level, rules: At the end of the level
+1000001
+1111111

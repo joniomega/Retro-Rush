@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dylpcixxaxcoi"
-path="res://.godot/imported/ruins1.png-146299facb12e201c01663d694bc2b19.ctex"
+uid="uid://bsy4gtfl8jrwe"
+path="res://.godot/imported/button_home.png-5fee844b35bf1e2b149ac6addbaca3a9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilesets/ruins1.png"
-dest_files=["res://.godot/imported/ruins1.png-146299facb12e201c01663d694bc2b19.ctex"]
+source_file="res://assets/ui/button_home.png"
+dest_files=["res://.godot/imported/button_home.png-5fee844b35bf1e2b149ac6addbaca3a9.ctex"]
 
 [params]
 

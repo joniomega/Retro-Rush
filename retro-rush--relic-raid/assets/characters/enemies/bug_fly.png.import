@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dylpcixxaxcoi"
-path="res://.godot/imported/ruins1.png-146299facb12e201c01663d694bc2b19.ctex"
+uid="uid://b67a454rlett0"
+path="res://.godot/imported/bug_fly.png-b653b76b1c83442f81dd6e48debba409.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilesets/ruins1.png"
-dest_files=["res://.godot/imported/ruins1.png-146299facb12e201c01663d694bc2b19.ctex"]
+source_file="res://assets/characters/enemies/bug_fly.png"
+dest_files=["res://.godot/imported/bug_fly.png-b653b76b1c83442f81dd6e48debba409.ctex"]
 
 [params]
 

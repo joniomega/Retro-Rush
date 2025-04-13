@@ -15,6 +15,10 @@ run/main_scene="res://scenes/lvl_0.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+TransitionScreen="*res://scenes/transition_screen.tscn"
+
 [display]
 
 window/size/viewport_width=224
@@ -22,6 +26,10 @@ window/size/viewport_height=390
 window/size/window_width_override=360
 window/size/window_height_override=640
 window/stretch/mode="canvas_items"
+
+[global_group]
+
+player=""
 
 [physics]
 
