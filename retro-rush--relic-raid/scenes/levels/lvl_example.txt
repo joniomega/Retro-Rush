@@ -11,10 +11,14 @@ type: start level, rules: at the start of the level
 1000001
 
 type: right fall: cannot be placed if the previous lines are a right fall but a left fall is ok
+1400001
+1101111
 1000001
 1111101
 
 type: left fall: cannot be placed if the previous lines are a left fall but a right fall is ok
+1000041
+1111011
 1000001
 1011111
 

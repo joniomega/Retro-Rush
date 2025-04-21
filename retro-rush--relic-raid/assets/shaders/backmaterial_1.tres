@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b38l1jujf2me6"]
+
+[ext_resource type="Shader" path="res://assets/shaders/background.gdshader" id="1_qcc5q"]
+
+[resource]
+shader = ExtResource("1_qcc5q")
+shader_parameter/spin_rotation_speed = 32.0
+shader_parameter/move_speed = 3.0
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/colour_1 = Color(0.382933, 0.371791, 0.57654, 1)
+shader_parameter/colour_2 = Color(0.227451, 0.25098, 0.403922, 1)
+shader_parameter/colour_3 = Color(0.086, 0.137, 0.145, 1)
+shader_parameter/contrast = 2.0
+shader_parameter/lighting = 0.2
+shader_parameter/spin_amount = 0.25
+shader_parameter/pixel_filter = 740.0
+shader_parameter/is_rotating = false

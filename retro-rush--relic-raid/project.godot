@@ -11,13 +11,15 @@ config_version=5
 [application]
 
 config/name="Retro Rush: Descend"
-run/main_scene="res://scenes/lvl_0.tscn"
+run/main_scene="res://menus/mainmenu.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
 
 TransitionScreen="*res://scenes/transition_screen.tscn"
+Global="*res://scenes/global.gd"
 
 [display]
 
@@ -26,6 +28,8 @@ window/size/viewport_height=390
 window/size/window_width_override=360
 window/size/window_height_override=640
 window/stretch/mode="canvas_items"
+window/stretch/aspect="keep_width"
+window/handheld/orientation=1
 
 [global_group]
 
@@ -39,6 +43,7 @@ player=""
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
 textures/decals/filter=0
 textures/light_projectors/filter=0
 2d/snap/snap_2d_transforms_to_pixel=true

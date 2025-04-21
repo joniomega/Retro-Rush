@@ -6,11 +6,14 @@ extends Node2D
 @onready var spike_facingup_path: String = "res://assets/obstacles/spike.tscn"
 @onready var coin_vase_path: String = "res://assets/obstacles/coin_vase.tscn"
 @onready var decoration_path: String = "res://assets/obstacles/decoration.tscn"
+@onready var relic_path: String = "res://assets/obstacles/relic.tscn"
 
 # Replace this with your actual tile source ID for your "Auto" tile.
 const AUTO_TILE_SOURCE_ID: int = 0
 
 func _ready():
+	var global = Global
+	current_level = global.selected_level
 	load_level(current_level)
 
 func load_level(level_number: int):
@@ -47,6 +50,10 @@ func load_level(level_number: int):
 	if decoration_scene == null:
 		push_error("Decoration scene not found at path")
 		return
+	var relic_scene = load(relic_path)
+	if relic_scene == null:
+		push_error("relic scene not found at path")
+		return
 
 	# Collect all positions where you want to place your terrain tile.
 	var terrain_coords: Array[Vector2i] = []
@@ -76,7 +83,14 @@ func load_level(level_number: int):
 				decoration_instance.position = Vector2(x * 32, y * 32)
 				decoration_instance.add_to_group("decorations")
 				add_child(decoration_instance)
+			elif char == '5':
+				var relic_instance = relic_scene.instantiate()
+				relic_instance.position = Vector2(x * 32, y * 32)
+				add_child(relic_instance)
 		y += 1
 
 	# Now update all these positions in one call for the terrain tile.
 	tilemaplayer.set_cells_terrain_connect(terrain_coords, AUTO_TILE_SOURCE_ID, 0, 0)
+func stop_music():
+	$AnimationPlayer.play("stop")
+	pass
