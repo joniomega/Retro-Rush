@@ -1,63 +1,45 @@
-[gd_scene load_steps=15 format=3 uid="uid://duae36wgy5yji"]
+[gd_scene load_steps=14 format=3 uid="uid://duae36wgy5yji"]
 
 [ext_resource type="Material" uid="uid://b38l1jujf2me6" path="res://assets/shaders/backmaterial_1.tres" id="1_cnoo3"]
 [ext_resource type="Script" path="res://menus/mainmenu.gd" id="1_t1nqp"]
 [ext_resource type="FontFile" uid="uid://camtosjq61o18" path="res://assets/ui/alagard.ttf" id="2_03nbx"]
-[ext_resource type="Texture2D" uid="uid://bp85pw1gug553" path="res://assets/ui/button_horizontal_1.png" id="2_e2oox"]
-[ext_resource type="Texture2D" uid="uid://b67a454rlett0" path="res://assets/characters/enemies/bug_fly.png" id="5_13oqp"]
+[ext_resource type="PackedScene" uid="uid://jft1qay172yn" path="res://menus/level_select.tscn" id="4_idjr4"]
+[ext_resource type="Texture2D" uid="uid://b55bscn4ylb62" path="res://assets/ui/player_container.png" id="5_y34tr"]
+[ext_resource type="Shader" path="res://assets/shaders/vhs.gdshader" id="6_0oedl"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7n6lq"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wiqc3"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3nyp7"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ejvcg"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e8gpy"]
-texture = ExtResource("2_e2oox")
-modulate_color = Color(1.2, 1.2, 1.2, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lp2q4"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2juav"]
-texture = ExtResource("2_e2oox")
-modulate_color = Color(1.5, 1.5, 1.5, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w5v3u"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oy2xu"]
-texture = ExtResource("2_e2oox")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jecki"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rdine"]
-atlas = ExtResource("5_13oqp")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="Theme" id="Theme_wbt8x"]
+VScrollBar/styles/grabber = SubResource("StyleBoxEmpty_wiqc3")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxEmpty_ejvcg")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxEmpty_lp2q4")
+VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_w5v3u")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_jecki")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0iqkl"]
-atlas = ExtResource("5_13oqp")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vhd1o"]
-atlas = ExtResource("5_13oqp")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_b568e"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rdine")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0iqkl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rdine")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0iqkl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vhd1o")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0iqkl")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rgsia"]
+shader = ExtResource("6_0oedl")
+shader_parameter/resolution = Vector2(1000, 1000)
+shader_parameter/scan_line_amount = 0.5
+shader_parameter/warp_amount = 0.0
+shader_parameter/noise_amount = 0.0
+shader_parameter/interference_amount = 1.0
+shader_parameter/grille_amount = 0.1
+shader_parameter/grille_size = 1.0
+shader_parameter/vignette_amount = 0.6
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/aberation_amount = 0.0
+shader_parameter/roll_line_amount = 0.0
+shader_parameter/roll_speed = -8.0
+shader_parameter/scan_line_strength = -7.0
+shader_parameter/pixel_strength = -4.0
 
 [node name="mainmenu" type="Node2D"]
 script = ExtResource("1_t1nqp")
@@ -80,158 +62,112 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 metadata/_edit_use_anchors_ = true
 
-[node name="GridContainer" type="GridContainer" parent="."]
-offset_left = 8.0
-offset_top = 152.0
-offset_right = 216.0
-offset_bottom = 244.0
-theme_override_constants/h_separation = 5
-theme_override_constants/v_separation = 5
-columns = 4
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+clip_contents = false
+offset_left = 17.0
+offset_top = 96.0
+offset_right = 224.0
+offset_bottom = 362.0
+theme = SubResource("Theme_wbt8x")
+follow_focus = true
+horizontal_scroll_mode = 0
 
-[node name="lvl1" type="Button" parent="GridContainer"]
+[node name="GridContainer" type="VBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_colors/font_outline_color = Color(0.101961, 0.0392157, 0.227451, 0.666667)
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("2_03nbx")
-theme_override_font_sizes/font_size = 28
-theme_override_styles/focus = SubResource("StyleBoxEmpty_7n6lq")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_3nyp7")
-theme_override_styles/hover = SubResource("StyleBoxTexture_e8gpy")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_2juav")
-theme_override_styles/normal = SubResource("StyleBoxTexture_oy2xu")
-text = "1"
-autowrap_mode = 3
-clip_text = true
+theme_override_constants/separation = 60
+alignment = 1
 
-[node name="lvl2" type="Button" parent="GridContainer"]
+[node name="level_select1" parent="ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
 layout_mode = 2
+level_num = 1
+
+[node name="level_select2" parent="ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+layout_mode = 2
+level_num = 2
+
+[node name="level_select3" parent="ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+layout_mode = 2
+level_num = 3
+
+[node name="level_select4" parent="ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+layout_mode = 2
+level_num = 4
+
+[node name="level_select5" parent="ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+layout_mode = 2
+level_num = 5
+
+[node name="level_select6" parent="ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+layout_mode = 2
+level_num = 6
+
+[node name="Control3" type="Control" parent="ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Control4" type="Control" parent="ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="PlayerContainer" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(112, 28)
+scale = Vector2(1.75, 1.75)
+texture = ExtResource("5_y34tr")
+flip_v = true
+
+[node name="win" type="RichTextLabel" parent="CanvasLayer"]
+clip_contents = false
+offset_top = 14.0
+offset_right = 224.0
+offset_bottom = 85.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.392157)
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/normal_font = ExtResource("2_03nbx")
+theme_override_fonts/mono_font = ExtResource("2_03nbx")
+theme_override_fonts/italics_font = ExtResource("2_03nbx")
+theme_override_fonts/bold_italics_font = ExtResource("2_03nbx")
+theme_override_fonts/bold_font = ExtResource("2_03nbx")
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 32
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+bbcode_enabled = true
+text = "[wave][center][color=#5c3aa1][b]RETRO RUSH[/b][/color][/center][/wave]"
+
+[node name="PlayerContainer3" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(112, 409)
+scale = Vector2(1.75, 1.75)
+texture = ExtResource("5_y34tr")
+
+[node name="PlayerContainer2" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(112, 368)
+scale = Vector2(1.75, 1.75)
+texture = ExtResource("5_y34tr")
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_colors/font_outline_color = Color(0.101961, 0.0392157, 0.227451, 0.666667)
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("2_03nbx")
-theme_override_font_sizes/font_size = 28
-theme_override_styles/focus = SubResource("StyleBoxEmpty_7n6lq")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_3nyp7")
-theme_override_styles/hover = SubResource("StyleBoxTexture_e8gpy")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_2juav")
-theme_override_styles/normal = SubResource("StyleBoxTexture_oy2xu")
-text = "2"
-autowrap_mode = 3
-clip_text = true
 
-[node name="lvl3" type="Button" parent="GridContainer"]
-layout_mode = 2
+[node name="CanvasLayer" type="CanvasLayer" parent="Control2"]
+
+[node name="ColorRect" type="ColorRect" parent="Control2/CanvasLayer"]
+material = SubResource("ShaderMaterial_rgsia")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_colors/font_outline_color = Color(0.101961, 0.0392157, 0.227451, 0.666667)
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("2_03nbx")
-theme_override_font_sizes/font_size = 28
-theme_override_styles/focus = SubResource("StyleBoxEmpty_7n6lq")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_3nyp7")
-theme_override_styles/hover = SubResource("StyleBoxTexture_e8gpy")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_2juav")
-theme_override_styles/normal = SubResource("StyleBoxTexture_oy2xu")
-text = "3
-"
-autowrap_mode = 3
-clip_text = true
-
-[node name="lvl4" type="Button" parent="GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_colors/font_outline_color = Color(0.101961, 0.0392157, 0.227451, 0.666667)
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("2_03nbx")
-theme_override_font_sizes/font_size = 28
-theme_override_styles/focus = SubResource("StyleBoxEmpty_7n6lq")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_3nyp7")
-theme_override_styles/hover = SubResource("StyleBoxTexture_e8gpy")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_2juav")
-theme_override_styles/normal = SubResource("StyleBoxTexture_oy2xu")
-text = "4"
-autowrap_mode = 3
-clip_text = true
-
-[node name="lvl5" type="Button" parent="GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_colors/font_outline_color = Color(0.101961, 0.0392157, 0.227451, 0.666667)
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("2_03nbx")
-theme_override_font_sizes/font_size = 28
-theme_override_styles/focus = SubResource("StyleBoxEmpty_7n6lq")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_3nyp7")
-theme_override_styles/hover = SubResource("StyleBoxTexture_e8gpy")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_2juav")
-theme_override_styles/normal = SubResource("StyleBoxTexture_oy2xu")
-text = "5"
-autowrap_mode = 3
-clip_text = true
-
-[node name="lvl6" type="Button" parent="GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_colors/font_outline_color = Color(0.101961, 0.0392157, 0.227451, 0.666667)
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("2_03nbx")
-theme_override_font_sizes/font_size = 28
-theme_override_styles/focus = SubResource("StyleBoxEmpty_7n6lq")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_3nyp7")
-theme_override_styles/hover = SubResource("StyleBoxTexture_e8gpy")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_2juav")
-theme_override_styles/normal = SubResource("StyleBoxTexture_oy2xu")
-text = "6"
-autowrap_mode = 3
-clip_text = true
-
-[node name="lvl7" type="Button" parent="GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_colors/font_outline_color = Color(0.101961, 0.0392157, 0.227451, 0.666667)
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("2_03nbx")
-theme_override_font_sizes/font_size = 28
-theme_override_styles/focus = SubResource("StyleBoxEmpty_7n6lq")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_3nyp7")
-theme_override_styles/hover = SubResource("StyleBoxTexture_e8gpy")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_2juav")
-theme_override_styles/normal = SubResource("StyleBoxTexture_oy2xu")
-text = "7"
-autowrap_mode = 3
-clip_text = true
-
-[node name="lvl8" type="Button" parent="GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_colors/font_outline_color = Color(0.101961, 0.0392157, 0.227451, 0.666667)
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("2_03nbx")
-theme_override_font_sizes/font_size = 28
-theme_override_styles/focus = SubResource("StyleBoxEmpty_7n6lq")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_3nyp7")
-theme_override_styles/hover = SubResource("StyleBoxTexture_e8gpy")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_2juav")
-theme_override_styles/normal = SubResource("StyleBoxTexture_oy2xu")
-text = "8"
-autowrap_mode = 3
-clip_text = true
-
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
-position = Vector2(64, 64)
-scale = Vector2(2.25, 2.25)
-sprite_frames = SubResource("SpriteFrames_b568e")
-autoplay = "default"
-frame = 3
-
-[connection signal="pressed" from="GridContainer/lvl1" to="." method="_on_lvl_1_pressed"]
-[connection signal="pressed" from="GridContainer/lvl2" to="." method="_on_lvl_2_pressed"]
+mouse_filter = 2

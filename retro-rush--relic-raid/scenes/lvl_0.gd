@@ -7,6 +7,7 @@ extends Node2D
 @onready var coin_vase_path: String = "res://assets/obstacles/coin_vase.tscn"
 @onready var decoration_path: String = "res://assets/obstacles/decoration.tscn"
 @onready var relic_path: String = "res://assets/obstacles/relic.tscn"
+@onready var sawdown_path: String = "res://assets/obstacles/sawdown.tscn"
 
 # Replace this with your actual tile source ID for your "Auto" tile.
 const AUTO_TILE_SOURCE_ID: int = 0
@@ -54,6 +55,10 @@ func load_level(level_number: int):
 	if relic_scene == null:
 		push_error("relic scene not found at path")
 		return
+	var saw_scene = load(sawdown_path)
+	if saw_scene == null:
+		push_error("saw scene not found at path")
+		return
 
 	# Collect all positions where you want to place your terrain tile.
 	var terrain_coords: Array[Vector2i] = []
@@ -87,6 +92,10 @@ func load_level(level_number: int):
 				var relic_instance = relic_scene.instantiate()
 				relic_instance.position = Vector2(x * 32, y * 32)
 				add_child(relic_instance)
+			elif char == '6':
+				var saw_instance = saw_scene.instantiate()
+				saw_instance.position = Vector2(x * 32, y * 32)
+				add_child(saw_instance)
 		y += 1
 
 	# Now update all these positions in one call for the terrain tile.

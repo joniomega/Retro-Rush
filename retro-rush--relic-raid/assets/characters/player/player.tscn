@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://dbcq5x0px65b6"]
+[gd_scene load_steps=55 format=3 uid="uid://dbcq5x0px65b6"]
 
 [ext_resource type="Script" path="res://assets/characters/player/player.gd" id="1_yncs3"]
 [ext_resource type="Texture2D" uid="uid://55u4pfu5hwgs" path="res://assets/characters/player/skin1.png" id="2_ierk0"]
@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://c6hervh8rwbxf" path="res://assets/ui/button_pause.png" id="6_n442f"]
 [ext_resource type="Texture2D" uid="uid://bsy4gtfl8jrwe" path="res://assets/ui/button_home.png" id="7_dwg8q"]
 [ext_resource type="AudioStream" uid="uid://bem77b5uvvnhc" path="res://assets/sounds/soundeffects/explosion_player.wav" id="7_v3lts"]
-[ext_resource type="Texture2D" uid="uid://bb7pqai8cbejy" path="res://assets/obstacles/relics_sheet.png" id="12_kvm8x"]
+[ext_resource type="SpriteFrames" uid="uid://bj7kppdwycf3i" path="res://assets/obstacles/relic_spriteframe.tres" id="12_6cgk5"]
 [ext_resource type="Texture2D" uid="uid://dxw02la8r8wqj" path="res://assets/shadow.png" id="12_pjfkr"]
 
 [sub_resource type="Animation" id="Animation_6ahc6"]
@@ -475,57 +475,6 @@ texture = ExtResource("7_dwg8q")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_00xyo"]
 texture = ExtResource("7_dwg8q")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_08fes"]
-atlas = ExtResource("12_kvm8x")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_maalc"]
-atlas = ExtResource("12_kvm8x")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dm1c3"]
-atlas = ExtResource("12_kvm8x")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l2dpd"]
-atlas = ExtResource("12_kvm8x")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_y6or7"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_08fes")
-}],
-"loop": true,
-"name": &"crown",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_maalc")
-}],
-"loop": true,
-"name": &"orb",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dm1c3")
-}],
-"loop": true,
-"name": &"skull",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l2dpd")
-}],
-"loop": true,
-"name": &"sword",
-"speed": 5.0
-}]
-
 [node name="player" type="CharacterBody2D" groups=["player"]]
 position = Vector2(32, 64)
 script = ExtResource("1_yncs3")
@@ -678,10 +627,10 @@ text = "[wave][center][color=#FFD700][b]RELIC RETRIEVED[/b][/color][/center][/wa
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/CanvasLayer/win"]
 show_behind_parent = true
-position = Vector2(112, -27)
+position = Vector2(112, -26)
 scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_y6or7")
-animation = &"crown"
+sprite_frames = ExtResource("12_6cgk5")
+animation = &"0"
 
 [node name="win_back" type="Sprite2D" parent="Control/CanvasLayer/win"]
 show_behind_parent = true

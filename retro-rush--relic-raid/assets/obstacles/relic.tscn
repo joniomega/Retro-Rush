@@ -1,62 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://cgwqs0jd4bxvp"]
+[gd_scene load_steps=12 format=3 uid="uid://cgwqs0jd4bxvp"]
 
-[ext_resource type="Texture2D" uid="uid://bb7pqai8cbejy" path="res://assets/obstacles/relics_sheet.png" id="1_587df"]
 [ext_resource type="Script" path="res://assets/obstacles/relic.gd" id="1_avswn"]
+[ext_resource type="SpriteFrames" uid="uid://bj7kppdwycf3i" path="res://assets/obstacles/relic_spriteframe.tres" id="2_2btxo"]
 [ext_resource type="Texture2D" uid="uid://bgg0jhv1gsjdw" path="res://assets/tilesets/obstacles.png" id="2_w2alc"]
 [ext_resource type="Texture2D" uid="uid://cm35cdmixpj10" path="res://assets/shine_particle.png" id="4_by07q"]
 [ext_resource type="AudioStream" uid="uid://on2o1mlaf5ar" path="res://assets/sounds/soundeffects/pickupCoin (1).wav" id="5_l8fme"]
 [ext_resource type="AudioStream" uid="uid://cfoumpr8nx5ac" path="res://assets/sounds/soundeffects/level-win-6416.mp3" id="6_vjnpy"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g8n4n"]
-atlas = ExtResource("1_587df")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3arrd"]
-atlas = ExtResource("1_587df")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_svcg4"]
-atlas = ExtResource("1_587df")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_krh2j"]
-atlas = ExtResource("1_587df")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_bo8se"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_g8n4n")
-}],
-"loop": true,
-"name": &"crown",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3arrd")
-}],
-"loop": true,
-"name": &"orb",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_svcg4")
-}],
-"loop": true,
-"name": &"skull",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_krh2j")
-}],
-"loop": true,
-"name": &"sword",
-"speed": 5.0
-}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tnyw3"]
 atlas = ExtResource("2_w2alc")
@@ -90,8 +39,8 @@ script = ExtResource("1_avswn")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = -2
 position = Vector2(16, 17)
-sprite_frames = SubResource("SpriteFrames_bo8se")
-animation = &"crown"
+sprite_frames = ExtResource("2_2btxo")
+animation = &"1"
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
 position = Vector2(16, 17)

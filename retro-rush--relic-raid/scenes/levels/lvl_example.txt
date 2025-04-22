@@ -17,9 +17,9 @@ type: right fall: cannot be placed if the previous lines are a right fall but a 
 1111101
 
 type: left fall: cannot be placed if the previous lines are a left fall but a right fall is ok
-1000041
+1200041
 1111011
-1000001
+1060201
 1011111
 
 type: right and left fall, rules: only if the previous lines are any of the middle fall types
