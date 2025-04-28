@@ -1,7 +1,9 @@
 extends Node
 
 var selected_level: int = 1
-var unlocked_levels: Array = [1]  # Start with only level 1 unlocked
+var selected_level_special :bool = false
+var unlocked_levels: Array = [1]
+var points :int = 1000  # Start with only level 1 unlocked
 
 func _ready() -> void:
 	load_progress()

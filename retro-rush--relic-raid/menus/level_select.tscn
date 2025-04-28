@@ -46,18 +46,48 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_82nm7")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_w7pf0")
 theme_override_styles/normal = SubResource("StyleBoxTexture_dg0r0")
 
+[node name="Button_pay" type="Button" parent="."]
+modulate = Color(0.952167, 1, 0.59, 1)
+layout_mode = 0
+offset_right = 192.0
+offset_bottom = 56.0
+mouse_filter = 1
+theme_override_styles/focus = SubResource("StyleBoxEmpty_to007")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_uiuin")
+theme_override_styles/hover = SubResource("StyleBoxTexture_82nm7")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_w7pf0")
+theme_override_styles/normal = SubResource("StyleBoxTexture_dg0r0")
+
+[node name="Label2" type="Label" parent="Button_pay"]
+visible = false
+layout_mode = 0
+offset_left = 7.0
+offset_top = 37.0
+offset_right = 58.0
+offset_bottom = 56.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_owl4t")
+theme_override_font_sizes/font_size = 16
+text = "500/0"
+vertical_alignment = 1
+autowrap_mode = 3
+
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_left = 55.0
-offset_top = 3.0
+offset_top = 5.0
 offset_right = 188.0
-offset_bottom = 48.0
+offset_bottom = 50.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("3_owl4t")
 theme_override_font_sizes/font_size = 16
 text = "1- Ruins of Oligar"
+horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -65,7 +95,7 @@ autowrap_mode = 3
 position = Vector2(28, 26)
 scale = Vector2(1.53125, 1.5)
 sprite_frames = ExtResource("3_o3ryn")
-animation = &"lock"
+animation = &"coin"
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
 position = Vector2(27, 41)
@@ -85,3 +115,4 @@ scale_amount_max = 0.5
 color_ramp = SubResource("Gradient_f2ce2")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button_pay" to="." method="_on_button_pay_pressed"]

@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dh2stg3d14hrj"]
+
+[ext_resource type="Shader" path="res://assets/shaders/holo.gdshader" id="1_lf0tf"]
+
+[resource]
+shader = ExtResource("1_lf0tf")
+shader_parameter/strength = 0.3
+shader_parameter/speed = 0.3
+shader_parameter/angle = 45.0

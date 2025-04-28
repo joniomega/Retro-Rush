@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://dbcq5x0px65b6"]
+[gd_scene load_steps=57 format=3 uid="uid://dbcq5x0px65b6"]
 
 [ext_resource type="Script" path="res://assets/characters/player/player.gd" id="1_yncs3"]
 [ext_resource type="Texture2D" uid="uid://55u4pfu5hwgs" path="res://assets/characters/player/skin1.png" id="2_ierk0"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://bem77b5uvvnhc" path="res://assets/sounds/soundeffects/explosion_player.wav" id="7_v3lts"]
 [ext_resource type="SpriteFrames" uid="uid://bj7kppdwycf3i" path="res://assets/obstacles/relic_spriteframe.tres" id="12_6cgk5"]
 [ext_resource type="Texture2D" uid="uid://dxw02la8r8wqj" path="res://assets/shadow.png" id="12_pjfkr"]
+[ext_resource type="PackedScene" uid="uid://boacxm34cq8c3" path="res://assets/craft/ingredient_reward.tscn" id="14_ooedi"]
 
 [sub_resource type="Animation" id="Animation_6ahc6"]
 length = 0.001
@@ -87,6 +88,18 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, -88)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Control/CanvasLayer/special_rewards:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 288)]
 }
 
 [sub_resource type="Animation" id="Animation_0yrlo"]
@@ -167,11 +180,75 @@ tracks/3/keys = {
 "values": [Vector2(0, -88), Vector2(0, 100)]
 }
 
+[sub_resource type="Animation" id="Animation_ltijm"]
+resource_name = "win_special"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/CanvasLayer/left_button:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/CanvasLayer/right_button:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/CanvasLayer/score:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(75, 4), Vector2(75, 165)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/CanvasLayer/win:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0333333, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -88), Vector2(0, 100)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/CanvasLayer/special_rewards:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 288), Vector2(0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_km05r"]
 _data = {
 "RESET": SubResource("Animation_6ahc6"),
 "die": SubResource("Animation_0yrlo"),
-"win": SubResource("Animation_0mn06")
+"win": SubResource("Animation_0mn06"),
+"win_special": SubResource("Animation_ltijm")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tnmqm"]
@@ -568,7 +645,7 @@ flip_v = true
 
 [node name="score" type="Label" parent="Control/CanvasLayer"]
 offset_left = 75.0
-offset_top = 4.0
+offset_top = 4.00001
 offset_right = 149.0
 offset_bottom = 34.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.392157)
@@ -605,7 +682,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_00xyo")
 clip_contents = false
 offset_top = -88.0
 offset_right = 224.0
-offset_bottom = -8.0
+offset_bottom = -7.99998
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.392157)
 theme_override_constants/outline_size = 4
@@ -638,6 +715,28 @@ position = Vector2(112, 28.5)
 scale = Vector2(3.5, 2.21875)
 texture = ExtResource("12_pjfkr")
 flip_v = true
+
+[node name="special_rewards" type="Control" parent="Control/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 288.0
+offset_bottom = 288.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ingredient_reward" parent="Control/CanvasLayer/special_rewards" instance=ExtResource("14_ooedi")]
+position = Vector2(13, 200)
+scale = Vector2(2, 2)
+
+[node name="ingredient_reward2" parent="Control/CanvasLayer/special_rewards" instance=ExtResource("14_ooedi")]
+position = Vector2(81, 200)
+scale = Vector2(2, 2)
+
+[node name="ingredient_reward3" parent="Control/CanvasLayer/special_rewards" instance=ExtResource("14_ooedi")]
+position = Vector2(149, 200)
+scale = Vector2(2, 2)
 
 [connection signal="pressed" from="Control/CanvasLayer/left_button" to="." method="_on_left_button_pressed"]
 [connection signal="pressed" from="Control/CanvasLayer/right_button" to="." method="_on_right_button_pressed"]

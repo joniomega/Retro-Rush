@@ -1,16 +1,14 @@
-[gd_scene load_steps=32 format=3 uid="uid://duae36wgy5yji"]
+[gd_scene load_steps=30 format=3 uid="uid://duae36wgy5yji"]
 
 [ext_resource type="Material" uid="uid://b38l1jujf2me6" path="res://assets/shaders/backmaterial_1.tres" id="1_cnoo3"]
 [ext_resource type="Script" path="res://menus/mainmenu.gd" id="1_t1nqp"]
 [ext_resource type="FontFile" uid="uid://camtosjq61o18" path="res://assets/ui/alagard.ttf" id="2_03nbx"]
 [ext_resource type="PackedScene" uid="uid://jft1qay172yn" path="res://menus/level_select.tscn" id="4_idjr4"]
-[ext_resource type="PackedScene" uid="uid://bvm7ds3g3b8os" path="res://menus/rewards_menu.tscn" id="5_0v4qk"]
 [ext_resource type="Texture2D" uid="uid://b55bscn4ylb62" path="res://assets/ui/player_container.png" id="5_y34tr"]
 [ext_resource type="Shader" path="res://assets/shaders/vhs.gdshader" id="6_0oedl"]
 [ext_resource type="Texture2D" uid="uid://d0i0lr0yll817" path="res://assets/ui/button_anvil.png" id="6_eh4l7"]
 [ext_resource type="Texture2D" uid="uid://bqwcan8o3yu7a" path="res://assets/ui/button_levels.png" id="6_imw26"]
 [ext_resource type="Texture2D" uid="uid://bbn7cjk6253cn" path="res://assets/ui/icon_exclamation.png" id="7_ssu4i"]
-[ext_resource type="Texture2D" uid="uid://c4w620eitvjr2" path="res://assets/ui/icon_coin.png" id="8_0suj5"]
 [ext_resource type="Texture2D" uid="uid://gxh0ja6n3sap" path="res://assets/ui/button_rewards.png" id="8_tvihv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wiqc3"]
@@ -132,7 +130,6 @@ offset_bottom = 390.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="levels"]
 clip_contents = false
-layout_mode = 0
 offset_left = 17.0
 offset_top = 16.0
 offset_right = 225.0
@@ -199,14 +196,10 @@ offset_left = 224.0
 offset_right = 448.0
 offset_bottom = 390.0
 
-[node name="ButtonRewards2" type="Sprite2D" parent="rewards"]
-visible = false
-position = Vector2(104, 144)
+[node name="ButtonRewards" type="Sprite2D" parent="rewards"]
+position = Vector2(112, 144)
 scale = Vector2(4, 4)
-texture = ExtResource("6_eh4l7")
-
-[node name="rewards_menu" parent="rewards" instance=ExtResource("5_0v4qk")]
-layout_mode = 1
+texture = ExtResource("8_tvihv")
 
 [node name="static_ui" type="CanvasLayer" parent="."]
 layer = 0
@@ -218,10 +211,10 @@ texture = ExtResource("5_y34tr")
 flip_v = true
 
 [node name="win" type="RichTextLabel" parent="static_ui"]
-visible = false
-offset_top = 11.0
+clip_contents = false
+offset_top = 14.0
 offset_right = 224.0
-offset_bottom = 48.0
+offset_bottom = 85.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.392157)
 theme_override_constants/outline_size = 4
@@ -240,43 +233,10 @@ theme_override_font_sizes/normal_font_size = 32
 theme_override_font_sizes/bold_font_size = 32
 bbcode_enabled = true
 text = "[wave][center][color=#5c3aa1][b]RETRO RUSH[/b][/color][/center][/wave]"
-scroll_active = false
-
-[node name="points" type="RichTextLabel" parent="static_ui"]
-clip_contents = false
-offset_left = 44.0
-offset_top = 9.0
-offset_right = 188.0
-offset_bottom = 46.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.392157)
-theme_override_constants/outline_size = 4
-theme_override_constants/shadow_offset_y = 1
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_outline_size = 4
-theme_override_fonts/normal_font = ExtResource("2_03nbx")
-theme_override_fonts/mono_font = ExtResource("2_03nbx")
-theme_override_fonts/italics_font = ExtResource("2_03nbx")
-theme_override_fonts/bold_italics_font = ExtResource("2_03nbx")
-theme_override_fonts/bold_font = ExtResource("2_03nbx")
-theme_override_font_sizes/bold_italics_font_size = 32
-theme_override_font_sizes/italics_font_size = 32
-theme_override_font_sizes/mono_font_size = 32
-theme_override_font_sizes/normal_font_size = 32
-theme_override_font_sizes/bold_font_size = 32
-bbcode_enabled = true
-text = "[wave][color=#5c3aa1][b]9999999p[/b][/color][/wave]"
-scroll_active = false
-autowrap_mode = 2
-
-[node name="IconCoin" type="Sprite2D" parent="static_ui/points"]
-position = Vector2(-20, 15)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("8_0suj5")
 
 [node name="PlayerContainer3" type="Sprite2D" parent="static_ui"]
-position = Vector2(112, 397.5)
-scale = Vector2(1.75, 3.03125)
+position = Vector2(112, 402.5)
+scale = Vector2(1.75, 2.71875)
 texture = ExtResource("5_y34tr")
 
 [node name="PlayerContainer2" type="Sprite2D" parent="static_ui"]
@@ -328,7 +288,6 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_yvnfu")
 theme_override_styles/normal = SubResource("StyleBoxTexture_r50y0")
 
 [node name="IconExclamation3" type="Sprite2D" parent="static_ui/rewards"]
-visible = false
 position = Vector2(40, 32)
 scale = Vector2(2, 2)
 texture = ExtResource("7_ssu4i")

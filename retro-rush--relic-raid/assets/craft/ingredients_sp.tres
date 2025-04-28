@@ -1,0 +1,54 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://uhhxbh4veuvb"]
+
+[ext_resource type="Texture2D" uid="uid://cwri44eux3v0l" path="res://assets/craft/1ingridients.png" id="1_0n7ll"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bh6ud"]
+atlas = ExtResource("1_0n7ll")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idbni"]
+atlas = ExtResource("1_0n7ll")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qm23u"]
+atlas = ExtResource("1_0n7ll")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkoew"]
+atlas = ExtResource("1_0n7ll")
+region = Rect2(0, 32, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bh6ud")
+}],
+"loop": true,
+"name": &"cowboy_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idbni")
+}],
+"loop": true,
+"name": &"cowboy_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qm23u")
+}],
+"loop": true,
+"name": &"flower_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkoew")
+}],
+"loop": true,
+"name": &"flower_2",
+"speed": 5.0
+}]

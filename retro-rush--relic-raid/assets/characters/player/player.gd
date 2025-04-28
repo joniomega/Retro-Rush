@@ -5,7 +5,7 @@ const SPEED = 80.0
 const JUMP_VELOCITY = -350.0
 var skill_jump: bool = false
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-@export var accessory = "none"
+@export var accessory = "hat"
 
 @export var score :int = 0
 var displayed_score := 0
@@ -126,6 +126,7 @@ func _on_button_home_pressed() -> void:
 	pass # Replace with function body.
 
 func win(type:String):
+	Global.points = Global.points + score
 	$Control/CanvasLayer/win/AnimatedSprite2D.play(type)
 	isdead = true
 	_play_animation("idle")
@@ -136,4 +137,15 @@ func win(type:String):
 	TransitionScreen.transition()
 	await TransitionScreen.on_transition_finished
 	tree.change_scene_to_file("res://menus/mainmenu.tscn")
+	pass
+func win_special(type:String):
+	var holo_material = preload("res://assets/shaders/holo.tres")
+	$Control/CanvasLayer/win.material = holo_material
+	Global.points = Global.points + score
+	$Control/CanvasLayer/win/AnimatedSprite2D.play(type)
+	isdead = true
+	_play_animation("idle")
+	$animation.play("win_special")
+	get_parent().stop_music()
+	
 	pass
