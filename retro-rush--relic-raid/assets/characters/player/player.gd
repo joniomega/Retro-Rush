@@ -5,7 +5,8 @@ const SPEED = 80.0
 const JUMP_VELOCITY = -350.0
 var skill_jump: bool = false
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-@export var accessory = "hat"
+@export var accessory = Global.player_hat
+@export var skin = Global.player_skin
 
 @export var score :int = 0
 var displayed_score := 0
@@ -80,7 +81,7 @@ func _physics_process(delta: float) -> void:
 
 func _play_animation(anim_name: String) -> void:
 	if current_animation != anim_name:
-		animation.play(anim_name)
+		animation.play(skin+"_"+anim_name)
 		anim_accessory.play(str(accessory + "_" + anim_name))
 		current_animation = anim_name
 
@@ -140,7 +141,8 @@ func win(type:String):
 	pass
 func win_special(type:String):
 	var holo_material = preload("res://assets/shaders/holo.tres")
-	$Control/CanvasLayer/win.material = holo_material
+	#$Control/CanvasLayer/win.material = holo_material
+	$Control/CanvasLayer/win/AnimatedSprite2D.material = holo_material
 	Global.points = Global.points + score
 	$Control/CanvasLayer/win/AnimatedSprite2D.play(type)
 	isdead = true

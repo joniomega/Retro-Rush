@@ -32,7 +32,7 @@ func _ready() -> void:
 		button_pay.disabled = true
 		$Label.modulate = Color(0.5, 0.5, 0.5)  # Gray out
 		#check if level ends with 5 or 0
-		if level_num % 5 == 0:
+		if level_num % 5 == 0 or level_num == 1:
 			button.visible = false
 			button_pay.visible = true
 			$Label.text = $Label.text+"/ 500p"
@@ -56,7 +56,7 @@ func _ready() -> void:
 		button_pay.disabled = false
 		$Label.modulate = Color(0.8, 0.8, 0.8)  # Slightly dimmed
 		#check if level ends with 5 or 0
-		if level_num % 5 == 0:
+		if level_num % 5 == 0 or level_num == 1:
 			button.visible = false
 			button_pay.visible = true
 			$Label.text = $Label.text+"/ 500p"

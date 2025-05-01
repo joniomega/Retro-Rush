@@ -1,34 +1,35 @@
-[gd_scene load_steps=32 format=3 uid="uid://duae36wgy5yji"]
+[gd_scene load_steps=33 format=3 uid="uid://duae36wgy5yji"]
 
 [ext_resource type="Material" uid="uid://b38l1jujf2me6" path="res://assets/shaders/backmaterial_1.tres" id="1_cnoo3"]
 [ext_resource type="Script" path="res://menus/mainmenu.gd" id="1_t1nqp"]
 [ext_resource type="FontFile" uid="uid://camtosjq61o18" path="res://assets/ui/alagard.ttf" id="2_03nbx"]
 [ext_resource type="PackedScene" uid="uid://jft1qay172yn" path="res://menus/level_select.tscn" id="4_idjr4"]
-[ext_resource type="PackedScene" uid="uid://bvm7ds3g3b8os" path="res://menus/rewards_menu.tscn" id="5_0v4qk"]
+[ext_resource type="PackedScene" uid="uid://b8gq3tryuhkjf" path="res://menus/craft_menu.tscn" id="4_pepsx"]
 [ext_resource type="Texture2D" uid="uid://b55bscn4ylb62" path="res://assets/ui/player_container.png" id="5_y34tr"]
 [ext_resource type="Shader" path="res://assets/shaders/vhs.gdshader" id="6_0oedl"]
 [ext_resource type="Texture2D" uid="uid://d0i0lr0yll817" path="res://assets/ui/button_anvil.png" id="6_eh4l7"]
 [ext_resource type="Texture2D" uid="uid://bqwcan8o3yu7a" path="res://assets/ui/button_levels.png" id="6_imw26"]
+[ext_resource type="PackedScene" uid="uid://boacxm34cq8c3" path="res://assets/craft/ingredient_reward.tscn" id="7_oov0s"]
 [ext_resource type="Texture2D" uid="uid://bbn7cjk6253cn" path="res://assets/ui/icon_exclamation.png" id="7_ssu4i"]
 [ext_resource type="Texture2D" uid="uid://c4w620eitvjr2" path="res://assets/ui/icon_coin.png" id="8_0suj5"]
 [ext_resource type="Texture2D" uid="uid://gxh0ja6n3sap" path="res://assets/ui/button_rewards.png" id="8_tvihv"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wiqc3"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xug4k"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ejvcg"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ip8bf"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lp2q4"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4qd1j"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w5v3u"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_358cn"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jecki"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x8ldy"]
 
 [sub_resource type="Theme" id="Theme_wbt8x"]
-VScrollBar/styles/grabber = SubResource("StyleBoxEmpty_wiqc3")
-VScrollBar/styles/grabber_highlight = SubResource("StyleBoxEmpty_ejvcg")
-VScrollBar/styles/grabber_pressed = SubResource("StyleBoxEmpty_lp2q4")
-VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_w5v3u")
-VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_jecki")
+VScrollBar/styles/grabber = SubResource("StyleBoxEmpty_xug4k")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxEmpty_ip8bf")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxEmpty_4qd1j")
+VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_358cn")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_x8ldy")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h3v6r"]
 texture = ExtResource("6_eh4l7")
@@ -118,17 +119,22 @@ layout_mode = 3
 anchors_preset = 0
 offset_left = -224.0
 offset_bottom = 390.0
+mouse_filter = 1
 
 [node name="ButtonRewards" type="Sprite2D" parent="craft"]
-position = Vector2(112, 144)
+position = Vector2(104, -72)
 scale = Vector2(4, 4)
 texture = ExtResource("6_eh4l7")
+
+[node name="craft_menu" parent="craft" instance=ExtResource("4_pepsx")]
+layout_mode = 1
 
 [node name="levels" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 224.0
 offset_bottom = 390.0
+mouse_filter = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="levels"]
 clip_contents = false
@@ -203,10 +209,31 @@ offset_bottom = 390.0
 visible = false
 position = Vector2(104, 144)
 scale = Vector2(4, 4)
-texture = ExtResource("6_eh4l7")
+texture = ExtResource("8_tvihv")
 
-[node name="rewards_menu" parent="rewards" instance=ExtResource("5_0v4qk")]
-layout_mode = 1
+[node name="ingredient_reward" parent="rewards" instance=ExtResource("7_oov0s")]
+position = Vector2(16, 56)
+scale = Vector2(2, 2)
+
+[node name="ingredient_reward2" parent="rewards" instance=ExtResource("7_oov0s")]
+position = Vector2(88, 56)
+scale = Vector2(2, 2)
+
+[node name="ingredient_reward3" parent="rewards" instance=ExtResource("7_oov0s")]
+position = Vector2(160, 56)
+scale = Vector2(2, 2)
+
+[node name="ingredient_reward4" parent="rewards" instance=ExtResource("7_oov0s")]
+position = Vector2(16, 152)
+scale = Vector2(2, 2)
+
+[node name="ingredient_reward5" parent="rewards" instance=ExtResource("7_oov0s")]
+position = Vector2(88, 152)
+scale = Vector2(2, 2)
+
+[node name="ingredient_reward6" parent="rewards" instance=ExtResource("7_oov0s")]
+position = Vector2(160, 152)
+scale = Vector2(2, 2)
 
 [node name="static_ui" type="CanvasLayer" parent="."]
 layer = 0

@@ -16,6 +16,12 @@ func _ready():
 	var global = Global
 	current_level = global.selected_level
 	load_level(current_level)
+	if global.selected_level_special == true:
+		var special_material = preload("res://assets/shaders/backmaterial_special.tres")
+		$CanvasLayer/background.material = special_material
+	else:
+		var special_material = preload("res://assets/shaders/backmaterial_1.tres")
+		$CanvasLayer/background.material = special_material
 
 func load_level(level_number: int):
 	var file_path = "%slvl_%d.txt" % [levels_path, level_number]

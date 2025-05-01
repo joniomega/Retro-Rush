@@ -1,7 +1,6 @@
-[gd_scene load_steps=15 format=4 uid="uid://co45f3j5jvof1"]
+[gd_scene load_steps=14 format=4 uid="uid://co45f3j5jvof1"]
 
 [ext_resource type="Script" path="res://scenes/lvl_0.gd" id="1_yakhs"]
-[ext_resource type="Material" uid="uid://b38l1jujf2me6" path="res://assets/shaders/backmaterial_1.tres" id="2_ekipo"]
 [ext_resource type="TileSet" uid="uid://xvnp8y75kw50" path="res://assets/tilesets/lvl_ruin.tres" id="2_t60cn"]
 [ext_resource type="PackedScene" uid="uid://dbcq5x0px65b6" path="res://assets/characters/player/player.tscn" id="2_y5lbi"]
 [ext_resource type="Shader" path="res://assets/shaders/vhs.gdshader" id="3_ftr30"]
@@ -96,7 +95,6 @@ layer = -1
 
 [node name="background" type="ColorRect" parent="CanvasLayer"]
 show_behind_parent = true
-material = ExtResource("2_ekipo")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

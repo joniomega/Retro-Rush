@@ -1,0 +1,207 @@
+[gd_scene load_steps=20 format=3 uid="uid://b8gq3tryuhkjf"]
+
+[ext_resource type="Script" path="res://menus/craft_menu.gd" id="1_fxeqh"]
+[ext_resource type="Texture2D" uid="uid://bpp2bxffp4d66" path="res://assets/ui/equipment_container.png" id="1_jit7q"]
+[ext_resource type="PackedScene" uid="uid://dauxouih85yxb" path="res://menus/recipe_select.tscn" id="2_4ty2e"]
+[ext_resource type="SpriteFrames" uid="uid://duukh1em5rexv" path="res://assets/characters/player/player_skin.tres" id="3_qhuf7"]
+[ext_resource type="SpriteFrames" uid="uid://bsvml15ne3jhu" path="res://assets/characters/player/accessories/player_accessories.tres" id="4_adnfl"]
+[ext_resource type="FontFile" uid="uid://camtosjq61o18" path="res://assets/ui/alagard.ttf" id="5_emg15"]
+[ext_resource type="Texture2D" uid="uid://c6ijelrkwpk6t" path="res://assets/ui/button_ingredient_chosse.png" id="6_leto2"]
+[ext_resource type="Texture2D" uid="uid://wjy8m25x0usb" path="res://assets/ui/arrow_left.png" id="7_fssud"]
+[ext_resource type="Texture2D" uid="uid://4wyk05bopbf" path="res://assets/ui/arrow_right.png" id="8_1f676"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wiqc3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ejvcg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lp2q4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w5v3u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jecki"]
+
+[sub_resource type="Theme" id="Theme_vgs7n"]
+VScrollBar/styles/grabber = SubResource("StyleBoxEmpty_wiqc3")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxEmpty_ejvcg")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxEmpty_lp2q4")
+VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_w5v3u")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_jecki")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wn3hj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lqblf"]
+texture = ExtResource("6_leto2")
+modulate_color = Color(1.2, 1.2, 1.2, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ogodm"]
+texture = ExtResource("6_leto2")
+modulate_color = Color(1.5, 1.5, 1.5, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lp33i"]
+texture = ExtResource("6_leto2")
+
+[node name="craft_menu" type="Control"]
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_fxeqh")
+
+[node name="recipes" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="recipes"]
+clip_contents = false
+layout_mode = 0
+offset_left = 17.0
+offset_top = 49.0
+offset_right = 225.0
+offset_bottom = 395.0
+theme = SubResource("Theme_vgs7n")
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="VBoxContainer" parent="recipes/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="Control4" type="Control" parent="recipes/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Control6" type="Control" parent="recipes/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="recipe_select1" parent="recipes/ScrollContainer/GridContainer" instance=ExtResource("2_4ty2e")]
+layout_mode = 2
+reward = "plant"
+
+[node name="recipe_select2" parent="recipes/ScrollContainer/GridContainer" instance=ExtResource("2_4ty2e")]
+layout_mode = 2
+reward = "hat"
+
+[node name="Control3" type="Control" parent="recipes/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Control5" type="Control" parent="recipes/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="equipment" type="Control" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PlayerContainer2" type="Sprite2D" parent="equipment"]
+position = Vector2(112, 65)
+scale = Vector2(1.75, 4.5625)
+texture = ExtResource("1_jit7q")
+flip_v = true
+
+[node name="PlayerContainer" type="Sprite2D" parent="equipment"]
+position = Vector2(112, 130)
+scale = Vector2(1.75, 1.75)
+texture = ExtResource("1_jit7q")
+flip_v = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="equipment"]
+position = Vector2(112, 96)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("3_qhuf7")
+animation = &"2_jump"
+
+[node name="accessory" type="AnimatedSprite2D" parent="equipment/AnimatedSprite2D"]
+position = Vector2(0, 0.333332)
+sprite_frames = ExtResource("4_adnfl")
+animation = &"hat_jump"
+
+[node name="buttons" type="Node2D" parent="equipment"]
+position = Vector2(0, -7.99999)
+
+[node name="button_hat_left" type="Button" parent="equipment/buttons"]
+offset_left = 16.0
+offset_top = 72.0
+offset_right = 56.0
+offset_bottom = 112.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("5_emg15")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wn3hj")
+theme_override_styles/hover = SubResource("StyleBoxTexture_lqblf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ogodm")
+theme_override_styles/normal = SubResource("StyleBoxTexture_lp33i")
+icon = ExtResource("7_fssud")
+expand_icon = true
+metadata/_edit_use_anchors_ = true
+
+[node name="button_hat_right" type="Button" parent="equipment/buttons"]
+offset_left = 168.0
+offset_top = 72.0
+offset_right = 208.0
+offset_bottom = 112.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("5_emg15")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wn3hj")
+theme_override_styles/hover = SubResource("StyleBoxTexture_lqblf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ogodm")
+theme_override_styles/normal = SubResource("StyleBoxTexture_lp33i")
+icon = ExtResource("8_1f676")
+expand_icon = true
+metadata/_edit_use_anchors_ = true
+
+[node name="button_body_left" type="Button" parent="equipment/buttons"]
+offset_left = 16.0
+offset_top = 112.0
+offset_right = 56.0
+offset_bottom = 152.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("5_emg15")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wn3hj")
+theme_override_styles/hover = SubResource("StyleBoxTexture_lqblf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ogodm")
+theme_override_styles/normal = SubResource("StyleBoxTexture_lp33i")
+icon = ExtResource("7_fssud")
+expand_icon = true
+metadata/_edit_use_anchors_ = true
+
+[node name="button_body_right" type="Button" parent="equipment/buttons"]
+offset_left = 168.0
+offset_top = 112.0
+offset_right = 208.0
+offset_bottom = 152.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("5_emg15")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wn3hj")
+theme_override_styles/hover = SubResource("StyleBoxTexture_lqblf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ogodm")
+theme_override_styles/normal = SubResource("StyleBoxTexture_lp33i")
+icon = ExtResource("8_1f676")
+expand_icon = true
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="equipment/buttons/button_hat_left" to="." method="_on_button_hat_left_pressed"]
+[connection signal="pressed" from="equipment/buttons/button_hat_right" to="." method="_on_button_hat_right_pressed"]
+[connection signal="pressed" from="equipment/buttons/button_body_left" to="." method="_on_button_body_left_pressed"]
+[connection signal="pressed" from="equipment/buttons/button_body_right" to="." method="_on_button_body_right_pressed"]

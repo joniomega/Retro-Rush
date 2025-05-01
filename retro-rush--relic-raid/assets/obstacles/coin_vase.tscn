@@ -113,7 +113,7 @@ size = Vector2(14, 17)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_sdadc"]
-random_pitch = 1.4
+random_pitch = 1.2
 streams_count = 3
 stream_0/stream = ExtResource("4_hj33h")
 stream_1/stream = ExtResource("5_6ljeu")
@@ -159,5 +159,6 @@ color_ramp = SubResource("Gradient_qi40f")
 [node name="sound_break" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_sdadc")
 volume_db = -20.0
+pitch_scale = 1.2
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
