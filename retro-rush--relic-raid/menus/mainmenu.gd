@@ -18,9 +18,9 @@ var current_menu = "levels"
 func _ready() -> void:
 	global.selected_level = 0
 	global.selected_level_special = false
-	$static_ui/points.text = "[wave][color=#5c3aa1][b]"+str(global.points)+"p[/b][/color][/wave]"
+	$static_ui/points.text = "[center][wave][color=#5c3aa1][b]"+str(global.points)+"p[/b][/color][/wave][/center]"
 	if global.points == 0:
-		$static_ui/points.text = "[wave][color=#5c3aa1][b]"+"000"+"p[/b][/color][/wave]"
+		$static_ui/points.text = "[center][wave][color=#5c3aa1][b]"+"000"+"p[/b][/color][/wave][/center]"
 	# Save initial positions
 	level_pos = menu_levels.position
 	craft_pos = menu_craft.position

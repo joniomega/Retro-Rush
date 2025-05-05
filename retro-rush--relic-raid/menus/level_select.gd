@@ -4,7 +4,6 @@ extends Control
 var global
 @onready var button = $Button
 @onready var button_pay = $Button_pay
-
 # Level name dictionary (level_num : display_name)
 var level_names = {
 	0: "Ruins of War",
@@ -18,7 +17,6 @@ var level_names = {
 	8: "Gilded Vault",
 	9: "Sribe's Rest"
 }
-
 func _ready() -> void:
 	global = Global
 	$Label.text = str(level_num, "- ", level_names.get(level_num, "Unknown Ruins"))
@@ -32,12 +30,11 @@ func _ready() -> void:
 		button_pay.disabled = true
 		$Label.modulate = Color(0.5, 0.5, 0.5)  # Gray out
 		#check if level ends with 5 or 0
-		if level_num % 5 == 0 or level_num == 1:
+		if level_num % 3 == 0 or level_num == 1:
 			button.visible = false
 			button_pay.visible = true
 			$Label.text = $Label.text+"/ 500p"
-			$AnimatedSprite2D.play("coin")
-			
+			$AnimatedSprite2D.play("coin_lock")
 	elif global.unlocked_levels.has(level_num + 1) || level_num == 0:
 		# BEATEN state (next level is unlocked OR it's level 0)
 		$AnimatedSprite2D.play(str(level_num))
@@ -56,7 +53,7 @@ func _ready() -> void:
 		button_pay.disabled = false
 		$Label.modulate = Color(0.8, 0.8, 0.8)  # Slightly dimmed
 		#check if level ends with 5 or 0
-		if level_num % 5 == 0 or level_num == 1:
+		if level_num % 3 == 0 or level_num == 1:
 			button.visible = false
 			button_pay.visible = true
 			$Label.text = $Label.text+"/ 500p"

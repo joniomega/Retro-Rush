@@ -78,7 +78,7 @@ autowrap_mode = 3
 position = Vector2(28, 26)
 scale = Vector2(1.53125, 1.5)
 sprite_frames = ExtResource("3_o3ryn")
-animation = &"coin"
+animation = &"4"
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
 position = Vector2(28, 28)

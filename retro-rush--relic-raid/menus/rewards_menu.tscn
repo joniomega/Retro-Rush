@@ -1,70 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://bvm7ds3g3b8os"]
+[gd_scene load_steps=3 format=3 uid="uid://bvm7ds3g3b8os"]
 
 [ext_resource type="Script" path="res://menus/rewards_menu.gd" id="1_tj4mn"]
-[ext_resource type="Texture2D" uid="uid://beoqx7nq03j3t" path="res://assets/characters/ppriest.png" id="2_0eg08"]
-[ext_resource type="Texture2D" uid="uid://cwjy0fvqh672x" path="res://assets/ui/wheel_arrow.png" id="5_yavk5"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b0lts"]
-atlas = ExtResource("2_0eg08")
-region = Rect2(256, 128, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kvup2"]
-atlas = ExtResource("2_0eg08")
-region = Rect2(192, 128, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_re6d2"]
-atlas = ExtResource("2_0eg08")
-region = Rect2(0, 128, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5b8e7"]
-atlas = ExtResource("2_0eg08")
-region = Rect2(64, 128, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5tkmy"]
-atlas = ExtResource("2_0eg08")
-region = Rect2(192, 128, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0isug"]
-atlas = ExtResource("2_0eg08")
-region = Rect2(256, 128, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u1ebc"]
-atlas = ExtResource("2_0eg08")
-region = Rect2(320, 128, 64, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_0k5ha"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b0lts")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kvup2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_re6d2")
-}],
-"loop": false,
-"name": &"normal",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5b8e7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5tkmy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0isug")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u1ebc")
-}],
-"loop": false,
-"name": &"spin",
-"speed": 5.0
-}]
+[ext_resource type="PackedScene" uid="uid://jft1qay172yn" path="res://menus/level_select.tscn" id="2_wcdjv"]
 
 [node name="rewards_menu" type="Control"]
 layout_mode = 3
@@ -75,34 +12,25 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tj4mn")
 
-[node name="ppriest" type="AnimatedSprite2D" parent="."]
-position = Vector2(112, 118)
-scale = Vector2(3.5, 3.5)
-sprite_frames = SubResource("SpriteFrames_0k5ha")
-animation = &"normal"
-autoplay = "normal"
-
-[node name="Shadow" type="Sprite2D" parent="."]
-position = Vector2(112, 246)
-scale = Vector2(2.5, 2.5)
-texture = ExtResource("5_yavk5")
-
-[node name="Button" type="Button" parent="."]
-modulate = Color(1, 1, 1, 0)
+[node name="GridContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 80.0
-offset_top = 216.0
-offset_right = 144.0
-offset_bottom = 272.0
-text = "X"
+offset_left = 16.0
+offset_top = -232.0
+offset_right = 16.0
+offset_bottom = 428.0
+size_flags_horizontal = 3
+theme_override_constants/separation = 60
+alignment = 1
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 68.0
-offset_top = 158.0
-offset_right = 156.0
-offset_bottom = 181.0
-theme_override_constants/outline_size = 14
-horizontal_alignment = 1
+[node name="Control4" type="Control" parent="GridContainer"]
+layout_mode = 2
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[node name="level_select9" parent="GridContainer" instance=ExtResource("2_wcdjv")]
+layout_mode = 2
+level_num = 5
+
+[node name="Control3" type="Control" parent="GridContainer"]
+layout_mode = 2
+
+[node name="Control5" type="Control" parent="GridContainer"]
+layout_mode = 2

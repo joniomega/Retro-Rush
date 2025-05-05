@@ -101,6 +101,10 @@ reward = "spikes"
 layout_mode = 2
 reward = "crest"
 
+[node name="recipe_select9" parent="recipes/ScrollContainer/GridContainer" instance=ExtResource("2_4ty2e")]
+layout_mode = 2
+reward = "books"
+
 [node name="recipe_select5" parent="recipes/ScrollContainer/GridContainer" instance=ExtResource("2_4ty2e")]
 layout_mode = 2
 reward = "3"
@@ -151,12 +155,12 @@ flip_v = true
 position = Vector2(112, 96)
 scale = Vector2(3, 3)
 sprite_frames = ExtResource("3_qhuf7")
-animation = &"5_walk"
+animation = &"1_jump"
 
 [node name="accessory" type="AnimatedSprite2D" parent="equipment/AnimatedSprite2D"]
 position = Vector2(0, 0.333332)
 sprite_frames = ExtResource("4_adnfl")
-animation = &"crest_walk"
+animation = &"books_jump"
 
 [node name="buttons" type="Node2D" parent="equipment"]
 position = Vector2(0, -7.99999)

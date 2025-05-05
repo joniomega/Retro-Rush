@@ -65,19 +65,19 @@ autowrap_mode = 3
 position = Vector2(24, 24)
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("2_vg5st")
-animation = &"none"
+animation = &"books_1"
 
 [node name="ingredients2" type="AnimatedSprite2D" parent="."]
 position = Vector2(80, 24)
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("2_vg5st")
-animation = &"none"
+animation = &"books_2"
 
 [node name="reward_accessory" type="AnimatedSprite2D" parent="."]
 position = Vector2(136, 48)
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("4_d4prr")
-animation = &"plant_jump"
+animation = &"books_jump"
 
 [node name="reward_skin" type="AnimatedSprite2D" parent="."]
 visible = false

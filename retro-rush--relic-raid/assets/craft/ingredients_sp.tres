@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=21 format=3 uid="uid://uhhxbh4veuvb"]
+[gd_resource type="SpriteFrames" load_steps=23 format=3 uid="uid://uhhxbh4veuvb"]
 
 [ext_resource type="Texture2D" uid="uid://cwri44eux3v0l" path="res://assets/craft/1ingridients.png" id="1_0n7ll"]
 
@@ -41,6 +41,14 @@ region = Rect2(128, 64, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_3t8bv"]
 atlas = ExtResource("1_0n7ll")
 region = Rect2(128, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f18lw"]
+atlas = ExtResource("1_0n7ll")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxyey"]
+atlas = ExtResource("1_0n7ll")
+region = Rect2(128, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b305k"]
 atlas = ExtResource("1_0n7ll")
@@ -158,6 +166,22 @@ animations = [{
 }],
 "loop": true,
 "name": &"5_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f18lw")
+}],
+"loop": true,
+"name": &"books_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxyey")
+}],
+"loop": true,
+"name": &"books_2",
 "speed": 5.0
 }, {
 "frames": [{
