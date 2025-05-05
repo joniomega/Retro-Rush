@@ -8,6 +8,7 @@ extends Node2D
 @onready var decoration_path: String = "res://assets/obstacles/decoration.tscn"
 @onready var relic_path: String = "res://assets/obstacles/relic.tscn"
 @onready var sawdown_path: String = "res://assets/obstacles/sawdown.tscn"
+@onready var bugfly_path: String = "res://assets/obstacles/bug_fly.tscn"
 
 # Replace this with your actual tile source ID for your "Auto" tile.
 const AUTO_TILE_SOURCE_ID: int = 0
@@ -65,6 +66,10 @@ func load_level(level_number: int):
 	if saw_scene == null:
 		push_error("saw scene not found at path")
 		return
+	var bugfly_scene = load(bugfly_path)
+	if bugfly_scene == null:
+		push_error("enemy bugfly scene not found")
+		return
 
 	# Collect all positions where you want to place your terrain tile.
 	var terrain_coords: Array[Vector2i] = []
@@ -102,6 +107,11 @@ func load_level(level_number: int):
 				var saw_instance = saw_scene.instantiate()
 				saw_instance.position = Vector2(x * 32, y * 32)
 				add_child(saw_instance)
+			elif char == '7':
+				var bugfly_instance = bugfly_scene.instantiate()
+				bugfly_instance.position = Vector2(x * 32, y * 32)
+				add_child(bugfly_instance)
+				print("Spawned bugfly at ", x, ",", y)  # Debug confirmation
 		y += 1
 
 	# Now update all these positions in one call for the terrain tile.

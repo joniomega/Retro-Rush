@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dnj7emighrfkk"]
+[gd_scene load_steps=14 format=3 uid="uid://dnj7emighrfkk"]
 
 [ext_resource type="Script" path="res://assets/obstacles/decoration.gd" id="1_dkhbn"]
 [ext_resource type="Texture2D" uid="uid://bblt06h3g5o85" path="res://assets/tilesets/castle_stones.png" id="1_ysglt"]
@@ -6,6 +6,10 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_ixeek"]
 atlas = ExtResource("1_ysglt")
 region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ilt2n"]
+atlas = ExtResource("1_ysglt")
+region = Rect2(320, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_idhq5"]
 atlas = ExtResource("1_ysglt")
@@ -47,6 +51,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ilt2n")
+}],
+"loop": true,
+"name": &"10",
 "speed": 5.0
 }, {
 "frames": [{
@@ -121,4 +133,4 @@ script = ExtResource("1_dkhbn")
 z_index = 1
 position = Vector2(16, 17)
 sprite_frames = SubResource("SpriteFrames_0kjbp")
-animation = &"9"
+animation = &"10"

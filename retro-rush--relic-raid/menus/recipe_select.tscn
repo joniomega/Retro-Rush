@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dauxouih85yxb"]
+[gd_scene load_steps=13 format=3 uid="uid://dauxouih85yxb"]
 
 [ext_resource type="Script" path="res://menus/recipe_select.gd" id="1_kcove"]
 [ext_resource type="Texture2D" uid="uid://71etip7gdwiv" path="res://assets/ui/container_level_select.png" id="1_v3vxa"]
 [ext_resource type="SpriteFrames" uid="uid://uhhxbh4veuvb" path="res://assets/craft/ingredients_sp.tres" id="2_vg5st"]
+[ext_resource type="Texture2D" uid="uid://gmao71ovqfd8" path="res://assets/ui/icon_ad.png" id="3_8vw23"]
 [ext_resource type="FontFile" uid="uid://camtosjq61o18" path="res://assets/ui/alagard.ttf" id="3_u5bni"]
 [ext_resource type="SpriteFrames" uid="uid://bsvml15ne3jhu" path="res://assets/characters/player/accessories/player_accessories.tres" id="4_d4prr"]
 [ext_resource type="SpriteFrames" uid="uid://duukh1em5rexv" path="res://assets/characters/player/player_skin.tres" id="5_oumuv"]
@@ -61,6 +62,11 @@ text = "+        ="
 vertical_alignment = 1
 autowrap_mode = 3
 
+[node name="IconAd" type="Sprite2D" parent="."]
+position = Vector2(168, 26)
+scale = Vector2(2, 2)
+texture = ExtResource("3_8vw23")
+
 [node name="ingredients1" type="AnimatedSprite2D" parent="."]
 position = Vector2(24, 24)
 scale = Vector2(2, 2)
@@ -74,14 +80,14 @@ sprite_frames = ExtResource("2_vg5st")
 animation = &"books_2"
 
 [node name="reward_accessory" type="AnimatedSprite2D" parent="."]
-position = Vector2(136, 48)
+position = Vector2(128, 48)
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("4_d4prr")
-animation = &"books_jump"
+animation = &"spikes_jump"
 
 [node name="reward_skin" type="AnimatedSprite2D" parent="."]
 visible = false
-position = Vector2(152, 24)
+position = Vector2(128, 24)
 scale = Vector2(1.5, 1.5)
 sprite_frames = ExtResource("5_oumuv")
 animation = &"2_jump"

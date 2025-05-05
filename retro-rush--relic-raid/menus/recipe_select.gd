@@ -5,6 +5,7 @@ extends Control
 @onready var unlocked_button := $Button2
 @onready var accessory_display := $reward_accessory
 @onready var skin_display := $reward_skin
+@onready var icon_ad := $IconAd
 
 func _ready() -> void:
 	assert(
@@ -53,8 +54,9 @@ func update_recipe_display():
 	$ingredients1.modulate = Color.WHITE if has_part1 else Color(0.5, 0.5, 0.5, 0.5)
 	$ingredients2.modulate = Color.WHITE if has_part2 else Color(0.5, 0.5, 0.5, 0.5)
 	
-	button.disabled = !(has_part1 and has_part2)
-	
+	if !(has_part1 and has_part2):
+		button.disabled = true
+		icon_ad.modulate = Color(0.5, 0.5, 0.5, 0.5)
 	# Update main display color
 	var main_display = accessory_display if reward in Global.CRAFTABLE_ITEMS["accessories"] else skin_display
 	main_display.modulate = Color.WHITE if (has_part1 and has_part2) else Color(0.5, 0.5, 0.5, 0.5)

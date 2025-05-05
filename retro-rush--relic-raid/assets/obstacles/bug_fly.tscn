@@ -1,0 +1,149 @@
+[gd_scene load_steps=19 format=3 uid="uid://xhdwm1j05nva"]
+
+[ext_resource type="Script" path="res://assets/obstacles/bug_fly.gd" id="1_18ngi"]
+[ext_resource type="Texture2D" uid="uid://b8mqd5gqn71vy" path="res://assets/characters/enemies/bug_dragonfly.png" id="1_yq7w3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8iw7e"]
+atlas = ExtResource("1_yq7w3")
+region = Rect2(192, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mccod"]
+atlas = ExtResource("1_yq7w3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppqkv"]
+atlas = ExtResource("1_yq7w3")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hbda"]
+atlas = ExtResource("1_yq7w3")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcqpt"]
+atlas = ExtResource("1_yq7w3")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h35af"]
+atlas = ExtResource("1_yq7w3")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ofjd"]
+atlas = ExtResource("1_yq7w3")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lpxpi"]
+atlas = ExtResource("1_yq7w3")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eaqdo"]
+atlas = ExtResource("1_yq7w3")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_137qm"]
+atlas = ExtResource("1_yq7w3")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5vec"]
+atlas = ExtResource("1_yq7w3")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mesyj"]
+atlas = ExtResource("1_yq7w3")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_006fm"]
+atlas = ExtResource("1_yq7w3")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o5ypw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8iw7e")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mccod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppqkv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3hbda")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcqpt")
+}],
+"loop": true,
+"name": &"fly1",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h35af")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ofjd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lpxpi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eaqdo")
+}],
+"loop": true,
+"name": &"fly2",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_137qm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5vec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mesyj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_006fm")
+}],
+"loop": true,
+"name": &"fly3",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wfxsa"]
+size = Vector2(17, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ifdyo"]
+size = Vector2(22, 11)
+
+[node name="bug_fly" type="Node2D"]
+z_index = 3
+script = ExtResource("1_18ngi")
+
+[node name="enemy" type="CharacterBody2D" parent="."]
+position = Vector2(16, 16)
+
+[node name="animation" type="AnimatedSprite2D" parent="enemy"]
+sprite_frames = SubResource("SpriteFrames_o5ypw")
+animation = &"fly1"
+autoplay = "fly1"
+frame_progress = 0.510116
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy"]
+position = Vector2(-1.5, 2.5)
+shape = SubResource("RectangleShape2D_wfxsa")
+
+[node name="damage_area" type="Area2D" parent="enemy"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy/damage_area"]
+position = Vector2(-1, 2.5)
+shape = SubResource("RectangleShape2D_ifdyo")
+
+[connection signal="body_entered" from="enemy/damage_area" to="." method="_on_damage_area_body_entered"]
