@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dbcq5x0px65b6"]
+[gd_scene load_steps=27 format=3 uid="uid://dbcq5x0px65b6"]
 
 [ext_resource type="Script" path="res://assets/characters/player/player.gd" id="1_yncs3"]
 [ext_resource type="SpriteFrames" uid="uid://duukh1em5rexv" path="res://assets/characters/player/player_skin.tres" id="2_tlstg"]
@@ -6,6 +6,7 @@
 [ext_resource type="SpriteFrames" uid="uid://bsvml15ne3jhu" path="res://assets/characters/player/accessories/player_accessories.tres" id="3_q0rdt"]
 [ext_resource type="Texture2D" uid="uid://b55bscn4ylb62" path="res://assets/ui/player_container.png" id="4_8ixgy"]
 [ext_resource type="FontFile" uid="uid://camtosjq61o18" path="res://assets/ui/alagard.ttf" id="4_mnlrd"]
+[ext_resource type="AudioStream" uid="uid://ccqbj2axfxh7y" path="res://assets/sounds/soundeffects/bip1.wav" id="5_v0dkr"]
 [ext_resource type="Texture2D" uid="uid://c6hervh8rwbxf" path="res://assets/ui/button_pause.png" id="6_n442f"]
 [ext_resource type="Texture2D" uid="uid://bsy4gtfl8jrwe" path="res://assets/ui/button_home.png" id="7_dwg8q"]
 [ext_resource type="AudioStream" uid="uid://bem77b5uvvnhc" path="res://assets/sounds/soundeffects/explosion_player.wav" id="7_v3lts"]
@@ -250,10 +251,15 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tnmqm"]
-size = Vector2(22, 29)
+size = Vector2(19, 24)
 
 [sub_resource type="Gradient" id="Gradient_uqq4v"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jk8xc"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("5_v0dkr")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rii0u"]
 
@@ -270,6 +276,9 @@ texture = ExtResource("7_dwg8q")
 
 [node name="player" type="CharacterBody2D" groups=["player"]]
 position = Vector2(32, 64)
+collision_layer = 4
+collision_mask = 9
+platform_on_leave = 2
 script = ExtResource("1_yncs3")
 
 [node name="animation" type="AnimationPlayer" parent="."]
@@ -278,7 +287,7 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(16, 16.5)
+position = Vector2(16.5, 19)
 shape = SubResource("RectangleShape2D_tnmqm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -309,6 +318,11 @@ angle_min = -60.0
 angle_max = 60.0
 color = Color(8, 8, 8, 1)
 color_ramp = SubResource("Gradient_uqq4v")
+
+[node name="audio_increase" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_jk8xc")
+volume_db = -30.0
+pitch_scale = 1.2
 
 [node name="sound_die" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_v3lts")

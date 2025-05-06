@@ -9,6 +9,7 @@ extends Node2D
 @onready var relic_path: String = "res://assets/obstacles/relic.tscn"
 @onready var sawdown_path: String = "res://assets/obstacles/sawdown.tscn"
 @onready var bugfly_path: String = "res://assets/obstacles/bug_fly.tscn"
+@onready var bugwalk_path: String = "res://assets/obstacles/bug_centipide.tscn"
 
 # Replace this with your actual tile source ID for your "Auto" tile.
 const AUTO_TILE_SOURCE_ID: int = 0
@@ -34,10 +35,8 @@ func load_level(level_number: int):
 	if not file:
 		push_error("Could not open level file: " + file_path)
 		return
-
 	# Clear existing terrain cells.
 	tilemaplayer.clear()
-
 	# Remove any previously instantiated spikes by fetching nodes in the "spikes" group.
 	for spike in get_tree().get_nodes_in_group("spikes"):
 		spike.queue_free()
@@ -70,11 +69,13 @@ func load_level(level_number: int):
 	if bugfly_scene == null:
 		push_error("enemy bugfly scene not found")
 		return
-
+	var bugwalk_scene = load(bugwalk_path)
+	if bugwalk_scene == null:
+		push_error("enemy bugwalk scene not found")
+		return
 	# Collect all positions where you want to place your terrain tile.
 	var terrain_coords: Array[Vector2i] = []
 	var y: int = 0
-
 	while not file.eof_reached():
 		var line: String = file.get_line()
 		for x in range(line.length()):
@@ -111,11 +112,14 @@ func load_level(level_number: int):
 				var bugfly_instance = bugfly_scene.instantiate()
 				bugfly_instance.position = Vector2(x * 32, y * 32)
 				add_child(bugfly_instance)
-				print("Spawned bugfly at ", x, ",", y)  # Debug confirmation
+			elif char == '8':
+				var bugwalk_instance = bugwalk_scene.instantiate()
+				bugwalk_instance.position = Vector2(x * 32, y * 32)
+				add_child(bugwalk_instance)
 		y += 1
-
 	# Now update all these positions in one call for the terrain tile.
 	tilemaplayer.set_cells_terrain_connect(terrain_coords, AUTO_TILE_SOURCE_ID, 0, 0)
+	# Add this after setting up the TileMap
 func stop_music():
 	$AnimationPlayer.play("stop")
 	pass

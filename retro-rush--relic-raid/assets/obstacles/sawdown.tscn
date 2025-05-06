@@ -78,6 +78,7 @@ animation = &"sawing"
 autoplay = "sawing"
 
 [node name="Area2D" type="Area2D" parent="saw"]
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="saw/Area2D"]
 position = Vector2(0, -1)

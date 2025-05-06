@@ -1,7 +1,14 @@
-[gd_scene load_steps=19 format=3 uid="uid://xhdwm1j05nva"]
+[gd_scene load_steps=25 format=3 uid="uid://xhdwm1j05nva"]
 
 [ext_resource type="Script" path="res://assets/obstacles/bug_fly.gd" id="1_18ngi"]
 [ext_resource type="Texture2D" uid="uid://b8mqd5gqn71vy" path="res://assets/characters/enemies/bug_dragonfly.png" id="1_yq7w3"]
+[ext_resource type="Texture2D" uid="uid://bivnrhcd8vsu8" path="res://assets/characters/enemies/part_bug.png" id="3_ckhqc"]
+[ext_resource type="AudioStream" uid="uid://d17bjured03om" path="res://assets/sounds/soundeffects/explosion.wav" id="4_1ubx1"]
+[ext_resource type="AudioStream" uid="uid://didbwq3g8ekrt" path="res://assets/sounds/soundeffects/explosion2.wav" id="5_mrmqf"]
+[ext_resource type="AudioStream" uid="uid://bhubutuf2nuyw" path="res://assets/sounds/soundeffects/explosion3.wav" id="6_60m51"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ifdyo"]
+size = Vector2(16, 11)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8iw7e"]
 atlas = ExtResource("1_yq7w3")
@@ -117,33 +124,64 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wfxsa"]
-size = Vector2(17, 9)
+[sub_resource type="Gradient" id="Gradient_7nvaf"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ifdyo"]
-size = Vector2(22, 11)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wfxsa"]
+size = Vector2(11, 5)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0gq0f"]
+random_pitch = 1.2
+streams_count = 3
+stream_0/stream = ExtResource("4_1ubx1")
+stream_1/stream = ExtResource("5_mrmqf")
+stream_2/stream = ExtResource("6_60m51")
 
 [node name="bug_fly" type="Node2D"]
-z_index = 3
-script = ExtResource("1_18ngi")
 
 [node name="enemy" type="CharacterBody2D" parent="."]
 position = Vector2(16, 16)
+collision_layer = 2
+script = ExtResource("1_18ngi")
+
+[node name="damage_area" type="Area2D" parent="enemy"]
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy/damage_area"]
+position = Vector2(-1, 0.5)
+shape = SubResource("RectangleShape2D_ifdyo")
 
 [node name="animation" type="AnimatedSprite2D" parent="enemy"]
 sprite_frames = SubResource("SpriteFrames_o5ypw")
-animation = &"fly1"
+animation = &"dead"
 autoplay = "fly1"
-frame_progress = 0.510116
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="enemy"]
+position = Vector2(-1, 2)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("3_ckhqc")
+emission_shape = 1
+emission_sphere_radius = 6.0
+spread = 180.0
+gravity = Vector2(0, -20)
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+angular_velocity_min = 38.92
+angular_velocity_max = 38.92
+angle_min = -90.0
+angle_max = 90.0
+color_ramp = SubResource("Gradient_7nvaf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemy"]
-position = Vector2(-1.5, 2.5)
+position = Vector2(-1.5, 1.5)
 shape = SubResource("RectangleShape2D_wfxsa")
+debug_color = Color(0.9831, 0, 0.356161, 0.42)
 
-[node name="damage_area" type="Area2D" parent="enemy"]
+[node name="sound_break" type="AudioStreamPlayer" parent="enemy"]
+stream = SubResource("AudioStreamRandomizer_0gq0f")
+volume_db = -20.0
+pitch_scale = 2.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy/damage_area"]
-position = Vector2(-1, 2.5)
-shape = SubResource("RectangleShape2D_ifdyo")
-
-[connection signal="body_entered" from="enemy/damage_area" to="." method="_on_damage_area_body_entered"]
+[connection signal="body_entered" from="enemy/damage_area" to="enemy" method="_on_damage_area_body_entered"]

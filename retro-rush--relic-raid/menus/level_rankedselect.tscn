@@ -1,0 +1,87 @@
+[gd_scene load_steps=12 format=3 uid="uid://dacestg0nqsfx"]
+
+[ext_resource type="Script" path="res://menus/level_rankedselect.gd" id="1_8htrp"]
+[ext_resource type="Texture2D" uid="uid://71etip7gdwiv" path="res://assets/ui/container_level_select.png" id="2_r3och"]
+[ext_resource type="FontFile" uid="uid://camtosjq61o18" path="res://assets/ui/alagard.ttf" id="3_wxruc"]
+[ext_resource type="SpriteFrames" uid="uid://bj7kppdwycf3i" path="res://assets/obstacles/relic_spriteframe.tres" id="4_ne0q7"]
+[ext_resource type="Texture2D" uid="uid://cm35cdmixpj10" path="res://assets/shine_particle.png" id="5_bp5bo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_to007"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uiuin"]
+texture = ExtResource("2_r3och")
+modulate_color = Color(0.560955, 0.560955, 0.560955, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_82nm7"]
+texture = ExtResource("2_r3och")
+modulate_color = Color(1.2, 1.2, 1.2, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w7pf0"]
+texture = ExtResource("2_r3och")
+modulate_color = Color(1.5, 1.5, 1.5, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dg0r0"]
+texture = ExtResource("2_r3och")
+
+[sub_resource type="Gradient" id="Gradient_f2ce2"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="level_rankedselect" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 192.0
+offset_bottom = 96.0
+pivot_offset = Vector2(0, 96)
+mouse_filter = 1
+script = ExtResource("1_8htrp")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 192.0
+offset_bottom = 56.0
+mouse_filter = 1
+theme_override_styles/focus = SubResource("StyleBoxEmpty_to007")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_uiuin")
+theme_override_styles/hover = SubResource("StyleBoxTexture_82nm7")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_w7pf0")
+theme_override_styles/normal = SubResource("StyleBoxTexture_dg0r0")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 5.0
+offset_right = 188.0
+offset_bottom = 50.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_wxruc")
+theme_override_font_sizes/font_size = 16
+text = "1- Ruins of Oligar"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(28, 26)
+scale = Vector2(1.53125, 1.5)
+sprite_frames = ExtResource("4_ne0q7")
+animation = &"4"
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+position = Vector2(28, 28)
+texture = ExtResource("5_bp5bo")
+emission_shape = 1
+emission_sphere_radius = 20.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, -20)
+angular_velocity_min = 38.92
+angular_velocity_max = 38.92
+angle_min = -90.0
+angle_max = 90.0
+scale_amount_min = 0.1
+scale_amount_max = 0.5
+color_ramp = SubResource("Gradient_f2ce2")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

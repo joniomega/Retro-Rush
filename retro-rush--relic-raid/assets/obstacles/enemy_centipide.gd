@@ -2,29 +2,26 @@ extends CharacterBody2D
 
 @onready var animation := $animation
 @onready var collision_shape := $CollisionShape2D
-@onready var particles := $CPUParticles2D
 
-var move_speed := 40
+var move_speed := 35
 var move_direction := 1
 var timer := 0.0
-var wait_time := 3.0
+var wait_time := 3
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_alive := true
+var riders := []  # Array to track players on the platform
 
 func _ready() -> void:
-	# Play random wait and speed
-	var waitvars = [2, 3, 4]
+	add_to_group("moving_platform")
+	var waitvars = [2, 3, 4, 5]
 	wait_time = (waitvars[randi() % waitvars.size()])
-	var speedvars = [30, 40, 45]
+	var speedvars = [25, 35, 45]
 	move_speed = (speedvars[randi() % speedvars.size()])
-	# Play random fly animation
-	var fly_animations = ["fly1", "fly2", "fly3"]
-	animation.play(fly_animations[randi() % fly_animations.size()])
 	animation.flip_h = false
 
 func _physics_process(delta: float) -> void:
 	if !is_alive:
-		velocity.y += gravity * delta
+		velocity.x = move_speed * move_direction
 		move_and_slide()
 		return
 
@@ -38,18 +35,8 @@ func _physics_process(delta: float) -> void:
 	velocity.x = move_speed * move_direction
 	move_and_slide()
 
-func die():
-	if !is_alive:
-		return
-	is_alive = false
-	animation.play("dead")
-	particles.emitting = true
-	$sound_break.play()
-	velocity = Vector2(0, 0)
-
-func _on_damage_area_body_entered(body: Node2D) -> void:
+func _on_ontop_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		body.velocity.y = -200
-		body.shine(10)
-		die()
-		$damage_area.queue_free()
+		body.velocity.y = -100
+		# Reparent the player to this platform
+		pass

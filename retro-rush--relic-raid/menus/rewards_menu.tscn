@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bvm7ds3g3b8os"]
 
 [ext_resource type="Script" path="res://menus/rewards_menu.gd" id="1_tj4mn"]
-[ext_resource type="PackedScene" uid="uid://jft1qay172yn" path="res://menus/level_select.tscn" id="2_wcdjv"]
+[ext_resource type="PackedScene" uid="uid://dacestg0nqsfx" path="res://menus/level_rankedselect.tscn" id="2_bfhl7"]
 
 [node name="rewards_menu" type="Control"]
 layout_mode = 3
@@ -25,9 +25,8 @@ alignment = 1
 [node name="Control4" type="Control" parent="GridContainer"]
 layout_mode = 2
 
-[node name="level_select9" parent="GridContainer" instance=ExtResource("2_wcdjv")]
+[node name="level_rankedselect" parent="GridContainer" instance=ExtResource("2_bfhl7")]
 layout_mode = 2
-level_num = 5
 
 [node name="Control3" type="Control" parent="GridContainer"]
 layout_mode = 2

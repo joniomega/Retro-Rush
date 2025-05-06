@@ -47,6 +47,7 @@ position = Vector2(16, 17)
 sprite_frames = SubResource("SpriteFrames_065jb")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(16, 28)

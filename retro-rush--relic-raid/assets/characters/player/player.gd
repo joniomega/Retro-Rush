@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+var is_on_moving_platform := false  # Add this with other variables
 var isdead : bool = false
 const SPEED = 80.0
 const JUMP_VELOCITY = -350.0
@@ -39,6 +40,7 @@ func _physics_process(delta: float) -> void:
 		_on_left_button_pressed()
 	if Input.is_action_just_pressed("ui_right"):
 		_on_right_button_pressed()
+	
 	if not isdead:
 		# Handle jump input
 		if skill_jump and Input.is_action_just_pressed("ui_accept") and is_on_floor():
@@ -49,24 +51,31 @@ func _physics_process(delta: float) -> void:
 		if not is_on_floor():
 			velocity.y += gravity * delta
 
-		# Apply horizontal movement based on direction
+		# Get platform velocity through collisions
+		var platform_velocity = Vector2.ZERO
+		if is_on_floor():
+			for index in get_slide_collision_count():
+				var collision = get_slide_collision(index)
+				if collision.get_collider().is_in_group("moving_platform"):
+					platform_velocity = collision.get_collider().velocity
+
+		# Calculate movement relative to platform
+		var relative_speed = move_direction * SPEED
 		if move_direction != 0:
-			if not movement_started:
-				movement_started = true
-			velocity.x = move_direction * SPEED
+			velocity.x = relative_speed + platform_velocity.x
 			is_pushing_wall = (move_direction == 1 and test_move(transform, Vector2.RIGHT * 2)) or \
-							  (move_direction == -1 and test_move(transform, Vector2.LEFT * 2))
+							(move_direction == -1 and test_move(transform, Vector2.LEFT * 2))
 		else:
+			velocity.x = platform_velocity.x  # Inherit platform movement only
 			is_pushing_wall = false
-			velocity.x = 0
 
 		# Handle animations
 		if is_on_floor():
 			if is_pushing_wall:
 				_play_animation("idle")
-			elif velocity.x != 0:
+			elif abs(relative_speed) > 0:  # Check player input, not total velocity
 				_play_animation("walk")
-				animation.flip_h = velocity.x < 0
+				animation.flip_h = move_direction < 0
 			else:
 				_play_animation("idle")
 		else:
@@ -90,9 +99,12 @@ func shine(increment: int):
 	var steps := 20
 	var delay := 0.02
 	var target := score
-	score_label.modulate = Color(1, 1, 0.5)  # Light yellow flash
+	# Light yellow flash
+	if increment >=0:
+		score_label.modulate = Color(1, 1, 0.5)
 	await get_tree().create_timer(0.05).timeout
 	for i in range(1, steps + 1):
+		$audio_increase.play()
 		var interpolated = lerp(displayed_score, target, i / float(steps))
 		score_label.text = str(round(interpolated))
 		await get_tree().create_timer(delay).timeout
@@ -102,6 +114,7 @@ func shine(increment: int):
 
 func die():
 	isdead = true
+	shine(-score)
 	$animation.play("die")
 	$sound_die.play()
 	_play_animation("fall")
