@@ -7,7 +7,7 @@ var unlocked_levels: Array = [1]
 var points: int = 1000
 
 # Player Customization
-const ALL_HATS := ["none", "hat", "spikes", "plant", "crest", "books"]
+const ALL_HATS := ["none", "hat", "spikes", "plant", "crest", "books", "horns"]
 const ALL_SKINS := ["1", "2", "3", "4", "5"]
 
 var player_hat: String = "none"
@@ -17,7 +17,7 @@ var unlocked_skins: Array = []
 
 # Crafting System
 const CRAFTABLE_ITEMS := {
-	"accessories": ["hat", "spikes", "plant", "crest", "books"],
+	"accessories": ["hat", "spikes", "plant", "crest", "books", "horns"],
 	"skins": ["2", "3", "4", "5"]
 }
 

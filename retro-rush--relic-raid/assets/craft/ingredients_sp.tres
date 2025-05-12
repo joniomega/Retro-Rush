@@ -1,6 +1,7 @@
-[gd_resource type="SpriteFrames" load_steps=23 format=3 uid="uid://uhhxbh4veuvb"]
+[gd_resource type="SpriteFrames" load_steps=26 format=3 uid="uid://uhhxbh4veuvb"]
 
 [ext_resource type="Texture2D" uid="uid://cwri44eux3v0l" path="res://assets/craft/1ingridients.png" id="1_0n7ll"]
+[ext_resource type="Texture2D" uid="uid://bb7pqai8cbejy" path="res://assets/obstacles/relics_sheet.png" id="2_mba4h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_re25l"]
 atlas = ExtResource("1_0n7ll")
@@ -66,9 +67,17 @@ region = Rect2(32, 0, 32, 32)
 atlas = ExtResource("1_0n7ll")
 region = Rect2(32, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3etjf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8xlm"]
 atlas = ExtResource("1_0n7ll")
-region = Rect2(0, 16, 11, 16)
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64jfj"]
+atlas = ExtResource("1_0n7ll")
+region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xb4a"]
+atlas = ExtResource("2_mba4h")
+region = Rect2(64, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qm23u"]
 atlas = ExtResource("1_0n7ll")
@@ -218,7 +227,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3etjf")
+"texture": SubResource("AtlasTexture_p8xlm")
+}],
+"loop": true,
+"name": &"horns_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64jfj")
+}],
+"loop": true,
+"name": &"horns_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1xb4a")
 }],
 "loop": true,
 "name": &"none",

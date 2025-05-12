@@ -1,10 +1,11 @@
-[gd_resource type="SpriteFrames" load_steps=49 format=3 uid="uid://bsvml15ne3jhu"]
+[gd_resource type="SpriteFrames" load_steps=57 format=3 uid="uid://bsvml15ne3jhu"]
 
 [ext_resource type="Texture2D" uid="uid://cvaehnk7l3h3e" path="res://assets/characters/player/accessories/books.png" id="1_0vmho"]
 [ext_resource type="Texture2D" uid="uid://bhcb16d3384b7" path="res://assets/characters/player/accessories/hat.png" id="1_gyn41"]
 [ext_resource type="Texture2D" uid="uid://pm0st8gy10f4" path="res://assets/characters/player/accessories/crest.png" id="1_l2srt"]
 [ext_resource type="Texture2D" uid="uid://dbndwfstuvbrb" path="res://assets/characters/player/accessories/none.png" id="2_rfdts"]
 [ext_resource type="Texture2D" uid="uid://d4mgkcsyre1t4" path="res://assets/characters/player/accessories/plant.png" id="3_e0yaj"]
+[ext_resource type="Texture2D" uid="uid://cpbx25ngw57xt" path="res://assets/characters/player/accessories/horns.png" id="4_o7qv2"]
 [ext_resource type="Texture2D" uid="uid://dktudstdgh431" path="res://assets/characters/player/accessories/spikes.png" id="4_su5g6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ntree"]
@@ -89,6 +90,34 @@ region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_shtwa"]
 atlas = ExtResource("1_gyn41")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqhck"]
+atlas = ExtResource("4_o7qv2")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2mpx"]
+atlas = ExtResource("4_o7qv2")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dorst"]
+atlas = ExtResource("4_o7qv2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4y1kd"]
+atlas = ExtResource("4_o7qv2")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v24ph"]
+atlas = ExtResource("4_o7qv2")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rqst"]
+atlas = ExtResource("4_o7qv2")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvk2x"]
+atlas = ExtResource("4_o7qv2")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7apn1"]
@@ -299,6 +328,47 @@ animations = [{
 "loop": true,
 "name": &"hat_walk",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqhck")
+}],
+"loop": true,
+"name": &"horns_fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2mpx")
+}],
+"loop": true,
+"name": &"horns_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dorst")
+}],
+"loop": true,
+"name": &"horns_jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4y1kd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v24ph")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rqst")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvk2x")
+}],
+"loop": true,
+"name": &"horns_walk",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dbcq5x0px65b6"]
+[gd_scene load_steps=37 format=3 uid="uid://dbcq5x0px65b6"]
 
 [ext_resource type="Script" path="res://assets/characters/player/player.gd" id="1_yncs3"]
 [ext_resource type="SpriteFrames" uid="uid://duukh1em5rexv" path="res://assets/characters/player/player_skin.tres" id="2_tlstg"]
@@ -6,13 +6,17 @@
 [ext_resource type="SpriteFrames" uid="uid://bsvml15ne3jhu" path="res://assets/characters/player/accessories/player_accessories.tres" id="3_q0rdt"]
 [ext_resource type="Texture2D" uid="uid://b55bscn4ylb62" path="res://assets/ui/player_container.png" id="4_8ixgy"]
 [ext_resource type="FontFile" uid="uid://camtosjq61o18" path="res://assets/ui/alagard.ttf" id="4_mnlrd"]
+[ext_resource type="AudioStream" uid="uid://dvov2hgwtlnm3" path="res://assets/sounds/soundeffects/pickupCoin_increse.wav" id="5_2dka8"]
+[ext_resource type="AudioStream" uid="uid://c04eku0fjxa0b" path="res://assets/sounds/soundeffects/pickupCoin_increase2.wav" id="5_ice68"]
 [ext_resource type="AudioStream" uid="uid://ccqbj2axfxh7y" path="res://assets/sounds/soundeffects/bip1.wav" id="5_v0dkr"]
 [ext_resource type="Texture2D" uid="uid://c6hervh8rwbxf" path="res://assets/ui/button_pause.png" id="6_n442f"]
 [ext_resource type="Texture2D" uid="uid://bsy4gtfl8jrwe" path="res://assets/ui/button_home.png" id="7_dwg8q"]
+[ext_resource type="Texture2D" uid="uid://beypbuxox7cw" path="res://assets/ui/scroll_scroll.png" id="7_nrfaa"]
 [ext_resource type="AudioStream" uid="uid://bem77b5uvvnhc" path="res://assets/sounds/soundeffects/explosion_player.wav" id="7_v3lts"]
+[ext_resource type="Texture2D" uid="uid://c86kaa382yi5k" path="res://assets/ui/scroll_grabber.png" id="8_y4ouf"]
 [ext_resource type="SpriteFrames" uid="uid://bj7kppdwycf3i" path="res://assets/obstacles/relic_spriteframe.tres" id="12_6cgk5"]
 [ext_resource type="Texture2D" uid="uid://dxw02la8r8wqj" path="res://assets/shadow.png" id="12_pjfkr"]
-[ext_resource type="PackedScene" uid="uid://boacxm34cq8c3" path="res://assets/craft/ingredient_reward.tscn" id="14_ooedi"]
+[ext_resource type="PackedScene" uid="uid://d0cxldfjss270" path="res://menus/special_rewards_menu.tscn" id="17_ig076"]
 
 [sub_resource type="Animation" id="Animation_6ahc6"]
 length = 0.001
@@ -251,15 +255,37 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tnmqm"]
-size = Vector2(19, 24)
+size = Vector2(18, 24)
 
 [sub_resource type="Gradient" id="Gradient_uqq4v"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jk8xc"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1801b"]
 random_pitch = 1.2
+streams_count = 2
+stream_0/stream = ExtResource("5_ice68")
+stream_1/stream = ExtResource("5_2dka8")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jk8xc"]
+random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("5_v0dkr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5mabo"]
+texture = ExtResource("7_nrfaa")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xjtyc"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b180e"]
+texture = ExtResource("8_y4ouf")
+texture_margin_left = 64.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tpevj"]
+texture = ExtResource("8_y4ouf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jrh0a"]
+texture = ExtResource("8_y4ouf")
+modulate_color = Color(1.5, 1.5, 1.5, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rii0u"]
 
@@ -287,17 +313,17 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(16.5, 19)
+position = Vector2(16, 19)
 shape = SubResource("RectangleShape2D_tnmqm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(16, 16)
 sprite_frames = ExtResource("2_tlstg")
-animation = &"2_walk"
+animation = &"4_jump"
 
 [node name="accessory" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
 sprite_frames = ExtResource("3_q0rdt")
-animation = &"hat_jump"
+animation = &"crest_jump"
 
 [node name="particles_die" type="CPUParticles2D" parent="."]
 position = Vector2(16, 21)
@@ -320,6 +346,10 @@ color = Color(8, 8, 8, 1)
 color_ramp = SubResource("Gradient_uqq4v")
 
 [node name="audio_increase" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_1801b")
+volume_db = -30.0
+
+[node name="audio_decrease" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_jk8xc")
 volume_db = -25.0
 pitch_scale = 1.2
@@ -351,22 +381,36 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 48.0
-offset_right = -112.0
+offset_right = -108.0
 offset_bottom = 442.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 2
+action_mode = 0
 
 [node name="right_button" type="Button" parent="Control/CanvasLayer"]
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 120.0
+offset_left = 116.0
 offset_top = 48.0
 offset_bottom = 442.0
 grow_horizontal = 2
 grow_vertical = 2
+action_mode = 0
+
+[node name="scrollbar" type="HScrollBar" parent="Control/CanvasLayer"]
+visible = false
+offset_top = 328.0
+offset_right = 224.0
+offset_bottom = 390.0
+theme_override_styles/scroll = SubResource("StyleBoxTexture_5mabo")
+theme_override_styles/scroll_focus = SubResource("StyleBoxEmpty_xjtyc")
+theme_override_styles/grabber = SubResource("StyleBoxTexture_b180e")
+theme_override_styles/grabber_highlight = SubResource("StyleBoxTexture_tpevj")
+theme_override_styles/grabber_pressed = SubResource("StyleBoxTexture_jrh0a")
+value = 50.0
 
 [node name="PlayerContainer" type="Sprite2D" parent="Control/CanvasLayer"]
 position = Vector2(112, 18.5)
@@ -413,13 +457,13 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_00xyo")
 clip_contents = false
 offset_top = -88.0
 offset_right = 224.0
-offset_bottom = -7.99998
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.392157)
-theme_override_constants/outline_size = 4
-theme_override_constants/shadow_offset_y = 1
+offset_bottom = -7.99997
+theme_override_colors/font_outline_color = Color(0.843137, 0.388235, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_constants/shadow_offset_y = 0
 theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_outline_size = 4
+theme_override_constants/shadow_outline_size = 10
 theme_override_fonts/normal_font = ExtResource("4_mnlrd")
 theme_override_fonts/mono_font = ExtResource("4_mnlrd")
 theme_override_fonts/italics_font = ExtResource("4_mnlrd")
@@ -431,7 +475,7 @@ theme_override_font_sizes/mono_font_size = 32
 theme_override_font_sizes/normal_font_size = 32
 theme_override_font_sizes/bold_font_size = 32
 bbcode_enabled = true
-text = "[wave][center][color=#FFD700][b]RELIC RETRIEVED[/b][/color][/center][/wave]"
+text = "[wave][center][color=#d79a00][b]RELIC RETRIEVED[/b][/color][/center][/wave]"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/CanvasLayer/win"]
 show_behind_parent = true
@@ -447,28 +491,7 @@ scale = Vector2(3.5, 2.21875)
 texture = ExtResource("12_pjfkr")
 flip_v = true
 
-[node name="special_rewards" type="Control" parent="Control/CanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 288.0
-offset_bottom = 288.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="ingredient_reward" parent="Control/CanvasLayer/special_rewards" instance=ExtResource("14_ooedi")]
-position = Vector2(13, 200)
-scale = Vector2(2, 2)
-
-[node name="ingredient_reward2" parent="Control/CanvasLayer/special_rewards" instance=ExtResource("14_ooedi")]
-position = Vector2(81, 200)
-scale = Vector2(2, 2)
-
-[node name="ingredient_reward3" parent="Control/CanvasLayer/special_rewards" instance=ExtResource("14_ooedi")]
-position = Vector2(149, 200)
-scale = Vector2(2, 2)
+[node name="special_rewards" parent="Control/CanvasLayer" instance=ExtResource("17_ig076")]
 
 [connection signal="pressed" from="Control/CanvasLayer/left_button" to="." method="_on_left_button_pressed"]
 [connection signal="pressed" from="Control/CanvasLayer/right_button" to="." method="_on_right_button_pressed"]

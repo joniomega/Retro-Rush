@@ -1,0 +1,143 @@
+[gd_scene load_steps=17 format=3 uid="uid://d0cxldfjss270"]
+
+[ext_resource type="Script" path="res://menus/special_rewards_menu.gd" id="1_j1klk"]
+[ext_resource type="PackedScene" uid="uid://boacxm34cq8c3" path="res://assets/craft/ingredient_reward.tscn" id="1_wntqb"]
+[ext_resource type="Script" path="res://addons/AdmobPlugin/Admob.gd" id="2_qb2k2"]
+[ext_resource type="FontFile" uid="uid://camtosjq61o18" path="res://assets/ui/alagard.ttf" id="2_t5b7w"]
+[ext_resource type="Texture2D" uid="uid://bp85pw1gug553" path="res://assets/ui/button_horizontal_1.png" id="3_m3e4b"]
+[ext_resource type="Texture2D" uid="uid://gmao71ovqfd8" path="res://assets/ui/icon_ad.png" id="4_dgrjx"]
+[ext_resource type="Texture2D" uid="uid://dwphcswg5bw86" path="res://assets/ui/icon_nowifi.png" id="5_p4jcy"]
+[ext_resource type="Texture2D" uid="uid://4wyk05bopbf" path="res://assets/ui/arrow_right.png" id="6_1pjcp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f4f5l"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v0kqo"]
+texture = ExtResource("3_m3e4b")
+modulate_color = Color(0.5, 0.5, 0.5, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ohst2"]
+texture = ExtResource("3_m3e4b")
+modulate_color = Color(1.2, 1.2, 1.2, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wb5r4"]
+texture = ExtResource("3_m3e4b")
+modulate_color = Color(1.5, 1.5, 1.5, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q0d82"]
+texture = ExtResource("3_m3e4b")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfow5"]
+atlas = ExtResource("4_dgrjx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnur7"]
+atlas = ExtResource("5_p4jcy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_naixw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bfow5")
+}],
+"loop": true,
+"name": &"ad",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fnur7")
+}],
+"loop": true,
+"name": &"noad",
+"speed": 5.0
+}]
+
+[node name="special_rewards" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 288.0
+offset_bottom = 288.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_j1klk")
+
+[node name="Admob" type="Node" parent="."]
+script = ExtResource("2_qb2k2")
+debug_application_id = "ca-app-pub-3940256099942544~3347511713"
+debug_banner_id = "ca-app-pub-3940256099942544/9214589741"
+debug_interstitial_id = "ca-app-pub-3940256099942544/1033173712"
+debug_rewarded_id = "ca-app-pub-3940256099942544/5224354917"
+debug_rewarded_interstitial_id = "ca-app-pub-3940256099942544/5354046379"
+
+[node name="takeall" type="Node2D" parent="."]
+position = Vector2(0, 64)
+
+[node name="Button_takeall" type="Button" parent="takeall"]
+offset_left = 49.0
+offset_top = 136.0
+offset_right = 177.0
+offset_bottom = 192.0
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_t5b7w")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_f4f5l")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_v0kqo")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ohst2")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wb5r4")
+theme_override_styles/normal = SubResource("StyleBoxTexture_q0d82")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="takeall"]
+position = Vector2(155, 159)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_naixw")
+animation = &"ad"
+
+[node name="Label" type="Label" parent="takeall"]
+offset_left = 55.0
+offset_top = 151.0
+offset_right = 163.0
+offset_bottom = 166.0
+scale = Vector2(1.10371, 1.26782)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.133333, 0.101961, 0.231373, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_t5b7w")
+theme_override_font_sizes/font_size = 16
+text = "TAKE ALL"
+
+[node name="ArrowRight2" type="Sprite2D" parent="takeall"]
+position = Vector2(119, 199)
+rotation = -1.5708
+scale = Vector2(2, 2)
+texture = ExtResource("6_1pjcp")
+
+[node name="ArrowRight" type="Sprite2D" parent="takeall"]
+position = Vector2(95, 199)
+rotation = -1.5708
+scale = Vector2(2, 2)
+texture = ExtResource("6_1pjcp")
+
+[node name="ArrowRight3" type="Sprite2D" parent="takeall"]
+position = Vector2(143, 199)
+rotation = -1.5708
+scale = Vector2(2, 2)
+texture = ExtResource("6_1pjcp")
+
+[node name="ingredient_reward1" parent="." instance=ExtResource("1_wntqb")]
+position = Vector2(13, 273)
+scale = Vector2(2, 2)
+
+[node name="ingredient_reward2" parent="." instance=ExtResource("1_wntqb")]
+position = Vector2(81, 273)
+scale = Vector2(2, 2)
+
+[node name="ingredient_reward3" parent="." instance=ExtResource("1_wntqb")]
+position = Vector2(149, 273)
+scale = Vector2(2, 2)
+
+[connection signal="initialization_completed" from="Admob" to="." method="_on_admob_initialization_completed"]
+[connection signal="rewarded_ad_user_earned_reward" from="Admob" to="." method="_on_admob_rewarded_ad_user_earned_reward"]
+[connection signal="pressed" from="takeall/Button_takeall" to="." method="_on_button_takeall_pressed"]

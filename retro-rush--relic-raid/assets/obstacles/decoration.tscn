@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dnj7emighrfkk"]
+[gd_scene load_steps=15 format=3 uid="uid://dnj7emighrfkk"]
 
 [ext_resource type="Script" path="res://assets/obstacles/decoration.gd" id="1_dkhbn"]
 [ext_resource type="Texture2D" uid="uid://bblt06h3g5o85" path="res://assets/tilesets/castle_stones.png" id="1_ysglt"]
@@ -6,6 +6,10 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_ixeek"]
 atlas = ExtResource("1_ysglt")
 region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1adx2"]
+atlas = ExtResource("1_ysglt")
+region = Rect2(256, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ilt2n"]
 atlas = ExtResource("1_ysglt")
@@ -39,9 +43,9 @@ region = Rect2(192, 192, 32, 32)
 atlas = ExtResource("1_ysglt")
 region = Rect2(224, 192, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1adx2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgs1u"]
 atlas = ExtResource("1_ysglt")
-region = Rect2(256, 192, 32, 32)
+region = Rect2(288, 192, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0kjbp"]
 animations = [{
@@ -55,10 +59,18 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ilt2n")
+"texture": SubResource("AtlasTexture_1adx2")
 }],
 "loop": true,
 "name": &"10",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ilt2n")
+}],
+"loop": true,
+"name": &"11",
 "speed": 5.0
 }, {
 "frames": [{
@@ -119,7 +131,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1adx2")
+"texture": SubResource("AtlasTexture_cgs1u")
 }],
 "loop": true,
 "name": &"9",
@@ -133,4 +145,4 @@ script = ExtResource("1_dkhbn")
 z_index = 1
 position = Vector2(16, 17)
 sprite_frames = SubResource("SpriteFrames_0kjbp")
-animation = &"10"
+animation = &"9"

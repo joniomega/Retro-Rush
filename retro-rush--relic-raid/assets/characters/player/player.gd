@@ -17,6 +17,7 @@ var displayed_score := 0
 @onready var camera = $Camera2D
 @onready var left_button = $Control/CanvasLayer/left_button
 @onready var right_button = $Control/CanvasLayer/right_button
+@onready var scrollbar = $Control/CanvasLayer/scrollbar
 
 # Camera will stay locked to this global X position
 var camera_lock_x: float
@@ -76,6 +77,7 @@ func _physics_process(delta: float) -> void:
 			elif abs(relative_speed) > 0:  # Check player input, not total velocity
 				_play_animation("walk")
 				animation.flip_h = move_direction < 0
+				anim_accessory.flip_h = move_direction < 0
 			else:
 				_play_animation("idle")
 		else:
@@ -104,7 +106,10 @@ func shine(increment: int):
 		score_label.modulate = Color(1, 1, 0.5)
 	await get_tree().create_timer(0.05).timeout
 	for i in range(1, steps + 1):
-		$audio_increase.play()
+		if increment >=0:
+			$audio_increase.play()
+		else:
+			$audio_decrease.play()
 		var interpolated = lerp(displayed_score, target, i / float(steps))
 		score_label.text = str(round(interpolated))
 		await get_tree().create_timer(delay).timeout
@@ -153,6 +158,7 @@ func win(type:String):
 	tree.change_scene_to_file("res://menus/mainmenu.tscn")
 	pass
 func win_special(type:String):
+	$Control/CanvasLayer/special_rewards.setup_rewards()
 	var holo_material = preload("res://assets/shaders/holo.tres")
 	#$Control/CanvasLayer/win.material = holo_material
 	$Control/CanvasLayer/win/AnimatedSprite2D.material = holo_material

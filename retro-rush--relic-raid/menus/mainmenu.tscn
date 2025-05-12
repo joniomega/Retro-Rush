@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://duae36wgy5yji"]
+[gd_scene load_steps=33 format=3 uid="uid://duae36wgy5yji"]
 
 [ext_resource type="Material" uid="uid://b38l1jujf2me6" path="res://assets/shaders/backmaterial_1.tres" id="1_cnoo3"]
 [ext_resource type="Script" path="res://menus/mainmenu.gd" id="1_t1nqp"]
@@ -9,7 +9,6 @@
 [ext_resource type="Shader" path="res://assets/shaders/vhs.gdshader" id="6_0oedl"]
 [ext_resource type="Texture2D" uid="uid://d0i0lr0yll817" path="res://assets/ui/button_anvil.png" id="6_eh4l7"]
 [ext_resource type="Texture2D" uid="uid://bqwcan8o3yu7a" path="res://assets/ui/button_levels.png" id="6_imw26"]
-[ext_resource type="PackedScene" uid="uid://boacxm34cq8c3" path="res://assets/craft/ingredient_reward.tscn" id="7_oov0s"]
 [ext_resource type="PackedScene" uid="uid://bvm7ds3g3b8os" path="res://menus/rewards_menu.tscn" id="7_pvtqq"]
 [ext_resource type="Texture2D" uid="uid://bbn7cjk6253cn" path="res://assets/ui/icon_exclamation.png" id="7_ssu4i"]
 [ext_resource type="Texture2D" uid="uid://c4w620eitvjr2" path="res://assets/ui/icon_coin.png" id="8_0suj5"]
@@ -91,7 +90,7 @@ shader_parameter/vignette_intensity = 0.4
 shader_parameter/aberation_amount = 0.0
 shader_parameter/roll_line_amount = 0.0
 shader_parameter/roll_speed = -8.0
-shader_parameter/scan_line_strength = -7.0
+shader_parameter/scan_line_strength = -5.0
 shader_parameter/pixel_strength = -4.0
 
 [node name="mainmenu" type="Node2D"]
@@ -200,35 +199,6 @@ anchors_preset = 0
 offset_left = 224.0
 offset_right = 448.0
 offset_bottom = 390.0
-
-[node name="ButtonRewards2" type="Sprite2D" parent="rewards"]
-position = Vector2(88, 16)
-scale = Vector2(4, 4)
-texture = ExtResource("8_tvihv")
-
-[node name="ingredient_reward" parent="rewards/ButtonRewards2" instance=ExtResource("7_oov0s")]
-position = Vector2(-20, 32)
-scale = Vector2(0.5, 0.5)
-
-[node name="ingredient_reward2" parent="rewards/ButtonRewards2" instance=ExtResource("7_oov0s")]
-position = Vector2(-2, 32)
-scale = Vector2(0.5, 0.5)
-
-[node name="ingredient_reward3" parent="rewards/ButtonRewards2" instance=ExtResource("7_oov0s")]
-position = Vector2(16, 32)
-scale = Vector2(0.5, 0.5)
-
-[node name="ingredient_reward4" parent="rewards/ButtonRewards2" instance=ExtResource("7_oov0s")]
-position = Vector2(-20, 56)
-scale = Vector2(0.5, 0.5)
-
-[node name="ingredient_reward5" parent="rewards/ButtonRewards2" instance=ExtResource("7_oov0s")]
-position = Vector2(-2, 56)
-scale = Vector2(0.5, 0.5)
-
-[node name="ingredient_reward6" parent="rewards/ButtonRewards2" instance=ExtResource("7_oov0s")]
-position = Vector2(16, 56)
-scale = Vector2(0.5, 0.5)
 
 [node name="rewards_menu" parent="rewards" instance=ExtResource("7_pvtqq")]
 layout_mode = 1

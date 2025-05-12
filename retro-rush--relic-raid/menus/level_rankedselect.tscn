@@ -36,6 +36,7 @@ mouse_filter = 1
 script = ExtResource("1_8htrp")
 
 [node name="Button" type="Button" parent="."]
+modulate = Color(0.952941, 1, 0.588235, 1)
 layout_mode = 0
 offset_right = 192.0
 offset_bottom = 56.0
@@ -48,25 +49,29 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_dg0r0")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 55.0
+offset_left = 40.0
 offset_top = 5.0
 offset_right = 188.0
 offset_bottom = 50.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
 theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 7
 theme_override_fonts/font = ExtResource("3_wxruc")
 theme_override_font_sizes/font_size = 16
-text = "1- Ruins of Oligar"
+text = "RANDOM MATCH
+1000p"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(28, 26)
+position = Vector2(25, 26)
 scale = Vector2(1.53125, 1.5)
 sprite_frames = ExtResource("4_ne0q7")
-animation = &"4"
+animation = &"pvpmatch"
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
 position = Vector2(28, 28)

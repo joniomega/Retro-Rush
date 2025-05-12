@@ -1,17 +1,21 @@
 extends Node2D
 
 @onready var animation := $ingredients_animation
-var ingredient: String = ""
+@export var ingredient: String = "none"
 
 func _ready() -> void:
+	setup(ingredient)
 	# Generate all possible ingredients
-	var all_ingredients := []
-	for item_type in Global.CRAFTABLE_ITEMS:
-		for item in Global.CRAFTABLE_ITEMS[item_type]:
-			all_ingredients.append(item + "_1")
-			all_ingredients.append(item + "_2")
-	
-	ingredient = all_ingredients[randi() % all_ingredients.size()]
+	#var all_ingredients := []
+	#for item_type in Global.CRAFTABLE_ITEMS:
+		#for item in Global.CRAFTABLE_ITEMS[item_type]:
+			#all_ingredients.append(item + "_1")
+			#all_ingredients.append(item + "_2")
+	#ingredient = all_ingredients[randi() % all_ingredients.size()]
+	#animation.play(ingredient)
+	pass
+func setup(reward:String):
+	ingredient = reward
 	animation.play(ingredient)
 
 func _on_button_pressed() -> void:

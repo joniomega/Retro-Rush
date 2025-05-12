@@ -1,0 +1,113 @@
+[gd_scene load_steps=15 format=3 uid="uid://dauxouih85yxb"]
+
+[ext_resource type="Script" path="res://menus/recipe_select.gd" id="1_kcove"]
+[ext_resource type="Texture2D" uid="uid://71etip7gdwiv" path="res://assets/ui/container_level_select.png" id="1_v3vxa"]
+[ext_resource type="SpriteFrames" uid="uid://uhhxbh4veuvb" path="res://assets/craft/ingredients_sp.tres" id="2_vg5st"]
+[ext_resource type="Texture2D" uid="uid://gmao71ovqfd8" path="res://assets/ui/icon_ad.png" id="3_8vw23"]
+[ext_resource type="FontFile" uid="uid://camtosjq61o18" path="res://assets/ui/alagard.ttf" id="3_u5bni"]
+[ext_resource type="SpriteFrames" uid="uid://bsvml15ne3jhu" path="res://assets/characters/player/accessories/player_accessories.tres" id="4_d4prr"]
+[ext_resource type="Texture2D" uid="uid://dwphcswg5bw86" path="res://assets/ui/icon_nowifi.png" id="5_7vagg"]
+[ext_resource type="SpriteFrames" uid="uid://duukh1em5rexv" path="res://assets/characters/player/player_skin.tres" id="5_oumuv"]
+[ext_resource type="Script" path="res://addons/AdmobPlugin/Admob.gd" id="9_xq8cd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ipea4"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6lx17"]
+texture = ExtResource("1_v3vxa")
+modulate_color = Color(0.560955, 0.560955, 0.560955, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b52bb"]
+texture = ExtResource("1_v3vxa")
+modulate_color = Color(1.2, 1.2, 1.2, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_riqtv"]
+texture = ExtResource("1_v3vxa")
+modulate_color = Color(1.5, 1.5, 1.5, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nex1x"]
+texture = ExtResource("1_v3vxa")
+
+[node name="recipe_select" type="Control"]
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_kcove")
+
+[node name="Admob" type="Node" parent="."]
+script = ExtResource("9_xq8cd")
+debug_application_id = "ca-app-pub-3940256099942544~3347511713"
+debug_banner_id = "ca-app-pub-3940256099942544/9214589741"
+debug_interstitial_id = "ca-app-pub-3940256099942544/1033173712"
+debug_rewarded_id = "ca-app-pub-3940256099942544/5224354917"
+debug_rewarded_interstitial_id = "ca-app-pub-3940256099942544/5354046379"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 192.0
+offset_bottom = 56.0
+mouse_filter = 1
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ipea4")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_6lx17")
+theme_override_styles/hover = SubResource("StyleBoxTexture_b52bb")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_riqtv")
+theme_override_styles/normal = SubResource("StyleBoxTexture_nex1x")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 16.0
+offset_right = 176.0
+offset_bottom = 37.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_u5bni")
+theme_override_font_sizes/font_size = 16
+text = "+        ="
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="IconAd" type="Sprite2D" parent="."]
+position = Vector2(168, 26)
+scale = Vector2(2, 2)
+texture = ExtResource("3_8vw23")
+
+[node name="IconNoWifi" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(168, 26)
+scale = Vector2(2, 2)
+texture = ExtResource("5_7vagg")
+
+[node name="ingredients1" type="AnimatedSprite2D" parent="."]
+position = Vector2(24, 24)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("2_vg5st")
+animation = &"spikes_1"
+
+[node name="ingredients2" type="AnimatedSprite2D" parent="."]
+position = Vector2(80, 24)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("2_vg5st")
+animation = &"spikes_2"
+
+[node name="reward_accessory" type="AnimatedSprite2D" parent="."]
+position = Vector2(128, 48)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("4_d4prr")
+animation = &"spikes_jump"
+
+[node name="reward_skin" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(128, 24)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("5_oumuv")
+animation = &"2_jump"
+
+[connection signal="initialization_completed" from="Admob" to="." method="_on_admob_initialization_completed"]
+[connection signal="rewarded_ad_user_earned_reward" from="Admob" to="." method="_on_admob_rewarded_ad_user_earned_reward"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

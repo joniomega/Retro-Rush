@@ -78,18 +78,6 @@ libraries = {
 "": SubResource("AnimationLibrary_0ijqq")
 }
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-visible = false
-position = Vector2(112, -16)
-amount = 32
-lifetime = 10.0
-emission_shape = 3
-emission_rect_extents = Vector2(85, 1)
-gravity = Vector2(0, 10)
-scale_amount_min = 5.0
-scale_amount_max = 5.0
-color = Color(1, 1, 1, 0.196078)
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
 

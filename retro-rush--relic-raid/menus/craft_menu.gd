@@ -66,3 +66,17 @@ func _on_button_body_left_pressed():
 		if current_skin_index < 0:
 			current_skin_index = Global.unlocked_skins.size() - 1
 		update_skin_display()
+
+
+func _on_button_pressed() -> void:
+	Global.unlock_reward("hat")
+	Global.unlock_reward("plant")
+	Global.unlock_reward("spikes")
+	Global.unlock_reward("crest")
+	Global.unlock_reward("books")
+	Global.unlock_reward("horns")
+	Global.unlock_reward("3")
+	Global.unlock_reward("4")
+	Global.unlock_reward("2")
+	Global.unlock_reward("5")
+	pass # Replace with function body.

@@ -105,6 +105,10 @@ reward = "crest"
 layout_mode = 2
 reward = "books"
 
+[node name="recipe_select10" parent="recipes/ScrollContainer/GridContainer" instance=ExtResource("2_4ty2e")]
+layout_mode = 2
+reward = "horns"
+
 [node name="recipe_select5" parent="recipes/ScrollContainer/GridContainer" instance=ExtResource("2_4ty2e")]
 layout_mode = 2
 reward = "3"
@@ -122,6 +126,10 @@ layout_mode = 2
 reward = "5"
 
 [node name="Control3" type="Control" parent="recipes/ScrollContainer/GridContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Control7" type="Control" parent="recipes/ScrollContainer/GridContainer"]
 layout_mode = 2
 mouse_filter = 1
 
@@ -233,7 +241,15 @@ icon = ExtResource("8_1f676")
 expand_icon = true
 metadata/_edit_use_anchors_ = true
 
+[node name="Button" type="Button" parent="equipment"]
+layout_mode = 0
+offset_top = 152.0
+offset_right = 48.0
+offset_bottom = 192.0
+text = "AAA"
+
 [connection signal="pressed" from="equipment/buttons/button_hat_left" to="." method="_on_button_hat_left_pressed"]
 [connection signal="pressed" from="equipment/buttons/button_hat_right" to="." method="_on_button_hat_right_pressed"]
 [connection signal="pressed" from="equipment/buttons/button_body_left" to="." method="_on_button_body_left_pressed"]
 [connection signal="pressed" from="equipment/buttons/button_body_right" to="." method="_on_button_body_right_pressed"]
+[connection signal="pressed" from="equipment/Button" to="." method="_on_button_pressed"]
