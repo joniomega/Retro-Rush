@@ -1,14 +1,15 @@
 extends Node2D
 
 var global = Global
-@onready var goto_levels = $static_ui/levels
+@onready var goto_levels = $static_ui/menu/levels
 @onready var menu_levels = $levels
-@onready var goto_craft = $static_ui/craft
+@onready var goto_craft = $static_ui/menu/craft
 @onready var menu_craft = $craft
-@onready var goto_rewards = $static_ui/rewards
+@onready var goto_rewards = $static_ui/menu/rewards
 @onready var menu_rewards = $rewards
 
 @onready var levels_scroll = $levels/ScrollContainer
+@onready var bottompart = $static_ui/menu
 # Store original positions
 var level_pos: Vector2
 var craft_pos: Vector2

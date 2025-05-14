@@ -492,6 +492,8 @@ texture = ExtResource("12_pjfkr")
 flip_v = true
 
 [node name="special_rewards" parent="Control/CanvasLayer" instance=ExtResource("17_ig076")]
+offset_top = 302.0
+offset_bottom = 302.0
 
 [connection signal="pressed" from="Control/CanvasLayer/left_button" to="." method="_on_left_button_pressed"]
 [connection signal="pressed" from="Control/CanvasLayer/right_button" to="." method="_on_right_button_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bvm7ds3g3b8os"]
+[gd_scene load_steps=16 format=3 uid="uid://bvm7ds3g3b8os"]
 
 [ext_resource type="Script" path="res://menus/rewards_menu.gd" id="1_tj4mn"]
 [ext_resource type="PackedScene" uid="uid://dacestg0nqsfx" path="res://menus/level_rankedselect.tscn" id="2_bfhl7"]
@@ -9,6 +9,16 @@
 [ext_resource type="SpriteFrames" uid="uid://duukh1em5rexv" path="res://assets/characters/player/player_skin.tres" id="5_wmksu"]
 [ext_resource type="SpriteFrames" uid="uid://bsvml15ne3jhu" path="res://assets/characters/player/accessories/player_accessories.tres" id="6_f885f"]
 [ext_resource type="Texture2D" uid="uid://bwwy323cb3csd" path="res://assets/ui/icon_edit.png" id="9_fr283"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fewx2"]
+bg_color = Color(0, 0, 0, 0.5)
+border_width_left = 3
+border_color = Color(0, 0, 0, 0.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_703ur"]
+bg_color = Color(0, 0, 0, 0.5)
+border_width_left = 3
+border_color = Color(0, 0, 0, 0.501961)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_seq2h"]
 
@@ -54,19 +64,12 @@ text = "PVP"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="level_rankedselect" parent="." instance=ExtResource("2_bfhl7")]
-layout_mode = 2
-offset_left = 16.0
-offset_top = 100.0
-offset_right = 16.0
-offset_bottom = 100.0
-
 [node name="GridContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 16.0
-offset_top = 150.0
+offset_top = 146.0
 offset_right = 208.0
-offset_bottom = 390.0
+offset_bottom = 386.0
 size_flags_horizontal = 3
 theme_override_constants/separation = 100
 alignment = 1
@@ -82,13 +85,17 @@ scale = Vector2(0.916667, 0.458334)
 texture = ExtResource("4_f2kvv")
 
 [node name="TextEdit" type="TextEdit" parent="GridContainer/config"]
-offset_left = 3.66667
-offset_top = -10.0
-offset_right = 92.6667
-offset_bottom = 18.0
+offset_left = 4.66667
+offset_top = -6.0
+offset_right = 89.6667
+offset_bottom = 15.0
 scale = Vector2(0.75, 0.75)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("4_r2w4r")
 theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_fewx2")
+theme_override_styles/focus = SubResource("StyleBoxFlat_703ur")
 placeholder_text = "name"
 
 [node name="Label2" type="Label" parent="GridContainer/config"]
@@ -98,9 +105,9 @@ anchor_top = -0.0104166
 anchor_right = -0.15625
 anchor_bottom = -0.0104166
 offset_left = -17.3333
-offset_top = -10.0
+offset_top = -8.0
 offset_right = 76.6667
-offset_bottom = 23.0
+offset_bottom = 25.0
 scale = Vector2(0.65, 0.65)
 theme_override_colors/font_color = Color(0.647059, 0.6, 0.780392, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -113,10 +120,10 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="Button" type="Button" parent="GridContainer/config"]
-offset_left = 70.6667
-offset_top = -10.6667
-offset_right = 91.6667
-offset_bottom = 10.3333
+offset_left = 70.0
+offset_top = -8.6667
+offset_right = 91.0
+offset_bottom = 12.3333
 theme_override_styles/focus = SubResource("StyleBoxEmpty_seq2h")
 theme_override_styles/hover = SubResource("StyleBoxTexture_84rmg")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_6b2yn")
@@ -268,3 +275,10 @@ animation = &"4_jump"
 [node name="accessory" type="AnimatedSprite2D" parent="GridContainer/pos3/AnimatedSprite2D"]
 sprite_frames = ExtResource("6_f885f")
 animation = &"crest_jump"
+
+[node name="level_rankedselect" parent="." instance=ExtResource("2_bfhl7")]
+layout_mode = 2
+offset_left = 16.0
+offset_top = 100.0
+offset_right = 16.0
+offset_bottom = 100.0
