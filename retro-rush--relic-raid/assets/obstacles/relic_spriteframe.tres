@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=19 format=3 uid="uid://bj7kppdwycf3i"]
+[gd_resource type="SpriteFrames" load_steps=22 format=3 uid="uid://bj7kppdwycf3i"]
 
 [ext_resource type="Texture2D" uid="uid://bb7pqai8cbejy" path="res://assets/obstacles/relics_sheet.png" id="1_hekhf"]
 
@@ -9,6 +9,18 @@ region = Rect2(0, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_0b0jj"]
 atlas = ExtResource("1_hekhf")
 region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d20ji"]
+atlas = ExtResource("1_hekhf")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcsgg"]
+atlas = ExtResource("1_hekhf")
+region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gcttp"]
+atlas = ExtResource("1_hekhf")
+region = Rect2(192, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7ef1p"]
 atlas = ExtResource("1_hekhf")
@@ -86,6 +98,30 @@ animations = [{
 }],
 "loop": true,
 "name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d20ji")
+}],
+"loop": true,
+"name": &"10",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcsgg")
+}],
+"loop": true,
+"name": &"11",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gcttp")
+}],
+"loop": true,
+"name": &"12",
 "speed": 5.0
 }, {
 "frames": [{

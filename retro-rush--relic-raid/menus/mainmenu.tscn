@@ -187,6 +187,18 @@ level_num = 8
 layout_mode = 2
 level_num = 9
 
+[node name="level_select10" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+layout_mode = 2
+level_num = 10
+
+[node name="level_select11" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+layout_mode = 2
+level_num = 11
+
+[node name="level_select12" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+layout_mode = 2
+level_num = 12
+
 [node name="Control3" type="Control" parent="levels/ScrollContainer/GridContainer"]
 layout_mode = 2
 

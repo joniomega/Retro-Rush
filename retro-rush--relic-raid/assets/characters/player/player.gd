@@ -26,6 +26,11 @@ var current_animation := ""
 var movement_started := false  # New flag to track if movement has begun
 
 var move_direction := 0  # -1 for left, 1 for right, 0 for no movement
+#PAPER FLIP AND SCUASH
+var current_tween: Tween = null
+var flip_duration := 0.2
+var jump_squash_scale := Vector2(1.1, 0.9)
+var land_squash_scale := Vector2(0.9, 1.1)
 
 func _ready() -> void:
 	# Set initial camera lock position (center of screen)
@@ -74,17 +79,28 @@ func _physics_process(delta: float) -> void:
 		if is_on_floor():
 			if is_pushing_wall:
 				_play_animation("idle")
+				reset_scale()
 			elif abs(relative_speed) > 0:  # Check player input, not total velocity
 				_play_animation("walk")
+				reset_scale()
 				animation.flip_h = move_direction < 0
 				anim_accessory.flip_h = move_direction < 0
+				
+				
 			else:
 				_play_animation("idle")
+				reset_scale()
 		else:
 			if velocity.y < 0:
 				_play_animation("jump")
+				animation.flip_h = move_direction < 0
+				anim_accessory.flip_h = move_direction < 0
+				squash_and_stretch()
 			else:
 				_play_animation("fall")
+				animation.flip_h = move_direction < 0
+				anim_accessory.flip_h = move_direction < 0
+				squash_and_stretch()
 
 		move_and_slide()
 
@@ -95,6 +111,32 @@ func _play_animation(anim_name: String) -> void:
 		animation.play(skin+"_"+anim_name)
 		anim_accessory.play(str(accessory + "_" + anim_name))
 		current_animation = anim_name
+
+
+func squash_and_stretch() -> void:
+	
+	if current_tween:
+		current_tween.kill()
+	
+	current_tween = create_tween()
+	current_tween.set_trans(Tween.TRANS_BACK)
+	current_tween.set_ease(Tween.EASE_OUT)
+	
+	if not is_on_floor():
+		if velocity.y < 0:  # Jumping up
+			current_tween.tween_property(animation, "scale", jump_squash_scale, 0.1)
+		else:  # Falling down
+			current_tween.tween_property(animation, "scale", land_squash_scale, 0.1)
+	else:
+		current_tween.tween_property(animation, "scale", Vector2(1, 1), 0.2)
+
+func reset_scale() -> void:
+	if current_tween:
+		current_tween.kill()
+	
+	current_tween = create_tween()
+	current_tween.tween_property(animation, "scale", 
+		Vector2(sign(animation.scale.x), 1.0), 0.2)
 
 func shine(increment: int):
 	score += increment
@@ -136,7 +178,6 @@ func _on_left_button_pressed() -> void:
 func _on_right_button_pressed() -> void:
 	move_direction = 1
 
-
 func _on_button_home_pressed() -> void:
 	var tree = get_tree()
 	TransitionScreen.transition()
@@ -168,5 +209,4 @@ func win_special(type:String):
 	_play_animation("idle")
 	$animation.play("win_special")
 	get_parent().stop_music()
-	
 	pass

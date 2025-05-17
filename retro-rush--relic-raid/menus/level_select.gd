@@ -15,7 +15,10 @@ var level_names = {
 	6: "Echoing Ruin",
 	7: "Silent Temple",
 	8: "Gilded Vault",
-	9: "Sribe's Rest"
+	9: "Sribe's Rest",
+	10: "Memelingo",
+	11: "Memelingo2",
+	12: "Memelingo3"
 }
 func _ready() -> void:
 	global = Global
