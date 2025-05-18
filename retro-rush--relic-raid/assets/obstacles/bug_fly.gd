@@ -34,9 +34,21 @@ func _physics_process(delta: float) -> void:
 		move_direction *= -1
 		timer = 0.0
 		animation.flip_h = move_direction < 0
+		scale_sprite()
 	
 	velocity.x = move_speed * move_direction
 	move_and_slide()
+func scale_sprite():
+	var tween = create_tween()
+	var original_scale = $animation.scale  # Store the current scale
+	
+	# Scale X down to 0 in 0.15 seconds (Y remains unchanged)
+	tween.tween_property($animation, "scale", Vector2(0, original_scale.y), 0.1)\
+		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	
+	# Scale X back to original in 0.15 seconds (Y remains unchanged)
+	tween.tween_property($animation, "scale", original_scale, 0.1)\
+		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 func die():
 	if !is_alive:

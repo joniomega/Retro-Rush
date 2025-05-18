@@ -117,11 +117,11 @@ func scale_sprite():
 	var original_scale = $AnimatedSprite2D.scale  # Store the current scale
 	
 	# Scale X down to 0 in 0.15 seconds (Y remains unchanged)
-	tween.tween_property($AnimatedSprite2D, "scale", Vector2(0, original_scale.y), 0.15)\
+	tween.tween_property($AnimatedSprite2D, "scale", Vector2(0, original_scale.y), 0.1)\
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	
 	# Scale X back to original in 0.15 seconds (Y remains unchanged)
-	tween.tween_property($AnimatedSprite2D, "scale", original_scale, 0.15)\
+	tween.tween_property($AnimatedSprite2D, "scale", original_scale, 0.1)\
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 func squash_and_stretch() -> void:
 	

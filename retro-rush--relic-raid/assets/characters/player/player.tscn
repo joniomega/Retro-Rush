@@ -78,7 +78,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(75, 4)]
+"values": [Vector2(75, 15)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -413,16 +413,16 @@ theme_override_styles/grabber_pressed = SubResource("StyleBoxTexture_jrh0a")
 value = 50.0
 
 [node name="PlayerContainer" type="Sprite2D" parent="Control/CanvasLayer"]
-position = Vector2(112, 18.5)
+position = Vector2(112, 27.5)
 scale = Vector2(1.75, 1.75)
 texture = ExtResource("4_8ixgy")
 flip_v = true
 
 [node name="score" type="Label" parent="Control/CanvasLayer"]
 offset_left = 75.0
-offset_top = 4.0
+offset_top = 15.0
 offset_right = 149.0
-offset_bottom = 34.0
+offset_bottom = 45.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.392157)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 0
@@ -434,18 +434,17 @@ theme_override_font_sizes/font_size = 32
 text = "0
 "
 horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="ButtonPause" type="Sprite2D" parent="Control/CanvasLayer"]
-position = Vector2(28, 20)
+position = Vector2(28, 29)
 scale = Vector2(1.75, 1.75)
 texture = ExtResource("6_n442f")
 
 [node name="ButtonHome" type="Button" parent="Control/CanvasLayer"]
 offset_left = 168.0
-offset_top = -8.0
+offset_top = 1.0
 offset_right = 196.0
-offset_bottom = 20.0
+offset_bottom = 29.0
 scale = Vector2(2, 2)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_rii0u")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_wqt81")
