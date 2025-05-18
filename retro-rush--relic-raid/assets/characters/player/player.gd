@@ -112,7 +112,17 @@ func _play_animation(anim_name: String) -> void:
 		anim_accessory.play(str(accessory + "_" + anim_name))
 		current_animation = anim_name
 
-
+func scale_sprite():
+	var tween = create_tween()
+	var original_scale = $AnimatedSprite2D.scale  # Store the current scale
+	
+	# Scale X down to 0 in 0.15 seconds (Y remains unchanged)
+	tween.tween_property($AnimatedSprite2D, "scale", Vector2(0, original_scale.y), 0.15)\
+		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	
+	# Scale X back to original in 0.15 seconds (Y remains unchanged)
+	tween.tween_property($AnimatedSprite2D, "scale", original_scale, 0.15)\
+		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 func squash_and_stretch() -> void:
 	
 	if current_tween:
@@ -129,7 +139,6 @@ func squash_and_stretch() -> void:
 			current_tween.tween_property(animation, "scale", land_squash_scale, 0.1)
 	else:
 		current_tween.tween_property(animation, "scale", Vector2(1, 1), 0.2)
-
 func reset_scale() -> void:
 	if current_tween:
 		current_tween.kill()
@@ -174,9 +183,11 @@ func die():
 # Button press handlers
 func _on_left_button_pressed() -> void:
 	move_direction = -1
+	scale_sprite()
 
 func _on_right_button_pressed() -> void:
 	move_direction = 1
+	scale_sprite()
 
 func _on_button_home_pressed() -> void:
 	var tree = get_tree()
