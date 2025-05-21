@@ -31,10 +31,10 @@ func _physics_process(delta: float) -> void:
 	# Alive movement
 	timer += delta
 	if timer >= wait_time:
+		scale_sprite()
 		move_direction *= -1
 		timer = 0.0
 		animation.flip_h = move_direction < 0
-		scale_sprite()
 	
 	velocity.x = move_speed * move_direction
 	move_and_slide()

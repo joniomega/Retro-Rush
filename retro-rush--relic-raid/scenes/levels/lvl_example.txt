@@ -1,57 +1,141 @@
-don't leave spaces between lines. and paste each one after the other randomly but following the rules.
-If there are any problem with the rules or some dont connect tell me before writing.
-type: start level, rules: at the start of the level
-1110111
-1110111
-1110111
-1110111
-1110111
-1110111
-1110111
-1000001
+================================================================================
+GODOT VERTICAL PLATFORMER LEVEL DESIGN RULES
+================================================================================
 
-type: right fall: cannot be placed if the previous lines are a right fall but a left fall is ok
-1400001
-1101111
-1000001
-1111101
+1. BASIC STRUCTURE
+------------------
+- All levels are 7 columns wide (index 0-6)
+- First/last columns (0 & 6) ALWAYS = 1 (walls)
+- Middle columns (1-5) = gameplay area
+- Vertical progression through 0-path
 
-type: left fall: cannot be placed if the previous lines are a left fall but a right fall is ok
-1200041
-1111011
-1060201
-1011111
+Example Valid Line:
+1 0 0 0 0 0 1  ← Good clear path
+1 0 3 0 6 0 1  ← Spikes (3) and saw (6) on edges
 
-type: right and left fall, rules: only if the previous lines are any of the middle fall types
-1000001
-1011101
+2. PATH RULES
+-------------
+- MAIN PATH: Continuous vertical 0s in columns 1-5
+- Exceptions allowed ONLY for intentional platforming challenges
+- Minimum 1 empty row between major obstacles
 
-type: middle fall normal left, rules: only if the previous lines are a type left fall
-1001111
-1000001
-1000001
-1000001
-1300031
+Valid Path Example:
+1 0 0 0 0 0 1
+1 0 0 0 0 0 1  ← Clear fall
+1 0 0 8 0 0 1  ← Platform challenge
+1 0 0 0 0 0 1  ← Path continues
+
+Invalid Path Example: 
+1 0 0 0 0 0 1
+1 0 1 0 1 0 1  ← Blocks path
+1 0 0 0 0 0 1
+
+3. MOVING PLATFORMS (8)
+-----------------------
+Allowed Patterns:
+a) Centered: 1 0 0 8 0 0 1
+b) Left:     1 8 0 0 0 0 1  
+c) Right:    1 0 0 0 0 8 1
+
+Rules:
+- Must have clear space below:
+Good:
+1 0 0 8 0 0 1
+1 0 0 0 0 0 1
+
+Bad:
+1 0 0 8 0 0 1
+1 0 3 0 0 0 1 ← Spikes below platform
+
+4. SPIKES (3)
+-------------
+- MUST have 1 DIRECTLY BELOW
+- Can only appear on 1-columns
+
+Valid Example:
+1 1 1 1 0 1 1 ← Platform
+1 3 0 0 0 3 1 ← Spikes over 1s
+
+Invalid Example:
+1 0 0 0 0 0 1 ← No platform below
+1 3 0 0 0 3 1
+
+5. SAWS (6)
+-----------
+- MUST have 1 DIRECTLY ABOVE
+- Always in 0-path columns
+
+Valid Example:
+1 0 1 1 1 0 1 ← Platform above
+1 0 0 6 0 0 1 ← Valid saw
+
+Invalid Example:
+1 0 0 0 0 0 1 ← No platform above
+1 0 0 6 0 0 1
+
+6. DECORATIONS (4)
+------------------
+- Follow same rules as spikes (3)
+- Must have 1 below
+- Shouldn't block paths
+
+Valid Example:
+1 0 4 0 4 0 1 ← Decorations
+1 1 1 1 1 1 1 ← Platform below
+
+Invalid Example:
+1 0 4 0 4 0 1 
+1 0 1 0 1 0 1 ← Missing 1s below 4s
+
+7. ENEMIES (7)
+--------------
+Flying Enemies (7):
+- Place in open areas
+- Minimum 2 rows clearance above/below
+
+Valid Example:
+1 0 0 0 0 0 1
+1 0 7 0 0 0 1 ← Flying enemy
+1 0 0 0 0 0 1
+
+8. RELIC (5) PLACEMENT
+----------------------
+- Always at bottom
+- Minimum 3 clear rows above
+- Center-aligned
+
+Valid Example:
+1 0 0 0 0 0 1
+1 0 0 0 0 0 1
+1 0 0 5 0 0 1 ← Relic
+1 1 1 1 1 1 1 ← Exit
+
+9. VALIDATION CHECKLIST
+-----------------------
+For every line:
+✅ 1. First/last character = 1
+✅ 2. 0-path maintained through columns 1-5
+✅ 3. 3/4/6 have supporting 1s
+✅ 4. 8 uses only allowed patterns
+✅ 5. 7 has clearance space
+✅ 6. 5 only at bottom with approach space
+
+10. SAMPLE LEVEL SNIPPET
+------------------------
 1110111
-
-type: middle fall normal right, rules: only if the previous lines are a type right fall
-1111001
-1000001
-1000001
-1000001
-1300031
+1110111  ← Standard header
 1110111
+1000001  ← Start
+1040401  ← Decor columns
+1011101  ← Platform
+1008001  ← Moving platform
+1300041  ← Spikes + decor
+1111011  ← Platform exit
+1000001  ← Clear path
+... (main challenges)
+1500001  ← Relic
+1111131  ← Exit
 
-type: middle fall right spikes, rules: only if the previous lines are a type right and left fall
-1000001
-1000331
-1110111
-
-type: middle fall left spikes, rules: only if the previous lines are a type right and left fall
-1000001
-1330001
-1110111
-
-type: end of the level, rules: At the end of the level
-1000001
-1111111
+================================================================================
+END OF RULES - ALWAYS TEST WITH 3 PLAYTHROUGHS BEFORE FINALIZING
+================================================================================

@@ -197,6 +197,7 @@ func _on_button_home_pressed() -> void:
 	pass # Replace with function body.
 
 func win(type:String):
+	$Control/CanvasLayer/ButtonHome.disabled = true
 	Global.points = Global.points + score
 	$Control/CanvasLayer/win/AnimatedSprite2D.play(type)
 	isdead = true
@@ -210,6 +211,7 @@ func win(type:String):
 	tree.change_scene_to_file("res://menus/mainmenu.tscn")
 	pass
 func win_special(type:String):
+	$Control/CanvasLayer/ButtonHome.disabled = true
 	$Control/CanvasLayer/special_rewards.setup_rewards()
 	var holo_material = preload("res://assets/shaders/holo.tres")
 	#$Control/CanvasLayer/win.material = holo_material

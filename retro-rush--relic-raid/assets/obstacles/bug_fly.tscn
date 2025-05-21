@@ -153,8 +153,9 @@ shape = SubResource("RectangleShape2D_ifdyo")
 
 [node name="animation" type="AnimatedSprite2D" parent="enemy"]
 sprite_frames = SubResource("SpriteFrames_o5ypw")
-animation = &"dead"
+animation = &"fly3"
 autoplay = "fly1"
+frame_progress = 0.586798
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="enemy"]
 position = Vector2(-1, 2)

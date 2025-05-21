@@ -77,9 +77,9 @@ debug_rewarded_interstitial_id = "ca-app-pub-3940256099942544/5354046379"
 position = Vector2(0, 64)
 
 [node name="Button_takeall" type="Button" parent="takeall"]
-offset_left = 49.0
+offset_left = 48.0
 offset_top = 136.0
-offset_right = 177.0
+offset_right = 176.0
 offset_bottom = 192.0
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_t5b7w")
@@ -108,34 +108,26 @@ theme_override_fonts/font = ExtResource("2_t5b7w")
 theme_override_font_sizes/font_size = 16
 text = "TAKE ALL"
 
-[node name="ArrowRight2" type="Sprite2D" parent="takeall"]
-position = Vector2(119, 199)
-rotation = -1.5708
-scale = Vector2(2, 2)
-texture = ExtResource("6_1pjcp")
-
 [node name="ArrowRight" type="Sprite2D" parent="takeall"]
-position = Vector2(95, 199)
+modulate = Color(1, 1, 1, 0.5)
+position = Vector2(84, 199)
 rotation = -1.5708
 scale = Vector2(2, 2)
 texture = ExtResource("6_1pjcp")
 
 [node name="ArrowRight3" type="Sprite2D" parent="takeall"]
-position = Vector2(143, 199)
+modulate = Color(1, 1, 1, 0.5)
+position = Vector2(152, 199)
 rotation = -1.5708
 scale = Vector2(2, 2)
 texture = ExtResource("6_1pjcp")
 
 [node name="ingredient_reward1" parent="." instance=ExtResource("1_wntqb")]
-position = Vector2(13, 273)
+position = Vector2(46, 273)
 scale = Vector2(2, 2)
 
 [node name="ingredient_reward2" parent="." instance=ExtResource("1_wntqb")]
-position = Vector2(81, 273)
-scale = Vector2(2, 2)
-
-[node name="ingredient_reward3" parent="." instance=ExtResource("1_wntqb")]
-position = Vector2(149, 273)
+position = Vector2(114, 273)
 scale = Vector2(2, 2)
 
 [connection signal="initialization_completed" from="Admob" to="." method="_on_admob_initialization_completed"]
