@@ -18,7 +18,25 @@ var level_names = {
 	9: "Sribe's Rest",
 	10: "Memelingo",
 	11: "Memelingo2",
-	12: "Memelingo3"
+	12: "Memelingo3",
+	13: "Memelingo4",
+	14: "Memelingo5",
+	15: "Memelingo6",
+	16: "Memelingo7",
+	17: "Memelingo8",
+	18: "Memelingo9",
+	19: "Memelingo10",
+	20: "Memelingo11",
+	21: "Memelingo12",
+	22: "Memelingo13",
+	23: "Memelingo14",
+	24: "Memelingo15",
+	25: "Memelingo16",
+	26: "Memelingo17",
+	27: "Memelingo18",
+	28: "Memelingo19",
+	29: "Memelingo20",
+	30: "GOD BIRTH"
 }
 func _ready() -> void:
 	global = Global
@@ -49,7 +67,7 @@ func _ready() -> void:
 		else:
 			button_pay.disabled = true
 	else:
-		$CPUParticles2D2.emitting = false
+		$CPUParticles2D2.emitting = true
 		# UNLOCKED but NOT BEATEN state
 		$AnimatedSprite2D.play("0")
 		button.disabled = false

@@ -78,10 +78,12 @@ autowrap_mode = 3
 position = Vector2(28, 26)
 scale = Vector2(1.53125, 1.5)
 sprite_frames = ExtResource("3_o3ryn")
-animation = &"15"
+animation = &"30"
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
 position = Vector2(28, 28)
+emitting = false
+amount = 6
 texture = ExtResource("4_s8ivl")
 emission_shape = 1
 emission_sphere_radius = 20.0
@@ -92,8 +94,8 @@ angular_velocity_min = 38.92
 angular_velocity_max = 38.92
 angle_min = -90.0
 angle_max = 90.0
-scale_amount_min = 0.1
-scale_amount_max = 0.5
+scale_amount_min = 0.4
+scale_amount_max = 0.8
 color_ramp = SubResource("Gradient_f2ce2")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
