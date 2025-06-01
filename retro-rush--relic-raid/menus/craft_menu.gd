@@ -79,4 +79,8 @@ func _on_button_pressed() -> void:
 	Global.unlock_reward("4")
 	Global.unlock_reward("2")
 	Global.unlock_reward("5")
+	var lvl = 2
+	while lvl != 31:
+		Global.unlock_next_level(lvl)
+		lvl = lvl +1
 	pass # Replace with function body.

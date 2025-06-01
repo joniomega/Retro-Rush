@@ -22,8 +22,16 @@ func _ready():
 		var special_material = preload("res://assets/shaders/backmaterial_special.tres")
 		$CanvasLayer/background.material = special_material
 	else:
-		var special_material = preload("res://assets/shaders/backmaterial_1.tres")
-		$CanvasLayer/background.material = special_material
+		var biome_material = preload("res://assets/shaders/backmaterial_1.tres")
+		if current_level > 6:
+			biome_material = preload("res://assets/shaders/backmaterial_2.tres")
+		if current_level > 12:
+			biome_material = preload("res://assets/shaders/backmaterial_3.tres")
+		if current_level > 18:
+			biome_material = preload("res://assets/shaders/backmaterial_4.tres")
+		if current_level > 24:
+			biome_material = preload("res://assets/shaders/backmaterial_5.tres")
+		$CanvasLayer/background.material = biome_material
 
 func load_level(level_number: int):
 	var file_path = "%slvl_%d.txt" % [levels_path, level_number]

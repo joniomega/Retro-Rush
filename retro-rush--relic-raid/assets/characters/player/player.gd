@@ -182,12 +182,15 @@ func die():
 
 # Button press handlers
 func _on_left_button_pressed() -> void:
+	if move_direction != -1:
+		scale_sprite()
 	move_direction = -1
-	scale_sprite()
+
 
 func _on_right_button_pressed() -> void:
+	if move_direction != 1:
+		scale_sprite()
 	move_direction = 1
-	scale_sprite()
 
 func _on_button_home_pressed() -> void:
 	var tree = get_tree()

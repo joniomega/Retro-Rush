@@ -5,5 +5,5 @@
 [resource]
 shader = ExtResource("1_lf0tf")
 shader_parameter/strength = 0.3
-shader_parameter/speed = 0.3
+shader_parameter/speed = 0.5
 shader_parameter/angle = 45.0

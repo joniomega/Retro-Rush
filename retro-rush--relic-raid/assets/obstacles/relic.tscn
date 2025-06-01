@@ -54,6 +54,7 @@ position = Vector2(16, 28)
 shape = SubResource("RectangleShape2D_2xcsx")
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+visible = false
 z_index = -1
 position = Vector2(16, 36)
 lifetime = 1.5
