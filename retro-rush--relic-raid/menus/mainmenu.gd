@@ -17,6 +17,13 @@ var reward_pos: Vector2
 var current_menu = "levels"
 
 func _ready() -> void:
+	#CHECK IF LVL 1 IS COMPLETE:
+	if global.unlocked_levels.size() == 1 && global.unlocked_levels[0] == 1:
+		global.selected_level = 1
+		var tree = get_tree()
+		tree.change_scene_to_file("res://scenes/lvl_0.tscn")
+		return
+	
 	global.selected_level = 0
 	global.selected_level_special = false
 	$static_ui/points.text = "[center][wave][color=#5c3aa1][b]"+str(global.points)+"p[/b][/color][/wave][/center]"
@@ -73,13 +80,16 @@ func move_menus(target_menu: String):
 	current_menu = target_menu
 
 func _on_levels_pressed() -> void:
+	$button_press.play()
 	if current_menu != "levels":
 		move_menus("levels")
 
 func _on_craft_pressed() -> void:
+	$button_press.play()
 	if current_menu != "craft":
 		move_menus("craft")
 
 func _on_rewards_pressed() -> void:
+	$button_press.play()
 	if current_menu != "rewards":
 		move_menus("rewards")

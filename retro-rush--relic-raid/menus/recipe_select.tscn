@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dauxouih85yxb"]
+[gd_scene load_steps=16 format=3 uid="uid://dauxouih85yxb"]
 
 [ext_resource type="Script" path="res://menus/recipe_select.gd" id="1_kcove"]
 [ext_resource type="Texture2D" uid="uid://71etip7gdwiv" path="res://assets/ui/container_level_select.png" id="1_v3vxa"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dwphcswg5bw86" path="res://assets/ui/icon_nowifi.png" id="5_7vagg"]
 [ext_resource type="SpriteFrames" uid="uid://duukh1em5rexv" path="res://assets/characters/player/player_skin.tres" id="5_oumuv"]
 [ext_resource type="Script" path="res://addons/AdmobPlugin/Admob.gd" id="9_xq8cd"]
+[ext_resource type="AudioStream" uid="uid://c5tdbhmgpgvun" path="res://assets/sounds/soundeffects/sound_button.mp3" id="10_8quc8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ipea4"]
 
@@ -132,6 +133,10 @@ position = Vector2(96, 24)
 scale = Vector2(1.5, 1.5)
 sprite_frames = ExtResource("5_oumuv")
 animation = &"2_jump"
+
+[node name="button_press" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_8quc8")
+volume_db = -20.0
 
 [connection signal="initialization_completed" from="Admob" to="." method="_on_admob_initialization_completed"]
 [connection signal="rewarded_ad_user_earned_reward" from="Admob" to="." method="_on_admob_rewarded_ad_user_earned_reward"]

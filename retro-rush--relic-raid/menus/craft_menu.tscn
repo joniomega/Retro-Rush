@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b8gq3tryuhkjf"]
+[gd_scene load_steps=21 format=3 uid="uid://b8gq3tryuhkjf"]
 
 [ext_resource type="Script" path="res://menus/craft_menu.gd" id="1_fxeqh"]
 [ext_resource type="Texture2D" uid="uid://bpp2bxffp4d66" path="res://assets/ui/equipment_container.png" id="1_jit7q"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://c6ijelrkwpk6t" path="res://assets/ui/button_ingredient_chosse.png" id="6_leto2"]
 [ext_resource type="Texture2D" uid="uid://wjy8m25x0usb" path="res://assets/ui/arrow_left.png" id="7_fssud"]
 [ext_resource type="Texture2D" uid="uid://4wyk05bopbf" path="res://assets/ui/arrow_right.png" id="8_1f676"]
+[ext_resource type="AudioStream" uid="uid://c5tdbhmgpgvun" path="res://assets/sounds/soundeffects/sound_button.mp3" id="10_1tf8h"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wiqc3"]
 
@@ -246,6 +247,10 @@ layout_mode = 0
 offset_top = 158.0
 offset_right = 40.0
 offset_bottom = 198.0
+
+[node name="button_press" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_1tf8h")
+volume_db = -20.0
 
 [connection signal="pressed" from="equipment/buttons/button_hat_left" to="." method="_on_button_hat_left_pressed"]
 [connection signal="pressed" from="equipment/buttons/button_hat_right" to="." method="_on_button_hat_right_pressed"]

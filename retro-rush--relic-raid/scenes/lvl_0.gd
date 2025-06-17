@@ -10,6 +10,7 @@ extends Node2D
 @onready var sawdown_path: String = "res://assets/obstacles/sawdown.tscn"
 @onready var bugfly_path: String = "res://assets/obstacles/bug_fly.tscn"
 @onready var bugwalk_path: String = "res://assets/obstacles/bug_centipide.tscn"
+@onready var bugboss_path: String = "res://assets/obstacles/bug_giantcrawler.tscn"
 
 # Replace this with your actual tile source ID for your "Auto" tile.
 const AUTO_TILE_SOURCE_ID: int = 0
@@ -81,6 +82,10 @@ func load_level(level_number: int):
 	if bugwalk_scene == null:
 		push_error("enemy bugwalk scene not found")
 		return
+	var bugboss_scene = load(bugboss_path)
+	if bugboss_scene == null:
+		push_error("enemy bugboss scene not found")
+		return
 	# Collect all positions where you want to place your terrain tile.
 	var terrain_coords: Array[Vector2i] = []
 	var y: int = 0
@@ -124,6 +129,10 @@ func load_level(level_number: int):
 				var bugwalk_instance = bugwalk_scene.instantiate()
 				bugwalk_instance.position = Vector2(x * 32, y * 32)
 				add_child(bugwalk_instance)
+			elif char == '9':
+				var bugboss_instance = bugboss_scene.instantiate()
+				bugboss_instance.position = Vector2(x * 32, y * 32)
+				add_child(bugboss_instance)
 		y += 1
 	# Now update all these positions in one call for the terrain tile.
 	tilemaplayer.set_cells_terrain_connect(terrain_coords, AUTO_TILE_SOURCE_ID, 0, 0)

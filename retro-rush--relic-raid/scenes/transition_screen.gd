@@ -16,5 +16,6 @@ func _on_animation_finished(anim_name):
 		color_rect.visible = false
 	pass
 func transition():
+	$button_press.play()
 	color_rect.visible = true
 	animation_player.play("fade_to_black")

@@ -33,6 +33,14 @@ var jump_squash_scale := Vector2(1.1, 0.9)
 var land_squash_scale := Vector2(0.9, 1.1)
 
 func _ready() -> void:
+	if Global.unlocked_levels.size() == 1 && Global.unlocked_levels[0] == 1:
+		$Control/CanvasLayer/tutorial.visible = true
+		$Control/CanvasLayer/ButtonHome.visible = false
+		$Control/CanvasLayer/ButtonHome.disabled = true
+		$Control/CanvasLayer/ButtonPause.visible = false
+	else:
+		$Control/CanvasLayer/tutorial.visible = false
+	$Control/CanvasLayer/special_rewards.visible = false
 	# Set initial camera lock position (center of screen)
 	camera_lock_x = 112
 	camera.position.x = 0  # Reset local camera offset
@@ -169,28 +177,33 @@ func shine(increment: int):
 	score_label.modulate = Color(1, 1, 1)  # Back to normal
 
 func die():
-	isdead = true
-	shine(-score)
-	$animation.play("die")
-	$sound_die.play()
-	_play_animation("fall")
-	var tree = get_tree()
-	await tree.create_timer(1.5).timeout
-	TransitionScreen.transition()
-	await TransitionScreen.on_transition_finished
-	tree.change_scene_to_file("res://scenes/lvl_0.tscn")
+	if isdead == true:
+		pass
+	else:
+		isdead = true
+		shine(-score)
+		$animation.play("die")
+		$sound_die.play()
+		_play_animation("fall")
+		var tree = get_tree()
+		await tree.create_timer(1.5).timeout
+		TransitionScreen.transition()
+		await TransitionScreen.on_transition_finished
+		tree.change_scene_to_file("res://scenes/lvl_0.tscn")
 
 # Button press handlers
 func _on_left_button_pressed() -> void:
-	if move_direction != -1:
-		scale_sprite()
-	move_direction = -1
+	if isdead == false:
+		if move_direction != -1:
+			scale_sprite()
+		move_direction = -1
 
 
 func _on_right_button_pressed() -> void:
-	if move_direction != 1:
-		scale_sprite()
-	move_direction = 1
+	if isdead == false:
+		if move_direction != 1:
+			scale_sprite()
+		move_direction = 1
 
 func _on_button_home_pressed() -> void:
 	var tree = get_tree()
@@ -214,6 +227,7 @@ func win(type:String):
 	tree.change_scene_to_file("res://menus/mainmenu.tscn")
 	pass
 func win_special(type:String):
+	$Control/CanvasLayer/special_rewards.visible = true
 	$Control/CanvasLayer/ButtonHome.disabled = true
 	$Control/CanvasLayer/special_rewards.setup_rewards()
 	var holo_material = preload("res://assets/shaders/holo.tres")

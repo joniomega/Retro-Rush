@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://coldtes67seqv"
+path="res://.godot/imported/0menu_Three Red Hearts - Princess Quest.ogg-00c8e91ad90ee0279e8a6f9d5743740d.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/0menu_Three Red Hearts - Princess Quest.ogg"
+dest_files=["res://.godot/imported/0menu_Three Red Hearts - Princess Quest.ogg-00c8e91ad90ee0279e8a6f9d5743740d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

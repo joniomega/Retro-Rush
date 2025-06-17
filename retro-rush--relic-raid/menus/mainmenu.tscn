@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://duae36wgy5yji"]
+[gd_scene load_steps=38 format=3 uid="uid://duae36wgy5yji"]
 
 [ext_resource type="Material" uid="uid://b38l1jujf2me6" path="res://assets/shaders/backmaterial_1.tres" id="1_cnoo3"]
 [ext_resource type="Script" path="res://menus/mainmenu.gd" id="1_t1nqp"]
@@ -13,6 +13,10 @@
 [ext_resource type="Texture2D" uid="uid://bbn7cjk6253cn" path="res://assets/ui/icon_exclamation.png" id="7_ssu4i"]
 [ext_resource type="Texture2D" uid="uid://c4w620eitvjr2" path="res://assets/ui/icon_coin.png" id="8_0suj5"]
 [ext_resource type="Texture2D" uid="uid://gxh0ja6n3sap" path="res://assets/ui/button_rewards.png" id="8_tvihv"]
+[ext_resource type="AudioStream" uid="uid://coldtes67seqv" path="res://assets/sounds/0menu_Three Red Hearts - Princess Quest.ogg" id="14_osaii"]
+[ext_resource type="AudioStream" uid="uid://cqjmr2c08bept" path="res://assets/sounds/0menu_Three Red Hearts - Puzzle Pieces.ogg" id="15_qfd3d"]
+[ext_resource type="AudioStream" uid="uid://gebvwtpybfh8" path="res://assets/sounds/0menu_Three Red Hearts - Rabbit Town.ogg" id="16_f6b5i"]
+[ext_resource type="AudioStream" uid="uid://c5tdbhmgpgvun" path="res://assets/sounds/soundeffects/sound_button.mp3" id="17_60br8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xug4k"]
 
@@ -92,6 +96,12 @@ shader_parameter/roll_line_amount = 0.0
 shader_parameter/roll_speed = -8.0
 shader_parameter/scan_line_strength = -5.0
 shader_parameter/pixel_strength = -4.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fucbw"]
+streams_count = 3
+stream_0/stream = ExtResource("14_osaii")
+stream_1/stream = ExtResource("15_qfd3d")
+stream_2/stream = ExtResource("16_f6b5i")
 
 [node name="mainmenu" type="Node2D"]
 script = ExtResource("1_t1nqp")
@@ -482,6 +492,15 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_fucbw")
+volume_db = -25.0
+autoplay = true
+
+[node name="button_press" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_60br8")
+volume_db = -20.0
 
 [connection signal="pressed" from="static_ui/menu/craft" to="." method="_on_craft_pressed"]
 [connection signal="pressed" from="static_ui/menu/levels" to="." method="_on_levels_pressed"]

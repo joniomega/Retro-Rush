@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dgcbysavx1b6h"]
+[gd_scene load_steps=7 format=3 uid="uid://dgcbysavx1b6h"]
 
 [ext_resource type="Script" path="res://scenes/transition_screen.gd" id="1_wchs1"]
+[ext_resource type="AudioStream" uid="uid://qfgg6gd32frt" path="res://assets/sounds/soundeffects/sound_button-old-radio-click-97549.mp3" id="2_eyiol"]
 
 [sub_resource type="Animation" id="Animation_e8sft"]
 length = 0.001
@@ -74,3 +75,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.101961, 0.0392157, 0.227451, 1)
+
+[node name="button_press" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_eyiol")
+volume_db = -10.0

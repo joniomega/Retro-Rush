@@ -1,0 +1,348 @@
+[gd_scene load_steps=29 format=3 uid="uid://cb6n60fc4ce0o"]
+
+[ext_resource type="Texture2D" uid="uid://dntldgtxdq7pf" path="res://assets/characters/enemies/bug_giantcrawler.png" id="1_ddafa"]
+[ext_resource type="Texture2D" uid="uid://dx6fgxjphjx3v" path="res://assets/characters/enemies/bug_giantcrawler_tonge.png" id="1_dm8di"]
+[ext_resource type="Script" path="res://assets/obstacles/bug_giantcrawler.gd" id="1_jbjpy"]
+[ext_resource type="Texture2D" uid="uid://btqhda8o8pl68" path="res://assets/characters/enemies/bug_giantcrawler_eye.png" id="2_tcncd"]
+[ext_resource type="Texture2D" uid="uid://dhx80dr34dpg" path="res://assets/characters/enemies/bug_giantcrawler_legback.png" id="3_4lm43"]
+[ext_resource type="Texture2D" uid="uid://da34p2u3icceg" path="res://assets/characters/enemies/bug_giantcrawler_legfront.png" id="4_oj12h"]
+[ext_resource type="Texture2D" uid="uid://cm35cdmixpj10" path="res://assets/shine_particle.png" id="4_xluql"]
+[ext_resource type="AudioStream" uid="uid://fmdevi2b5syw" path="res://assets/sounds/soundeffects/large-fantasy-creature-roar-195714.mp3" id="7_s2xt3"]
+[ext_resource type="Texture2D" uid="uid://bivnrhcd8vsu8" path="res://assets/characters/enemies/part_bug.png" id="7_sts4w"]
+[ext_resource type="AudioStream" uid="uid://didbwq3g8ekrt" path="res://assets/sounds/soundeffects/explosion2.wav" id="9_3xwxj"]
+[ext_resource type="AudioStream" uid="uid://bhubutuf2nuyw" path="res://assets/sounds/soundeffects/explosion3.wav" id="10_kftbr"]
+[ext_resource type="AudioStream" uid="uid://d17bjured03om" path="res://assets/sounds/soundeffects/explosion.wav" id="11_3x7aa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_di2h2"]
+atlas = ExtResource("1_ddafa")
+region = Rect2(0, 0, 160, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wv6rb"]
+atlas = ExtResource("1_ddafa")
+region = Rect2(160, 0, 160, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_botvn"]
+atlas = ExtResource("1_ddafa")
+region = Rect2(320, 0, 160, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72skw"]
+atlas = ExtResource("1_ddafa")
+region = Rect2(480, 0, 160, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i5l0h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_di2h2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wv6rb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_botvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72skw")
+}],
+"loop": false,
+"name": &"closemouth",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72skw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_botvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wv6rb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_di2h2")
+}],
+"loop": false,
+"name": &"openmouth",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o832d"]
+atlas = ExtResource("2_tcncd")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttp44"]
+atlas = ExtResource("2_tcncd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_13tp2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o832d")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttp44")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_rirwc"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_21s5f"]
+size = Vector2(14, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_umvx7"]
+size = Vector2(4, 43)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_capch"]
+size = Vector2(154, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x8ic7"]
+size = Vector2(16, 10)
+
+[sub_resource type="Gradient" id="Gradient_bplef"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2m140"]
+size = Vector2(144, 20)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lh43a"]
+streams_count = 3
+stream_0/stream = ExtResource("9_3xwxj")
+stream_1/stream = ExtResource("10_kftbr")
+stream_2/stream = ExtResource("11_3x7aa")
+
+[node name="bug_giantcrawler" type="Node2D"]
+script = ExtResource("1_jbjpy")
+
+[node name="tonguetimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="giantcrawler" type="AnimatedSprite2D" parent="."]
+position = Vector2(80, 48)
+sprite_frames = SubResource("SpriteFrames_i5l0h")
+animation = &"openmouth"
+
+[node name="eye1" type="AnimatedSprite2D" parent="giantcrawler"]
+position = Vector2(-49, -18)
+sprite_frames = SubResource("SpriteFrames_13tp2")
+animation = &"open"
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="giantcrawler/eye1"]
+z_index = -1
+position = Vector2(0, 1)
+lifetime = 1.5
+texture = ExtResource("4_xluql")
+emission_shape = 3
+emission_rect_extents = Vector2(3, 1)
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, -20)
+angular_velocity_min = 38.92
+angular_velocity_max = 38.92
+angle_min = -90.0
+angle_max = 90.0
+scale_amount_min = 0.1
+scale_amount_max = 0.3
+color_ramp = SubResource("Gradient_rirwc")
+
+[node name="eyearea1" type="Area2D" parent="giantcrawler/eye1"]
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="giantcrawler/eye1/eyearea1"]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_21s5f")
+
+[node name="eye2" type="AnimatedSprite2D" parent="giantcrawler"]
+position = Vector2(-33, -22)
+sprite_frames = SubResource("SpriteFrames_13tp2")
+animation = &"open"
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="giantcrawler/eye2"]
+z_index = -1
+lifetime = 1.5
+texture = ExtResource("4_xluql")
+emission_shape = 3
+emission_rect_extents = Vector2(3, 1)
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, -20)
+angular_velocity_min = 38.92
+angular_velocity_max = 38.92
+angle_min = -90.0
+angle_max = 90.0
+scale_amount_min = 0.1
+scale_amount_max = 0.3
+color_ramp = SubResource("Gradient_rirwc")
+
+[node name="eyearea2" type="Area2D" parent="giantcrawler/eye2"]
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="giantcrawler/eye2/eyearea2"]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_21s5f")
+
+[node name="eye3" type="AnimatedSprite2D" parent="giantcrawler"]
+position = Vector2(33, -22)
+sprite_frames = SubResource("SpriteFrames_13tp2")
+animation = &"open"
+
+[node name="eyearea3" type="Area2D" parent="giantcrawler/eye3"]
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="giantcrawler/eye3/eyearea3"]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_21s5f")
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="giantcrawler/eye3"]
+z_index = -1
+lifetime = 1.5
+texture = ExtResource("4_xluql")
+emission_shape = 3
+emission_rect_extents = Vector2(3, 1)
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, -20)
+angular_velocity_min = 38.92
+angular_velocity_max = 38.92
+angle_min = -90.0
+angle_max = 90.0
+scale_amount_min = 0.1
+scale_amount_max = 0.3
+color_ramp = SubResource("Gradient_rirwc")
+
+[node name="eye4" type="AnimatedSprite2D" parent="giantcrawler"]
+position = Vector2(49, -18)
+sprite_frames = SubResource("SpriteFrames_13tp2")
+animation = &"open"
+
+[node name="eyearea4" type="Area2D" parent="giantcrawler/eye4"]
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="giantcrawler/eye4/eyearea4"]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_21s5f")
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="giantcrawler/eye4"]
+z_index = -1
+lifetime = 1.5
+texture = ExtResource("4_xluql")
+emission_shape = 3
+emission_rect_extents = Vector2(3, 1)
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, -20)
+angular_velocity_min = 38.92
+angular_velocity_max = 38.92
+angle_min = -90.0
+angle_max = 90.0
+scale_amount_min = 0.1
+scale_amount_max = 0.3
+color_ramp = SubResource("Gradient_rirwc")
+
+[node name="tonge" type="Sprite2D" parent="giantcrawler"]
+show_behind_parent = true
+position = Vector2(0, -1)
+texture = ExtResource("1_dm8di")
+
+[node name="tongearea" type="Area2D" parent="giantcrawler/tonge"]
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="giantcrawler/tonge/tongearea"]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_umvx7")
+
+[node name="legbackleft" type="Sprite2D" parent="giantcrawler"]
+show_behind_parent = true
+position = Vector2(-48, 26)
+scale = Vector2(1.05, 1.05)
+texture = ExtResource("3_4lm43")
+
+[node name="legfrontleft" type="Sprite2D" parent="giantcrawler"]
+show_behind_parent = true
+position = Vector2(-64, 4)
+scale = Vector2(1.05, 1.05)
+texture = ExtResource("4_oj12h")
+
+[node name="legbackright" type="Sprite2D" parent="giantcrawler"]
+show_behind_parent = true
+position = Vector2(48, 26)
+scale = Vector2(1.05, 1.05)
+texture = ExtResource("3_4lm43")
+flip_h = true
+
+[node name="legfrontright" type="Sprite2D" parent="giantcrawler"]
+show_behind_parent = true
+position = Vector2(64, 4)
+scale = Vector2(1.05, 1.05)
+texture = ExtResource("4_oj12h")
+flip_h = true
+
+[node name="bodyarea" type="Area2D" parent="giantcrawler"]
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="giantcrawler/bodyarea"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_capch")
+
+[node name="moutharea" type="Area2D" parent="giantcrawler"]
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="giantcrawler/moutharea"]
+position = Vector2(0, -24)
+shape = SubResource("RectangleShape2D_x8ic7")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="giantcrawler"]
+position = Vector2(-1, 2)
+emitting = false
+amount = 24
+lifetime = 4.0
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("7_sts4w")
+emission_shape = 3
+emission_rect_extents = Vector2(50, 20)
+spread = 180.0
+gravity = Vector2(0, -20)
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+angular_velocity_min = 38.92
+angular_velocity_max = 38.92
+angle_min = -90.0
+angle_max = 90.0
+color_ramp = SubResource("Gradient_bplef")
+
+[node name="enterarea" type="Area2D" parent="."]
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enterarea"]
+position = Vector2(80, -153)
+shape = SubResource("RectangleShape2D_2m140")
+
+[node name="AudioStreamPlayer_scream" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_s2xt3")
+volume_db = -15.0
+pitch_scale = 1.2
+
+[node name="AudioStreamPlayer_hurt" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_lh43a")
+volume_db = -20.0
+pitch_scale = 1.2
+
+[connection signal="timeout" from="tonguetimer" to="." method="_on_tonguetimer_timeout"]
+[connection signal="body_entered" from="giantcrawler/eye1/eyearea1" to="." method="_on_eyearea_1_body_entered"]
+[connection signal="body_entered" from="giantcrawler/eye2/eyearea2" to="." method="_on_eyearea_2_body_entered"]
+[connection signal="body_entered" from="giantcrawler/eye3/eyearea3" to="." method="_on_eyearea_3_body_entered"]
+[connection signal="body_entered" from="giantcrawler/eye4/eyearea4" to="." method="_on_eyearea_4_body_entered"]
+[connection signal="body_entered" from="giantcrawler/tonge/tongearea" to="." method="_on_tongearea_body_entered"]
+[connection signal="body_entered" from="giantcrawler/bodyarea" to="." method="_on_bodyarea_body_entered"]
+[connection signal="body_entered" from="giantcrawler/moutharea" to="." method="_on_moutharea_body_entered"]
+[connection signal="body_entered" from="enterarea" to="." method="_on_enterarea_body_entered"]

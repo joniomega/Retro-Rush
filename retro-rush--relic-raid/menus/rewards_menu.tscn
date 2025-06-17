@@ -49,9 +49,9 @@ texture = ExtResource("2_g0u5n")
 
 [node name="Label" type="Label" parent="IconPvp"]
 offset_left = -20.0
-offset_top = -9.5
+offset_top = -9.0
 offset_right = 20.0
-offset_bottom = 13.5
+offset_bottom = 14.0
 theme_override_colors/font_color = Color(0.470588, 0.364706, 0.701961, 1)
 theme_override_colors/font_outline_color = Color(0.121569, 0.0901961, 0.2, 1)
 theme_override_constants/shadow_offset_x = 0
@@ -130,7 +130,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_6b2yn")
 theme_override_styles/normal = SubResource("StyleBoxTexture_bj2a8")
 
 [node name="pos1" type="Node2D" parent="GridContainer"]
-position = Vector2(42, 72)
+position = Vector2(42, 69)
 scale = Vector2(1.5, 1.5)
 
 [node name="level" type="AnimatedSprite2D" parent="GridContainer/pos1"]
@@ -146,16 +146,16 @@ position = Vector2(36, 0.666672)
 scale = Vector2(0.75, 0.458334)
 texture = ExtResource("4_f2kvv")
 
-[node name="Label" type="Label" parent="GridContainer/pos1"]
+[node name="name" type="Label" parent="GridContainer/pos1"]
 anchors_preset = -1
 anchor_left = -0.15625
 anchor_top = -0.0104166
 anchor_right = -0.15625
 anchor_bottom = -0.0104166
-offset_left = 28.6667
-offset_top = -10.6667
-offset_right = 193.667
-offset_bottom = 22.3333
+offset_left = 29.0
+offset_top = -16.0
+offset_right = 106.0
+offset_bottom = 17.0
 scale = Vector2(0.65, 0.65)
 theme_override_colors/font_color = Color(0.647059, 0.6, 0.780392, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -163,10 +163,32 @@ theme_override_colors/font_outline_color = Color(0.0705882, 0.0392157, 0.129412,
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("4_r2w4r")
 theme_override_font_sizes/font_size = 16
-text = "JONIO 92W"
+text = "JONIO"
+horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
-metadata/_edit_use_anchors_ = true
+
+[node name="wins" type="Label" parent="GridContainer/pos1"]
+anchors_preset = -1
+anchor_left = -0.15625
+anchor_top = -0.0104166
+anchor_right = -0.15625
+anchor_bottom = -0.0104166
+offset_left = 29.0
+offset_top = -5.0
+offset_right = 106.0
+offset_bottom = 28.0
+scale = Vector2(0.65, 0.65)
+theme_override_colors/font_color = Color(0.647059, 0.6, 0.780392, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.0705882, 0.0392157, 0.129412, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_r2w4r")
+theme_override_font_sizes/font_size = 16
+text = "92W"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GridContainer/pos1"]
 position = Vector2(18, -0.666672)
@@ -177,104 +199,6 @@ animation = &"3_jump"
 [node name="accessory" type="AnimatedSprite2D" parent="GridContainer/pos1/AnimatedSprite2D"]
 sprite_frames = ExtResource("6_f885f")
 animation = &"books_jump"
-
-[node name="pos2" type="Node2D" parent="GridContainer"]
-position = Vector2(42, 116)
-scale = Vector2(1.5, 1.5)
-
-[node name="level" type="AnimatedSprite2D" parent="GridContainer/pos2"]
-position = Vector2(-1.33333, 0)
-scale = Vector2(0.75, 0.75)
-sprite_frames = ExtResource("3_x425d")
-animation = &"rank2"
-
-[node name="ContainerLevelSelect" type="Sprite2D" parent="GridContainer/pos2"]
-modulate = Color(0.8, 0.8, 0.8, 1)
-show_behind_parent = true
-position = Vector2(36, 0.666672)
-scale = Vector2(0.75, 0.458334)
-texture = ExtResource("4_f2kvv")
-
-[node name="Label" type="Label" parent="GridContainer/pos2"]
-anchors_preset = -1
-anchor_left = -0.15625
-anchor_top = -0.0104166
-anchor_right = -0.15625
-anchor_bottom = -0.0104166
-offset_left = 28.6667
-offset_top = -10.6667
-offset_right = 193.667
-offset_bottom = 22.3333
-scale = Vector2(0.65, 0.65)
-theme_override_colors/font_color = Color(0.647059, 0.6, 0.780392, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0.0705882, 0.0392157, 0.129412, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("4_r2w4r")
-theme_override_font_sizes/font_size = 16
-text = "MARO 65W"
-vertical_alignment = 1
-autowrap_mode = 3
-metadata/_edit_use_anchors_ = true
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GridContainer/pos2"]
-position = Vector2(18, -0.666672)
-scale = Vector2(0.75, 0.75)
-sprite_frames = ExtResource("5_wmksu")
-animation = &"2_jump"
-
-[node name="accessory" type="AnimatedSprite2D" parent="GridContainer/pos2/AnimatedSprite2D"]
-sprite_frames = ExtResource("6_f885f")
-animation = &"hat_jump"
-
-[node name="pos3" type="Node2D" parent="GridContainer"]
-position = Vector2(42, 160)
-scale = Vector2(1.5, 1.5)
-
-[node name="level" type="AnimatedSprite2D" parent="GridContainer/pos3"]
-position = Vector2(-1.33333, 0)
-scale = Vector2(0.75, 0.75)
-sprite_frames = ExtResource("3_x425d")
-animation = &"rank3"
-
-[node name="ContainerLevelSelect" type="Sprite2D" parent="GridContainer/pos3"]
-modulate = Color(0.8, 0.8, 0.8, 1)
-show_behind_parent = true
-position = Vector2(36, 0.666672)
-scale = Vector2(0.75, 0.458334)
-texture = ExtResource("4_f2kvv")
-
-[node name="Label" type="Label" parent="GridContainer/pos3"]
-anchors_preset = -1
-anchor_left = -0.15625
-anchor_top = -0.0104166
-anchor_right = -0.15625
-anchor_bottom = -0.0104166
-offset_left = 28.6667
-offset_top = -10.6667
-offset_right = 193.667
-offset_bottom = 22.3333
-scale = Vector2(0.65, 0.65)
-theme_override_colors/font_color = Color(0.647059, 0.6, 0.780392, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0.0705882, 0.0392157, 0.129412, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("4_r2w4r")
-theme_override_font_sizes/font_size = 16
-text = "HUEV 40W"
-vertical_alignment = 1
-autowrap_mode = 3
-metadata/_edit_use_anchors_ = true
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GridContainer/pos3"]
-position = Vector2(18, -0.666672)
-scale = Vector2(0.75, 0.75)
-sprite_frames = ExtResource("5_wmksu")
-animation = &"4_jump"
-
-[node name="accessory" type="AnimatedSprite2D" parent="GridContainer/pos3/AnimatedSprite2D"]
-sprite_frames = ExtResource("6_f885f")
-animation = &"crest_jump"
 
 [node name="level_rankedselect" parent="." instance=ExtResource("2_bfhl7")]
 layout_mode = 2

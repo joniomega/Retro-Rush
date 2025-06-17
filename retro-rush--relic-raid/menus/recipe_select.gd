@@ -115,6 +115,7 @@ func update_recipe_display():
 	main_display.modulate = Color.WHITE if (has_part1 and has_part2) else Color(0.5, 0.5, 0.5, 0.5)
 
 func _on_button_pressed():
+	$button_press.play()
 	var has_both = (
 		Global.collected_ingredients.get(reward + "_1", false) &&
 		Global.collected_ingredients.get(reward + "_2", false))

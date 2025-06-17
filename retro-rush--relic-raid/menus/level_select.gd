@@ -81,6 +81,7 @@ func _ready() -> void:
 			$AnimatedSprite2D.play("coin")
 
 func _on_button_pressed() -> void:
+	
 	global.selected_level = level_num
 	var tree = get_tree()
 	TransitionScreen.transition()
@@ -89,6 +90,7 @@ func _on_button_pressed() -> void:
 
 
 func _on_button_pay_pressed() -> void:
+	
 	global.points = global.points - 500
 	global.selected_level_special = true
 	global.selected_level = level_num

@@ -44,11 +44,13 @@ func update_skin_display():
 		Global.save_progress()
 
 func _on_button_hat_right_pressed():
+	$button_press.play()
 	if Global.unlocked_hats.size() > 1:
 		current_hat_index = (current_hat_index + 1) % Global.unlocked_hats.size()
 		update_hat_display()
 
 func _on_button_hat_left_pressed():
+	$button_press.play()
 	if Global.unlocked_hats.size() > 1:
 		current_hat_index = (current_hat_index - 1) % Global.unlocked_hats.size()
 		if current_hat_index < 0:
@@ -56,11 +58,13 @@ func _on_button_hat_left_pressed():
 		update_hat_display()
 
 func _on_button_body_right_pressed():
+	$button_press.play()
 	if Global.unlocked_skins.size() > 1:
 		current_skin_index = (current_skin_index + 1) % Global.unlocked_skins.size()
 		update_skin_display()
 
 func _on_button_body_left_pressed():
+	$button_press.play()
 	if Global.unlocked_skins.size() > 1:
 		current_skin_index = (current_skin_index - 1) % Global.unlocked_skins.size()
 		if current_skin_index < 0:
