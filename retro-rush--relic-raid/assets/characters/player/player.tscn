@@ -512,6 +512,22 @@ scale = Vector2(3.5, 2.21875)
 texture = ExtResource("12_pjfkr")
 flip_v = true
 
+[node name="rankedwin" type="RichTextLabel" parent="Control/CanvasLayer/win"]
+visible = false
+layout_mode = 0
+offset_top = 108.0
+offset_right = 187.0
+offset_bottom = 148.0
+scale = Vector2(1.2, 1.2)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/normal_font = ExtResource("4_mnlrd")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[wave][center]mandongo > joniomega[/center][/wave]"
+
 [node name="special_rewards" parent="Control/CanvasLayer" instance=ExtResource("17_ig076")]
 
 [node name="tutorial" type="Sprite2D" parent="Control/CanvasLayer"]

@@ -20,11 +20,14 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		body.shine(250)
 		#body.win(str(global.selected_level))
 		$AnimatedSprite2D.visible=false
-		global.unlock_next_level(global.selected_level)
-		if global.selected_level_special == true:
-			body.win_special(str(global.selected_level))
-			global.selected_level_special = false
-			pass
+		if Global.ranked_opponent_name == "none":
+			global.unlock_next_level(global.selected_level)
+			if global.selected_level_special == true:
+				body.win_special(str(global.selected_level))
+				global.selected_level_special = false
+			else:
+				body.win(str(global.selected_level))
 		else:
-			body.win(str(global.selected_level))
+			body.win_ranked(str(global.ranked_level))
+		
 	pass # Replace with function body.

@@ -1,24 +1,22 @@
-[gd_scene load_steps=16 format=3 uid="uid://bvm7ds3g3b8os"]
+[gd_scene load_steps=17 format=3 uid="uid://bvm7ds3g3b8os"]
 
 [ext_resource type="Script" path="res://menus/rewards_menu.gd" id="1_tj4mn"]
 [ext_resource type="PackedScene" uid="uid://dacestg0nqsfx" path="res://menus/level_rankedselect.tscn" id="2_bfhl7"]
 [ext_resource type="Texture2D" uid="uid://dq7mhgln81iyk" path="res://assets/ui/icon_pvp.png" id="2_g0u5n"]
 [ext_resource type="SpriteFrames" uid="uid://bj7kppdwycf3i" path="res://assets/obstacles/relic_spriteframe.tres" id="3_x425d"]
+[ext_resource type="Texture2D" uid="uid://dwphcswg5bw86" path="res://assets/ui/icon_nowifi.png" id="4_0c5jo"]
 [ext_resource type="Texture2D" uid="uid://71etip7gdwiv" path="res://assets/ui/container_level_select.png" id="4_f2kvv"]
 [ext_resource type="FontFile" uid="uid://camtosjq61o18" path="res://assets/ui/alagard.ttf" id="4_r2w4r"]
+[ext_resource type="Texture2D" uid="uid://bp85pw1gug553" path="res://assets/ui/button_horizontal_1.png" id="5_neg3j"]
 [ext_resource type="SpriteFrames" uid="uid://duukh1em5rexv" path="res://assets/characters/player/player_skin.tres" id="5_wmksu"]
 [ext_resource type="SpriteFrames" uid="uid://bsvml15ne3jhu" path="res://assets/characters/player/accessories/player_accessories.tres" id="6_f885f"]
 [ext_resource type="Texture2D" uid="uid://bwwy323cb3csd" path="res://assets/ui/icon_edit.png" id="9_fr283"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fewx2"]
-bg_color = Color(0, 0, 0, 0.5)
-border_width_left = 3
-border_color = Color(0, 0, 0, 0.5)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_703ur"]
-bg_color = Color(0, 0, 0, 0.5)
-border_width_left = 3
-border_color = Color(0, 0, 0, 0.501961)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jjo3o"]
+texture = ExtResource("5_neg3j")
+texture_margin_left = 3.0
+texture_margin_right = 3.0
+modulate_color = Color(0, 0, 0, 0.384314)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_seq2h"]
 
@@ -38,8 +36,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -216.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_tj4mn")
 
 [node name="IconPvp" type="Sprite2D" parent="."]
@@ -63,6 +63,11 @@ theme_override_font_sizes/font_size = 16
 text = "PVP"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="IconNowifi" type="Sprite2D" parent="."]
+position = Vector2(114, 176)
+scale = Vector2(2, 2)
+texture = ExtResource("4_0c5jo")
 
 [node name="GridContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -94,19 +99,18 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("4_r2w4r")
 theme_override_font_sizes/font_size = 16
-theme_override_styles/normal = SubResource("StyleBoxFlat_fewx2")
-theme_override_styles/focus = SubResource("StyleBoxFlat_703ur")
+theme_override_styles/normal = SubResource("StyleBoxTexture_jjo3o")
 placeholder_text = "name"
 
-[node name="Label2" type="Label" parent="GridContainer/config"]
+[node name="playerwins_label" type="Label" parent="GridContainer/config"]
 anchors_preset = -1
 anchor_left = -0.15625
 anchor_top = -0.0104166
 anchor_right = -0.15625
 anchor_bottom = -0.0104166
-offset_left = -17.3333
+offset_left = -21.0
 offset_top = -8.0
-offset_right = 76.6667
+offset_right = 20.0
 offset_bottom = 25.0
 scale = Vector2(0.65, 0.65)
 theme_override_colors/font_color = Color(0.647059, 0.6, 0.780392, 1)
@@ -115,11 +119,12 @@ theme_override_colors/font_outline_color = Color(0.0705882, 0.0392157, 0.129412,
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("4_r2w4r")
 theme_override_font_sizes/font_size = 16
-text = "20W"
+text = "???"
+horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Button" type="Button" parent="GridContainer/config"]
+[node name="save" type="Button" parent="GridContainer/config"]
 offset_left = 70.0
 offset_top = -8.6667
 offset_right = 91.0
@@ -163,7 +168,7 @@ theme_override_colors/font_outline_color = Color(0.0705882, 0.0392157, 0.129412,
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("4_r2w4r")
 theme_override_font_sizes/font_size = 16
-text = "JONIO"
+text = "????"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -190,13 +195,155 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GridContainer/pos1"]
+[node name="skin" type="AnimatedSprite2D" parent="GridContainer/pos1"]
 position = Vector2(18, -0.666672)
 scale = Vector2(0.75, 0.75)
 sprite_frames = ExtResource("5_wmksu")
 animation = &"3_jump"
 
-[node name="accessory" type="AnimatedSprite2D" parent="GridContainer/pos1/AnimatedSprite2D"]
+[node name="accessory" type="AnimatedSprite2D" parent="GridContainer/pos1/skin"]
+sprite_frames = ExtResource("6_f885f")
+animation = &"crest_jump"
+
+[node name="pos2" type="Node2D" parent="GridContainer"]
+position = Vector2(42, 113)
+scale = Vector2(1.5, 1.5)
+
+[node name="level" type="AnimatedSprite2D" parent="GridContainer/pos2"]
+position = Vector2(-1.33333, 0)
+scale = Vector2(0.75, 0.75)
+sprite_frames = ExtResource("3_x425d")
+animation = &"rank2"
+
+[node name="ContainerLevelSelect" type="Sprite2D" parent="GridContainer/pos2"]
+modulate = Color(0.8, 0.8, 0.8, 1)
+show_behind_parent = true
+position = Vector2(36, 0.666672)
+scale = Vector2(0.75, 0.458334)
+texture = ExtResource("4_f2kvv")
+
+[node name="name" type="Label" parent="GridContainer/pos2"]
+anchors_preset = -1
+anchor_left = -0.15625
+anchor_top = -0.0104166
+anchor_right = -0.15625
+anchor_bottom = -0.0104166
+offset_left = 29.0
+offset_top = -16.0
+offset_right = 106.0
+offset_bottom = 17.0
+scale = Vector2(0.65, 0.65)
+theme_override_colors/font_color = Color(0.647059, 0.6, 0.780392, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.0705882, 0.0392157, 0.129412, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_r2w4r")
+theme_override_font_sizes/font_size = 16
+text = "????"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="wins" type="Label" parent="GridContainer/pos2"]
+anchors_preset = -1
+anchor_left = -0.15625
+anchor_top = -0.0104166
+anchor_right = -0.15625
+anchor_bottom = -0.0104166
+offset_left = 29.0
+offset_top = -5.0
+offset_right = 106.0
+offset_bottom = 28.0
+scale = Vector2(0.65, 0.65)
+theme_override_colors/font_color = Color(0.647059, 0.6, 0.780392, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.0705882, 0.0392157, 0.129412, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_r2w4r")
+theme_override_font_sizes/font_size = 16
+text = "92W"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="skin" type="AnimatedSprite2D" parent="GridContainer/pos2"]
+position = Vector2(18, -0.666672)
+scale = Vector2(0.75, 0.75)
+sprite_frames = ExtResource("5_wmksu")
+animation = &"3_jump"
+
+[node name="accessory" type="AnimatedSprite2D" parent="GridContainer/pos2/skin"]
+sprite_frames = ExtResource("6_f885f")
+animation = &"books_jump"
+
+[node name="pos3" type="Node2D" parent="GridContainer"]
+position = Vector2(42, 157)
+scale = Vector2(1.5, 1.5)
+
+[node name="level" type="AnimatedSprite2D" parent="GridContainer/pos3"]
+position = Vector2(-1.33333, 0)
+scale = Vector2(0.75, 0.75)
+sprite_frames = ExtResource("3_x425d")
+animation = &"rank3"
+
+[node name="ContainerLevelSelect" type="Sprite2D" parent="GridContainer/pos3"]
+modulate = Color(0.8, 0.8, 0.8, 1)
+show_behind_parent = true
+position = Vector2(36, 0.666672)
+scale = Vector2(0.75, 0.458334)
+texture = ExtResource("4_f2kvv")
+
+[node name="name" type="Label" parent="GridContainer/pos3"]
+anchors_preset = -1
+anchor_left = -0.15625
+anchor_top = -0.0104166
+anchor_right = -0.15625
+anchor_bottom = -0.0104166
+offset_left = 29.0
+offset_top = -16.0
+offset_right = 106.0
+offset_bottom = 17.0
+scale = Vector2(0.65, 0.65)
+theme_override_colors/font_color = Color(0.647059, 0.6, 0.780392, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.0705882, 0.0392157, 0.129412, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_r2w4r")
+theme_override_font_sizes/font_size = 16
+text = "????"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="wins" type="Label" parent="GridContainer/pos3"]
+anchors_preset = -1
+anchor_left = -0.15625
+anchor_top = -0.0104166
+anchor_right = -0.15625
+anchor_bottom = -0.0104166
+offset_left = 29.0
+offset_top = -5.0
+offset_right = 106.0
+offset_bottom = 28.0
+scale = Vector2(0.65, 0.65)
+theme_override_colors/font_color = Color(0.647059, 0.6, 0.780392, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.0705882, 0.0392157, 0.129412, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_r2w4r")
+theme_override_font_sizes/font_size = 16
+text = "92W"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="skin" type="AnimatedSprite2D" parent="GridContainer/pos3"]
+position = Vector2(18, -0.666672)
+scale = Vector2(0.75, 0.75)
+sprite_frames = ExtResource("5_wmksu")
+animation = &"3_jump"
+
+[node name="accessory" type="AnimatedSprite2D" parent="GridContainer/pos3/skin"]
 sprite_frames = ExtResource("6_f885f")
 animation = &"books_jump"
 
@@ -206,3 +353,5 @@ offset_left = 16.0
 offset_top = 100.0
 offset_right = 16.0
 offset_bottom = 100.0
+
+[connection signal="pressed" from="GridContainer/config/save" to="." method="_on_save_pressed"]

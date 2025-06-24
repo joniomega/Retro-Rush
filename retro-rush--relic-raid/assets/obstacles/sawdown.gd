@@ -7,5 +7,8 @@ func _ready() -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		body.die()
+		if Global.ranked_opponent_name == "none":
+			body.die()
+		else:
+			body.die_ranked()
 	pass # Replace with function body.

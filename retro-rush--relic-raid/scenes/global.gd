@@ -12,6 +12,8 @@ const ALL_SKINS := ["1", "2", "3", "4", "5"]
 
 var player_hat: String = "none"
 var player_skin: String = "1"
+var player_name: String = ""
+var firebase_id: String = ""
 var unlocked_hats: Array = []
 var unlocked_skins: Array = []
 
@@ -23,6 +25,12 @@ const CRAFTABLE_ITEMS := {
 
 var collected_ingredients: Dictionary = {}
 var unlocked_rewards: Dictionary = {}
+
+# Add these variables at the top with other variables
+var ranked_opponent_name: String = "none"
+var ranked_opponent_score: int = 0
+var ranked_level: int = 1
+var ranked_biome_material: Material
 
 func _ready() -> void:
 	# Initialize ingredients
@@ -39,15 +47,13 @@ func _ready() -> void:
 	update_unlocked_items()
 
 func update_unlocked_items():
-	unlocked_hats = ["none"]  # Start with just "none"
-	unlocked_skins = ["1"]    # Start with just "1"
+	unlocked_hats = ["none"]
+	unlocked_skins = ["1"]
 	
-	# Add unlocked hats (skip "none" since we already added it)
 	for hat in ALL_HATS:
 		if hat != "none" and unlocked_rewards.get(hat, false):
 			unlocked_hats.append(hat)
 	
-	# Add unlocked skins (skip "1" since we already added it)
 	for skin in ALL_SKINS:
 		if skin != "1" and unlocked_rewards.get(skin, false):
 			unlocked_skins.append(skin)
@@ -61,7 +67,9 @@ func save_progress() -> void:
 		"collected_ingredients": collected_ingredients,
 		"unlocked_rewards": unlocked_rewards,
 		"unlocked_hats": unlocked_hats,
-		"unlocked_skins": unlocked_skins
+		"unlocked_skins": unlocked_skins,
+		"player_name": player_name,
+		"firebase_id": firebase_id
 	}
 	
 	var file = FileAccess.open("user://save.dat", FileAccess.WRITE)
@@ -86,6 +94,8 @@ func load_progress() -> void:
 		unlocked_rewards = save_data.get("unlocked_rewards", {})
 		unlocked_hats = save_data.get("unlocked_hats", ["none"])
 		unlocked_skins = save_data.get("unlocked_skins", ["1"])
+		player_name = save_data.get("player_name", "")
+		firebase_id = save_data.get("firebase_id", "")
 		
 		# Ensure new items are tracked
 		for item_type in CRAFTABLE_ITEMS:
@@ -118,3 +128,16 @@ func unlock_reward(reward: String) -> void:
 		unlocked_rewards[reward] = true
 		update_unlocked_items()
 		save_progress()
+
+# Add these functions
+func set_ranked_match(opponent_name: String, score: int, level: int):
+	ranked_opponent_name = opponent_name
+	ranked_opponent_score = score
+	ranked_level = level
+
+func get_ranked_opponent_info() -> Dictionary:
+	return {
+		"name": ranked_opponent_name,
+		"score": ranked_opponent_score,
+		"level": ranked_level
+	}

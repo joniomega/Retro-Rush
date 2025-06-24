@@ -296,7 +296,6 @@ offset_bottom = 390.0
 
 [node name="rewards_menu" parent="rewards" instance=ExtResource("7_pvtqq")]
 layout_mode = 1
-mouse_filter = 2
 
 [node name="static_ui" type="CanvasLayer" parent="."]
 layer = 0

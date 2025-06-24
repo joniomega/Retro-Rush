@@ -240,3 +240,112 @@ func win_special(type:String):
 	$animation.play("win_special")
 	get_parent().stop_music()
 	pass
+func win_ranked(type:String):
+	# Existing visual effects code...
+	$Control/CanvasLayer/special_rewards.visible = true
+	$Control/CanvasLayer/ButtonHome.disabled = true
+	$Control/CanvasLayer/special_rewards.setup_rewards()
+	var holo_material = preload("res://assets/shaders/holo.tres")
+	$Control/CanvasLayer/win/AnimatedSprite2D.material = holo_material
+	Global.points = Global.points + score
+	$Control/CanvasLayer/win/AnimatedSprite2D.play(type)
+	isdead = true
+	_play_animation("idle")
+	$animation.play("win_special")
+	get_parent().stop_music()
+	
+	if Global.firebase_id == "":
+		push_error("No Firebase ID - cannot update records")
+		return
+	
+	# First get all current data
+	var http_request = HTTPRequest.new()
+	add_child(http_request)
+	http_request.request_completed.connect(_on_get_data_completed.bind(http_request))
+	
+	var url = "https://retrorush-descend-default-rtdb.europe-west1.firebasedatabase.app/leaderboard/%s.json" % Global.firebase_id
+	var error = http_request.request(url)
+	if error != OK:
+		push_error("Failed to request player data")
+		http_request.queue_free()
+
+func _on_get_data_completed(result, response_code, headers, body, http_request):
+	http_request.queue_free()
+	
+	if result != HTTPRequest.RESULT_SUCCESS or response_code != 200:
+		push_error("Failed to get player data - Status: %d" % response_code)
+		return
+	
+	var player_data = JSON.parse_string(body.get_string_from_utf8())
+	if player_data == null:
+		player_data = {}
+	
+	# Get current wins (default to 0 if not exists)
+	var current_wins = player_data.get("wins", 0)
+	print("Current wins from Firebase:", current_wins)  # Debug print
+	
+	# Get current scores (initialize if not exists)
+	var scores = player_data.get("score", {"lvl1": 0, "lvl2": 0, "lvl3": 0})
+	
+	# Only update score if new score is higher
+	var current_level_key = "lvl%d" % Global.ranked_level
+	var current_level_score = scores.get(current_level_key, 0)
+	var should_update_score = score > current_level_score
+	
+	# Prepare updates
+	var updates = {}
+	
+	# Update wins (always increment)
+	updates["wins"] = current_wins + 1
+	
+	# Update score only if higher
+	if should_update_score:
+		updates["score/%s" % current_level_key] = score
+		print("Updating level %d score from %d to %d" % [Global.ranked_level, current_level_score, score])
+	else:
+		print("Keeping existing level %d score of %d (new score %d was lower)" % [Global.ranked_level, current_level_score, score])
+	
+	# Send updates
+	var update_request = HTTPRequest.new()
+	add_child(update_request)
+	update_request.request_completed.connect(_on_update_completed.bind(update_request))
+	
+	var url = "https://retrorush-descend-default-rtdb.europe-west1.firebasedatabase.app/leaderboard/%s.json" % Global.firebase_id
+	headers = ["Content-Type: application/json"]
+	var error = update_request.request(url, headers, HTTPClient.METHOD_PATCH, JSON.stringify(updates))
+	
+	if error != OK:
+		push_error("Failed to send update request")
+		update_request.queue_free()
+
+func _on_update_completed(result, response_code, headers, body, http_request):
+	http_request.queue_free()
+	
+	if result == HTTPRequest.RESULT_SUCCESS and response_code == 200:
+		print("Successfully updated Firebase records")
+		var updated_data = JSON.parse_string(body.get_string_from_utf8())
+		print("New wins count:", updated_data.get("wins", 1))
+	else:
+		push_error("Update failed - Status: %d" % response_code)
+		if body:
+			print("Error response:", body.get_string_from_utf8())
+func die_ranked():
+	if isdead == true:
+		pass
+	else:
+		isdead = true
+		shine(-score)
+		$animation.play("die")
+		$sound_die.play()
+		_play_animation("fall")
+		$animation.play("win")
+		$Control/CanvasLayer/win/AnimatedSprite2D.visible = false
+		$Control/CanvasLayer/win.text = "[wave][center][color=#cc1d00][b]YOU          LOST[/b][/color][/center][/wave]"
+		$Control/CanvasLayer/win/rankedwin.visible = true
+		$Control/CanvasLayer/win/rankedwin.text = str("[wave][center]"+Global.ranked_opponent_name+">"+Global.player_name+"[wave][center]")
+		
+		var tree = get_tree()
+		await tree.create_timer(3.5).timeout
+		TransitionScreen.transition()
+		await TransitionScreen.on_transition_finished
+		tree.change_scene_to_file("res://menus/mainmenu.tscn")
