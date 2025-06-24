@@ -514,6 +514,7 @@ flip_v = true
 
 [node name="rankedwin" type="RichTextLabel" parent="Control/CanvasLayer/win"]
 visible = false
+clip_contents = false
 layout_mode = 0
 offset_top = 108.0
 offset_right = 187.0

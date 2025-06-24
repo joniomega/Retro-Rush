@@ -241,33 +241,37 @@ func win_special(type:String):
 	get_parent().stop_music()
 	pass
 func win_ranked(type:String):
-	# Existing visual effects code...
-	$Control/CanvasLayer/special_rewards.visible = true
-	$Control/CanvasLayer/ButtonHome.disabled = true
-	$Control/CanvasLayer/special_rewards.setup_rewards()
-	var holo_material = preload("res://assets/shaders/holo.tres")
-	$Control/CanvasLayer/win/AnimatedSprite2D.material = holo_material
-	Global.points = Global.points + score
-	$Control/CanvasLayer/win/AnimatedSprite2D.play(type)
-	isdead = true
-	_play_animation("idle")
-	$animation.play("win_special")
-	get_parent().stop_music()
 	
-	if Global.firebase_id == "":
-		push_error("No Firebase ID - cannot update records")
-		return
-	
-	# First get all current data
-	var http_request = HTTPRequest.new()
-	add_child(http_request)
-	http_request.request_completed.connect(_on_get_data_completed.bind(http_request))
-	
-	var url = "https://retrorush-descend-default-rtdb.europe-west1.firebasedatabase.app/leaderboard/%s.json" % Global.firebase_id
-	var error = http_request.request(url)
-	if error != OK:
-		push_error("Failed to request player data")
-		http_request.queue_free()
+	if score >= Global.ranked_opponent_score:
+		# Existing visual effects code...
+		$Control/CanvasLayer/special_rewards.visible = true
+		$Control/CanvasLayer/ButtonHome.disabled = true
+		$Control/CanvasLayer/special_rewards.setup_rewards()
+		var holo_material = preload("res://assets/shaders/holo.tres")
+		$Control/CanvasLayer/win/AnimatedSprite2D.material = holo_material
+		Global.points = Global.points + score
+		$Control/CanvasLayer/win/AnimatedSprite2D.play(type)
+		isdead = true
+		_play_animation("idle")
+		$animation.play("win_special")
+		get_parent().stop_music()
+		
+		if Global.firebase_id == "":
+			push_error("No Firebase ID - cannot update records")
+			return
+		
+		# First get all current data
+		var http_request = HTTPRequest.new()
+		add_child(http_request)
+		http_request.request_completed.connect(_on_get_data_completed.bind(http_request))
+		
+		var url = "https://retrorush-descend-default-rtdb.europe-west1.firebasedatabase.app/leaderboard/%s.json" % Global.firebase_id
+		var error = http_request.request(url)
+		if error != OK:
+			push_error("Failed to request player data")
+			http_request.queue_free()
+	else:
+		die_ranked()
 
 func _on_get_data_completed(result, response_code, headers, body, http_request):
 	http_request.queue_free()
