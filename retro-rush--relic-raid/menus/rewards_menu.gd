@@ -27,11 +27,11 @@ extends Control
 @onready var textedit_name = $GridContainer/config/TextEdit
 @onready var playerwins_label = $GridContainer/config/playerwins_label
 @onready var grid_container = $GridContainer
-@onready var icon_nowifi = $IconNowifi
 @onready var level_rankedselect = $level_rankedselect
 
 var is_online: bool = false
 var has_player_name: bool = false
+var connectivity_check_timer: Timer
 
 var http_request: HTTPRequest  # For player operations
 var http_request_leaderboard: HTTPRequest  # For leaderboard operations
@@ -53,34 +53,51 @@ func _ready():
 	add_child(http_request_leaderboard)
 	http_request_leaderboard.request_completed.connect(_on_leaderboard_request_completed)
 	
-	check_internet_connection()
-	fetch_leaderboard()
-	update_rankedselect_state()
+	# Set up connectivity checking
+	connectivity_check_timer = Timer.new()
+	add_child(connectivity_check_timer)
+	connectivity_check_timer.timeout.connect(_check_internet_connectivity)
+	connectivity_check_timer.start(5.0)  # Check every 5 seconds
+	
+	# Initial check
+	_check_internet_connectivity()
+	update_ui_state()
 
-func check_internet_connection():
-	var http = HTTPRequest.new()
-	add_child(http)
-	http.request_completed.connect(_on_connection_check_completed)
-	var error = http.request("https://www.google.com", [], HTTPClient.METHOD_HEAD)
+func _check_internet_connectivity():
+	var http_request = HTTPRequest.new()
+	http_request.timeout = 3  # Set timeout to 3 seconds
+	add_child(http_request)
+	http_request.request_completed.connect(_on_connectivity_check_completed.bind(http_request))
+	
+	var error = http_request.request("https://www.google.com/favicon.ico")
 	if error != OK:
-		set_offline_mode()
+		http_request.queue_free()
+		_handle_internet_status(false)
 
-func _on_connection_check_completed(result, response_code, headers, body):
-	is_online = (result == HTTPRequest.RESULT_SUCCESS and response_code == 200)
+func _on_connectivity_check_completed(result, response_code, headers, body, http_request_node):
+	http_request_node.queue_free()
+	_handle_internet_status(result == HTTPRequest.RESULT_SUCCESS and response_code == 200)
+
+func _handle_internet_status(connected: bool):
+	if is_online != connected:
+		is_online = connected
+		if is_online:
+			print("Internet connection restored")
+			fetch_leaderboard()
+		else:
+			print("Internet connection lost")
+			playerwins_label.text = "Offline"
+		update_ui_state()
+
+func update_ui_state():
 	grid_container.visible = is_online
-	if !is_online:
-		print("No internet connection - hiding leaderboard")
-		playerwins_label.text = "Offline"
-	update_rankedselect_state()
-
-func set_offline_mode():
-	is_online = false
-	grid_container.visible = false
-	print("Network request failed - hiding leaderboard")
-	playerwins_label.text = "Offline"
 	update_rankedselect_state()
 
 func fetch_leaderboard():
+	if !is_online:
+		update_ui_state()
+		return
+	
 	var url = "https://retrorush-descend-default-rtdb.europe-west1.firebasedatabase.app/leaderboard.json"
 	var error = http_request_leaderboard.request(url)
 	
