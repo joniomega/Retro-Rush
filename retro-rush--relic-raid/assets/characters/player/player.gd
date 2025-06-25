@@ -17,7 +17,6 @@ var displayed_score := 0
 @onready var camera = $Camera2D
 @onready var left_button = $Control/CanvasLayer/left_button
 @onready var right_button = $Control/CanvasLayer/right_button
-@onready var scrollbar = $Control/CanvasLayer/scrollbar
 
 # Camera will stay locked to this global X position
 var camera_lock_x: float
@@ -243,6 +242,7 @@ func win_special(type:String):
 func win_ranked(type:String):
 	
 	if score >= Global.ranked_opponent_score:
+		$AudioStreamPlayer2.play()
 		# Existing visual effects code...
 		$Control/CanvasLayer/special_rewards.visible = true
 		$Control/CanvasLayer/ButtonHome.disabled = true
@@ -253,7 +253,15 @@ func win_ranked(type:String):
 		$Control/CanvasLayer/win/AnimatedSprite2D.play(type)
 		isdead = true
 		_play_animation("idle")
+		$Control/CanvasLayer/win/AnimatedSprite2D.visible = false
+		$Control/CanvasLayer/win/CPUParticles2D2.emitting = false
+		$Control/CanvasLayer/score.visible = false
+		get_parent().end()
 		$animation.play("win_special")
+		$Control/CanvasLayer/win/AnimatedSprite2D.visible = false
+		$Control/CanvasLayer/win.text = "[wave][center][color=#d79a00][b]YOU\nWIN[/b][/color][/center][/wave]"
+		$Control/CanvasLayer/win/rankedwin.visible = true
+		$Control/CanvasLayer/win/rankedwin.text = str("[wave][center]"+Global.player_name+" > "+Global.ranked_opponent_name+"[/center][/wave]"+"\n[center][color=#07cc00]"+str(score)+"[/color] > [color=#cc1d00]"+str(Global.ranked_opponent_score)+"[/color][/center]")
 		get_parent().stop_music()
 		
 		if Global.firebase_id == "":
@@ -338,15 +346,19 @@ func die_ranked():
 		pass
 	else:
 		isdead = true
-		shine(-score)
+		
 		$animation.play("die")
 		$sound_die.play()
 		_play_animation("fall")
+		$Control/CanvasLayer/win/AnimatedSprite2D.visible = false
+		$Control/CanvasLayer/win/CPUParticles2D2.emitting = false
+		$Control/CanvasLayer/score.visible = false
+		get_parent().end()
 		$animation.play("win")
 		$Control/CanvasLayer/win/AnimatedSprite2D.visible = false
-		$Control/CanvasLayer/win.text = "[wave][center][color=#cc1d00][b]YOU          LOST[/b][/color][/center][/wave]"
+		$Control/CanvasLayer/win.text = "[wave][center][color=#d79a00][b]YOU\nLOST[/b][/color][/center][/wave]"
 		$Control/CanvasLayer/win/rankedwin.visible = true
-		$Control/CanvasLayer/win/rankedwin.text = str("[wave][center]"+Global.ranked_opponent_name+">"+Global.player_name+"[wave][center]")
+		$Control/CanvasLayer/win/rankedwin.text = str("[wave][center]"+Global.ranked_opponent_name+" > "+Global.player_name+"[/center][/wave]"+"\n[center][color=#07cc00]"+str(Global.ranked_opponent_score)+"[/color] > [color=#cc1d00]"+str(score)+"[/color][/center]")
 		
 		var tree = get_tree()
 		await tree.create_timer(3.5).timeout

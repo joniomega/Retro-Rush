@@ -163,3 +163,5 @@ func _on_player_death():
 	print("Player died - Final score: ", player_score)
 	await get_tree().create_timer(3.0).timeout
 	return_to_menu()
+func end():
+	$Control/CanvasLayer2/score.visible = false

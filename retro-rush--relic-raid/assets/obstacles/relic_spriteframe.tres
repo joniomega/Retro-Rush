@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=40 format=3 uid="uid://bj7kppdwycf3i"]
+[gd_resource type="SpriteFrames" load_steps=41 format=3 uid="uid://bj7kppdwycf3i"]
 
 [ext_resource type="Texture2D" uid="uid://bb7pqai8cbejy" path="res://assets/obstacles/relics_sheet.png" id="1_hekhf"]
 
@@ -137,6 +137,10 @@ region = Rect2(0, 64, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ke8q0"]
 atlas = ExtResource("1_hekhf")
 region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i60t4"]
+atlas = ExtResource("1_hekhf")
+region = Rect2(192, 256, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bomnt"]
 atlas = ExtResource("1_hekhf")
@@ -426,6 +430,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"lock",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i60t4")
+}],
+"loop": true,
+"name": &"none",
 "speed": 5.0
 }, {
 "frames": [{

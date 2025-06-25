@@ -16,16 +16,18 @@ func _ready() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		audio_collect.play()
-		$AudioStreamPlayer2.play()
+		
 		body.shine(250)
 		#body.win(str(global.selected_level))
 		$AnimatedSprite2D.visible=false
 		if Global.ranked_opponent_name == "none":
 			global.unlock_next_level(global.selected_level)
 			if global.selected_level_special == true:
+				$AudioStreamPlayer2.play()
 				body.win_special(str(global.selected_level))
 				global.selected_level_special = false
 			else:
+				$AudioStreamPlayer2.play()
 				body.win(str(global.selected_level))
 		else:
 			body.win_ranked(str(global.ranked_level))
