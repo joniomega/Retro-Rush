@@ -9,6 +9,8 @@ func _ready() -> void:
 	# Play the chosen animation
 	global = Global
 	animation.play(str(global.selected_level))
+	if global.ranked_opponent_score > 1:
+		animation.play("ranked")
 	if global.selected_level_special == true:
 		var holo_material = preload("res://assets/shaders/holo.tres")
 		$AnimatedSprite2D.material = holo_material

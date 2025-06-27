@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://boacxm34cq8c3"]
+[gd_scene load_steps=10 format=3 uid="uid://boacxm34cq8c3"]
 
 [ext_resource type="Texture2D" uid="uid://c6ijelrkwpk6t" path="res://assets/ui/button_ingredient_chosse.png" id="1_ah5nu"]
 [ext_resource type="Script" path="res://assets/craft/ingredient_reward.gd" id="1_s21qu"]
 [ext_resource type="SpriteFrames" uid="uid://uhhxbh4veuvb" path="res://assets/craft/ingredients_sp.tres" id="2_omdy7"]
 [ext_resource type="Texture2D" uid="uid://cm35cdmixpj10" path="res://assets/shine_particle.png" id="3_h3fdt"]
-[ext_resource type="Texture2D" uid="uid://4wyk05bopbf" path="res://assets/ui/arrow_right.png" id="5_dog21"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cirlo"]
 
@@ -54,10 +53,5 @@ color_ramp = SubResource("Gradient_xyuh5")
 position = Vector2(16, 13)
 sprite_frames = ExtResource("2_omdy7")
 animation = &"none"
-
-[node name="ArrowRight" type="Sprite2D" parent="."]
-position = Vector2(19, 33)
-rotation = -1.5708
-texture = ExtResource("5_dog21")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

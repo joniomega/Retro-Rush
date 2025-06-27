@@ -28,6 +28,9 @@ func _ready():
 	setup_ranked_match()
 	load_ranked_level(Global.ranked_level)
 	setup_ui()
+	
+	$player_ghost.player = $player
+	$player_ghost.relic = "PUT HERE THE RELIC OR IN THE FUNCTION THAT SPAWNS IT"
 
 func setup_ranked_match():
 	# Set background material from global

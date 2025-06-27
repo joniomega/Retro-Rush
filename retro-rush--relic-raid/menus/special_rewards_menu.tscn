@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d0cxldfjss270"]
+[gd_scene load_steps=16 format=3 uid="uid://d0cxldfjss270"]
 
 [ext_resource type="Script" path="res://menus/special_rewards_menu.gd" id="1_j1klk"]
 [ext_resource type="PackedScene" uid="uid://boacxm34cq8c3" path="res://assets/craft/ingredient_reward.tscn" id="1_wntqb"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://bp85pw1gug553" path="res://assets/ui/button_horizontal_1.png" id="3_m3e4b"]
 [ext_resource type="Texture2D" uid="uid://gmao71ovqfd8" path="res://assets/ui/icon_ad.png" id="4_dgrjx"]
 [ext_resource type="Texture2D" uid="uid://dwphcswg5bw86" path="res://assets/ui/icon_nowifi.png" id="5_p4jcy"]
-[ext_resource type="Texture2D" uid="uid://4wyk05bopbf" path="res://assets/ui/arrow_right.png" id="6_1pjcp"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f4f5l"]
 
@@ -108,26 +107,12 @@ theme_override_fonts/font = ExtResource("2_t5b7w")
 theme_override_font_sizes/font_size = 16
 text = "TAKE ALL"
 
-[node name="ArrowRight" type="Sprite2D" parent="takeall"]
-modulate = Color(1, 1, 1, 0.5)
-position = Vector2(84, 199)
-rotation = -1.5708
-scale = Vector2(2, 2)
-texture = ExtResource("6_1pjcp")
-
-[node name="ArrowRight3" type="Sprite2D" parent="takeall"]
-modulate = Color(1, 1, 1, 0.5)
-position = Vector2(152, 199)
-rotation = -1.5708
-scale = Vector2(2, 2)
-texture = ExtResource("6_1pjcp")
-
 [node name="ingredient_reward1" parent="." instance=ExtResource("1_wntqb")]
-position = Vector2(46, 273)
+position = Vector2(46, 263)
 scale = Vector2(2, 2)
 
 [node name="ingredient_reward2" parent="." instance=ExtResource("1_wntqb")]
-position = Vector2(114, 273)
+position = Vector2(114, 263)
 scale = Vector2(2, 2)
 
 [connection signal="initialization_completed" from="Admob" to="." method="_on_admob_initialization_completed"]

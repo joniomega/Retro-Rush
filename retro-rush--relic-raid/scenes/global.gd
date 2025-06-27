@@ -28,6 +28,8 @@ var unlocked_rewards: Dictionary = {}
 
 # Add these variables at the top with other variables
 var ranked_opponent_name: String = "none"
+var ranked_opponent_skin: String = "1"
+var ranked_opponent_accessory: String = "none"
 var ranked_opponent_score: int = 0
 var ranked_level: int = 1
 var ranked_biome_material: Material

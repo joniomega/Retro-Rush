@@ -75,18 +75,16 @@ func start_ranked_match():
 	
 	# Set global variables for the ranked match
 	Global.ranked_opponent_name = opponent_data["name"]
+	Global.ranked_opponent_skin = str(opponent_data["skin"])
+	print(Global.ranked_opponent_skin)
+	Global.ranked_opponent_accessory = opponent_data["accessory"]
 	Global.ranked_opponent_score = selected_level_score
 	Global.ranked_level = level
 	Global.selected_level_special = false
 	
 	# Random biome material
 	var materials = [
-		preload("res://assets/shaders/backmaterial_1.tres"),
-		preload("res://assets/shaders/backmaterial_2.tres"),
-		preload("res://assets/shaders/backmaterial_3.tres"),
-		preload("res://assets/shaders/backmaterial_4.tres"),
-		preload("res://assets/shaders/backmaterial_5.tres"),
-		preload("res://assets/shaders/backmaterial_special.tres")
+		preload("res://assets/shaders/backmaterial_ranked.tres")
 	]
 	Global.ranked_biome_material = materials[randi() % materials.size()]
 	

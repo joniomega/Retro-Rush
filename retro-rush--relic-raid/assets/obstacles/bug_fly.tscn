@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://xhdwm1j05nva"]
+[gd_scene load_steps=28 format=3 uid="uid://xhdwm1j05nva"]
 
 [ext_resource type="Script" path="res://assets/obstacles/bug_fly.gd" id="1_18ngi"]
 [ext_resource type="Texture2D" uid="uid://b8mqd5gqn71vy" path="res://assets/characters/enemies/bug_dragonfly.png" id="1_yq7w3"]
@@ -9,6 +9,18 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ifdyo"]
 size = Vector2(16, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjp57"]
+atlas = ExtResource("1_yq7w3")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkqfq"]
+atlas = ExtResource("1_yq7w3")
+region = Rect2(128, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gu8le"]
+atlas = ExtResource("1_yq7w3")
+region = Rect2(160, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8iw7e"]
 atlas = ExtResource("1_yq7w3")
@@ -66,9 +78,18 @@ region = Rect2(96, 64, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_yjp57")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkqfq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gu8le")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_8iw7e")
 }],
-"loop": true,
+"loop": false,
 "name": &"dead",
 "speed": 5.0
 }, {
@@ -153,9 +174,10 @@ shape = SubResource("RectangleShape2D_ifdyo")
 
 [node name="animation" type="AnimatedSprite2D" parent="enemy"]
 sprite_frames = SubResource("SpriteFrames_o5ypw")
-animation = &"fly3"
+animation = &"dead"
 autoplay = "fly1"
-frame_progress = 0.586798
+frame = 3
+frame_progress = 1.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="enemy"]
 position = Vector2(-1, 2)

@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://bpmbhbjl01isf"]
+
+[ext_resource type="Script" path="res://assets/characters/player/player_ghost.gd" id="1_38yfo"]
+[ext_resource type="SpriteFrames" uid="uid://duukh1em5rexv" path="res://assets/characters/player/player_skin.tres" id="1_inwe8"]
+[ext_resource type="SpriteFrames" uid="uid://bsvml15ne3jhu" path="res://assets/characters/player/accessories/player_accessories.tres" id="2_o88fj"]
+[ext_resource type="FontFile" uid="uid://camtosjq61o18" path="res://assets/ui/alagard.ttf" id="3_wdko8"]
+[ext_resource type="AudioStream" uid="uid://igqccehohd3j" path="res://assets/sounds/soundeffects/ghost2.wav" id="6_17yde"]
+[ext_resource type="AudioStream" uid="uid://cs4nmneoqa0ob" path="res://assets/sounds/soundeffects/ghost3.wav" id="7_m2jca"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hvnw3"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_b7qro"]
+random_pitch = 1.2
+streams_count = 2
+stream_0/stream = ExtResource("6_17yde")
+stream_1/stream = ExtResource("7_m2jca")
+
+[node name="player_ghost" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_38yfo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.6, 1, 0.721569, 0.627451)
+z_index = 2
+position = Vector2(16, 16)
+sprite_frames = ExtResource("1_inwe8")
+animation = &"5_ghost"
+
+[node name="accessory" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
+z_index = 2
+sprite_frames = ExtResource("2_o88fj")
+animation = &"crest_jump"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_hvnw3")
+disabled = true
+
+[node name="name" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.627451)
+z_index = 2
+offset_left = -12.0
+offset_top = -15.0
+offset_right = 61.0
+offset_bottom = 8.0
+scale = Vector2(0.8, 0.8)
+theme_override_colors/font_shadow_color = Color(0, 0.0235294, 0.266667, 0.352941)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/font = ExtResource("3_wdko8")
+text = "joniomega"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_b7qro")
+volume_db = -17.0

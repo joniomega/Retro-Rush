@@ -40,7 +40,7 @@ script = ExtResource("1_avswn")
 z_index = -2
 position = Vector2(16, 17)
 sprite_frames = ExtResource("2_2btxo")
-animation = &"9"
+animation = &"ranked"
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
 position = Vector2(16, 17)

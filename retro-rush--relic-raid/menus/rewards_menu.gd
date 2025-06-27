@@ -39,6 +39,7 @@ var is_creating_player: bool = false
 
 func _ready():
 	Global.ranked_opponent_name = "none"
+	Global.ranked_opponent_score = 0
 	if Global.player_name != "":
 		textedit_name.text = Global.player_name
 		has_player_name = true

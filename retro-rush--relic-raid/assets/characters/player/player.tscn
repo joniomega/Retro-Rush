@@ -244,7 +244,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 288), Vector2(0, 0)]
+"values": [Vector2(0, 400), Vector2(0, 20)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_km05r"]
@@ -311,7 +311,7 @@ animation = &"4_jump"
 
 [node name="accessory" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
 sprite_frames = ExtResource("3_q0rdt")
-animation = &"crest_jump"
+animation = &"candle_jump"
 
 [node name="particles_die" type="CPUParticles2D" parent="."]
 position = Vector2(16, 21)
@@ -503,17 +503,30 @@ scroll_active = false
 
 [node name="special_rewards" parent="Control/CanvasLayer" instance=ExtResource("17_ig076")]
 
-[node name="tutorial" type="Sprite2D" parent="Control/CanvasLayer"]
-position = Vector2(32, 353)
+[node name="tutorial" type="Control" parent="Control/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -112.0
+offset_top = -40.0
+offset_right = 112.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="tutorial2" type="Sprite2D" parent="Control/CanvasLayer/tutorial"]
+position = Vector2(32, 0)
 scale = Vector2(2, 2)
 texture = ExtResource("19_opv1n")
 
-[node name="ArrowTransparent2" type="Sprite2D" parent="Control/CanvasLayer/tutorial"]
+[node name="ArrowTransparent2" type="Sprite2D" parent="Control/CanvasLayer/tutorial/tutorial2"]
 position = Vector2(80, 0)
 texture = ExtResource("19_opv1n")
 flip_h = true
 
-[node name="Label" type="Label" parent="Control/CanvasLayer/tutorial"]
+[node name="Label" type="Label" parent="Control/CanvasLayer/tutorial/tutorial2"]
 offset_left = -4.0
 offset_top = -10.5
 offset_right = 84.0

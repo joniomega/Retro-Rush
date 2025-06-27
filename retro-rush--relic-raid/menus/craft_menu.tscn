@@ -244,8 +244,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Button" type="Button" parent="equipment"]
 layout_mode = 0
+offset_left = -128.0
 offset_top = 158.0
-offset_right = 40.0
+offset_right = -88.0
 offset_bottom = 198.0
 
 [node name="button_press" type="AudioStreamPlayer" parent="."]

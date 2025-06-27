@@ -259,9 +259,10 @@ func win_ranked(type:String):
 		get_parent().end()
 		$animation.play("win_special")
 		$Control/CanvasLayer/win/AnimatedSprite2D.visible = false
-		$Control/CanvasLayer/win.text = "[wave][center][color=#d79a00][b]YOU\nWIN[/b][/color][/center][/wave]"
+		$Control/CanvasLayer/win.add_theme_color_override("font_outline_color", Color(0, 0.4, 0))
+		$Control/CanvasLayer/win.text = "[wave][center][color=#50ff00][b]YOU\nWIN[/b][/color][/center][/wave]"
 		$Control/CanvasLayer/win/rankedwin.visible = true
-		$Control/CanvasLayer/win/rankedwin.text = str("[wave][center]"+Global.player_name+" > "+Global.ranked_opponent_name+"[/center][/wave]"+"\n[center][color=#07cc00]"+str(score)+"[/color] > [color=#cc1d00]"+str(Global.ranked_opponent_score)+"[/color][/center]")
+		$Control/CanvasLayer/win/rankedwin.text = str("[wave][center][color=#07cc00]"+Global.player_name+"[/color] > [color=#cc1d00]"+Global.ranked_opponent_name+"[/color][/center][/wave]"+"\n[center][color=#07cc00]"+str(score)+"[/color] > [color=#cc1d00]"+str(Global.ranked_opponent_score)+"[/color][/center]")
 		get_parent().stop_music()
 		
 		if Global.firebase_id == "":
@@ -356,12 +357,15 @@ func die_ranked():
 		get_parent().end()
 		$animation.play("win")
 		$Control/CanvasLayer/win/AnimatedSprite2D.visible = false
-		$Control/CanvasLayer/win.text = "[wave][center][color=#d79a00][b]YOU\nLOST[/b][/color][/center][/wave]"
+		$Control/CanvasLayer/win.add_theme_color_override("font_outline_color", Color(0.5, 0, 0))
+		$Control/CanvasLayer/win.text = "[wave][center][color=#ff0000][b]YOU\nLOSE[/b][/color][/center][/wave]"
 		$Control/CanvasLayer/win/rankedwin.visible = true
-		$Control/CanvasLayer/win/rankedwin.text = str("[wave][center]"+Global.ranked_opponent_name+" > "+Global.player_name+"[/center][/wave]"+"\n[center][color=#07cc00]"+str(Global.ranked_opponent_score)+"[/color] > [color=#cc1d00]"+str(score)+"[/color][/center]")
+		$Control/CanvasLayer/win/rankedwin.text = str("[wave][center][color=#cc1d00]"+Global.player_name+"[/color] < [color=#07cc00]"+Global.ranked_opponent_name+"[/color][/center][/wave]"+"\n[center][color=#cc1d00]"+str(score)+"[/color] < [color=#07cc00]"+str(Global.ranked_opponent_score)+"[/color][/center]")
 		
 		var tree = get_tree()
 		await tree.create_timer(3.5).timeout
 		TransitionScreen.transition()
 		await TransitionScreen.on_transition_finished
 		tree.change_scene_to_file("res://menus/mainmenu.tscn")
+func get_score() -> int:
+	return score
