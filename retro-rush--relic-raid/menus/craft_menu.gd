@@ -73,16 +73,42 @@ func _on_button_body_left_pressed():
 
 
 func _on_button_pressed() -> void:
-	Global.unlock_reward("hat")
-	Global.unlock_reward("plant")
-	Global.unlock_reward("spikes")
-	Global.unlock_reward("crest")
-	Global.unlock_reward("books")
-	Global.unlock_reward("horns")
-	Global.unlock_reward("3")
-	Global.unlock_reward("4")
-	Global.unlock_reward("2")
-	Global.unlock_reward("5")
+	#Global.unlock_reward("hat")
+	#Global.unlock_reward("plant")
+	#Global.unlock_reward("spikes")
+	#Global.unlock_reward("crest")
+	#Global.unlock_reward("books")
+	#Global.unlock_reward("horns")
+	#Global.unlock_reward("3")
+	#Global.unlock_reward("4")
+	#Global.unlock_reward("2")
+	#Global.unlock_reward("5")
+	# Accessories
+	Global.collect_ingredient("hat_1")
+	Global.collect_ingredient("hat_2")
+	Global.collect_ingredient("spikes_1")
+	Global.collect_ingredient("spikes_2")
+	
+	Global.collect_ingredient("plant_2")
+	Global.collect_ingredient("crest_1")
+	Global.collect_ingredient("crest_2")
+	Global.collect_ingredient("books_1")
+	Global.collect_ingredient("books_2")
+	Global.collect_ingredient("horns_1")
+	Global.collect_ingredient("horns_2")
+	
+	# Skins
+	Global.collect_ingredient("2_1")
+	Global.collect_ingredient("2_2")
+	Global.collect_ingredient("3_1")
+	Global.collect_ingredient("3_2")
+	Global.collect_ingredient("4_1")
+	Global.collect_ingredient("4_2")
+	Global.collect_ingredient("5_1")
+	Global.collect_ingredient("5_2")
+	
+	print("All ingredients collected!")
+	Global.save_progress()  # Don't forget to save!
 	var lvl = 2
 	while lvl != 31:
 		Global.unlock_next_level(lvl)

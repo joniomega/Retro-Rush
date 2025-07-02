@@ -6,6 +6,7 @@ var reward2: String
 var is_initialized: bool = false
 var has_internet: bool = false
 var connectivity_check_timer: Timer
+var all_collected: bool = false  # Track if all ingredients are collected
 
 func _ready() -> void:
 	# Set up periodic internet checks
@@ -74,6 +75,17 @@ func setup_rewards():
 		if not Global.collected_ingredients.get(ingredient, false):
 			available_ingredients.append(ingredient)
 	
+	# Check if all ingredients are collected
+	if available_ingredients.size() == 0:
+		all_collected = true
+		$ingredient_reward1.visible = false
+		$ingredient_reward2.visible = false
+		$takeall/Label.text = "+500p"
+		return
+	
+	# Shuffle the available ingredients to randomize selection order
+	available_ingredients.shuffle()
+	
 	# Select rewards - try to find matching pairs first
 	reward1 = ""
 	reward2 = ""
@@ -118,10 +130,16 @@ func _on_button_takeall_pressed() -> void:
 		admob.show_rewarded_ad()
 
 func _on_admob_rewarded_ad_user_earned_reward(ad_id: String, reward_data: RewardItem) -> void:
-	if reward1 != "":
-		Global.collect_ingredient(reward1)
-	if reward2 != "":
-		Global.collect_ingredient(reward2)
+	if all_collected:
+		# Give 500 points when all ingredients are collected
+		Global.points += 500
+		Global.save_progress()
+	else:
+		# Collect ingredients normally
+		if reward1 != "":
+			Global.collect_ingredient(reward1)
+		if reward2 != "":
+			Global.collect_ingredient(reward2)
 	
 	var tree = get_tree()
 	TransitionScreen.transition()

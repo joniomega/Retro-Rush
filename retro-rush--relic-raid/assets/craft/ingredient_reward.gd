@@ -4,7 +4,7 @@ extends Node2D
 @export var ingredient: String = "none"
 
 func _ready() -> void:
-	setup(ingredient)
+	
 	# Generate all possible ingredients
 	#var all_ingredients := []
 	#for item_type in Global.CRAFTABLE_ITEMS:
@@ -17,6 +17,13 @@ func _ready() -> void:
 func setup(reward:String):
 	ingredient = reward
 	animation.play(ingredient)
+	await get_tree().create_timer(1).timeout
+	if ingredient == "none":
+		$Button.disabled = true
+		self.visible = false
+	if ingredient == "":
+		$Button.disabled = true
+		self.visible = false
 
 func _on_button_pressed() -> void:
 	Global.collect_ingredient(ingredient)

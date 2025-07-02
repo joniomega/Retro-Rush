@@ -269,7 +269,7 @@ func win_ranked(type:String):
 			push_error("No Firebase ID - cannot update records")
 			return
 		
-		# First get all current data
+		
 		var http_request = HTTPRequest.new()
 		add_child(http_request)
 		http_request.request_completed.connect(_on_get_data_completed.bind(http_request))
@@ -293,11 +293,11 @@ func _on_get_data_completed(result, response_code, headers, body, http_request):
 	if player_data == null:
 		player_data = {}
 	
-	# Get current wins (default to 0 if not exists)
+	
 	var current_wins = player_data.get("wins", 0)
 	print("Current wins from Firebase:", current_wins)  # Debug print
 	
-	# Get current scores (initialize if not exists)
+	
 	var scores = player_data.get("score", {"lvl1": 0, "lvl2": 0, "lvl3": 0})
 	
 	# Only update score if new score is higher
@@ -305,20 +305,20 @@ func _on_get_data_completed(result, response_code, headers, body, http_request):
 	var current_level_score = scores.get(current_level_key, 0)
 	var should_update_score = score > current_level_score
 	
-	# Prepare updates
+	
 	var updates = {}
 	
-	# Update wins (always increment)
+	
 	updates["wins"] = current_wins + 1
 	
-	# Update score only if higher
+	
 	if should_update_score:
 		updates["score/%s" % current_level_key] = score
 		print("Updating level %d score from %d to %d" % [Global.ranked_level, current_level_score, score])
 	else:
 		print("Keeping existing level %d score of %d (new score %d was lower)" % [Global.ranked_level, current_level_score, score])
 	
-	# Send updates
+
 	var update_request = HTTPRequest.new()
 	add_child(update_request)
 	update_request.request_completed.connect(_on_update_completed.bind(update_request))
