@@ -1,12 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://d0cxldfjss270"]
+[gd_scene load_steps=22 format=3 uid="uid://d0cxldfjss270"]
 
 [ext_resource type="Script" path="res://menus/special_rewards_menu.gd" id="1_j1klk"]
-[ext_resource type="PackedScene" uid="uid://boacxm34cq8c3" path="res://assets/craft/ingredient_reward.tscn" id="1_wntqb"]
 [ext_resource type="Script" path="res://addons/AdmobPlugin/Admob.gd" id="2_qb2k2"]
 [ext_resource type="FontFile" uid="uid://camtosjq61o18" path="res://assets/ui/alagard.ttf" id="2_t5b7w"]
 [ext_resource type="Texture2D" uid="uid://bp85pw1gug553" path="res://assets/ui/button_horizontal_1.png" id="3_m3e4b"]
 [ext_resource type="Texture2D" uid="uid://gmao71ovqfd8" path="res://assets/ui/icon_ad.png" id="4_dgrjx"]
 [ext_resource type="Texture2D" uid="uid://dwphcswg5bw86" path="res://assets/ui/icon_nowifi.png" id="5_p4jcy"]
+[ext_resource type="SpriteFrames" uid="uid://bsvml15ne3jhu" path="res://assets/characters/player/accessories/player_accessories.tres" id="7_yuep4"]
+[ext_resource type="SpriteFrames" uid="uid://duukh1em5rexv" path="res://assets/characters/player/player_skin.tres" id="8_trjha"]
+[ext_resource type="Texture2D" uid="uid://bk2cyygdoropf" path="res://assets/ui/button_cancel.png" id="9_8hlal"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f4f5l"]
 
@@ -52,6 +54,19 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q4qkt"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m7lhn"]
+texture = ExtResource("9_8hlal")
+modulate_color = Color(1.2, 1.2, 1.2, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_by1br"]
+texture = ExtResource("9_8hlal")
+modulate_color = Color(1.5, 1.5, 1.5, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r5lyk"]
+texture = ExtResource("9_8hlal")
+
 [node name="special_rewards" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -89,12 +104,13 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_wb5r4")
 theme_override_styles/normal = SubResource("StyleBoxTexture_q0d82")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="takeall"]
-position = Vector2(155, 159)
+position = Vector2(134, 160)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_naixw")
 animation = &"ad"
 
 [node name="Label" type="Label" parent="takeall"]
+visible = false
 offset_left = 55.0
 offset_top = 151.0
 offset_right = 163.0
@@ -107,14 +123,29 @@ theme_override_fonts/font = ExtResource("2_t5b7w")
 theme_override_font_sizes/font_size = 16
 text = "TAKE ALL"
 
-[node name="ingredient_reward1" parent="." instance=ExtResource("1_wntqb")]
-position = Vector2(46, 263)
+[node name="reward_accessory" type="AnimatedSprite2D" parent="takeall"]
+position = Vector2(94, 178)
 scale = Vector2(2, 2)
+sprite_frames = ExtResource("7_yuep4")
+animation = &"spikes_jump"
 
-[node name="ingredient_reward2" parent="." instance=ExtResource("1_wntqb")]
-position = Vector2(114, 263)
-scale = Vector2(2, 2)
+[node name="reward_skin" type="AnimatedSprite2D" parent="takeall"]
+position = Vector2(92, 155)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("8_trjha")
+animation = &"2_jump"
+
+[node name="Button" type="Button" parent="takeall"]
+offset_left = 84.0
+offset_top = 192.0
+offset_right = 140.0
+offset_bottom = 248.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_q4qkt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_m7lhn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_by1br")
+theme_override_styles/normal = SubResource("StyleBoxTexture_r5lyk")
 
 [connection signal="initialization_completed" from="Admob" to="." method="_on_admob_initialization_completed"]
 [connection signal="rewarded_ad_user_earned_reward" from="Admob" to="." method="_on_admob_rewarded_ad_user_earned_reward"]
 [connection signal="pressed" from="takeall/Button_takeall" to="." method="_on_button_takeall_pressed"]
+[connection signal="pressed" from="takeall/Button" to="." method="_on_button_pressed"]

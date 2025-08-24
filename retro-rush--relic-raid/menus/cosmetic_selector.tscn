@@ -1,15 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://cvjjfgbcsmv5t"]
+[gd_scene load_steps=12 format=3 uid="uid://cvjjfgbcsmv5t"]
 
 [ext_resource type="Script" path="res://menus/cosmetic_selector.gd" id="1_2w5xt"]
 [ext_resource type="Texture2D" uid="uid://dfne77u7s0d0c" path="res://assets/ui/container_cosmetic.png" id="1_dpvjl"]
 [ext_resource type="SpriteFrames" uid="uid://bsvml15ne3jhu" path="res://assets/characters/player/accessories/player_accessories.tres" id="2_fagwd"]
+[ext_resource type="Texture2D" uid="uid://daf8ft2va82s2" path="res://assets/ui/container_cosmetic_disabled.png" id="2_xqf3c"]
 [ext_resource type="SpriteFrames" uid="uid://duukh1em5rexv" path="res://assets/characters/player/player_skin.tres" id="3_38yv6"]
 [ext_resource type="Texture2D" uid="uid://bt3jy30wrujv4" path="res://assets/ui/bald.png" id="5_ungrj"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_apcyk"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6cwqp"]
-texture = ExtResource("1_dpvjl")
+texture = ExtResource("2_xqf3c")
 modulate_color = Color(0.7, 0.7, 0.7, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_62m1f"]

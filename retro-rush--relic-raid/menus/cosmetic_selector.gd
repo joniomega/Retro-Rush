@@ -25,9 +25,11 @@ func _ready() -> void:
 		animated_sprite_skin.visible = true
 		if animated_sprite_skin.sprite_frames.has_animation(cosmetic_name + "_jump"):
 			animated_sprite_skin.play(cosmetic_name + "_jump")
-
 	# Locked check
 	refresh_lock_state()
+	if button.disabled == true:
+		animated_sprite_accessory.modulate = Color(0.5, 0.5, 0.5)
+		animated_sprite_skin.modulate = Color(0.5, 0.5, 0.5)
 
 
 func refresh_lock_state() -> void:
