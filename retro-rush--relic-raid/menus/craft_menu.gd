@@ -3,8 +3,7 @@ extends Control
 @onready var hat_sprite := $equipment/AnimatedSprite2D/accessory
 @onready var skin_sprite := $equipment/AnimatedSprite2D
 
-@onready var cosmetic_selectors_acessories_path = $recipes/acessories/GridContainer
-@onready var cosmetic_selectors_skins_path = $recipes/skins/GridContainer
+
 
 var current_hat_index := 0
 var current_skin_index := 0
@@ -16,7 +15,6 @@ func _ready() -> void:
 		Global.player_skin = "1"
 	
 	load_player_customization()
-	#setup_cosmetic_selectors()
 	update_display()
 
 func load_player_customization():
@@ -45,19 +43,6 @@ func update_skin_display():
 		Global.player_skin = Global.ALL_SKINS[current_skin_index]
 		skin_sprite.play(Global.player_skin + "_jump")
 		Global.save_progress()
-
-#func setup_cosmetic_selectors():
-	## Accessories — match GridContainer children with ALL_HATS
-	#for i in range(cosmetic_selectors_acessories_path.get_child_count()):
-		#var selector = cosmetic_selectors_acessories_path.get_child(i)
-		#if selector.has_method("setup_selector") and i < Global.ALL_HATS.size():
-			#selector.setup_selector(Global.ALL_HATS[i], "hat", self)
-#
-	## Skins — match GridContainer children with ALL_SKINS
-	#for i in range(cosmetic_selectors_skins_path.get_child_count()):
-		#var selector = cosmetic_selectors_skins_path.get_child(i)
-		#if selector.has_method("setup_selector") and i < Global.ALL_SKINS.size():
-			#selector.setup_selector(Global.ALL_SKINS[i], "skin", self)
 
 func select_hat(name: String):
 	var idx = Global.ALL_HATS.find(name)

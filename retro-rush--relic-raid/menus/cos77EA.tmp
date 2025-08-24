@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cvjjfgbcsmv5t"]
+[gd_scene load_steps=10 format=3 uid="uid://cvjjfgbcsmv5t"]
 
 [ext_resource type="Script" path="res://menus/cosmetic_selector.gd" id="1_2w5xt"]
 [ext_resource type="Texture2D" uid="uid://dfne77u7s0d0c" path="res://assets/ui/container_cosmetic.png" id="1_dpvjl"]
 [ext_resource type="SpriteFrames" uid="uid://bsvml15ne3jhu" path="res://assets/characters/player/accessories/player_accessories.tres" id="2_fagwd"]
 [ext_resource type="SpriteFrames" uid="uid://duukh1em5rexv" path="res://assets/characters/player/player_skin.tres" id="3_38yv6"]
-[ext_resource type="Texture2D" uid="uid://bt3jy30wrujv4" path="res://assets/ui/bald.png" id="5_ungrj"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_apcyk"]
 
@@ -56,10 +55,5 @@ position = Vector2(48, 27)
 scale = Vector2(1.5, 1.5)
 sprite_frames = ExtResource("3_38yv6")
 animation = &"2_jump"
-
-[node name="Bald" type="Sprite2D" parent="."]
-position = Vector2(48, 30)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("5_ungrj")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

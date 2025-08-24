@@ -1,8 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://b8gq3tryuhkjf"]
+[gd_scene load_steps=21 format=3 uid="uid://b8gq3tryuhkjf"]
 
 [ext_resource type="Script" path="res://menus/craft_menu.gd" id="1_fxeqh"]
 [ext_resource type="Texture2D" uid="uid://bpp2bxffp4d66" path="res://assets/ui/equipment_container.png" id="1_jit7q"]
-[ext_resource type="PackedScene" uid="uid://dauxouih85yxb" path="res://menus/recipe_select.tscn" id="2_4ty2e"]
 [ext_resource type="PackedScene" uid="uid://cvjjfgbcsmv5t" path="res://menus/cosmetic_selector.tscn" id="3_iwm6j"]
 [ext_resource type="SpriteFrames" uid="uid://duukh1em5rexv" path="res://assets/characters/player/player_skin.tres" id="3_qhuf7"]
 [ext_resource type="SpriteFrames" uid="uid://bsvml15ne3jhu" path="res://assets/characters/player/accessories/player_accessories.tres" id="4_adnfl"]
@@ -62,84 +61,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="recipes"]
-visible = false
-clip_contents = false
-layout_mode = 0
-offset_left = 17.0
-offset_top = 49.0
-offset_right = 225.0
-offset_bottom = 395.0
-theme = SubResource("Theme_vgs7n")
-follow_focus = true
-horizontal_scroll_mode = 0
-
-[node name="GridContainer" type="VBoxContainer" parent="recipes/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 60
-alignment = 1
-
-[node name="Control4" type="Control" parent="recipes/ScrollContainer/GridContainer"]
-layout_mode = 2
-mouse_filter = 1
-
-[node name="Control6" type="Control" parent="recipes/ScrollContainer/GridContainer"]
-layout_mode = 2
-mouse_filter = 1
-
-[node name="recipe_select2" parent="recipes/ScrollContainer/GridContainer" instance=ExtResource("2_4ty2e")]
-layout_mode = 2
-reward = "hat"
-
-[node name="recipe_select1" parent="recipes/ScrollContainer/GridContainer" instance=ExtResource("2_4ty2e")]
-layout_mode = 2
-reward = "plant"
-
-[node name="recipe_select3" parent="recipes/ScrollContainer/GridContainer" instance=ExtResource("2_4ty2e")]
-layout_mode = 2
-reward = "spikes"
-
-[node name="recipe_select8" parent="recipes/ScrollContainer/GridContainer" instance=ExtResource("2_4ty2e")]
-layout_mode = 2
-reward = "crest"
-
-[node name="recipe_select9" parent="recipes/ScrollContainer/GridContainer" instance=ExtResource("2_4ty2e")]
-layout_mode = 2
-reward = "books"
-
-[node name="recipe_select10" parent="recipes/ScrollContainer/GridContainer" instance=ExtResource("2_4ty2e")]
-layout_mode = 2
-reward = "horns"
-
-[node name="recipe_select5" parent="recipes/ScrollContainer/GridContainer" instance=ExtResource("2_4ty2e")]
-layout_mode = 2
-reward = "3"
-
-[node name="recipe_select6" parent="recipes/ScrollContainer/GridContainer" instance=ExtResource("2_4ty2e")]
-layout_mode = 2
-reward = "4"
-
-[node name="recipe_select4" parent="recipes/ScrollContainer/GridContainer" instance=ExtResource("2_4ty2e")]
-layout_mode = 2
-reward = "2"
-
-[node name="recipe_select7" parent="recipes/ScrollContainer/GridContainer" instance=ExtResource("2_4ty2e")]
-layout_mode = 2
-reward = "5"
-
-[node name="Control3" type="Control" parent="recipes/ScrollContainer/GridContainer"]
-layout_mode = 2
-mouse_filter = 1
-
-[node name="Control7" type="Control" parent="recipes/ScrollContainer/GridContainer"]
-layout_mode = 2
-mouse_filter = 1
-
-[node name="Control5" type="Control" parent="recipes/ScrollContainer/GridContainer"]
-layout_mode = 2
-mouse_filter = 1
-
 [node name="acessories" type="ScrollContainer" parent="recipes"]
 clip_contents = false
 layout_mode = 0
@@ -165,26 +86,40 @@ mouse_filter = 1
 layout_mode = 2
 mouse_filter = 1
 
-[node name="hattt" parent="recipes/acessories/GridContainer" instance=ExtResource("3_iwm6j")]
+[node name="cosmetic_selector1" parent="recipes/acessories/GridContainer" node_paths=PackedStringArray("customization_menu") instance=ExtResource("3_iwm6j")]
 layout_mode = 2
+cosmetic_name = "none"
+customization_menu = NodePath("../../../..")
 
-[node name="cosmetic_selector1" parent="recipes/acessories/GridContainer" instance=ExtResource("3_iwm6j")]
+[node name="cosmetic_selector2" parent="recipes/acessories/GridContainer" node_paths=PackedStringArray("customization_menu") instance=ExtResource("3_iwm6j")]
 layout_mode = 2
+cosmetic_name = "hat"
+customization_menu = NodePath("../../../..")
 
-[node name="cosmetic_selector2" parent="recipes/acessories/GridContainer" instance=ExtResource("3_iwm6j")]
+[node name="cosmetic_selector3" parent="recipes/acessories/GridContainer" node_paths=PackedStringArray("customization_menu") instance=ExtResource("3_iwm6j")]
 layout_mode = 2
+cosmetic_name = "spikes"
+customization_menu = NodePath("../../../..")
 
-[node name="cosmetic_selector3" parent="recipes/acessories/GridContainer" instance=ExtResource("3_iwm6j")]
+[node name="cosmetic_selector4" parent="recipes/acessories/GridContainer" node_paths=PackedStringArray("customization_menu") instance=ExtResource("3_iwm6j")]
 layout_mode = 2
+cosmetic_name = "plant"
+customization_menu = NodePath("../../../..")
 
-[node name="cosmetic_selector4" parent="recipes/acessories/GridContainer" instance=ExtResource("3_iwm6j")]
+[node name="cosmetic_selector5" parent="recipes/acessories/GridContainer" node_paths=PackedStringArray("customization_menu") instance=ExtResource("3_iwm6j")]
 layout_mode = 2
+cosmetic_name = "crest"
+customization_menu = NodePath("../../../..")
 
-[node name="cosmetic_selector5" parent="recipes/acessories/GridContainer" instance=ExtResource("3_iwm6j")]
+[node name="cosmetic_selector6" parent="recipes/acessories/GridContainer" node_paths=PackedStringArray("customization_menu") instance=ExtResource("3_iwm6j")]
 layout_mode = 2
+cosmetic_name = "books"
+customization_menu = NodePath("../../../..")
 
-[node name="cosmetic_selector6" parent="recipes/acessories/GridContainer" instance=ExtResource("3_iwm6j")]
+[node name="cosmetic_selector7" parent="recipes/acessories/GridContainer" node_paths=PackedStringArray("customization_menu") instance=ExtResource("3_iwm6j")]
 layout_mode = 2
+cosmetic_name = "horns"
+customization_menu = NodePath("../../../..")
 
 [node name="Control3" type="Control" parent="recipes/acessories/GridContainer"]
 layout_mode = 2
@@ -223,27 +158,35 @@ mouse_filter = 1
 layout_mode = 2
 mouse_filter = 1
 
-[node name="cosmetic_selector1" parent="recipes/skins/GridContainer" instance=ExtResource("3_iwm6j")]
+[node name="cosmetic_selector1" parent="recipes/skins/GridContainer" node_paths=PackedStringArray("customization_menu") instance=ExtResource("3_iwm6j")]
 layout_mode = 2
+cosmetic_name = "1"
+cosmetic_type = 1
+customization_menu = NodePath("../../../..")
 
-[node name="cosmetic_selector2" parent="recipes/skins/GridContainer" instance=ExtResource("3_iwm6j")]
+[node name="cosmetic_selector2" parent="recipes/skins/GridContainer" node_paths=PackedStringArray("customization_menu") instance=ExtResource("3_iwm6j")]
 layout_mode = 2
+cosmetic_name = "2"
+cosmetic_type = 1
+customization_menu = NodePath("../../../..")
 
-[node name="cosmetic_selector3" parent="recipes/skins/GridContainer" instance=ExtResource("3_iwm6j")]
+[node name="cosmetic_selector3" parent="recipes/skins/GridContainer" node_paths=PackedStringArray("customization_menu") instance=ExtResource("3_iwm6j")]
 layout_mode = 2
+cosmetic_name = "3"
+cosmetic_type = 1
+customization_menu = NodePath("../../../..")
 
-[node name="cosmetic_selector4" parent="recipes/skins/GridContainer" instance=ExtResource("3_iwm6j")]
+[node name="cosmetic_selector4" parent="recipes/skins/GridContainer" node_paths=PackedStringArray("customization_menu") instance=ExtResource("3_iwm6j")]
 layout_mode = 2
+cosmetic_name = "4"
+cosmetic_type = 1
+customization_menu = NodePath("../../../..")
 
-[node name="cosmetic_selector5" parent="recipes/skins/GridContainer" instance=ExtResource("3_iwm6j")]
+[node name="cosmetic_selector5" parent="recipes/skins/GridContainer" node_paths=PackedStringArray("customization_menu") instance=ExtResource("3_iwm6j")]
 layout_mode = 2
-cosmetic_name = "\"2\""
-cosmetic_type = "\"skin\""
-
-[node name="cosmetic_selector6" parent="recipes/skins/GridContainer" instance=ExtResource("3_iwm6j")]
-layout_mode = 2
-cosmetic_name = "\"1\""
-cosmetic_type = "\"skin\""
+cosmetic_name = "5"
+cosmetic_type = 1
+customization_menu = NodePath("../../../..")
 
 [node name="Control3" type="Control" parent="recipes/skins/GridContainer"]
 layout_mode = 2
@@ -367,10 +310,10 @@ volume_db = -20.0
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
-offset_left = 24.0
-offset_top = 168.0
-offset_right = 72.0
-offset_bottom = 208.0
+offset_left = -40.0
+offset_top = 160.0
+offset_right = 8.0
+offset_bottom = 200.0
 
 [connection signal="pressed" from="equipment/buttons/button_hat_left" to="." method="_on_button_hat_left_pressed"]
 [connection signal="pressed" from="equipment/buttons/button_hat_right" to="." method="_on_button_hat_right_pressed"]
