@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://cvjjfgbcsmv5t"]
+
+[ext_resource type="Script" path="res://menus/cosmetic_selector.gd" id="1_2w5xt"]
+[ext_resource type="Texture2D" uid="uid://dfne77u7s0d0c" path="res://assets/ui/container_cosmetic.png" id="1_dpvjl"]
+[ext_resource type="SpriteFrames" uid="uid://bsvml15ne3jhu" path="res://assets/characters/player/accessories/player_accessories.tres" id="2_fagwd"]
+[ext_resource type="SpriteFrames" uid="uid://duukh1em5rexv" path="res://assets/characters/player/player_skin.tres" id="3_38yv6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_apcyk"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6cwqp"]
+texture = ExtResource("1_dpvjl")
+modulate_color = Color(0.7, 0.7, 0.7, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_62m1f"]
+texture = ExtResource("1_dpvjl")
+modulate_color = Color(1.2, 1.2, 1.2, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h1ceb"]
+texture = ExtResource("1_dpvjl")
+modulate_color = Color(1.5, 1.5, 1.5, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mqga0"]
+texture = ExtResource("1_dpvjl")
+
+[node name="cosmetic_selector" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -198.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_2w5xt")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 64.0
+mouse_filter = 1
+theme_override_styles/focus = SubResource("StyleBoxEmpty_apcyk")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_6cwqp")
+theme_override_styles/hover = SubResource("StyleBoxTexture_62m1f")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h1ceb")
+theme_override_styles/normal = SubResource("StyleBoxTexture_mqga0")
+
+[node name="reward_accessory" type="AnimatedSprite2D" parent="."]
+position = Vector2(48, 48)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("2_fagwd")
+animation = &"plant_jump"
+
+[node name="reward_skin" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(48, 27)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("3_38yv6")
+animation = &"2_jump"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

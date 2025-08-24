@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://b8gq3tryuhkjf"]
+[gd_scene load_steps=22 format=3 uid="uid://b8gq3tryuhkjf"]
 
 [ext_resource type="Script" path="res://menus/craft_menu.gd" id="1_fxeqh"]
 [ext_resource type="Texture2D" uid="uid://bpp2bxffp4d66" path="res://assets/ui/equipment_container.png" id="1_jit7q"]
 [ext_resource type="PackedScene" uid="uid://dauxouih85yxb" path="res://menus/recipe_select.tscn" id="2_4ty2e"]
+[ext_resource type="PackedScene" uid="uid://cvjjfgbcsmv5t" path="res://menus/cosmetic_selector.tscn" id="3_iwm6j"]
 [ext_resource type="SpriteFrames" uid="uid://duukh1em5rexv" path="res://assets/characters/player/player_skin.tres" id="3_qhuf7"]
 [ext_resource type="SpriteFrames" uid="uid://bsvml15ne3jhu" path="res://assets/characters/player/accessories/player_accessories.tres" id="4_adnfl"]
 [ext_resource type="FontFile" uid="uid://camtosjq61o18" path="res://assets/ui/alagard.ttf" id="5_emg15"]
@@ -41,7 +42,7 @@ modulate_color = Color(1.5, 1.5, 1.5, 1)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lp33i"]
 texture = ExtResource("6_leto2")
 
-[node name="craft_menu" type="Control"]
+[node name="customization_menu" type="Control"]
 z_index = 1
 layout_mode = 3
 anchors_preset = 15
@@ -62,6 +63,7 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="recipes"]
+visible = false
 clip_contents = false
 layout_mode = 0
 offset_left = 17.0
@@ -135,6 +137,123 @@ layout_mode = 2
 mouse_filter = 1
 
 [node name="Control5" type="Control" parent="recipes/ScrollContainer/GridContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="acessories" type="ScrollContainer" parent="recipes"]
+clip_contents = false
+layout_mode = 0
+offset_left = 14.0
+offset_top = 40.0
+offset_right = 222.0
+offset_bottom = 386.0
+theme = SubResource("Theme_vgs7n")
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="VBoxContainer" parent="recipes/acessories"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 66
+alignment = 1
+
+[node name="Control4" type="Control" parent="recipes/acessories/GridContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Control6" type="Control" parent="recipes/acessories/GridContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="hattt" parent="recipes/acessories/GridContainer" instance=ExtResource("3_iwm6j")]
+layout_mode = 2
+
+[node name="cosmetic_selector1" parent="recipes/acessories/GridContainer" instance=ExtResource("3_iwm6j")]
+layout_mode = 2
+
+[node name="cosmetic_selector2" parent="recipes/acessories/GridContainer" instance=ExtResource("3_iwm6j")]
+layout_mode = 2
+
+[node name="cosmetic_selector3" parent="recipes/acessories/GridContainer" instance=ExtResource("3_iwm6j")]
+layout_mode = 2
+
+[node name="cosmetic_selector4" parent="recipes/acessories/GridContainer" instance=ExtResource("3_iwm6j")]
+layout_mode = 2
+
+[node name="cosmetic_selector5" parent="recipes/acessories/GridContainer" instance=ExtResource("3_iwm6j")]
+layout_mode = 2
+
+[node name="cosmetic_selector6" parent="recipes/acessories/GridContainer" instance=ExtResource("3_iwm6j")]
+layout_mode = 2
+
+[node name="Control3" type="Control" parent="recipes/acessories/GridContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Control7" type="Control" parent="recipes/acessories/GridContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Control5" type="Control" parent="recipes/acessories/GridContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="skins" type="ScrollContainer" parent="recipes"]
+clip_contents = false
+layout_mode = 0
+offset_left = 114.0
+offset_top = 40.0
+offset_right = 322.0
+offset_bottom = 386.0
+theme = SubResource("Theme_vgs7n")
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="VBoxContainer" parent="recipes/skins"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 66
+alignment = 1
+
+[node name="Control4" type="Control" parent="recipes/skins/GridContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Control6" type="Control" parent="recipes/skins/GridContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="cosmetic_selector1" parent="recipes/skins/GridContainer" instance=ExtResource("3_iwm6j")]
+layout_mode = 2
+
+[node name="cosmetic_selector2" parent="recipes/skins/GridContainer" instance=ExtResource("3_iwm6j")]
+layout_mode = 2
+
+[node name="cosmetic_selector3" parent="recipes/skins/GridContainer" instance=ExtResource("3_iwm6j")]
+layout_mode = 2
+
+[node name="cosmetic_selector4" parent="recipes/skins/GridContainer" instance=ExtResource("3_iwm6j")]
+layout_mode = 2
+
+[node name="cosmetic_selector5" parent="recipes/skins/GridContainer" instance=ExtResource("3_iwm6j")]
+layout_mode = 2
+cosmetic_name = "\"2\""
+cosmetic_type = "\"skin\""
+
+[node name="cosmetic_selector6" parent="recipes/skins/GridContainer" instance=ExtResource("3_iwm6j")]
+layout_mode = 2
+cosmetic_name = "\"1\""
+cosmetic_type = "\"skin\""
+
+[node name="Control3" type="Control" parent="recipes/skins/GridContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Control7" type="Control" parent="recipes/skins/GridContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Control5" type="Control" parent="recipes/skins/GridContainer"]
 layout_mode = 2
 mouse_filter = 1
 
@@ -242,19 +361,19 @@ icon = ExtResource("8_1f676")
 expand_icon = true
 metadata/_edit_use_anchors_ = true
 
-[node name="Button" type="Button" parent="equipment"]
-layout_mode = 0
-offset_left = -144.0
-offset_top = 152.0
-offset_right = -104.0
-offset_bottom = 192.0
-
 [node name="button_press" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_1tf8h")
 volume_db = -20.0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+offset_left = 24.0
+offset_top = 168.0
+offset_right = 72.0
+offset_bottom = 208.0
 
 [connection signal="pressed" from="equipment/buttons/button_hat_left" to="." method="_on_button_hat_left_pressed"]
 [connection signal="pressed" from="equipment/buttons/button_hat_right" to="." method="_on_button_hat_right_pressed"]
 [connection signal="pressed" from="equipment/buttons/button_body_left" to="." method="_on_button_body_left_pressed"]
 [connection signal="pressed" from="equipment/buttons/button_body_right" to="." method="_on_button_body_right_pressed"]
-[connection signal="pressed" from="equipment/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -3,114 +3,105 @@ extends Control
 @onready var hat_sprite := $equipment/AnimatedSprite2D/accessory
 @onready var skin_sprite := $equipment/AnimatedSprite2D
 
+@onready var cosmetic_selectors_acessories_path = $recipes/acessories/GridContainer
+@onready var cosmetic_selectors_skins_path = $recipes/skins/GridContainer
+
 var current_hat_index := 0
 var current_skin_index := 0
 
 func _ready() -> void:
-	# Ensure valid defaults
-	if Global.player_hat.is_empty() or Global.unlocked_hats.is_empty():
+	if Global.player_hat.is_empty():
 		Global.player_hat = "none"
-	if Global.player_skin.is_empty() or Global.unlocked_skins.is_empty():
+	if Global.player_skin.is_empty():
 		Global.player_skin = "1"
 	
 	load_player_customization()
+	#setup_cosmetic_selectors()
 	update_display()
 
 func load_player_customization():
-	current_hat_index = Global.unlocked_hats.find(Global.player_hat)
+	current_hat_index = Global.ALL_HATS.find(Global.player_hat)
 	if current_hat_index == -1:
 		current_hat_index = 0
-		Global.player_hat = Global.unlocked_hats[0] if !Global.unlocked_hats.is_empty() else "none"
+		Global.player_hat = "none"
 	
-	current_skin_index = Global.unlocked_skins.find(Global.player_skin)
+	current_skin_index = Global.ALL_SKINS.find(Global.player_skin)
 	if current_skin_index == -1:
 		current_skin_index = 0
-		Global.player_skin = Global.unlocked_skins[0] if !Global.unlocked_skins.is_empty() else "1"
+		Global.player_skin = "1"
 
 func update_display():
 	update_hat_display()
 	update_skin_display()
 
 func update_hat_display():
-	if !Global.unlocked_hats.is_empty() and current_hat_index < Global.unlocked_hats.size():
-		Global.player_hat = Global.unlocked_hats[current_hat_index]
+	if current_hat_index >= 0 and current_hat_index < Global.ALL_HATS.size():
+		Global.player_hat = Global.ALL_HATS[current_hat_index]
 		hat_sprite.play(Global.player_hat + "_jump")
 		Global.save_progress()
 
 func update_skin_display():
-	if !Global.unlocked_skins.is_empty() and current_skin_index < Global.unlocked_skins.size():
-		Global.player_skin = Global.unlocked_skins[current_skin_index]
+	if current_skin_index >= 0 and current_skin_index < Global.ALL_SKINS.size():
+		Global.player_skin = Global.ALL_SKINS[current_skin_index]
 		skin_sprite.play(Global.player_skin + "_jump")
 		Global.save_progress()
 
+#func setup_cosmetic_selectors():
+	## Accessories — match GridContainer children with ALL_HATS
+	#for i in range(cosmetic_selectors_acessories_path.get_child_count()):
+		#var selector = cosmetic_selectors_acessories_path.get_child(i)
+		#if selector.has_method("setup_selector") and i < Global.ALL_HATS.size():
+			#selector.setup_selector(Global.ALL_HATS[i], "hat", self)
+#
+	## Skins — match GridContainer children with ALL_SKINS
+	#for i in range(cosmetic_selectors_skins_path.get_child_count()):
+		#var selector = cosmetic_selectors_skins_path.get_child(i)
+		#if selector.has_method("setup_selector") and i < Global.ALL_SKINS.size():
+			#selector.setup_selector(Global.ALL_SKINS[i], "skin", self)
+
+func select_hat(name: String):
+	var idx = Global.ALL_HATS.find(name)
+	if idx != -1:
+		current_hat_index = idx
+		update_hat_display()
+
+func select_skin(name: String):
+	var idx = Global.ALL_SKINS.find(name)
+	if idx != -1:
+		current_skin_index = idx
+		update_skin_display()
+
+# Arrow buttons
 func _on_button_hat_right_pressed():
 	$button_press.play()
-	if Global.unlocked_hats.size() > 1:
-		current_hat_index = (current_hat_index + 1) % Global.unlocked_hats.size()
-		update_hat_display()
+	current_hat_index = (current_hat_index + 1) % Global.ALL_HATS.size()
+	update_hat_display()
 
 func _on_button_hat_left_pressed():
 	$button_press.play()
-	if Global.unlocked_hats.size() > 1:
-		current_hat_index = (current_hat_index - 1) % Global.unlocked_hats.size()
-		if current_hat_index < 0:
-			current_hat_index = Global.unlocked_hats.size() - 1
-		update_hat_display()
+	current_hat_index = (current_hat_index - 1 + Global.ALL_HATS.size()) % Global.ALL_HATS.size()
+	update_hat_display()
 
 func _on_button_body_right_pressed():
 	$button_press.play()
-	if Global.unlocked_skins.size() > 1:
-		current_skin_index = (current_skin_index + 1) % Global.unlocked_skins.size()
-		update_skin_display()
+	current_skin_index = (current_skin_index + 1) % Global.ALL_SKINS.size()
+	update_skin_display()
 
 func _on_button_body_left_pressed():
 	$button_press.play()
-	if Global.unlocked_skins.size() > 1:
-		current_skin_index = (current_skin_index - 1) % Global.unlocked_skins.size()
-		if current_skin_index < 0:
-			current_skin_index = Global.unlocked_skins.size() - 1
-		update_skin_display()
-
+	current_skin_index = (current_skin_index - 1 + Global.ALL_SKINS.size()) % Global.ALL_SKINS.size()
+	update_skin_display()
 
 func _on_button_pressed() -> void:
-	#Global.unlock_reward("hat")
-	#Global.unlock_reward("plant")
-	#Global.unlock_reward("spikes")
-	#Global.unlock_reward("crest")
-	#Global.unlock_reward("books")
-	#Global.unlock_reward("horns")
-	#Global.unlock_reward("3")
-	#Global.unlock_reward("4")
-	#Global.unlock_reward("2")
-	#Global.unlock_reward("5")
-	# Accessories
-	Global.collect_ingredient("hat_1")
-	Global.collect_ingredient("hat_2")
-	Global.collect_ingredient("spikes_1")
-	Global.collect_ingredient("spikes_2")
-	
-	Global.collect_ingredient("plant_2")
-	Global.collect_ingredient("crest_1")
-	Global.collect_ingredient("crest_2")
-	Global.collect_ingredient("books_1")
-	Global.collect_ingredient("books_2")
-	Global.collect_ingredient("horns_1")
-	Global.collect_ingredient("horns_2")
-	
-	# Skins
-	Global.collect_ingredient("2_1")
-	Global.collect_ingredient("2_2")
-	Global.collect_ingredient("3_1")
-	Global.collect_ingredient("3_2")
-	Global.collect_ingredient("4_1")
-	Global.collect_ingredient("4_2")
-	Global.collect_ingredient("5_1")
-	Global.collect_ingredient("5_2")
-	
-	print("All ingredients collected!")
-	Global.save_progress()  # Don't forget to save!
-	var lvl = 2
-	while lvl != 31:
-		Global.unlock_next_level(lvl)
-		lvl = lvl +1
-	pass # Replace with function body.
+	Global.unlock_reward("hat") 
+	Global.unlock_reward("plant") 
+	Global.unlock_reward("spikes")
+	Global.unlock_reward("crest") 
+	Global.unlock_reward("books") 
+	Global.unlock_reward("horns") 
+	Global.unlock_reward("2") 
+	Global.unlock_reward("3") 
+	Global.unlock_reward("4") 
+	Global.unlock_reward("5") 
+	Global.save_progress()
+	pass

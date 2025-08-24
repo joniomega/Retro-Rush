@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
-var is_on_moving_platform := false  # Add this with other variables
+# Movement variables
+var is_on_moving_platform := false
 var isdead : bool = false
 const SPEED = 80.0
 const JUMP_VELOCITY = -350.0
@@ -9,8 +10,11 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var accessory = Global.player_hat
 @export var skin = Global.player_skin
 
+# Score variables
 @export var score :int = 0
 var displayed_score := 0
+
+# Node references
 @onready var score_label = $Control/CanvasLayer/score
 @onready var animation = $AnimatedSprite2D
 @onready var anim_accessory = $AnimatedSprite2D/accessory
@@ -18,18 +22,23 @@ var displayed_score := 0
 @onready var left_button = $Control/CanvasLayer/left_button
 @onready var right_button = $Control/CanvasLayer/right_button
 
-# Camera will stay locked to this global X position
+# Animation and movement
 var camera_lock_x: float
 var is_pushing_wall := false
 var current_animation := ""
-var movement_started := false  # New flag to track if movement has begun
-
+var movement_started := false
 var move_direction := 0  # -1 for left, 1 for right, 0 for no movement
-#PAPER FLIP AND SCUASH
+
+# Paper flip and squash
 var current_tween: Tween = null
 var flip_duration := 0.2
 var jump_squash_scale := Vector2(1.1, 0.9)
 var land_squash_scale := Vector2(0.9, 1.1)
+
+# Swipe detection variables
+var swipe_start := Vector2.ZERO
+var swipe_min_distance := 20  # Minimum swipe distance in pixels
+var is_swiping := false
 
 func _ready() -> void:
 	if Global.unlocked_levels.size() == 1 && Global.unlocked_levels[0] == 1:
@@ -40,15 +49,48 @@ func _ready() -> void:
 	else:
 		$Control/CanvasLayer/tutorial.visible = false
 	$Control/CanvasLayer/special_rewards.visible = false
-	# Set initial camera lock position (center of screen)
+	
+	# Set initial camera lock position
 	camera_lock_x = 112
-	camera.position.x = 0  # Reset local camera offset
-	_play_animation("idle")  # Start idle instead of moving
-	velocity.x = 0  # Start with no movement
+	camera.position.x = 0
+	_play_animation("idle")
+	velocity.x = 0
 
-	# Connect touch buttons to movement functions
+func _input(event: InputEvent) -> void:
+	if isdead:
+		return
+		
+	# Detect touch start
+	if event is InputEventScreenTouch:
+		if event.pressed:
+			swipe_start = event.position
+			is_swiping = true
+		elif is_swiping:
+			is_swiping = false
+			var swipe_end = event.position
+			_process_swipe(swipe_end)
+	
+	# Mouse swipe support (for testing in editor)
+	elif event is InputEventMouseButton:
+		if event.pressed:
+			swipe_start = event.position
+			is_swiping = true
+		elif is_swiping:
+			is_swiping = false
+			_process_swipe(event.position)
+
+func _process_swipe(end_position: Vector2) -> void:
+	var swipe = end_position - swipe_start
+	
+	# Check if it's a valid horizontal swipe
+	if abs(swipe.x) > swipe_min_distance && abs(swipe.x) > abs(swipe.y):
+		if swipe.x > 0:  # Right swipe
+			_on_right_button_pressed()
+		else:  # Left swipe
+			_on_left_button_pressed()
 
 func _physics_process(delta: float) -> void:
+	# Keyboard input simulation
 	if Input.is_action_just_pressed("ui_left"):
 		_on_left_button_pressed()
 	if Input.is_action_just_pressed("ui_right"):
@@ -92,8 +134,6 @@ func _physics_process(delta: float) -> void:
 				reset_scale()
 				animation.flip_h = move_direction < 0
 				anim_accessory.flip_h = move_direction < 0
-				
-				
 			else:
 				_play_animation("idle")
 				reset_scale()
@@ -130,8 +170,8 @@ func scale_sprite():
 	# Scale X back to original in 0.15 seconds (Y remains unchanged)
 	tween.tween_property($AnimatedSprite2D, "scale", original_scale, 0.1)\
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
 func squash_and_stretch() -> void:
-	
 	if current_tween:
 		current_tween.kill()
 	
@@ -146,6 +186,7 @@ func squash_and_stretch() -> void:
 			current_tween.tween_property(animation, "scale", land_squash_scale, 0.1)
 	else:
 		current_tween.tween_property(animation, "scale", Vector2(1, 1), 0.2)
+
 func reset_scale() -> void:
 	if current_tween:
 		current_tween.kill()
@@ -197,7 +238,6 @@ func _on_left_button_pressed() -> void:
 			scale_sprite()
 		move_direction = -1
 
-
 func _on_right_button_pressed() -> void:
 	if isdead == false:
 		if move_direction != 1:
@@ -209,10 +249,10 @@ func _on_button_home_pressed() -> void:
 	TransitionScreen.transition()
 	await TransitionScreen.on_transition_finished
 	tree.change_scene_to_file("res://menus/mainmenu.tscn")
-	pass # Replace with function body.
 
 func win(type:String):
 	$Control/CanvasLayer/ButtonHome.disabled = true
+	$Control/CanvasLayer/ButtonPause.visible = false
 	Global.points = Global.points + score
 	$Control/CanvasLayer/win/AnimatedSprite2D.play(type)
 	isdead = true
@@ -224,13 +264,13 @@ func win(type:String):
 	TransitionScreen.transition()
 	await TransitionScreen.on_transition_finished
 	tree.change_scene_to_file("res://menus/mainmenu.tscn")
-	pass
+
 func win_special(type:String):
 	$Control/CanvasLayer/special_rewards.visible = true
 	$Control/CanvasLayer/ButtonHome.disabled = true
+	$Control/CanvasLayer/ButtonPause.visible = false
 	$Control/CanvasLayer/special_rewards.setup_rewards()
 	var holo_material = preload("res://assets/shaders/holo.tres")
-	#$Control/CanvasLayer/win.material = holo_material
 	$Control/CanvasLayer/win/AnimatedSprite2D.material = holo_material
 	Global.points = Global.points + score
 	$Control/CanvasLayer/win/AnimatedSprite2D.play(type)
@@ -238,14 +278,13 @@ func win_special(type:String):
 	_play_animation("idle")
 	$animation.play("win_special")
 	get_parent().stop_music()
-	pass
+
 func win_ranked(type:String):
-	
 	if score >= Global.ranked_opponent_score:
 		$AudioStreamPlayer2.play()
-		# Existing visual effects code...
 		$Control/CanvasLayer/special_rewards.visible = true
 		$Control/CanvasLayer/ButtonHome.disabled = true
+		$Control/CanvasLayer/ButtonPause.visible = false
 		$Control/CanvasLayer/special_rewards.setup_rewards()
 		var holo_material = preload("res://assets/shaders/holo.tres")
 		$Control/CanvasLayer/win/AnimatedSprite2D.material = holo_material
@@ -268,7 +307,6 @@ func win_ranked(type:String):
 		if Global.firebase_id == "":
 			push_error("No Firebase ID - cannot update records")
 			return
-		
 		
 		var http_request = HTTPRequest.new()
 		add_child(http_request)
@@ -293,24 +331,16 @@ func _on_get_data_completed(result, response_code, headers, body, http_request):
 	if player_data == null:
 		player_data = {}
 	
-	
 	var current_wins = player_data.get("wins", 0)
-	print("Current wins from Firebase:", current_wins)  # Debug print
-	
+	print("Current wins from Firebase:", current_wins)
 	
 	var scores = player_data.get("score", {"lvl1": 0, "lvl2": 0, "lvl3": 0})
-	
-	# Only update score if new score is higher
 	var current_level_key = "lvl%d" % Global.ranked_level
 	var current_level_score = scores.get(current_level_key, 0)
 	var should_update_score = score > current_level_score
 	
-	
 	var updates = {}
-	
-	
 	updates["wins"] = current_wins + 1
-	
 	
 	if should_update_score:
 		updates["score/%s" % current_level_key] = score
@@ -318,7 +348,6 @@ func _on_get_data_completed(result, response_code, headers, body, http_request):
 	else:
 		print("Keeping existing level %d score of %d (new score %d was lower)" % [Global.ranked_level, current_level_score, score])
 	
-
 	var update_request = HTTPRequest.new()
 	add_child(update_request)
 	update_request.request_completed.connect(_on_update_completed.bind(update_request))
@@ -342,12 +371,12 @@ func _on_update_completed(result, response_code, headers, body, http_request):
 		push_error("Update failed - Status: %d" % response_code)
 		if body:
 			print("Error response:", body.get_string_from_utf8())
+
 func die_ranked():
 	if isdead == true:
 		pass
 	else:
 		isdead = true
-		
 		$animation.play("die")
 		$sound_die.play()
 		_play_animation("fall")
@@ -367,5 +396,6 @@ func die_ranked():
 		TransitionScreen.transition()
 		await TransitionScreen.on_transition_finished
 		tree.change_scene_to_file("res://menus/mainmenu.tscn")
+
 func get_score() -> int:
 	return score

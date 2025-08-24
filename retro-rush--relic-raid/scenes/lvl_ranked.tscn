@@ -143,6 +143,7 @@ text = "0
 horizontal_alignment = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Control"]
+layer = 6
 
 [node name="ColorRect" type="ColorRect" parent="Control/CanvasLayer"]
 material = SubResource("ShaderMaterial_6kq6i")

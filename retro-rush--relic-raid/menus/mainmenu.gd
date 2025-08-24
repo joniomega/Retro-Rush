@@ -10,14 +10,19 @@ var global = Global
 
 @onready var levels_scroll = $levels/ScrollContainer
 @onready var bottompart = $static_ui/menu
+
 # Store original positions
 var level_pos: Vector2
 var craft_pos: Vector2
 var reward_pos: Vector2
 var current_menu = "levels"
 
+# Swipe detection variables
+var swipe_start = null
+var minimum_drag = 100  # Minimum pixels to consider it a swipe
+
 func _ready() -> void:
-	#CHECK IF LVL 1 IS COMPLETE:
+	# CHECK IF LVL 1 IS COMPLETE:
 	if global.unlocked_levels.size() == 1 && global.unlocked_levels[0] == 1:
 		global.selected_level = 1
 		var tree = get_tree()
@@ -29,6 +34,7 @@ func _ready() -> void:
 	$static_ui/points.text = "[center][wave][color=#5c3aa1][b]"+str(global.points)+"p[/b][/color][/wave][/center]"
 	if global.points == 0:
 		$static_ui/points.text = "[center][wave][color=#5c3aa1][b]"+"000"+"p[/b][/color][/wave][/center]"
+	
 	# Save initial positions
 	level_pos = menu_levels.position
 	craft_pos = menu_craft.position
@@ -52,7 +58,8 @@ func update_level_scroll():
 
 func move_menus(target_menu: String):
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
-	var duration = 1
+	var duration = 0.3  # Reduced duration for swipe responsiveness
+	
 	match target_menu:
 		"levels":
 			tween.tween_property(menu_levels, "position", level_pos, duration)
@@ -93,3 +100,48 @@ func _on_rewards_pressed() -> void:
 	$button_press.play()
 	if current_menu != "rewards":
 		move_menus("rewards")
+
+# Improved touch input handling for swipe detection
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventScreenTouch:
+		if event.pressed:
+			swipe_start = event.position
+		elif swipe_start != null:  # Only detect swipe if we had a start position
+			_swipe_detect(event.position)
+			swipe_start = null
+	
+	# Also allow mouse swipes for testing in editor
+	if event is InputEventMouseButton:
+		if event.pressed:
+			swipe_start = event.position
+		elif swipe_start != null:  # Only detect swipe if we had a start position
+			_swipe_detect(event.position)
+			swipe_start = null
+
+func _swipe_detect(end_position: Vector2) -> void:
+	if swipe_start == null:
+		return
+	
+	var swipe = end_position - swipe_start
+	
+	# Only consider horizontal swipes
+	if abs(swipe.x) > minimum_drag and abs(swipe.x) > abs(swipe.y):
+		$button_press.play()  # Play sound on swipe
+		
+		if swipe.x > 0:  # Swipe right (finger moves to the right)
+			match current_menu:
+				"levels":
+					move_menus("craft")
+				"craft":
+					move_menus("rewards")
+				"rewards":
+					move_menus("levels")  # Wrap around
+		
+		elif swipe.x < 0:  # Swipe left (finger moves to the left)
+			match current_menu:
+				"levels":
+					move_menus("rewards")  # Wrap around
+				"craft":
+					move_menus("levels")
+				"rewards":
+					move_menus("craft")

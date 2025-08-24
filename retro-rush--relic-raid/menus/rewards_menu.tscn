@@ -36,10 +36,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -216.0
+offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+mouse_filter = 1
 script = ExtResource("1_tj4mn")
 
 [node name="IconPvp" type="Sprite2D" parent="."]
@@ -353,5 +353,6 @@ offset_left = 16.0
 offset_top = 100.0
 offset_right = 16.0
 offset_bottom = 100.0
+mouse_filter = 1
 
 [connection signal="pressed" from="GridContainer/config/save" to="." method="_on_save_pressed"]

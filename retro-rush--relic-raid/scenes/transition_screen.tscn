@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dgcbysavx1b6h"]
+[gd_scene load_steps=8 format=3 uid="uid://dgcbysavx1b6h"]
 
 [ext_resource type="Script" path="res://scenes/transition_screen.gd" id="1_wchs1"]
 [ext_resource type="AudioStream" uid="uid://qfgg6gd32frt" path="res://assets/sounds/soundeffects/sound_button-old-radio-click-97549.mp3" id="2_eyiol"]
+[ext_resource type="Texture2D" uid="uid://cv35bwte3o8g5" path="res://assets/ui/transition_bottom.png" id="3_pd3sa"]
 
 [sub_resource type="Animation" id="Animation_e8sft"]
 length = 0.001
@@ -17,10 +18,34 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bottom:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(112, 240)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Top:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(112, 153)]
+}
 
 [sub_resource type="Animation" id="Animation_5ny0e"]
 resource_name = "fade_to_black"
-length = 0.5
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -28,15 +53,39 @@ tracks/0/path = NodePath("ColorRect:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.433333),
+"times": PackedFloat32Array(0, 0.533333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bottom:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.566667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(112, 550), Vector2(112, 240)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Top:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.566667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(112, -140), Vector2(112, 153)]
+}
 
 [sub_resource type="Animation" id="Animation_0qx2e"]
 resource_name = "fade_to_normal"
-length = 0.5
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -44,10 +93,34 @@ tracks/0/path = NodePath("ColorRect:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.433333),
+"times": PackedFloat32Array(0, 0.533333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bottom:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.566667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(112, 240), Vector2(112, 550)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Top:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.566667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(112, 153), Vector2(112, -140)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kv7jc"]
@@ -66,6 +139,11 @@ libraries = {
 "": SubResource("AnimationLibrary_kv7jc")
 }
 
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kv7jc")
+}
+
 [node name="ColorRect" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0)
 z_index = 10
@@ -79,3 +157,15 @@ color = Color(0.101961, 0.0392157, 0.227451, 1)
 [node name="button_press" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_eyiol")
 volume_db = -10.0
+
+[node name="Bottom" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(112, 240)
+texture = ExtResource("3_pd3sa")
+
+[node name="Top" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(112, 153)
+texture = ExtResource("3_pd3sa")
+flip_h = true
+flip_v = true

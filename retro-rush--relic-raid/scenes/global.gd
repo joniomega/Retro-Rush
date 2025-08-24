@@ -14,8 +14,8 @@ var player_hat: String = "none"
 var player_skin: String = "1"
 var player_name: String = ""
 var firebase_id: String = ""
-var unlocked_hats: Array = []
-var unlocked_skins: Array = []
+var unlocked_hats: Array = []   # always starts with "none" after update_unlocked_items()
+var unlocked_skins: Array = []  # always starts with "1" after update_unlocked_items()
 
 # Crafting System
 const CRAFTABLE_ITEMS := {
@@ -26,7 +26,7 @@ const CRAFTABLE_ITEMS := {
 var collected_ingredients: Dictionary = {}
 var unlocked_rewards: Dictionary = {}
 
-# Add these variables at the top with other variables
+# Ranked (unchanged)
 var ranked_opponent_name: String = "none"
 var ranked_opponent_skin: String = "1"
 var ranked_opponent_accessory: String = "none"
@@ -41,21 +41,21 @@ func _ready() -> void:
 			collected_ingredients[item + "_1"] = false
 			collected_ingredients[item + "_2"] = false
 			unlocked_rewards[item] = false
-	
+
 	# Default unlocked items
 	unlocked_rewards["1"] = true
-	
+
 	load_progress()
 	update_unlocked_items()
 
 func update_unlocked_items():
 	unlocked_hats = ["none"]
 	unlocked_skins = ["1"]
-	
+
 	for hat in ALL_HATS:
 		if hat != "none" and unlocked_rewards.get(hat, false):
 			unlocked_hats.append(hat)
-	
+
 	for skin in ALL_SKINS:
 		if skin != "1" and unlocked_rewards.get(skin, false):
 			unlocked_skins.append(skin)
@@ -73,7 +73,7 @@ func save_progress() -> void:
 		"player_name": player_name,
 		"firebase_id": firebase_id
 	}
-	
+
 	var file = FileAccess.open("user://save.dat", FileAccess.WRITE)
 	if file:
 		file.store_var(save_data)
@@ -83,11 +83,11 @@ func save_progress() -> void:
 func load_progress() -> void:
 	if not FileAccess.file_exists("user://save.dat"):
 		return
-	
+
 	var file = FileAccess.open("user://save.dat", FileAccess.READ)
 	if file:
 		var save_data = file.get_var()
-		
+
 		unlocked_levels = save_data.get("unlocked_levels", [1])
 		points = save_data.get("points", 1000)
 		player_hat = save_data.get("player_hat", "none")
@@ -98,7 +98,7 @@ func load_progress() -> void:
 		unlocked_skins = save_data.get("unlocked_skins", ["1"])
 		player_name = save_data.get("player_name", "")
 		firebase_id = save_data.get("firebase_id", "")
-		
+
 		# Ensure new items are tracked
 		for item_type in CRAFTABLE_ITEMS:
 			for item in CRAFTABLE_ITEMS[item_type]:
@@ -108,7 +108,7 @@ func load_progress() -> void:
 					collected_ingredients[item + "_2"] = false
 				if not unlocked_rewards.has(item):
 					unlocked_rewards[item] = false
-		
+
 		update_unlocked_items()
 	else:
 		push_error("Failed to load game: ", FileAccess.get_open_error())
@@ -124,14 +124,12 @@ func collect_ingredient(ingredient: String) -> void:
 		save_progress()
 
 func unlock_reward(reward: String) -> void:
-	if (reward in CRAFTABLE_ITEMS["accessories"] or 
-		reward in CRAFTABLE_ITEMS["skins"]):
-		
+	if (reward in CRAFTABLE_ITEMS["accessories"] or reward in CRAFTABLE_ITEMS["skins"]):
 		unlocked_rewards[reward] = true
 		update_unlocked_items()
 		save_progress()
 
-# Add these functions
+# Ranked helpers (unchanged)
 func set_ranked_match(opponent_name: String, score: int, level: int):
 	ranked_opponent_name = opponent_name
 	ranked_opponent_score = score

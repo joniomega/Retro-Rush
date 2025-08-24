@@ -131,7 +131,7 @@ offset_left = -224.0
 offset_bottom = 390.0
 mouse_filter = 1
 
-[node name="craft_menu" parent="craft" instance=ExtResource("4_pepsx")]
+[node name="customization_menu" parent="craft" instance=ExtResource("4_pepsx")]
 layout_mode = 1
 
 [node name="levels" type="Control" parent="."]
@@ -479,6 +479,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Postprocess"]
+layer = 6
 
 [node name="ColorRect" type="ColorRect" parent="Postprocess/CanvasLayer"]
 material = SubResource("ShaderMaterial_rgsia")

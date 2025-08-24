@@ -7,7 +7,8 @@ signal on_transition_finished
 func _ready() -> void:
 	color_rect.visible = false
 	animation_player.animation_finished.connect(_on_animation_finished)
-	pass # Replace with function body.
+	
+	$AnimationPlayer2.play("fade_to_normal")
 func _on_animation_finished(anim_name):
 	if anim_name == "fade_to_black":
 		on_transition_finished.emit()

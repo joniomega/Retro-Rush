@@ -117,6 +117,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Control"]
+layer = 6
 
 [node name="ColorRect" type="ColorRect" parent="Control/CanvasLayer"]
 material = SubResource("ShaderMaterial_6kq6i")
