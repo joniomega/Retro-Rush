@@ -307,11 +307,11 @@ shape = SubResource("RectangleShape2D_tnmqm")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(16, 16)
 sprite_frames = ExtResource("2_tlstg")
-animation = &"4_jump"
+animation = &"6_walk"
 
 [node name="accessory" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
 sprite_frames = ExtResource("3_q0rdt")
-animation = &"candle_jump"
+animation = &"candle_walk"
 
 [node name="particles_die" type="CPUParticles2D" parent="."]
 position = Vector2(16, 21)

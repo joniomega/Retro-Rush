@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cvjjfgbcsmv5t"]
+[gd_scene load_steps=14 format=3 uid="uid://cvjjfgbcsmv5t"]
 
 [ext_resource type="Script" path="res://menus/cosmetic_selector.gd" id="1_2w5xt"]
 [ext_resource type="Texture2D" uid="uid://dfne77u7s0d0c" path="res://assets/ui/container_cosmetic.png" id="1_dpvjl"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://daf8ft2va82s2" path="res://assets/ui/container_cosmetic_disabled.png" id="2_xqf3c"]
 [ext_resource type="SpriteFrames" uid="uid://duukh1em5rexv" path="res://assets/characters/player/player_skin.tres" id="3_38yv6"]
 [ext_resource type="Texture2D" uid="uid://bt3jy30wrujv4" path="res://assets/ui/bald.png" id="5_ungrj"]
+[ext_resource type="AudioStream" uid="uid://c5tdbhmgpgvun" path="res://assets/sounds/soundeffects/sound_button.mp3" id="7_lcpha"]
+[ext_resource type="Texture2D" uid="uid://bbn7cjk6253cn" path="res://assets/ui/icon_exclamation.png" id="8_7pgcp"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_apcyk"]
 
@@ -62,5 +64,14 @@ animation = &"2_jump"
 position = Vector2(48, 30)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("5_ungrj")
+
+[node name="button_press" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_lcpha")
+volume_db = -20.0
+
+[node name="IconExclamation" type="Sprite2D" parent="."]
+position = Vector2(11, 10)
+scale = Vector2(2, 2)
+texture = ExtResource("8_7pgcp")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

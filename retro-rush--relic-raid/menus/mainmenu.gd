@@ -21,27 +21,33 @@ var current_menu = "levels"
 var swipe_start = null
 var minimum_drag = 100  # Minimum pixels to consider it a swipe
 
+# Colors for button highlight
+const ACTIVE_COLOR := Color(1.2, 1.2, 0.4, 1.0)
+const INACTIVE_COLOR := Color(1, 1, 1, 1)
+
 func _ready() -> void:
 	# CHECK IF LVL 1 IS COMPLETE:
-	if global.unlocked_levels.size() == 1 && global.unlocked_levels[0] == 1:
+	if global.unlocked_levels.size() == 1 and global.unlocked_levels[0] == 1:
 		global.selected_level = 1
 		var tree = get_tree()
 		tree.change_scene_to_file("res://scenes/lvl_0.tscn")
 		return
-	
+	$static_ui/menu/craft/IconExclamation.visible = false
+	if global.unlocked_recent != "":
+		$static_ui/menu/craft/IconExclamation.visible = true
 	global.selected_level = 0
 	global.selected_level_special = false
-	$static_ui/points.text = "[center][wave][color=#5c3aa1][b]"+str(global.points)+"p[/b][/color][/wave][/center]"
+	$static_ui/points.text = "[center][wave][color=#5c3aa1][b]" + str(global.points) + "p[/b][/color][/wave][/center]"
 	if global.points == 0:
-		$static_ui/points.text = "[center][wave][color=#5c3aa1][b]"+"000"+"p[/b][/color][/wave][/center]"
+		$static_ui/points.text = "[center][wave][color=#5c3aa1][b]000p[/b][/color][/wave][/center]"
 	
 	# Save initial positions
 	level_pos = menu_levels.position
 	craft_pos = menu_craft.position
 	reward_pos = menu_rewards.position
 	
-	# Focus levels button by default
-	goto_levels.grab_focus()
+	# Highlight levels button by default
+	_set_menu_highlight(goto_levels)
 	
 	# Hide other menus initially
 	menu_craft.position.x = -get_viewport_rect().size.x
@@ -53,8 +59,7 @@ func _ready() -> void:
 func update_level_scroll():
 	if global.unlocked_levels.size() > 0:
 		var target_scroll = (global.unlocked_levels.max() - 1) * 60
-		create_tween().tween_property(levels_scroll, "scroll_vertical", 
-			target_scroll, 1.5).set_trans(Tween.TRANS_QUINT)
+		create_tween().tween_property(levels_scroll, "scroll_vertical", target_scroll, 1.5).set_trans(Tween.TRANS_QUINT)
 
 func move_menus(target_menu: String):
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
@@ -63,28 +68,32 @@ func move_menus(target_menu: String):
 	match target_menu:
 		"levels":
 			tween.tween_property(menu_levels, "position", level_pos, duration)
-			tween.parallel().tween_property(menu_craft, "position", 
-				Vector2(-get_viewport_rect().size.x, craft_pos.y), duration)
-			tween.parallel().tween_property(menu_rewards, "position", 
-				Vector2(get_viewport_rect().size.x, reward_pos.y), duration)
-			goto_levels.grab_focus()
+			tween.parallel().tween_property(menu_craft, "position", Vector2(-get_viewport_rect().size.x, craft_pos.y), duration)
+			tween.parallel().tween_property(menu_rewards, "position", Vector2(get_viewport_rect().size.x, reward_pos.y), duration)
+			_set_menu_highlight(goto_levels)
 			
 		"craft":
-			tween.tween_property(menu_levels, "position", 
-				Vector2(get_viewport_rect().size.x, level_pos.y), duration)
+			tween.tween_property(menu_levels, "position", Vector2(get_viewport_rect().size.x, level_pos.y), duration)
 			tween.parallel().tween_property(menu_craft, "position", level_pos, duration)
-			tween.parallel().tween_property(menu_rewards, "position", 
-				Vector2(get_viewport_rect().size.x * 2, reward_pos.y), duration)
-			goto_craft.grab_focus()
+			tween.parallel().tween_property(menu_rewards, "position", Vector2(get_viewport_rect().size.x * 2, reward_pos.y), duration)
+			_set_menu_highlight(goto_craft)
 			
 		"rewards":
-			tween.tween_property(menu_levels, "position", 
-				Vector2(-get_viewport_rect().size.x, level_pos.y), duration)
-			tween.parallel().tween_property(menu_craft, "position", 
-				Vector2(-get_viewport_rect().size.x * 2, craft_pos.y), duration)
+			tween.tween_property(menu_levels, "position", Vector2(-get_viewport_rect().size.x, level_pos.y), duration)
+			tween.parallel().tween_property(menu_craft, "position", Vector2(-get_viewport_rect().size.x * 2, craft_pos.y), duration)
 			tween.parallel().tween_property(menu_rewards, "position", level_pos, duration)
-			goto_rewards.grab_focus()
+			_set_menu_highlight(goto_rewards)
+	
 	current_menu = target_menu
+
+func _set_menu_highlight(active_button: Button) -> void:
+	# Reset all buttons to inactive
+	goto_levels.modulate = INACTIVE_COLOR
+	goto_craft.modulate = INACTIVE_COLOR
+	goto_rewards.modulate = INACTIVE_COLOR
+	
+	# Highlight the active one
+	active_button.modulate = ACTIVE_COLOR
 
 func _on_levels_pressed() -> void:
 	$button_press.play()
@@ -92,6 +101,7 @@ func _on_levels_pressed() -> void:
 		move_menus("levels")
 
 func _on_craft_pressed() -> void:
+	$static_ui/menu/craft/IconExclamation.visible = false
 	$button_press.play()
 	if current_menu != "craft":
 		move_menus("craft")
@@ -128,7 +138,7 @@ func _swipe_detect(end_position: Vector2) -> void:
 	if abs(swipe.x) > minimum_drag and abs(swipe.x) > abs(swipe.y):
 		$button_press.play()  # Play sound on swipe
 		
-		if swipe.x > 0:  # Swipe right (finger moves to the right)
+		if swipe.x > 0:  # Swipe right
 			match current_menu:
 				"levels":
 					move_menus("craft")
@@ -137,7 +147,7 @@ func _swipe_detect(end_position: Vector2) -> void:
 				"rewards":
 					move_menus("levels")  # Wrap around
 		
-		elif swipe.x < 0:  # Swipe left (finger moves to the left)
+		elif swipe.x < 0:  # Swipe left
 			match current_menu:
 				"levels":
 					move_menus("rewards")  # Wrap around

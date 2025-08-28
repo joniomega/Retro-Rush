@@ -103,14 +103,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_ohst2")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_wb5r4")
 theme_override_styles/normal = SubResource("StyleBoxTexture_q0d82")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="takeall"]
-position = Vector2(134, 160)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_naixw")
-animation = &"ad"
-
 [node name="Label" type="Label" parent="takeall"]
-visible = false
 offset_left = 55.0
 offset_top = 151.0
 offset_right = 163.0
@@ -121,19 +114,25 @@ theme_override_colors/font_outline_color = Color(0.133333, 0.101961, 0.231373, 1
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("2_t5b7w")
 theme_override_font_sizes/font_size = 16
-text = "TAKE ALL"
+text = "GET"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="takeall"]
+position = Vector2(152, 160)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_naixw")
+animation = &"ad"
 
 [node name="reward_accessory" type="AnimatedSprite2D" parent="takeall"]
-position = Vector2(94, 178)
+position = Vector2(112, 178)
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("7_yuep4")
-animation = &"spikes_jump"
+animation = &"plant_jump"
 
 [node name="reward_skin" type="AnimatedSprite2D" parent="takeall"]
-position = Vector2(92, 155)
+position = Vector2(110, 155)
 scale = Vector2(1.5, 1.5)
 sprite_frames = ExtResource("8_trjha")
-animation = &"2_jump"
+animation = &"6_jump"
 
 [node name="Button" type="Button" parent="takeall"]
 offset_left = 84.0

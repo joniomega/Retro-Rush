@@ -85,7 +85,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_0qx2e"]
 resource_name = "fade_to_normal"
-length = 0.6
+length = 0.9
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -105,10 +105,10 @@ tracks/1/path = NodePath("Bottom:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.566667),
+"times": PackedFloat32Array(0, 0.866667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(112, 240), Vector2(112, 550)]
+"values": [Vector2(112, 240), Vector2(112, 700)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -161,6 +161,11 @@ volume_db = -10.0
 [node name="Bottom" type="Sprite2D" parent="."]
 z_index = 10
 position = Vector2(112, 240)
+texture = ExtResource("3_pd3sa")
+
+[node name="Bottom2" type="Sprite2D" parent="Bottom"]
+show_behind_parent = true
+position = Vector2(0, 158)
 texture = ExtResource("3_pd3sa")
 
 [node name="Top" type="Sprite2D" parent="."]

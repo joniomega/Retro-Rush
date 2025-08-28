@@ -35,9 +35,7 @@ VScrollBar/styles/grabber_pressed = SubResource("StyleBoxEmpty_4qd1j")
 VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_358cn")
 VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_x8ldy")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h3v6r"]
-texture = ExtResource("6_eh4l7")
-modulate_color = Color(1.2, 1.2, 0.4, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7ao8a"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k73vr"]
 texture = ExtResource("6_eh4l7")
@@ -50,9 +48,7 @@ modulate_color = Color(1.5, 1.5, 1.5, 1)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ut1fv"]
 texture = ExtResource("6_eh4l7")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iveyr"]
-texture = ExtResource("6_imw26")
-modulate_color = Color(1.2, 1.2, 0.4, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_awlqj"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pwvs3"]
 texture = ExtResource("6_imw26")
@@ -65,9 +61,7 @@ modulate_color = Color(1.5, 1.5, 1.5, 1)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_faug7"]
 texture = ExtResource("6_imw26")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dpsj7"]
-texture = ExtResource("8_tvihv")
-modulate_color = Color(1.2, 1.2, 0.4, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0b6mv"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h3u65"]
 texture = ExtResource("8_tvihv")
@@ -412,7 +406,7 @@ anchor_bottom = 1.0
 offset_top = -80.0
 offset_right = 80.0
 grow_vertical = 0
-theme_override_styles/focus = SubResource("StyleBoxTexture_h3v6r")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7ao8a")
 theme_override_styles/hover = SubResource("StyleBoxTexture_k73vr")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_brgum")
 theme_override_styles/normal = SubResource("StyleBoxTexture_ut1fv")
@@ -420,7 +414,6 @@ text = "
 "
 
 [node name="IconExclamation" type="Sprite2D" parent="static_ui/menu/craft"]
-visible = false
 position = Vector2(23, 30)
 scale = Vector2(2, 2)
 texture = ExtResource("7_ssu4i")
@@ -437,7 +430,7 @@ offset_top = -80.0
 offset_right = 40.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/focus = SubResource("StyleBoxTexture_iveyr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_awlqj")
 theme_override_styles/hover = SubResource("StyleBoxTexture_pwvs3")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_3wcau")
 theme_override_styles/normal = SubResource("StyleBoxTexture_faug7")
@@ -459,7 +452,7 @@ offset_left = -80.0
 offset_top = -80.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_styles/focus = SubResource("StyleBoxTexture_dpsj7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0b6mv")
 theme_override_styles/hover = SubResource("StyleBoxTexture_h3u65")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_yvnfu")
 theme_override_styles/normal = SubResource("StyleBoxTexture_r50y0")

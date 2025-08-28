@@ -115,6 +115,7 @@ func _on_admob_rewarded_ad_user_earned_reward(ad_id: String, reward_data: Reward
 	else:
 		if reward != "":
 			Global.unlock_reward(reward)
+			Global.unlocked_recent = reward
 	
 	var tree = get_tree()
 	TransitionScreen.transition()

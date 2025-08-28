@@ -65,9 +65,9 @@ mouse_filter = 1
 clip_contents = false
 layout_mode = 0
 offset_left = 14.0
-offset_top = 40.0
+offset_top = 144.0
 offset_right = 222.0
-offset_bottom = 386.0
+offset_bottom = 490.0
 theme = SubResource("Theme_vgs7n")
 follow_focus = true
 horizontal_scroll_mode = 0
@@ -77,14 +77,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 66
 alignment = 1
-
-[node name="Control4" type="Control" parent="recipes/acessories/GridContainer"]
-layout_mode = 2
-mouse_filter = 1
-
-[node name="Control6" type="Control" parent="recipes/acessories/GridContainer"]
-layout_mode = 2
-mouse_filter = 1
 
 [node name="cosmetic_selector1" parent="recipes/acessories/GridContainer" node_paths=PackedStringArray("customization_menu") instance=ExtResource("3_iwm6j")]
 layout_mode = 2
@@ -116,6 +108,11 @@ layout_mode = 2
 cosmetic_name = "books"
 customization_menu = NodePath("../../../..")
 
+[node name="cosmetic_selector8" parent="recipes/acessories/GridContainer" node_paths=PackedStringArray("customization_menu") instance=ExtResource("3_iwm6j")]
+layout_mode = 2
+cosmetic_name = "candle"
+customization_menu = NodePath("../../../..")
+
 [node name="cosmetic_selector7" parent="recipes/acessories/GridContainer" node_paths=PackedStringArray("customization_menu") instance=ExtResource("3_iwm6j")]
 layout_mode = 2
 cosmetic_name = "horns"
@@ -129,6 +126,14 @@ mouse_filter = 1
 layout_mode = 2
 mouse_filter = 1
 
+[node name="Control4" type="Control" parent="recipes/acessories/GridContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Control8" type="Control" parent="recipes/acessories/GridContainer"]
+layout_mode = 2
+mouse_filter = 1
+
 [node name="Control5" type="Control" parent="recipes/acessories/GridContainer"]
 layout_mode = 2
 mouse_filter = 1
@@ -137,9 +142,9 @@ mouse_filter = 1
 clip_contents = false
 layout_mode = 0
 offset_left = 114.0
-offset_top = 40.0
+offset_top = 144.0
 offset_right = 322.0
-offset_bottom = 386.0
+offset_bottom = 490.0
 theme = SubResource("Theme_vgs7n")
 follow_focus = true
 horizontal_scroll_mode = 0
@@ -149,14 +154,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 66
 alignment = 1
-
-[node name="Control4" type="Control" parent="recipes/skins/GridContainer"]
-layout_mode = 2
-mouse_filter = 1
-
-[node name="Control6" type="Control" parent="recipes/skins/GridContainer"]
-layout_mode = 2
-mouse_filter = 1
 
 [node name="cosmetic_selector1" parent="recipes/skins/GridContainer" node_paths=PackedStringArray("customization_menu") instance=ExtResource("3_iwm6j")]
 layout_mode = 2
@@ -188,11 +185,25 @@ cosmetic_name = "5"
 cosmetic_type = 1
 customization_menu = NodePath("../../../..")
 
+[node name="cosmetic_selector6" parent="recipes/skins/GridContainer" node_paths=PackedStringArray("customization_menu") instance=ExtResource("3_iwm6j")]
+layout_mode = 2
+cosmetic_name = "6"
+cosmetic_type = 1
+customization_menu = NodePath("../../../..")
+
 [node name="Control3" type="Control" parent="recipes/skins/GridContainer"]
 layout_mode = 2
 mouse_filter = 1
 
 [node name="Control7" type="Control" parent="recipes/skins/GridContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Control4" type="Control" parent="recipes/skins/GridContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Control8" type="Control" parent="recipes/skins/GridContainer"]
 layout_mode = 2
 mouse_filter = 1
 
@@ -210,37 +221,30 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="PlayerContainer2" type="Sprite2D" parent="equipment"]
-position = Vector2(112, 65)
-scale = Vector2(1.75, 4.5625)
-texture = ExtResource("1_jit7q")
-flip_v = true
-
 [node name="PlayerContainer" type="Sprite2D" parent="equipment"]
-position = Vector2(112, 130)
+position = Vector2(112, 81)
 scale = Vector2(1.75, 1.75)
 texture = ExtResource("1_jit7q")
-flip_v = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="equipment"]
-position = Vector2(112, 96)
-scale = Vector2(3, 3)
+position = Vector2(112, 88)
+scale = Vector2(2.25, 2.25)
 sprite_frames = ExtResource("3_qhuf7")
-animation = &"1_jump"
+animation = &"6_jump"
 
 [node name="accessory" type="AnimatedSprite2D" parent="equipment/AnimatedSprite2D"]
 position = Vector2(0, 0.333332)
 sprite_frames = ExtResource("4_adnfl")
-animation = &"books_jump"
+animation = &"candle_jump"
 
 [node name="buttons" type="Node2D" parent="equipment"]
 position = Vector2(0, -7.99999)
 
 [node name="button_hat_left" type="Button" parent="equipment/buttons"]
 offset_left = 16.0
-offset_top = 72.0
+offset_top = -91.0
 offset_right = 56.0
-offset_bottom = 112.0
+offset_bottom = -51.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("5_emg15")
@@ -255,9 +259,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="button_hat_right" type="Button" parent="equipment/buttons"]
 offset_left = 168.0
-offset_top = 72.0
+offset_top = -91.0
 offset_right = 208.0
-offset_bottom = 112.0
+offset_bottom = -51.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("5_emg15")
@@ -272,9 +276,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="button_body_left" type="Button" parent="equipment/buttons"]
 offset_left = 16.0
-offset_top = 112.0
+offset_top = -51.0
 offset_right = 56.0
-offset_bottom = 152.0
+offset_bottom = -11.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("5_emg15")
@@ -289,9 +293,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="button_body_right" type="Button" parent="equipment/buttons"]
 offset_left = 168.0
-offset_top = 112.0
+offset_top = -51.0
 offset_right = 208.0
-offset_bottom = 152.0
+offset_bottom = -11.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("5_emg15")

@@ -7,8 +7,8 @@ var unlocked_levels: Array = [1]
 var points: int = 1000
 
 # Player Customization
-const ALL_HATS := ["none", "hat", "spikes", "plant", "crest", "books", "horns"]
-const ALL_SKINS := ["1", "2", "3", "4", "5"]
+const ALL_HATS := ["none", "hat", "spikes", "plant", "crest", "candle", "horns", "books"]
+const ALL_SKINS := ["1", "2", "3", "4", "5", "6"]
 
 var player_hat: String = "none"
 var player_skin: String = "1"
@@ -19,8 +19,8 @@ var unlocked_skins: Array = []  # always starts with "1" after update_unlocked_i
 
 # Crafting System
 const CRAFTABLE_ITEMS := {
-	"accessories": ["hat", "spikes", "plant", "crest", "books", "horns"],
-	"skins": ["2", "3", "4", "5"]
+	"accessories": ["hat", "spikes", "plant", "crest", "candle", "horns", "books"],
+	"skins": ["2", "3", "4", "5", "6"]
 }
 
 var collected_ingredients: Dictionary = {}
@@ -33,6 +33,7 @@ var ranked_opponent_accessory: String = "none"
 var ranked_opponent_score: int = 0
 var ranked_level: int = 1
 var ranked_biome_material: Material
+var unlocked_recent:String = ""
 
 func _ready() -> void:
 	# Initialize ingredients
