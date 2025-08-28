@@ -29,7 +29,6 @@ boot_splash/minimum_display_time=300
 
 TransitionScreen="*res://scenes/transition_screen.tscn"
 Global="*res://scenes/global.gd"
-Firebase="*res://addons/godot-firebase/firebase/firebase.tscn"
 
 [display]
 
@@ -43,7 +42,7 @@ window/handheld/orientation=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AdmobPlugin/plugin.cfg", "res://addons/godot-firebase/plugin.cfg")
+enabled=PackedStringArray("res://addons/AdmobPlugin/plugin.cfg")
 
 [global_group]
 
