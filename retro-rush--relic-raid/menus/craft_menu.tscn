@@ -314,10 +314,10 @@ volume_db = -20.0
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
-offset_left = -40.0
-offset_top = 160.0
-offset_right = 8.0
-offset_bottom = 200.0
+offset_left = -55.0
+offset_top = 159.0
+offset_right = -7.0
+offset_bottom = 199.0
 
 [connection signal="pressed" from="equipment/buttons/button_hat_left" to="." method="_on_button_hat_left_pressed"]
 [connection signal="pressed" from="equipment/buttons/button_hat_right" to="." method="_on_button_hat_right_pressed"]

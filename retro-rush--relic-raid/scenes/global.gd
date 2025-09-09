@@ -1,7 +1,7 @@
 extends Node
 
 # Game Progress
-var selected_level: int = 1
+var selected_level: int = 0
 var selected_level_special: bool = false
 var unlocked_levels: Array = [1]
 var points: int = 1000

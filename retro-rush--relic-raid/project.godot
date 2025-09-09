@@ -20,9 +20,9 @@ run/main_scene="res://menus/mainmenu.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 run/max_fps=60
 boot_splash/bg_color=Color(0, 0, 0, 1)
-boot_splash/show_image=false
+boot_splash/image="res://logo2.png"
 boot_splash/use_filter=false
-config/icon="res://logo2-modified.png"
+config/icon="res://logo2.png"
 boot_splash/minimum_display_time=300
 
 [autoload]

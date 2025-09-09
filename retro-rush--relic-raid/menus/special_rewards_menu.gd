@@ -93,7 +93,7 @@ func setup_rewards():
 		$takeall/reward_accessory.visible = false
 		$takeall/reward_skin.play(reward + "_jump")
 	
-	$takeall/Label.text = "+1 reward"
+	$takeall/Label.text = "GET"
 
 func _on_admob_initialization_completed(status_data: InitializationStatus) -> void:
 	is_initialized = true

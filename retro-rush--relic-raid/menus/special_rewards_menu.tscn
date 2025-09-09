@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d0cxldfjss270"]
+[gd_scene load_steps=23 format=3 uid="uid://d0cxldfjss270"]
 
 [ext_resource type="Script" path="res://menus/special_rewards_menu.gd" id="1_j1klk"]
 [ext_resource type="Script" path="res://addons/AdmobPlugin/Admob.gd" id="2_qb2k2"]
@@ -9,6 +9,7 @@
 [ext_resource type="SpriteFrames" uid="uid://bsvml15ne3jhu" path="res://assets/characters/player/accessories/player_accessories.tres" id="7_yuep4"]
 [ext_resource type="SpriteFrames" uid="uid://duukh1em5rexv" path="res://assets/characters/player/player_skin.tres" id="8_trjha"]
 [ext_resource type="Texture2D" uid="uid://bk2cyygdoropf" path="res://assets/ui/button_cancel.png" id="9_8hlal"]
+[ext_resource type="Texture2D" uid="uid://j7oelv2btndr" path="res://assets/ui/button_play.png" id="11_3ylhs"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f4f5l"]
 
@@ -81,11 +82,14 @@ script = ExtResource("1_j1klk")
 
 [node name="Admob" type="Node" parent="."]
 script = ExtResource("2_qb2k2")
+is_real = true
 debug_application_id = "ca-app-pub-3940256099942544~3347511713"
 debug_banner_id = "ca-app-pub-3940256099942544/9214589741"
 debug_interstitial_id = "ca-app-pub-3940256099942544/1033173712"
 debug_rewarded_id = "ca-app-pub-3940256099942544/5224354917"
 debug_rewarded_interstitial_id = "ca-app-pub-3940256099942544/5354046379"
+real_application_id = "ca-app-pub-8306120320708452~7812891194"
+real_rewarded_id = "ca-app-pub-8306120320708452/7645370231"
 
 [node name="takeall" type="Node2D" parent="."]
 position = Vector2(0, 64)
@@ -143,6 +147,17 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_q4qkt")
 theme_override_styles/hover = SubResource("StyleBoxTexture_m7lhn")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_by1br")
 theme_override_styles/normal = SubResource("StyleBoxTexture_r5lyk")
+
+[node name="ButtonPlay" type="Sprite2D" parent="takeall"]
+position = Vector2(28, 160)
+scale = Vector2(2, 2)
+texture = ExtResource("11_3ylhs")
+
+[node name="ButtonPlay2" type="Sprite2D" parent="takeall"]
+position = Vector2(196, 160)
+scale = Vector2(2, 2)
+texture = ExtResource("11_3ylhs")
+flip_h = true
 
 [connection signal="initialization_completed" from="Admob" to="." method="_on_admob_initialization_completed"]
 [connection signal="rewarded_ad_user_earned_reward" from="Admob" to="." method="_on_admob_rewarded_ad_user_earned_reward"]
