@@ -24,7 +24,11 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		$AnimatedSprite2D.visible=false
 		if Global.ranked_opponent_name == "none":
 			global.unlock_next_level(global.selected_level)
-			if global.selected_level_special == true:
+			#if global.selected_level_special == true:
+				#$AudioStreamPlayer2.play()
+				#body.win_special(str(global.selected_level))
+				#global.selected_level_special = false
+			if global.selected_level != 1:
 				$AudioStreamPlayer2.play()
 				body.win_special(str(global.selected_level))
 				global.selected_level_special = false

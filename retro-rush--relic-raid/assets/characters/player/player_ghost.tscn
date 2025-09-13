@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bpmbhbjl01isf"]
 
-[ext_resource type="Script" path="res://assets/characters/player/player_ghost.gd" id="1_38yfo"]
+[ext_resource type="Script" uid="uid://c8s053ye74nr5" path="res://assets/characters/player/player_ghost.gd" id="1_38yfo"]
 [ext_resource type="SpriteFrames" uid="uid://duukh1em5rexv" path="res://assets/characters/player/player_skin.tres" id="1_inwe8"]
 [ext_resource type="SpriteFrames" uid="uid://bsvml15ne3jhu" path="res://assets/characters/player/accessories/player_accessories.tres" id="2_o88fj"]
 [ext_resource type="FontFile" uid="uid://camtosjq61o18" path="res://assets/ui/alagard.ttf" id="3_wdko8"]

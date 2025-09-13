@@ -1,6 +1,6 @@
 [gd_scene load_steps=34 format=3 uid="uid://dbcq5x0px65b6"]
 
-[ext_resource type="Script" path="res://assets/characters/player/player.gd" id="1_yncs3"]
+[ext_resource type="Script" uid="uid://1jvu30plqpdb" path="res://assets/characters/player/player.gd" id="1_yncs3"]
 [ext_resource type="SpriteFrames" uid="uid://duukh1em5rexv" path="res://assets/characters/player/player_skin.tres" id="2_tlstg"]
 [ext_resource type="Texture2D" uid="uid://1so7ahbocbrp" path="res://assets/part_vase.png" id="3_6t7ly"]
 [ext_resource type="SpriteFrames" uid="uid://bsvml15ne3jhu" path="res://assets/characters/player/accessories/player_accessories.tres" id="3_q0rdt"]
@@ -249,10 +249,10 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_km05r"]
 _data = {
-"RESET": SubResource("Animation_6ahc6"),
-"die": SubResource("Animation_0yrlo"),
-"win": SubResource("Animation_0mn06"),
-"win_special": SubResource("Animation_ltijm")
+&"RESET": SubResource("Animation_6ahc6"),
+&"die": SubResource("Animation_0yrlo"),
+&"win": SubResource("Animation_0mn06"),
+&"win_special": SubResource("Animation_ltijm")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tnmqm"]
@@ -297,7 +297,7 @@ script = ExtResource("1_yncs3")
 
 [node name="animation" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_km05r")
+&"": SubResource("AnimationLibrary_km05r")
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -316,10 +316,10 @@ animation = &"candle_walk"
 [node name="particles_die" type="CPUParticles2D" parent="."]
 position = Vector2(16, 21)
 emitting = false
+texture = ExtResource("3_6t7ly")
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
-texture = ExtResource("3_6t7ly")
 emission_shape = 1
 emission_sphere_radius = 6.0
 spread = 180.0
@@ -398,7 +398,7 @@ flip_v = true
 offset_left = 75.0
 offset_top = 15.0
 offset_right = 149.0
-offset_bottom = 45.0
+offset_bottom = 78.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.392157)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 0
@@ -461,8 +461,8 @@ animation = &"1"
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="Control/CanvasLayer/win"]
 position = Vector2(112, -7)
-lifetime = 1.5
 texture = ExtResource("16_u6t1o")
+lifetime = 1.5
 emission_shape = 3
 emission_rect_extents = Vector2(13, 1)
 direction = Vector2(0, 0)

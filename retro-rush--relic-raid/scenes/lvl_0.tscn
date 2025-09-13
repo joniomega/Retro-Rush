@@ -1,17 +1,17 @@
 [gd_scene load_steps=18 format=4 uid="uid://co45f3j5jvof1"]
 
-[ext_resource type="Script" path="res://scenes/lvl_0.gd" id="1_yakhs"]
+[ext_resource type="Script" uid="uid://dgqg57kcqqm2b" path="res://scenes/lvl_0.gd" id="1_yakhs"]
 [ext_resource type="Material" uid="uid://b38l1jujf2me6" path="res://assets/shaders/backmaterial_1.tres" id="2_gx7b5"]
 [ext_resource type="TileSet" uid="uid://xvnp8y75kw50" path="res://assets/tilesets/lvl_ruin.tres" id="2_t60cn"]
 [ext_resource type="PackedScene" uid="uid://dbcq5x0px65b6" path="res://assets/characters/player/player.tscn" id="2_y5lbi"]
-[ext_resource type="Shader" path="res://assets/shaders/vhs.gdshader" id="3_ftr30"]
+[ext_resource type="Shader" uid="uid://by8waoe6g21q" path="res://assets/shaders/vhs.gdshader" id="3_ftr30"]
 [ext_resource type="AudioStream" uid="uid://bntd8arieo7ou" path="res://assets/sounds/Three Red Hearts - Box Jump.ogg" id="5_fvt15"]
 [ext_resource type="AudioStream" uid="uid://c1r5l6rr7bwb0" path="res://assets/sounds/Three Red Hearts - Candy.ogg" id="6_su0pn"]
 [ext_resource type="AudioStream" uid="uid://c6aok5qvjv741" path="res://assets/sounds/Three Red Hearts - Connected.ogg" id="7_j0jli"]
 [ext_resource type="AudioStream" uid="uid://v3atr0boot24" path="res://assets/sounds/Three Red Hearts - Deep Blue.ogg" id="8_tjqsk"]
 [ext_resource type="AudioStream" uid="uid://bsqgjo6olmgyh" path="res://assets/sounds/Three Red Hearts - Penultimate.ogg" id="9_rdsnt"]
 [ext_resource type="AudioStream" uid="uid://dh6pmhmouomnw" path="res://assets/sounds/Three Red Hearts - Rumble at the Gates.ogg" id="10_d14p7"]
-[ext_resource type="PackedScene" uid="uid://bc4kfh806yvpe" path="res://assets/obstacles/jumppad.tscn" id="12_46dk5"]
+[ext_resource type="PackedScene" uid="uid://wmq4nbsk3825" path="res://assets/obstacles/web_barrier.tscn" id="11_5ajbn"]
 
 [sub_resource type="Animation" id="Animation_hycmu"]
 length = 0.001
@@ -45,8 +45,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0ijqq"]
 _data = {
-"RESET": SubResource("Animation_hycmu"),
-"stop": SubResource("Animation_eunwp")
+&"RESET": SubResource("Animation_hycmu"),
+&"stop": SubResource("Animation_eunwp")
 }
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6i3rj"]
@@ -81,7 +81,7 @@ script = ExtResource("1_yakhs")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_0ijqq")
+&"": SubResource("AnimationLibrary_0ijqq")
 }
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -109,8 +109,8 @@ stream = SubResource("AudioStreamRandomizer_6i3rj")
 volume_db = -25.0
 autoplay = true
 
-[node name="jumppad" parent="." instance=ExtResource("12_46dk5")]
-position = Vector2(131, 321)
+[node name="web_barrier" parent="." instance=ExtResource("11_5ajbn")]
+position = Vector2(96, 450)
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

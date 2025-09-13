@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://bvm7ds3g3b8os"]
 
-[ext_resource type="Script" path="res://menus/rewards_menu.gd" id="1_tj4mn"]
+[ext_resource type="Script" uid="uid://c2ss1316x3okq" path="res://menus/rewards_menu.gd" id="1_tj4mn"]
 [ext_resource type="PackedScene" uid="uid://dacestg0nqsfx" path="res://menus/level_rankedselect.tscn" id="2_bfhl7"]
 [ext_resource type="Texture2D" uid="uid://dq7mhgln81iyk" path="res://assets/ui/icon_pvp.png" id="2_g0u5n"]
 [ext_resource type="SpriteFrames" uid="uid://bj7kppdwycf3i" path="res://assets/obstacles/relic_spriteframe.tres" id="3_x425d"]

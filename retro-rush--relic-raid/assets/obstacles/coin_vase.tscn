@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://c2g8akngf27sf"]
 
 [ext_resource type="Texture2D" uid="uid://bgg0jhv1gsjdw" path="res://assets/tilesets/obstacles.png" id="1_16hxl"]
-[ext_resource type="Script" path="res://assets/obstacles/coin_vase.gd" id="1_iv7sk"]
+[ext_resource type="Script" uid="uid://c7xohpbfyv0ie" path="res://assets/obstacles/coin_vase.gd" id="1_iv7sk"]
 [ext_resource type="Texture2D" uid="uid://1so7ahbocbrp" path="res://assets/part_vase.png" id="3_px1lh"]
 [ext_resource type="AudioStream" uid="uid://d17bjured03om" path="res://assets/sounds/soundeffects/explosion.wav" id="4_hj33h"]
 [ext_resource type="AudioStream" uid="uid://didbwq3g8ekrt" path="res://assets/sounds/soundeffects/explosion2.wav" id="5_6ljeu"]
@@ -87,8 +87,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_61u2w"]
 _data = {
-"RESET": SubResource("Animation_0oplo"),
-"break": SubResource("Animation_qubjk")
+&"RESET": SubResource("Animation_0oplo"),
+&"break": SubResource("Animation_qubjk")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vks4u"]
@@ -124,7 +124,7 @@ script = ExtResource("1_iv7sk")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_61u2w")
+&"": SubResource("AnimationLibrary_61u2w")
 }
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -142,9 +142,9 @@ shape = SubResource("RectangleShape2D_ke3e5")
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 position = Vector2(16, 28)
 emitting = false
+texture = ExtResource("3_px1lh")
 one_shot = true
 explosiveness = 1.0
-texture = ExtResource("3_px1lh")
 emission_shape = 1
 emission_sphere_radius = 6.0
 spread = 180.0

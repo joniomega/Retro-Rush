@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dntldgtxdq7pf" path="res://assets/characters/enemies/bug_giantcrawler.png" id="1_ddafa"]
 [ext_resource type="Texture2D" uid="uid://dx6fgxjphjx3v" path="res://assets/characters/enemies/bug_giantcrawler_tonge.png" id="1_dm8di"]
-[ext_resource type="Script" path="res://assets/obstacles/bug_giantcrawler.gd" id="1_jbjpy"]
+[ext_resource type="Script" uid="uid://bagooy7hrxnto" path="res://assets/obstacles/bug_giantcrawler.gd" id="1_jbjpy"]
 [ext_resource type="Texture2D" uid="uid://btqhda8o8pl68" path="res://assets/characters/enemies/bug_giantcrawler_eye.png" id="2_tcncd"]
 [ext_resource type="Texture2D" uid="uid://dhx80dr34dpg" path="res://assets/characters/enemies/bug_giantcrawler_legback.png" id="3_4lm43"]
 [ext_resource type="Texture2D" uid="uid://da34p2u3icceg" path="res://assets/characters/enemies/bug_giantcrawler_legfront.png" id="4_oj12h"]

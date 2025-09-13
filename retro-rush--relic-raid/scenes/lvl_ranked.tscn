@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=4 uid="uid://c1msxvnw83w47"]
 
-[ext_resource type="Script" path="res://scenes/lvl_ranked.gd" id="1_qf2hg"]
+[ext_resource type="Script" uid="uid://gbmx01qw2bb" path="res://scenes/lvl_ranked.gd" id="1_qf2hg"]
 [ext_resource type="Material" uid="uid://dnr5nuwqjron0" path="res://assets/shaders/backmaterial_4.tres" id="2_sbve4"]
 [ext_resource type="TileSet" uid="uid://xvnp8y75kw50" path="res://assets/tilesets/lvl_ruin.tres" id="3_bs8hw"]
 [ext_resource type="PackedScene" uid="uid://dbcq5x0px65b6" path="res://assets/characters/player/player.tscn" id="4_epjlr"]
@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://v3atr0boot24" path="res://assets/sounds/Three Red Hearts - Deep Blue.ogg" id="8_eqe7v"]
 [ext_resource type="AudioStream" uid="uid://bsqgjo6olmgyh" path="res://assets/sounds/Three Red Hearts - Penultimate.ogg" id="9_vtck1"]
 [ext_resource type="AudioStream" uid="uid://dh6pmhmouomnw" path="res://assets/sounds/Three Red Hearts - Rumble at the Gates.ogg" id="10_0okbt"]
-[ext_resource type="Shader" path="res://assets/shaders/vhs.gdshader" id="11_pn2ic"]
+[ext_resource type="Shader" uid="uid://by8waoe6g21q" path="res://assets/shaders/vhs.gdshader" id="11_pn2ic"]
 [ext_resource type="FontFile" uid="uid://camtosjq61o18" path="res://assets/ui/alagard.ttf" id="12_2gpyl"]
 [ext_resource type="PackedScene" uid="uid://bpmbhbjl01isf" path="res://assets/characters/player/player_ghost.tscn" id="13_1bwoh"]
 
@@ -46,8 +46,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0ijqq"]
 _data = {
-"RESET": SubResource("Animation_hycmu"),
-"stop": SubResource("Animation_eunwp")
+&"RESET": SubResource("Animation_hycmu"),
+&"stop": SubResource("Animation_eunwp")
 }
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6i3rj"]

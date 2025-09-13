@@ -246,10 +246,11 @@ func update_scoreboard(data):
 	for i in range(min(3, top_scores.size())):
 		var score = top_scores[i]
 		name_labels[i].text = str(score.get("name", "Player"))
-		win_labels[i].text = str(score.get("wins", 0)) + "w"
+		win_labels[i].text = str(int(score.get("wins", 0))) + "w"
 		
 		if "skin" in score:
-			var skin_animation = str(score.skin) + "_jump"
+			var intskin:int = int(score.skin) 
+			var skin_animation = str(intskin) + "_jump"
 			skin_animatedsprites[i].play(skin_animation)
 		else:
 			skin_animatedsprites[i].play("default_jump")

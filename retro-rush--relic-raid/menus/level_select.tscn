@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://jft1qay172yn"]
 
 [ext_resource type="Texture2D" uid="uid://71etip7gdwiv" path="res://assets/ui/container_level_select.png" id="1_6w75h"]
-[ext_resource type="Script" path="res://menus/level_select.gd" id="1_7jw65"]
+[ext_resource type="Script" uid="uid://d2r0pcxeg3tln" path="res://menus/level_select.gd" id="1_7jw65"]
 [ext_resource type="SpriteFrames" uid="uid://bj7kppdwycf3i" path="res://assets/obstacles/relic_spriteframe.tres" id="3_o3ryn"]
 [ext_resource type="FontFile" uid="uid://camtosjq61o18" path="res://assets/ui/alagard.ttf" id="3_owl4t"]
 [ext_resource type="Texture2D" uid="uid://cm35cdmixpj10" path="res://assets/shine_particle.png" id="4_s8ivl"]

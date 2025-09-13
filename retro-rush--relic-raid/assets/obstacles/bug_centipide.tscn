@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://x6hujeifcn0n"]
 
-[ext_resource type="Script" path="res://assets/obstacles/enemy_centipide.gd" id="2_obu4t"]
+[ext_resource type="Script" uid="uid://dv88vq8e72gpj" path="res://assets/obstacles/enemy_centipide.gd" id="2_obu4t"]
 [ext_resource type="Texture2D" uid="uid://bwdbgyyhynwux" path="res://assets/characters/enemies/bug_centipide.png" id="2_yp31h"]
 [ext_resource type="AudioStream" uid="uid://d17bjured03om" path="res://assets/sounds/soundeffects/explosion.wav" id="4_a80cn"]
 [ext_resource type="AudioStream" uid="uid://didbwq3g8ekrt" path="res://assets/sounds/soundeffects/explosion2.wav" id="5_x07bj"]

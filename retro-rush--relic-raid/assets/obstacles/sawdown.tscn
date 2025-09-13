@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://gg2xcrjro8yj"]
 
-[ext_resource type="Script" path="res://assets/obstacles/sawdown.gd" id="1_easto"]
+[ext_resource type="Script" uid="uid://ciw77d1f0ln3a" path="res://assets/obstacles/sawdown.gd" id="1_easto"]
 [ext_resource type="Texture2D" uid="uid://bgg0jhv1gsjdw" path="res://assets/tilesets/obstacles.png" id="1_gptlp"]
 
 [sub_resource type="Animation" id="Animation_yupj0"]
@@ -37,8 +37,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ugfuy"]
 _data = {
-"RESET": SubResource("Animation_yupj0"),
-"rotating": SubResource("Animation_i46in")
+&"RESET": SubResource("Animation_yupj0"),
+&"rotating": SubResource("Animation_i46in")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wl2bm"]
@@ -64,7 +64,7 @@ script = ExtResource("1_easto")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_ugfuy")
+&"": SubResource("AnimationLibrary_ugfuy")
 }
 autoplay = "rotating"
 

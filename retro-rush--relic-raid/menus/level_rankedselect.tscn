@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://dacestg0nqsfx"]
 
-[ext_resource type="Script" path="res://menus/level_rankedselect.gd" id="1_8htrp"]
+[ext_resource type="Script" uid="uid://iqjmd32miawm" path="res://menus/level_rankedselect.gd" id="1_8htrp"]
 [ext_resource type="Texture2D" uid="uid://71etip7gdwiv" path="res://assets/ui/container_level_select.png" id="2_r3och"]
 [ext_resource type="FontFile" uid="uid://camtosjq61o18" path="res://assets/ui/alagard.ttf" id="3_wxruc"]
 [ext_resource type="SpriteFrames" uid="uid://bj7kppdwycf3i" path="res://assets/obstacles/relic_spriteframe.tres" id="4_ne0q7"]

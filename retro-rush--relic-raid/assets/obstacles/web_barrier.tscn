@@ -1,0 +1,128 @@
+[gd_scene load_steps=16 format=3 uid="uid://wmq4nbsk3825"]
+
+[ext_resource type="Script" uid="uid://gxjoxiixai1a" path="res://assets/obstacles/web_barrier.gd" id="1_3h8x1"]
+[ext_resource type="Texture2D" uid="uid://ccchtf3k6svhv" path="res://assets/obstacles/web_statues.png" id="1_5dbgq"]
+[ext_resource type="AudioStream" uid="uid://d17bjured03om" path="res://assets/sounds/soundeffects/explosion.wav" id="3_bdyp4"]
+[ext_resource type="AudioStream" uid="uid://didbwq3g8ekrt" path="res://assets/sounds/soundeffects/explosion2.wav" id="4_jhivu"]
+[ext_resource type="AudioStream" uid="uid://bhubutuf2nuyw" path="res://assets/sounds/soundeffects/explosion3.wav" id="5_x3f74"]
+[ext_resource type="Texture2D" uid="uid://m1nu6c7t8dx6" path="res://assets/characters/enemies/part_string.png" id="6_jhivu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3h8x1"]
+atlas = ExtResource("1_5dbgq")
+region = Rect2(0, 96, 162, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqysj"]
+atlas = ExtResource("1_5dbgq")
+region = Rect2(0, 64, 162, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rn6ad"]
+atlas = ExtResource("1_5dbgq")
+region = Rect2(0, 32, 162, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdyp4"]
+atlas = ExtResource("1_5dbgq")
+region = Rect2(0, 0, 162, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jhivu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3h8x1")
+}],
+"loop": true,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lqysj")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rn6ad")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdyp4")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x3f74"]
+size = Vector2(18, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3jhdl"]
+size = Vector2(122, 10)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3jhdl"]
+random_pitch = 1.2
+streams_count = 3
+stream_0/stream = ExtResource("3_bdyp4")
+stream_1/stream = ExtResource("4_jhivu")
+stream_2/stream = ExtResource("5_x3f74")
+
+[sub_resource type="Gradient" id="Gradient_x3f74"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="web_barrier" type="Node2D"]
+script = ExtResource("1_3h8x1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(16, 16)
+sprite_frames = SubResource("SpriteFrames_jhivu")
+animation = &"1"
+autoplay = "3"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-55, 15)
+shape = SubResource("RectangleShape2D_x3f74")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(87, 15)
+shape = SubResource("RectangleShape2D_x3f74")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(16, 19)
+shape = SubResource("RectangleShape2D_3jhdl")
+debug_color = Color(0, 0.74096, 0.4441, 0.42)
+
+[node name="sound_break" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_3jhdl")
+volume_db = -20.0
+pitch_scale = 1.2
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(16, 19)
+emitting = false
+amount = 20
+texture = ExtResource("6_jhivu")
+one_shot = true
+explosiveness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(60, 1)
+spread = 180.0
+gravity = Vector2(0, 20)
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+angular_velocity_min = 38.92
+angular_velocity_max = 38.92
+angle_min = -90.0
+angle_max = 90.0
+color_ramp = SubResource("Gradient_x3f74")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

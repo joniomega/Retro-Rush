@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://dnj7emighrfkk"]
 
-[ext_resource type="Script" path="res://assets/obstacles/decoration.gd" id="1_dkhbn"]
+[ext_resource type="Script" uid="uid://baqoenluy4dsb" path="res://assets/obstacles/decoration.gd" id="1_dkhbn"]
 [ext_resource type="Texture2D" uid="uid://bblt06h3g5o85" path="res://assets/tilesets/castle_stones.png" id="1_ysglt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ixeek"]

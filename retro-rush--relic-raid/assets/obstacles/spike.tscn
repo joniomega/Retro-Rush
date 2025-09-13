@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dxph11aiwaewu"]
 
-[ext_resource type="Script" path="res://assets/obstacles/spike.gd" id="1_o3c0e"]
+[ext_resource type="Script" uid="uid://6jc37328iq2t" path="res://assets/obstacles/spike.gd" id="1_o3c0e"]
 [ext_resource type="Texture2D" uid="uid://bgg0jhv1gsjdw" path="res://assets/tilesets/obstacles.png" id="1_stpbp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j70aq"]

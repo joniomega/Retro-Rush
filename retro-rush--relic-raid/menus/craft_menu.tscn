@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://b8gq3tryuhkjf"]
 
-[ext_resource type="Script" path="res://menus/craft_menu.gd" id="1_fxeqh"]
+[ext_resource type="Script" uid="uid://dt6a1uyri3pcj" path="res://menus/craft_menu.gd" id="1_fxeqh"]
 [ext_resource type="Texture2D" uid="uid://bpp2bxffp4d66" path="res://assets/ui/equipment_container.png" id="1_jit7q"]
 [ext_resource type="PackedScene" uid="uid://cvjjfgbcsmv5t" path="res://menus/cosmetic_selector.tscn" id="3_iwm6j"]
 [ext_resource type="SpriteFrames" uid="uid://duukh1em5rexv" path="res://assets/characters/player/player_skin.tres" id="3_qhuf7"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=23 format=3 uid="uid://d0cxldfjss270"]
 
-[ext_resource type="Script" path="res://menus/special_rewards_menu.gd" id="1_j1klk"]
-[ext_resource type="Script" path="res://addons/AdmobPlugin/Admob.gd" id="2_qb2k2"]
+[ext_resource type="Script" uid="uid://md6am2leixcr" path="res://menus/special_rewards_menu.gd" id="1_j1klk"]
+[ext_resource type="Script" uid="uid://cpmit8mu2r6y2" path="res://addons/AdmobPlugin/Admob.gd" id="2_qb2k2"]
 [ext_resource type="FontFile" uid="uid://camtosjq61o18" path="res://assets/ui/alagard.ttf" id="2_t5b7w"]
 [ext_resource type="Texture2D" uid="uid://bp85pw1gug553" path="res://assets/ui/button_horizontal_1.png" id="3_m3e4b"]
 [ext_resource type="Texture2D" uid="uid://gmao71ovqfd8" path="res://assets/ui/icon_ad.png" id="4_dgrjx"]

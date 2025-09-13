@@ -210,7 +210,7 @@ func shine(increment: int):
 		else:
 			$audio_decrease.play()
 		var interpolated = lerp(displayed_score, target, i / float(steps))
-		score_label.text = str(round(interpolated))
+		score_label.text = str(int(round(interpolated)))
 		await get_tree().create_timer(delay).timeout
 	
 	displayed_score = target

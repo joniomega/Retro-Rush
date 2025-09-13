@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://boacxm34cq8c3"]
 
 [ext_resource type="Texture2D" uid="uid://c6ijelrkwpk6t" path="res://assets/ui/button_ingredient_chosse.png" id="1_ah5nu"]
-[ext_resource type="Script" path="res://assets/craft/ingredient_reward.gd" id="1_s21qu"]
+[ext_resource type="Script" uid="uid://c3ibjrtkgap7v" path="res://assets/craft/ingredient_reward.gd" id="1_s21qu"]
 [ext_resource type="SpriteFrames" uid="uid://uhhxbh4veuvb" path="res://assets/craft/ingredients_sp.tres" id="2_omdy7"]
 [ext_resource type="Texture2D" uid="uid://cm35cdmixpj10" path="res://assets/shine_particle.png" id="3_h3fdt"]
 

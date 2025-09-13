@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://cvjjfgbcsmv5t"]
 
-[ext_resource type="Script" path="res://menus/cosmetic_selector.gd" id="1_2w5xt"]
+[ext_resource type="Script" uid="uid://5k1d8f3dwfhy" path="res://menus/cosmetic_selector.gd" id="1_2w5xt"]
 [ext_resource type="Texture2D" uid="uid://dfne77u7s0d0c" path="res://assets/ui/container_cosmetic.png" id="1_dpvjl"]
 [ext_resource type="SpriteFrames" uid="uid://bsvml15ne3jhu" path="res://assets/characters/player/accessories/player_accessories.tres" id="2_fagwd"]
 [ext_resource type="Texture2D" uid="uid://daf8ft2va82s2" path="res://assets/ui/container_cosmetic_disabled.png" id="2_xqf3c"]

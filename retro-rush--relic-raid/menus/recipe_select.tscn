@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://dauxouih85yxb"]
 
-[ext_resource type="Script" path="res://menus/recipe_select.gd" id="1_kcove"]
+[ext_resource type="Script" uid="uid://blcuwg1t3c1yg" path="res://menus/recipe_select.gd" id="1_kcove"]
 [ext_resource type="Texture2D" uid="uid://71etip7gdwiv" path="res://assets/ui/container_level_select.png" id="1_v3vxa"]
 [ext_resource type="SpriteFrames" uid="uid://uhhxbh4veuvb" path="res://assets/craft/ingredients_sp.tres" id="2_vg5st"]
 [ext_resource type="Texture2D" uid="uid://gmao71ovqfd8" path="res://assets/ui/icon_ad.png" id="3_8vw23"]
@@ -8,7 +8,7 @@
 [ext_resource type="SpriteFrames" uid="uid://bsvml15ne3jhu" path="res://assets/characters/player/accessories/player_accessories.tres" id="4_d4prr"]
 [ext_resource type="Texture2D" uid="uid://dwphcswg5bw86" path="res://assets/ui/icon_nowifi.png" id="5_7vagg"]
 [ext_resource type="SpriteFrames" uid="uid://duukh1em5rexv" path="res://assets/characters/player/player_skin.tres" id="5_oumuv"]
-[ext_resource type="Script" path="res://addons/AdmobPlugin/Admob.gd" id="9_xq8cd"]
+[ext_resource type="Script" uid="uid://cpmit8mu2r6y2" path="res://addons/AdmobPlugin/Admob.gd" id="9_xq8cd"]
 [ext_resource type="AudioStream" uid="uid://c5tdbhmgpgvun" path="res://assets/sounds/soundeffects/sound_button.mp3" id="10_8quc8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ipea4"]
