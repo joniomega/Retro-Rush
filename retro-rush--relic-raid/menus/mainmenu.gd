@@ -37,7 +37,7 @@ func _ready() -> void:
 		$static_ui/menu/craft/IconExclamation.visible = true
 	global.selected_level = 0
 	global.selected_level_special = false
-	$static_ui/points.text = "[center][wave][color=#5c3aa1][b]" + str(global.points) + "p[/b][/color][/wave][/center]"
+	$static_ui/points.text = "[left][b]" + str(global.points) + "p[/b][/left]"
 	if global.points == 0:
 		$static_ui/points.text = "[center][wave][color=#5c3aa1][b]000p[/b][/color][/wave][/center]"
 	

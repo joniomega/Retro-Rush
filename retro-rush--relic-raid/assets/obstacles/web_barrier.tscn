@@ -80,7 +80,7 @@ script = ExtResource("1_3h8x1")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(16, 16)
 sprite_frames = SubResource("SpriteFrames_jhivu")
-animation = &"1"
+animation = &"3"
 autoplay = "3"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]

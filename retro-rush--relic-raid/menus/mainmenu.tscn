@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://duae36wgy5yji"]
+[gd_scene load_steps=44 format=3 uid="uid://duae36wgy5yji"]
 
 [ext_resource type="Material" uid="uid://b38l1jujf2me6" path="res://assets/shaders/backmaterial_1.tres" id="1_cnoo3"]
 [ext_resource type="Script" uid="uid://c3rmtho8jhren" path="res://menus/mainmenu.gd" id="1_t1nqp"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bbn7cjk6253cn" path="res://assets/ui/icon_exclamation.png" id="7_ssu4i"]
 [ext_resource type="Texture2D" uid="uid://c4w620eitvjr2" path="res://assets/ui/icon_coin.png" id="8_0suj5"]
 [ext_resource type="Texture2D" uid="uid://gxh0ja6n3sap" path="res://assets/ui/button_rewards.png" id="8_tvihv"]
+[ext_resource type="Texture2D" uid="uid://vhwf51hkm3wa" path="res://assets/ui/button_settings.png" id="13_iplms"]
 [ext_resource type="AudioStream" uid="uid://coldtes67seqv" path="res://assets/sounds/0menu_Three Red Hearts - Princess Quest.ogg" id="14_osaii"]
 [ext_resource type="AudioStream" uid="uid://cqjmr2c08bept" path="res://assets/sounds/0menu_Three Red Hearts - Puzzle Pieces.ogg" id="15_qfd3d"]
 [ext_resource type="AudioStream" uid="uid://gebvwtpybfh8" path="res://assets/sounds/0menu_Three Red Hearts - Rabbit Town.ogg" id="16_f6b5i"]
@@ -34,6 +35,21 @@ VScrollBar/styles/grabber_highlight = SubResource("StyleBoxEmpty_ip8bf")
 VScrollBar/styles/grabber_pressed = SubResource("StyleBoxEmpty_4qd1j")
 VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_358cn")
 VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_x8ldy")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ikw2n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8vmut"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_760ol"]
+texture = ExtResource("13_iplms")
+modulate_color = Color(1.2, 1.2, 1.2, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_83yeg"]
+texture = ExtResource("13_iplms")
+modulate_color = Color(1.5, 1.5, 1.5, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aycp7"]
+texture = ExtResource("13_iplms")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7ao8a"]
 
@@ -300,37 +316,24 @@ scale = Vector2(1.75, 1.75)
 texture = ExtResource("5_y34tr")
 flip_v = true
 
-[node name="win" type="RichTextLabel" parent="static_ui"]
+[node name="IconCoin" type="Sprite2D" parent="static_ui"]
 visible = false
-offset_top = 11.0
-offset_right = 224.0
-offset_bottom = 48.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.392157)
-theme_override_constants/outline_size = 4
-theme_override_constants/shadow_offset_y = 1
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_outline_size = 4
-theme_override_fonts/normal_font = ExtResource("2_03nbx")
-theme_override_fonts/mono_font = ExtResource("2_03nbx")
-theme_override_fonts/italics_font = ExtResource("2_03nbx")
-theme_override_fonts/bold_italics_font = ExtResource("2_03nbx")
-theme_override_fonts/bold_font = ExtResource("2_03nbx")
-theme_override_font_sizes/bold_italics_font_size = 32
-theme_override_font_sizes/italics_font_size = 32
-theme_override_font_sizes/mono_font_size = 32
-theme_override_font_sizes/normal_font_size = 32
-theme_override_font_sizes/bold_font_size = 32
-bbcode_enabled = true
-text = "[wave][center][color=#5c3aa1][b]RETRO RUSH[/b][/color][/center][/wave]"
-scroll_active = false
+position = Vector2(24, 24)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("8_0suj5")
+
+[node name="IconCoin2" type="Sprite2D" parent="static_ui"]
+visible = false
+position = Vector2(200, 24)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("8_0suj5")
 
 [node name="points" type="RichTextLabel" parent="static_ui"]
 clip_contents = false
-offset_left = 40.0
-offset_top = 9.0
-offset_right = 184.0
-offset_bottom = 46.0
+offset_left = 33.0
+offset_top = 18.0
+offset_right = 174.0
+offset_bottom = 35.0
 theme_override_colors/font_outline_color = Color(0.0509804, 0.0196078, 0.109804, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.392157)
 theme_override_constants/outline_size = 5
@@ -342,25 +345,23 @@ theme_override_fonts/mono_font = ExtResource("2_03nbx")
 theme_override_fonts/italics_font = ExtResource("2_03nbx")
 theme_override_fonts/bold_italics_font = ExtResource("2_03nbx")
 theme_override_fonts/bold_font = ExtResource("2_03nbx")
-theme_override_font_sizes/bold_italics_font_size = 32
-theme_override_font_sizes/italics_font_size = 32
-theme_override_font_sizes/mono_font_size = 32
-theme_override_font_sizes/normal_font_size = 32
-theme_override_font_sizes/bold_font_size = 32
+theme_override_font_sizes/bold_font_size = 16
 bbcode_enabled = true
-text = "[center][wave][color=#5c3aa1][b]999p[/b][/color][/wave][/center]"
+text = "[left][b]999p[/b][/left]"
 scroll_active = false
 autowrap_mode = 2
 
-[node name="IconCoin" type="Sprite2D" parent="static_ui/points"]
-position = Vector2(-16, 15)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("8_0suj5")
-
-[node name="IconCoin2" type="Sprite2D" parent="static_ui/points"]
-position = Vector2(160, 15)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("8_0suj5")
+[node name="ButtonSettings" type="Button" parent="static_ui"]
+offset_left = 168.0
+offset_top = 1.0
+offset_right = 196.0
+offset_bottom = 29.0
+scale = Vector2(2, 2)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ikw2n")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8vmut")
+theme_override_styles/hover = SubResource("StyleBoxTexture_760ol")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_83yeg")
+theme_override_styles/normal = SubResource("StyleBoxTexture_aycp7")
 
 [node name="menu" type="Control" parent="static_ui"]
 layout_mode = 3
@@ -470,6 +471,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Postprocess"]
 layer = 6
