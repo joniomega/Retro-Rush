@@ -36,10 +36,11 @@ func _ready() -> void:
 	if global.unlocked_recent != "":
 		$static_ui/menu/craft/IconExclamation.visible = true
 	global.selected_level = 0
+	global.revival = null
 	global.selected_level_special = false
-	$static_ui/points.text = "[left][b]" + str(global.points) + "p[/b][/left]"
+	$static_ui/points.text = "[left][b][color=#b0ace6]" + str(global.points) + "[/color][/b][/left]"
 	if global.points == 0:
-		$static_ui/points.text = "[center][wave][color=#5c3aa1][b]000p[/b][/color][/wave][/center]"
+		$static_ui/points.text = "[left][wave][color=#b0ace6][b]0[/b][/color][/wave][/left]"
 	
 	# Save initial positions
 	level_pos = menu_levels.position
@@ -155,3 +156,9 @@ func _swipe_detect(end_position: Vector2) -> void:
 					move_menus("levels")
 				"rewards":
 					move_menus("craft")
+
+
+func _on_button_settings_pressed() -> void:
+	var options_menu = preload("res://menus/options_menu.tscn").instantiate()
+	add_child(options_menu) # adds on top of the menu (OptionsMenu root must be a Control with full rect)
+	pass # Replace with function body.

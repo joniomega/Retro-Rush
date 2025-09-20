@@ -107,6 +107,7 @@ position = Vector2(96, 129)
 stream = SubResource("AudioStreamRandomizer_6i3rj")
 volume_db = -25.0
 autoplay = true
+bus = &"Music"
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

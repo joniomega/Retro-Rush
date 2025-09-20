@@ -1,0 +1,87 @@
+[gd_scene load_steps=11 format=3 uid="uid://5cdxxfb8a37n"]
+
+[ext_resource type="Script" uid="uid://b1ln3q78h50ep" path="res://assets/obstacles/revive_altar.gd" id="1_ouvxg"]
+[ext_resource type="Texture2D" uid="uid://bgg0jhv1gsjdw" path="res://assets/tilesets/obstacles.png" id="1_wmmeh"]
+[ext_resource type="AudioStream" uid="uid://htccufqyd6r6" path="res://assets/sounds/soundeffects/revival.wav" id="3_msxlp"]
+[ext_resource type="Texture2D" uid="uid://cm35cdmixpj10" path="res://assets/shine_particle.png" id="4_41upp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmmeh"]
+atlas = ExtResource("1_wmmeh")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ouvxg"]
+atlas = ExtResource("1_wmmeh")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_msxlp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wmmeh")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ouvxg")
+}],
+"loop": true,
+"name": &"inactive",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wmmeh"]
+size = Vector2(14, 21)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_41upp"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("3_msxlp")
+
+[sub_resource type="Gradient" id="Gradient_bxpuk"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="revive_altar" type="Node2D"]
+script = ExtResource("1_ouvxg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -2
+position = Vector2(16, 17)
+sprite_frames = SubResource("SpriteFrames_msxlp")
+animation = &"inactive"
+autoplay = "inactive"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(17, 19.5)
+shape = SubResource("RectangleShape2D_wmmeh")
+
+[node name="sound_revive" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_41upp")
+volume_db = -15.0
+pitch_scale = 1.2
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+z_index = -2
+position = Vector2(16, 34)
+emitting = false
+texture = ExtResource("4_41upp")
+lifetime = 1.5
+emission_shape = 3
+emission_rect_extents = Vector2(7, 1)
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, -20)
+angular_velocity_min = 38.92
+angular_velocity_max = 38.92
+angle_min = -90.0
+angle_max = 90.0
+scale_amount_min = 0.1
+scale_amount_max = 0.2
+color_ramp = SubResource("Gradient_bxpuk")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

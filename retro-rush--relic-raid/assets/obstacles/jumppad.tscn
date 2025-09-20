@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bc4kfh806yvpe"]
+[gd_scene load_steps=13 format=3 uid="uid://bc4kfh806yvpe"]
 
 [ext_resource type="Script" uid="uid://dwdjh7xbglmdp" path="res://assets/obstacles/jumppad.gd" id="1_0nm3m"]
 [ext_resource type="Texture2D" uid="uid://bgg0jhv1gsjdw" path="res://assets/tilesets/obstacles.png" id="1_e2pih"]
+[ext_resource type="AudioStream" uid="uid://njjh1its8a42" path="res://assets/sounds/soundeffects/jump.wav" id="3_v8qbu"]
 
 [sub_resource type="Animation" id="Animation_g3g6j"]
 length = 0.001
@@ -40,30 +41,30 @@ _data = {
 &"jump": SubResource("Animation_fue7v")
 }
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q0q0r"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8qbu"]
 atlas = ExtResource("1_e2pih")
-region = Rect2(64, 96, 32, 32)
+region = Rect2(128, 64, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4cq4r"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_q0q0r")
+"texture": SubResource("AtlasTexture_v8qbu")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_60308"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_byx73"]
 atlas = ExtResource("1_e2pih")
-region = Rect2(32, 96, 32, 32)
+region = Rect2(96, 64, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_shq23"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_60308")
+"texture": SubResource("AtlasTexture_byx73")
 }],
 "loop": true,
 "name": &"default",
@@ -72,6 +73,11 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w3f1n"]
 size = Vector2(18, 10)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_byx73"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("3_v8qbu")
 
 [node name="jumppad" type="Node2D"]
 script = ExtResource("1_0nm3m")
@@ -89,7 +95,7 @@ position = Vector2(16, 27)
 sprite_frames = SubResource("SpriteFrames_4cq4r")
 
 [node name="base" type="AnimatedSprite2D" parent="."]
-position = Vector2(16, 16)
+position = Vector2(16, 17)
 sprite_frames = SubResource("SpriteFrames_shq23")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -98,5 +104,11 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(16, 23)
 shape = SubResource("RectangleShape2D_w3f1n")
+
+[node name="sound_jump" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_byx73")
+volume_db = -20.0
+pitch_scale = 0.8
+bus = &"Effects"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

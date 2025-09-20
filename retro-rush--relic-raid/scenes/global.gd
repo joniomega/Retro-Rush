@@ -2,6 +2,7 @@ extends Node
 
 # Game Progress
 var selected_level: int = 0
+var revival = null
 var selected_level_special: bool = false
 var unlocked_levels: Array = [1]
 var points: int = 1000
@@ -34,6 +35,10 @@ var ranked_opponent_score: int = 0
 var ranked_level: int = 1
 var ranked_biome_material: Material
 var unlocked_recent:String = ""
+# Audio Settings
+var master_volume: float = 0.0
+var music_volume: float = 0.0
+var effects_volume: float = 0.0
 
 func _ready() -> void:
 	# Initialize ingredients
@@ -72,7 +77,11 @@ func save_progress() -> void:
 		"unlocked_hats": unlocked_hats,
 		"unlocked_skins": unlocked_skins,
 		"player_name": player_name,
-		"firebase_id": firebase_id
+		"firebase_id": firebase_id,
+		# new audio settings
+		"master_volume": master_volume,
+		"music_volume": music_volume,
+		"effects_volume": effects_volume
 	}
 
 	var file = FileAccess.open("user://save.dat", FileAccess.WRITE)
@@ -100,7 +109,17 @@ func load_progress() -> void:
 		player_name = save_data.get("player_name", "")
 		firebase_id = save_data.get("firebase_id", "")
 
-		# Ensure new items are tracked
+		# audio settings
+		master_volume = save_data.get("master_volume", 0.8)
+		music_volume = save_data.get("music_volume", 0.8)
+		effects_volume = save_data.get("effects_volume", 0.8)
+
+		# apply volumes immediately
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(master_volume))
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(music_volume))
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(effects_volume))
+
+		# ensure new craft items are tracked
 		for item_type in CRAFTABLE_ITEMS:
 			for item in CRAFTABLE_ITEMS[item_type]:
 				if not collected_ingredients.has(item + "_1"):
@@ -110,6 +129,39 @@ func load_progress() -> void:
 				if not unlocked_rewards.has(item):
 					unlocked_rewards[item] = false
 
+		update_unlocked_items()
+	else:
+		push_error("Failed to load game: ", FileAccess.get_open_error())
+	if not FileAccess.file_exists("user://save.dat"):
+		return
+
+	file = FileAccess.open("user://save.dat", FileAccess.READ)
+	if file:
+		var save_data = file.get_var()
+
+		unlocked_levels = save_data.get("unlocked_levels", [1])
+		points = save_data.get("points", 1000)
+		player_hat = save_data.get("player_hat", "none")
+		player_skin = save_data.get("player_skin", "1")
+		collected_ingredients = save_data.get("collected_ingredients", {})
+		unlocked_rewards = save_data.get("unlocked_rewards", {})
+		unlocked_hats = save_data.get("unlocked_hats", ["none"])
+		unlocked_skins = save_data.get("unlocked_skins", ["1"])
+		player_name = save_data.get("player_name", "")
+		firebase_id = save_data.get("firebase_id", "")
+
+		# Ensure new items are tracked
+		for item_type in CRAFTABLE_ITEMS:
+			for item in CRAFTABLE_ITEMS[item_type]:
+				if not collected_ingredients.has(item + "_1"):
+					collected_ingredients[item + "_1"] = false
+				if not collected_ingredients.has(item + "_2"):
+					collected_ingredients[item + "_2"] = false
+				if not unlocked_rewards.has(item):
+					unlocked_rewards[item] = false
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), master_volume)
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), music_volume)
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), effects_volume)
 		update_unlocked_items()
 	else:
 		push_error("Failed to load game: ", FileAccess.get_open_error())

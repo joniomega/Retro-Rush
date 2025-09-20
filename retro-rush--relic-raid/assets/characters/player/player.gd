@@ -45,7 +45,6 @@ func _ready() -> void:
 		$Control/CanvasLayer/tutorial.visible = true
 		$Control/CanvasLayer/ButtonHome.visible = false
 		$Control/CanvasLayer/ButtonHome.disabled = true
-		$Control/CanvasLayer/ButtonPause.visible = false
 	else:
 		$Control/CanvasLayer/tutorial.visible = false
 	$Control/CanvasLayer/special_rewards.visible = false
@@ -252,7 +251,6 @@ func _on_button_home_pressed() -> void:
 
 func win(type:String):
 	$Control/CanvasLayer/ButtonHome.disabled = true
-	$Control/CanvasLayer/ButtonPause.visible = false
 	Global.points = Global.points + score
 	$Control/CanvasLayer/win/AnimatedSprite2D.play(type)
 	isdead = true
@@ -268,7 +266,6 @@ func win(type:String):
 func win_special(type:String):
 	$Control/CanvasLayer/special_rewards.visible = true
 	$Control/CanvasLayer/ButtonHome.disabled = true
-	$Control/CanvasLayer/ButtonPause.visible = false
 	$Control/CanvasLayer/special_rewards.setup_rewards()
 	var holo_material = preload("res://assets/shaders/holo.tres")
 	$Control/CanvasLayer/win/AnimatedSprite2D.material = holo_material
@@ -284,7 +281,6 @@ func win_ranked(type:String):
 		$AudioStreamPlayer2.play()
 		$Control/CanvasLayer/special_rewards.visible = true
 		$Control/CanvasLayer/ButtonHome.disabled = true
-		$Control/CanvasLayer/ButtonPause.visible = false
 		$Control/CanvasLayer/special_rewards.setup_rewards()
 		var holo_material = preload("res://assets/shaders/holo.tres")
 		$Control/CanvasLayer/win/AnimatedSprite2D.material = holo_material
@@ -399,3 +395,12 @@ func die_ranked():
 
 func get_score() -> int:
 	return score
+
+
+func _on_button_retry_pressed() -> void:
+	Global.revival = null
+	var tree = get_tree()
+	TransitionScreen.transition()
+	await TransitionScreen.on_transition_finished
+	tree.change_scene_to_file("res://scenes/lvl_0.tscn")
+	pass # Replace with function body.

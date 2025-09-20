@@ -136,12 +136,12 @@ script = ExtResource("1_wchs1")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_kv7jc")
+&"": SubResource("AnimationLibrary_kv7jc")
 }
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_kv7jc")
+&"": SubResource("AnimationLibrary_kv7jc")
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -156,7 +156,7 @@ color = Color(0.101961, 0.0392157, 0.227451, 1)
 
 [node name="button_press" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_eyiol")
-volume_db = -10.0
+volume_db = -20.0
 
 [node name="Bottom" type="Sprite2D" parent="."]
 z_index = 10

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dbcq5x0px65b6"]
+[gd_scene load_steps=39 format=3 uid="uid://dbcq5x0px65b6"]
 
 [ext_resource type="Script" uid="uid://1jvu30plqpdb" path="res://assets/characters/player/player.gd" id="1_yncs3"]
 [ext_resource type="SpriteFrames" uid="uid://duukh1em5rexv" path="res://assets/characters/player/player_skin.tres" id="2_tlstg"]
@@ -9,9 +9,9 @@
 [ext_resource type="AudioStream" uid="uid://dvov2hgwtlnm3" path="res://assets/sounds/soundeffects/pickupCoin_increse.wav" id="5_2dka8"]
 [ext_resource type="AudioStream" uid="uid://c04eku0fjxa0b" path="res://assets/sounds/soundeffects/pickupCoin_increase2.wav" id="5_ice68"]
 [ext_resource type="AudioStream" uid="uid://ccqbj2axfxh7y" path="res://assets/sounds/soundeffects/bip1.wav" id="5_v0dkr"]
-[ext_resource type="Texture2D" uid="uid://c6hervh8rwbxf" path="res://assets/ui/button_pause.png" id="6_n442f"]
 [ext_resource type="Texture2D" uid="uid://bsy4gtfl8jrwe" path="res://assets/ui/button_home.png" id="7_dwg8q"]
 [ext_resource type="AudioStream" uid="uid://bem77b5uvvnhc" path="res://assets/sounds/soundeffects/explosion_player.wav" id="7_v3lts"]
+[ext_resource type="Texture2D" uid="uid://dlalxfwa82r03" path="res://assets/ui/button_retry.png" id="11_xfu5q"]
 [ext_resource type="SpriteFrames" uid="uid://bj7kppdwycf3i" path="res://assets/obstacles/relic_spriteframe.tres" id="12_6cgk5"]
 [ext_resource type="Texture2D" uid="uid://dxw02la8r8wqj" path="res://assets/shadow.png" id="12_pjfkr"]
 [ext_resource type="Texture2D" uid="uid://cm35cdmixpj10" path="res://assets/shine_particle.png" id="16_u6t1o"]
@@ -272,6 +272,21 @@ random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("5_v0dkr")
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q75an"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2xphf"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cf1hh"]
+texture = ExtResource("11_xfu5q")
+modulate_color = Color(1.2, 1.2, 1.2, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pny50"]
+texture = ExtResource("11_xfu5q")
+modulate_color = Color(1.5, 1.5, 1.5, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ddc5b"]
+texture = ExtResource("11_xfu5q")
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rii0u"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wqt81"]
@@ -336,15 +351,18 @@ color_ramp = SubResource("Gradient_uqq4v")
 [node name="audio_increase" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_1801b")
 volume_db = -30.0
+bus = &"SFX"
 
 [node name="audio_decrease" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_jk8xc")
 volume_db = -25.0
 pitch_scale = 1.2
+bus = &"SFX"
 
 [node name="sound_die" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_v3lts")
 volume_db = -20.0
+bus = &"SFX"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(16, 104)
@@ -411,10 +429,15 @@ text = "0
 "
 horizontal_alignment = 1
 
-[node name="ButtonPause" type="Sprite2D" parent="Control/CanvasLayer"]
-position = Vector2(28, 29)
-scale = Vector2(1.75, 1.75)
-texture = ExtResource("6_n442f")
+[node name="ButtonRetry" type="Button" parent="Control/CanvasLayer"]
+offset_top = 1.0
+offset_right = 56.0
+offset_bottom = 57.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_q75an")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_2xphf")
+theme_override_styles/hover = SubResource("StyleBoxTexture_cf1hh")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_pny50")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ddc5b")
 
 [node name="ButtonHome" type="Button" parent="Control/CanvasLayer"]
 offset_left = 168.0
@@ -542,7 +565,9 @@ vertical_alignment = 1
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_uycjw")
 volume_db = -10.0
+bus = &"SFX"
 
 [connection signal="pressed" from="Control/CanvasLayer/left_button" to="." method="_on_left_button_pressed"]
 [connection signal="pressed" from="Control/CanvasLayer/right_button" to="." method="_on_right_button_pressed"]
+[connection signal="pressed" from="Control/CanvasLayer/ButtonRetry" to="." method="_on_button_retry_pressed"]
 [connection signal="pressed" from="Control/CanvasLayer/ButtonHome" to="." method="_on_button_home_pressed"]

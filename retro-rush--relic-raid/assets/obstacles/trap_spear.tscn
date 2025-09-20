@@ -1,0 +1,288 @@
+[gd_scene load_steps=13 format=3 uid="uid://xawojdyu6t5x"]
+
+[ext_resource type="Texture2D" uid="uid://bgg0jhv1gsjdw" path="res://assets/tilesets/obstacles.png" id="1_05xm7"]
+[ext_resource type="Script" uid="uid://entu3awcuep3" path="res://assets/obstacles/trap_spear.gd" id="1_uq18h"]
+
+[sub_resource type="Animation" id="Animation_uq18h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("trap/spear:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("trap/AnimatedSpriteleft:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"pad1"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("trap/AnimatedSpriteright:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"pad2"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("trap/spear/AnimatedSpritespear:flip_h")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("trap:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_05xm7"]
+resource_name = "trap_left"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("trap/spear:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.53333, 2.26667, 4.7, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(30, 0), Vector2(42, 0), Vector2(40, 0), Vector2(210, 0), Vector2(210, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("trap/spear/AnimatedSpritespear:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("trap/AnimatedSpriteleft:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"pad1"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("trap/AnimatedSpriteright:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"pad2"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("trap:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ya8ox"]
+resource_name = "trap_right"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("trap/spear:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.53333, 2.26667, 4.7, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(212, 0), Vector2(200, 0), Vector2(202, 0), Vector2(32, 0), Vector2(32, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("trap/spear/AnimatedSpritespear:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("trap/AnimatedSpriteleft:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"pad2"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("trap/AnimatedSpriteright:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"pad1"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("trap:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-127.5, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ya8ox"]
+_data = {
+&"RESET": SubResource("Animation_uq18h"),
+&"trap_left": SubResource("Animation_05xm7"),
+&"trap_right": SubResource("Animation_ya8ox")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uq18h"]
+atlas = ExtResource("1_05xm7")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vj7gj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uq18h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p7gpc"]
+size = Vector2(12, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vj7gj"]
+atlas = ExtResource("1_05xm7")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ya8ox"]
+atlas = ExtResource("1_05xm7")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u10am"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vj7gj")
+}],
+"loop": true,
+"name": &"pad1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ya8ox")
+}],
+"loop": true,
+"name": &"pad2",
+"speed": 5.0
+}]
+
+[node name="trap_spear" type="Node2D"]
+script = ExtResource("1_uq18h")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ya8ox")
+}
+
+[node name="trap" type="Node2D" parent="."]
+
+[node name="spear" type="Node2D" parent="trap"]
+
+[node name="AnimatedSpritespear" type="AnimatedSprite2D" parent="trap/spear"]
+z_index = -1
+position = Vector2(-41, 16)
+sprite_frames = SubResource("SpriteFrames_vj7gj")
+
+[node name="Area2D" type="Area2D" parent="trap/spear"]
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="trap/spear/Area2D"]
+position = Vector2(-40, 17)
+shape = SubResource("RectangleShape2D_p7gpc")
+
+[node name="AnimatedSpriteleft" type="AnimatedSprite2D" parent="trap"]
+position = Vector2(16, 16)
+scale = Vector2(1.09375, 1)
+sprite_frames = SubResource("SpriteFrames_u10am")
+animation = &"pad1"
+
+[node name="AnimatedSpriteright" type="AnimatedSprite2D" parent="trap"]
+position = Vector2(144, 16)
+scale = Vector2(1.0625, 1)
+sprite_frames = SubResource("SpriteFrames_u10am")
+animation = &"pad2"
+flip_h = true
+
+[connection signal="body_entered" from="trap/spear/Area2D" to="." method="_on_area_2d_body_entered"]

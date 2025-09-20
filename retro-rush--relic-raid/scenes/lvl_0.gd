@@ -11,6 +11,10 @@ extends Node2D
 @onready var bugfly_path: String = "res://assets/obstacles/bug_fly.tscn"
 @onready var bugwalk_path: String = "res://assets/obstacles/bug_centipide.tscn"
 @onready var bugboss_path: String = "res://assets/obstacles/bug_giantcrawler.tscn"
+@onready var webbarrier_path: String = "res://assets/obstacles/web_barrier.tscn"
+@onready var jumppad_path: String = "res://assets/obstacles/jumppad.tscn"
+@onready var revival_path: String = "res://assets/obstacles/revive_altar.tscn"
+@onready var spear_path: String = "res://assets/obstacles/trap_spear.tscn"
 
 # Replace this with your actual tile source ID for your "Auto" tile.
 const AUTO_TILE_SOURCE_ID: int = 0
@@ -33,6 +37,8 @@ func _ready():
 		if current_level > 24:
 			biome_material = preload("res://assets/shaders/backmaterial_5.tres")
 		$CanvasLayer/background.material = biome_material
+	if Global.revival != null:
+		$player.global_position = Global.revival
 
 func load_level(level_number: int):
 	var file_path = "%slvl_%d.txt" % [levels_path, level_number]
@@ -86,6 +92,12 @@ func load_level(level_number: int):
 	if bugboss_scene == null:
 		push_error("enemy bugboss scene not found")
 		return
+	var webbarrier_scene = load(webbarrier_path)
+	if webbarrier_scene == null:
+		push_error("web barrier not fould")
+	var jumppad_scene = load(jumppad_path)
+	var revival_scene = load(revival_path)
+	var spear_scene = load(spear_path)
 	# Collect all positions where you want to place your terrain tile.
 	var terrain_coords: Array[Vector2i] = []
 	var y: int = 0
@@ -133,6 +145,28 @@ func load_level(level_number: int):
 				var bugboss_instance = bugboss_scene.instantiate()
 				bugboss_instance.position = Vector2(x * 32, y * 32)
 				add_child(bugboss_instance)
+			elif char == 'w':
+				var webbarrier_instance = webbarrier_scene.instantiate()
+				webbarrier_instance.position = Vector2(x * 32, y * 32)
+				add_child(webbarrier_instance)
+			elif char == 'j':
+				var jumppad_instance = jumppad_scene.instantiate()
+				jumppad_instance.position = Vector2(x * 32, y * 32)
+				add_child(jumppad_instance)
+			elif char == 'r':
+				var revival_instance = revival_scene.instantiate()
+				revival_instance.position = Vector2(x * 32, y * 32)
+				add_child(revival_instance)
+			elif char == 's':
+				var spear_instance = spear_scene.instantiate()
+				var spear_pos = Vector2i(x, y)
+				# Check if there’s a wall at (x - 1, y)
+				if terrain_coords.has(Vector2i(x - 1, y)):
+					spear_instance.right = false  # wall on the left → spear faces left
+				else:
+					spear_instance.right = true   # no wall on the left → spear faces right
+				spear_instance.position = Vector2(x * 32, y * 32)
+				add_child(spear_instance)
 		y += 1
 	# Now update all these positions in one call for the terrain tile.
 	tilemaplayer.set_cells_terrain_connect(terrain_coords, AUTO_TILE_SOURCE_ID, 0, 0)
