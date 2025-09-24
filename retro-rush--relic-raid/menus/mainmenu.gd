@@ -159,6 +159,7 @@ func _swipe_detect(end_position: Vector2) -> void:
 
 
 func _on_button_settings_pressed() -> void:
+	$button_press.play()
 	var options_menu = preload("res://menus/options_menu.tscn").instantiate()
 	add_child(options_menu) # adds on top of the menu (OptionsMenu root must be a Control with full rect)
 	pass # Replace with function body.

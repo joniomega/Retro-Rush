@@ -228,7 +228,10 @@ func die():
 		await tree.create_timer(1.5).timeout
 		TransitionScreen.transition()
 		await TransitionScreen.on_transition_finished
-		tree.change_scene_to_file("res://scenes/lvl_0.tscn")
+		if Global.selected_level == -1:
+			tree.change_scene_to_file("res://scenes/lvl_infinite.tscn")
+		else:
+			tree.change_scene_to_file("res://scenes/lvl_0.tscn")
 
 # Button press handlers
 func _on_left_button_pressed() -> void:
@@ -402,5 +405,8 @@ func _on_button_retry_pressed() -> void:
 	var tree = get_tree()
 	TransitionScreen.transition()
 	await TransitionScreen.on_transition_finished
-	tree.change_scene_to_file("res://scenes/lvl_0.tscn")
+	if Global.selected_level == -1:
+		tree.change_scene_to_file("res://scenes/lvl_infinite.tscn")
+	else:
+		tree.change_scene_to_file("res://scenes/lvl_0.tscn")
 	pass # Replace with function body.

@@ -22,9 +22,10 @@ func _ready():
 	effectsslider.value = db_to_slider(Global.effects_volume)
 
 func _on_button_pressed() -> void:
+	$button_press.play()
 	Global.save_progress()
 	$AnimationPlayer.play("end")
-	await get_tree().create_timer(0.9).timeout
+	await get_tree().create_timer(0.6).timeout
 	queue_free()
 
 func _on_masterslider_value_changed(value: float) -> void:

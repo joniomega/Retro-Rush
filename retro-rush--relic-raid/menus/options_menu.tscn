@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://vcojxemh4fsc"]
+[gd_scene load_steps=17 format=3 uid="uid://vcojxemh4fsc"]
 
 [ext_resource type="Texture2D" uid="uid://dq44ccg3ysg6j" path="res://assets/ui/options_container.png" id="1_6r3ve"]
 [ext_resource type="Script" uid="uid://c1daf4wka7u5f" path="res://menus/options_menu.gd" id="1_l4xqj"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c86kaa382yi5k" path="res://assets/ui/scroll_grabber.png" id="3_1vpws"]
 [ext_resource type="Texture2D" uid="uid://beypbuxox7cw" path="res://assets/ui/scroll_scroll.png" id="4_1vpws"]
 [ext_resource type="Texture2D" uid="uid://bk2cyygdoropf" path="res://assets/ui/button_cancel.png" id="5_sg76y"]
+[ext_resource type="AudioStream" uid="uid://c5tdbhmgpgvun" path="res://assets/sounds/soundeffects/sound_button.mp3" id="7_eeh4p"]
 
 [sub_resource type="Animation" id="Animation_l4xqj"]
 length = 0.001
@@ -36,7 +37,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_eeh4p"]
 resource_name = "end"
-length = 0.6
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -44,7 +45,7 @@ tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6),
+"times": PackedFloat32Array(0, 0.433333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 0.588235), Color(0, 0, 0, 0)]
@@ -56,7 +57,7 @@ tracks/1/path = NodePath("Node2D:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.6),
+"times": PackedFloat32Array(0, 0.466667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
@@ -253,6 +254,11 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_l4xqj")
 theme_override_styles/hover = SubResource("StyleBoxTexture_eeh4p")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_t77c5")
 theme_override_styles/normal = SubResource("StyleBoxTexture_2k4wj")
+
+[node name="button_press" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_eeh4p")
+volume_db = -20.0
+bus = &"SFX"
 
 [connection signal="value_changed" from="Node2D/label_master/masterslider" to="." method="_on_masterslider_value_changed"]
 [connection signal="value_changed" from="Node2D/label_music/musicslider" to="." method="_on_musicslider_value_changed"]

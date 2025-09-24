@@ -15,7 +15,6 @@ extends Node2D
 @onready var jumppad_path: String = "res://assets/obstacles/jumppad.tscn"
 @onready var revival_path: String = "res://assets/obstacles/revive_altar.tscn"
 @onready var spear_path: String = "res://assets/obstacles/trap_spear.tscn"
-
 # Replace this with your actual tile source ID for your "Auto" tile.
 const AUTO_TILE_SOURCE_ID: int = 0
 
