@@ -82,7 +82,7 @@ script = ExtResource("1_qf2hg")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_0ijqq")
+&"": SubResource("AnimationLibrary_0ijqq")
 }
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

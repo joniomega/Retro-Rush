@@ -220,18 +220,21 @@ func die():
 		pass
 	else:
 		isdead = true
-		shine(-score)
-		$animation.play("die")
-		$sound_die.play()
-		_play_animation("fall")
-		var tree = get_tree()
-		await tree.create_timer(1.5).timeout
-		TransitionScreen.transition()
-		await TransitionScreen.on_transition_finished
 		if Global.selected_level == -1:
-			tree.change_scene_to_file("res://scenes/lvl_infinite.tscn")
+			die_infinite()
 		else:
-			tree.change_scene_to_file("res://scenes/lvl_0.tscn")
+			shine(-score)
+			$animation.play("die")
+			$sound_die.play()
+			_play_animation("fall")
+			var tree = get_tree()
+			await tree.create_timer(1.5).timeout
+			TransitionScreen.transition()
+			await TransitionScreen.on_transition_finished
+			if Global.selected_level == -1:
+				tree.change_scene_to_file("res://scenes/lvl_infinite.tscn")
+			else:
+				tree.change_scene_to_file("res://scenes/lvl_0.tscn")
 
 # Button press handlers
 func _on_left_button_pressed() -> void:
@@ -396,6 +399,12 @@ func die_ranked():
 		await TransitionScreen.on_transition_finished
 		tree.change_scene_to_file("res://menus/mainmenu.tscn")
 
+func die_infinite():
+	var tree = get_tree()
+	TransitionScreen.transition()
+	await TransitionScreen.on_transition_finished
+	tree.change_scene_to_file("res://menus/mainmenu.tscn")
+	pass
 func get_score() -> int:
 	return score
 

@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bvm7ds3g3b8os" path="res://menus/rewards_menu.tscn" id="7_pvtqq"]
 [ext_resource type="Texture2D" uid="uid://bbn7cjk6253cn" path="res://assets/ui/icon_exclamation.png" id="7_ssu4i"]
 [ext_resource type="Texture2D" uid="uid://c4w620eitvjr2" path="res://assets/ui/icon_coin.png" id="8_0suj5"]
-[ext_resource type="Texture2D" uid="uid://gxh0ja6n3sap" path="res://assets/ui/button_rewards.png" id="8_tvihv"]
+[ext_resource type="Texture2D" uid="uid://dju8x5pirex76" path="res://assets/ui/button_infinite.png" id="13_ikw2n"]
 [ext_resource type="Texture2D" uid="uid://vhwf51hkm3wa" path="res://assets/ui/button_settings.png" id="13_iplms"]
 [ext_resource type="AudioStream" uid="uid://coldtes67seqv" path="res://assets/sounds/0menu_Three Red Hearts - Princess Quest.ogg" id="14_osaii"]
 [ext_resource type="AudioStream" uid="uid://cqjmr2c08bept" path="res://assets/sounds/0menu_Three Red Hearts - Puzzle Pieces.ogg" id="15_qfd3d"]
@@ -80,15 +80,15 @@ texture = ExtResource("6_imw26")
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0b6mv"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h3u65"]
-texture = ExtResource("8_tvihv")
+texture = ExtResource("13_ikw2n")
 modulate_color = Color(1.2, 1.2, 1.2, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yvnfu"]
-texture = ExtResource("8_tvihv")
+texture = ExtResource("13_ikw2n")
 modulate_color = Color(1.5, 1.5, 1.5, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r50y0"]
-texture = ExtResource("8_tvihv")
+texture = ExtResource("13_ikw2n")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rgsia"]
 shader = ExtResource("6_0oedl")
@@ -454,7 +454,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_r50y0")
 
 [node name="IconExclamation3" type="Sprite2D" parent="static_ui/menu/rewards"]
 visible = false
-position = Vector2(40, 32)
+position = Vector2(48, 31)
 scale = Vector2(2, 2)
 texture = ExtResource("7_ssu4i")
 

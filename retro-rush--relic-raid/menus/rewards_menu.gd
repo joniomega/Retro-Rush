@@ -24,12 +24,15 @@ extends Control
 	$GridContainer/pos3/skin/accessory
 ]
 
-@onready var textedit_name = $GridContainer/config/TextEdit
-@onready var playerwins_label = $GridContainer/config/playerwins_label
+@onready var textedit_name = $Node2D/TextEdit
+@onready var playerwins_label = $playerscore/playerwins_label
+@onready var playername = $playerscore/name
 @onready var grid_container = $GridContainer
 @onready var level_rankedselect = $level_rankedselect
+@onready var name_input_ui = $Node2D
+@onready var background_color_rect = $ColorRect
 
-var is_online: bool = false
+@export var is_online: bool = false
 var has_player_name: bool = false
 var connectivity_check_timer: Timer
 
@@ -38,11 +41,21 @@ var http_request_leaderboard: HTTPRequest  # For leaderboard operations
 var is_creating_player: bool = false
 
 func _ready():
+	$ColorRect.visible = true
+	$Node2D.visible = true
 	Global.ranked_opponent_name = "none"
 	Global.ranked_opponent_score = 0
+	
+	# Check if player already has a name
 	if Global.player_name != "":
 		textedit_name.text = Global.player_name
+		playername.text = Global.player_name
 		has_player_name = true
+		# Fade out and remove name input UI
+		fade_out_name_input_ui()
+	else:
+		# Player needs to enter a name
+		has_player_name = false
 	
 	# Create HTTP request for player operations
 	http_request = HTTPRequest.new()
@@ -63,6 +76,17 @@ func _ready():
 	# Initial check
 	_check_internet_connectivity()
 	update_ui_state()
+
+func fade_out_name_input_ui():
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(name_input_ui, "modulate:a", 0.0, 0.5)
+	tween.tween_property(background_color_rect, "modulate:a", 0.0, 0.5)
+	tween.finished.connect(_on_fade_out_completed)
+
+func _on_fade_out_completed():
+	name_input_ui.queue_free()
+	background_color_rect.queue_free()
 
 func _check_internet_connectivity():
 	var http_request = HTTPRequest.new()
@@ -106,27 +130,8 @@ func fetch_leaderboard():
 		push_error("HTTP request error: " + str(error))
 		show_placeholder_data()
 
-func _on_save_pressed() -> void:
-	var new_name = textedit_name.text.strip_edges()
-	if new_name == "":
-		has_player_name = false
-		update_rankedselect_state()
-		return
-	
-	has_player_name = true
-	var current_id = Global.firebase_id
-	Global.player_name = new_name
-	
-	if Global.firebase_id == "":
-		is_creating_player = true
-		submit_new_player(new_name)
-	else:
-		update_existing_player(current_id, new_name)
-	
-	update_rankedselect_state()
-
 func update_rankedselect_state():
-	if is_online && has_player_name:
+	if has_player_name:
 		level_rankedselect.enable()
 	else:
 		level_rankedselect.disable()
@@ -246,7 +251,7 @@ func update_scoreboard(data):
 	for i in range(min(3, top_scores.size())):
 		var score = top_scores[i]
 		name_labels[i].text = str(score.get("name", "Player"))
-		win_labels[i].text = str(int(score.get("wins", 0))) + "w"
+		win_labels[i].text = str(int(score.get("wins", 0)))  # Removed the "w"
 		
 		if "skin" in score:
 			var intskin:int = int(score.skin) 
@@ -274,7 +279,7 @@ func update_player_wins(data):
 		if data.has(Global.firebase_id):
 			var player_data = data[Global.firebase_id]
 			var wins = player_data.get("wins", 0)
-			playerwins_label.text = str(wins) + "w"
+			playerwins_label.text = str(wins)  # Removed the "w"
 		else:
 			playerwins_label.text = "0"
 	else:
@@ -283,7 +288,7 @@ func update_player_wins(data):
 func show_placeholder_data():
 	for i in range(3):
 		name_labels[i].text = "Player " + str(i+1)
-		win_labels[i].text = "0"
+		win_labels[i].text = "0"  # Removed the "w"
 		skin_animatedsprites[i].play("1_jump")
 		accessory_animatedsprites[i].play("none_jump")
 	
@@ -291,3 +296,24 @@ func show_placeholder_data():
 
 func _on_refresh_button_pressed():
 	fetch_leaderboard()
+
+func _on_buttonchangename_pressed() -> void:
+	var new_name = textedit_name.text.strip_edges()
+	if new_name == "":
+		has_player_name = false
+		update_rankedselect_state()
+		return
+	
+	has_player_name = true
+	var current_id = Global.firebase_id
+	Global.player_name = new_name
+	playername.text = Global.player_name
+	
+	if Global.firebase_id == "":
+		is_creating_player = true
+		submit_new_player(new_name)
+	else:
+		update_existing_player(current_id, new_name)
+	update_rankedselect_state()
+	# Fade out and remove name input UI after setting name
+	fade_out_name_input_ui()

@@ -36,7 +36,6 @@ mouse_filter = 2
 script = ExtResource("1_8htrp")
 
 [node name="Button" type="Button" parent="."]
-modulate = Color(0.952941, 1, 0.588235, 1)
 layout_mode = 0
 offset_right = 192.0
 offset_bottom = 56.0
@@ -68,20 +67,19 @@ theme_override_constants/outline_size = 5
 theme_override_constants/shadow_outline_size = 7
 theme_override_fonts/font = ExtResource("3_wxruc")
 theme_override_font_sizes/font_size = 16
-text = "RANDOM MATCH
-1000p"
+text = "INFINITE LEVEL"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(25, 26)
+position = Vector2(25, 28)
 scale = Vector2(1.53125, 1.5)
 sprite_frames = ExtResource("4_ne0q7")
 animation = &"pvpmatch"
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
-position = Vector2(28, 28)
+position = Vector2(25, 31)
 texture = ExtResource("5_bp5bo")
 emission_shape = 1
 emission_sphere_radius = 20.0

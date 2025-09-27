@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://vcojxemh4fsc"]
+[gd_scene load_steps=22 format=3 uid="uid://vcojxemh4fsc"]
 
 [ext_resource type="Texture2D" uid="uid://dq44ccg3ysg6j" path="res://assets/ui/options_container.png" id="1_6r3ve"]
 [ext_resource type="Script" uid="uid://c1daf4wka7u5f" path="res://menus/options_menu.gd" id="1_l4xqj"]
 [ext_resource type="FontFile" uid="uid://camtosjq61o18" path="res://assets/ui/alagard.ttf" id="2_cet7k"]
 [ext_resource type="Texture2D" uid="uid://c86kaa382yi5k" path="res://assets/ui/scroll_grabber.png" id="3_1vpws"]
+[ext_resource type="Texture2D" uid="uid://bp85pw1gug553" path="res://assets/ui/button_horizontal_1.png" id="3_t77c5"]
 [ext_resource type="Texture2D" uid="uid://beypbuxox7cw" path="res://assets/ui/scroll_scroll.png" id="4_1vpws"]
 [ext_resource type="Texture2D" uid="uid://bk2cyygdoropf" path="res://assets/ui/button_cancel.png" id="5_sg76y"]
 [ext_resource type="AudioStream" uid="uid://c5tdbhmgpgvun" path="res://assets/sounds/soundeffects/sound_button.mp3" id="7_eeh4p"]
@@ -98,12 +99,29 @@ _data = {
 &"start": SubResource("Animation_sg76y")
 }
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l4xqj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nmiyo"]
+texture = ExtResource("3_t77c5")
+modulate_color = Color(1.2, 1.2, 1.2, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_foede"]
+texture = ExtResource("3_t77c5")
+modulate_color = Color(1.5, 1.5, 1.5, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e4kiy"]
+texture = ExtResource("3_t77c5")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uhll8"]
+texture = ExtResource("3_t77c5")
+texture_margin_left = 3.0
+texture_margin_right = 3.0
+modulate_color = Color(0, 0, 0, 0.384314)
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sg76y"]
 texture = ExtResource("4_1vpws")
 expand_margin_top = 10.0
 expand_margin_bottom = 10.0
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l4xqj"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eeh4p"]
 texture = ExtResource("5_sg76y")
@@ -139,15 +157,45 @@ z_index = 2
 position = Vector2(112, 168)
 scale = Vector2(1e-05, 1e-05)
 
+[node name="Buttonchangename" type="Button" parent="Node2D"]
+z_index = 1
+offset_left = -32.0
+offset_top = -64.0
+offset_right = 32.0
+offset_bottom = -40.0
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_cet7k")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = SubResource("StyleBoxEmpty_l4xqj")
+theme_override_styles/hover = SubResource("StyleBoxTexture_nmiyo")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_foede")
+theme_override_styles/normal = SubResource("StyleBoxTexture_e4kiy")
+text = "change"
+
+[node name="TextEdit" type="TextEdit" parent="Node2D"]
+z_index = 1
+offset_left = -48.0
+offset_top = -79.0
+offset_right = 80.0
+offset_bottom = -58.0
+scale = Vector2(0.75, 0.75)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_cet7k")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxTexture_uhll8")
+placeholder_text = "name"
+
 [node name="OptionsContainer" type="Sprite2D" parent="Node2D"]
-position = Vector2(0, 16)
+position = Vector2(0, 32)
+scale = Vector2(1, 1.125)
 texture = ExtResource("1_6r3ve")
 
 [node name="title" type="Label" parent="Node2D"]
 offset_left = -77.0
-offset_top = -120.0
+offset_top = -104.0
 offset_right = 51.0
-offset_bottom = -75.0
+offset_bottom = -86.0
 scale = Vector2(1.2, 1.2)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.588235)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -162,9 +210,9 @@ autowrap_mode = 3
 
 [node name="label_master" type="Label" parent="Node2D"]
 offset_left = -64.0
-offset_top = -90.0
+offset_top = -52.0
 offset_right = 64.0
-offset_bottom = -45.0
+offset_bottom = -7.0
 theme_override_colors/font_color = Color(0.573333, 0.36, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
@@ -190,9 +238,9 @@ step = 0.1
 
 [node name="label_music" type="Label" parent="Node2D"]
 offset_left = -64.0
-offset_top = -42.0
+offset_top = -4.0
 offset_right = 64.0
-offset_bottom = 3.0
+offset_bottom = 41.0
 theme_override_colors/font_color = Color(0.573333, 0.36, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
@@ -218,9 +266,9 @@ step = 0.1
 
 [node name="label_effects" type="Label" parent="Node2D"]
 offset_left = -64.0
-offset_top = 6.0
+offset_top = 44.0
 offset_right = 64.0
-offset_bottom = 51.0
+offset_bottom = 89.0
 theme_override_colors/font_color = Color(0.573333, 0.36, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
@@ -247,9 +295,9 @@ value = 0.5
 
 [node name="Button" type="Button" parent="Node2D"]
 offset_left = -28.0
-offset_top = 72.0
+offset_top = 108.0
 offset_right = 28.0
-offset_bottom = 128.0
+offset_bottom = 164.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_l4xqj")
 theme_override_styles/hover = SubResource("StyleBoxTexture_eeh4p")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_t77c5")
@@ -260,6 +308,7 @@ stream = ExtResource("7_eeh4p")
 volume_db = -20.0
 bus = &"SFX"
 
+[connection signal="pressed" from="Node2D/Buttonchangename" to="." method="_on_buttonchangename_pressed"]
 [connection signal="value_changed" from="Node2D/label_master/masterslider" to="." method="_on_masterslider_value_changed"]
 [connection signal="value_changed" from="Node2D/label_music/musicslider" to="." method="_on_musicslider_value_changed"]
 [connection signal="value_changed" from="Node2D/label_effects/effectsslider" to="." method="_on_effectsslider_value_changed"]

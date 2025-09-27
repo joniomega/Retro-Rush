@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=4 uid="uid://cmjt0mx8qfvdq"]
 
 [ext_resource type="Script" uid="uid://be1kren4ydi12" path="res://scenes/lvl_infinite.gd" id="1_npo70"]
-[ext_resource type="Material" uid="uid://b38l1jujf2me6" path="res://assets/shaders/backmaterial_1.tres" id="2_wfej1"]
+[ext_resource type="Material" uid="uid://tfkw720o3sn8" path="res://assets/shaders/backmaterial_ranked.tres" id="2_npo70"]
 [ext_resource type="PackedScene" uid="uid://dbcq5x0px65b6" path="res://assets/characters/player/player.tscn" id="4_bgwlp"]
 [ext_resource type="Texture2D" uid="uid://bblt06h3g5o85" path="res://assets/tilesets/castle_stones.png" id="4_wfej1"]
 [ext_resource type="AudioStream" uid="uid://bntd8arieo7ou" path="res://assets/sounds/Three Red Hearts - Box Jump.ogg" id="5_r0wad"]
@@ -703,7 +703,7 @@ layer = -1
 
 [node name="background" type="ColorRect" parent="CanvasLayer"]
 show_behind_parent = true
-material = ExtResource("2_wfej1")
+material = ExtResource("2_npo70")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

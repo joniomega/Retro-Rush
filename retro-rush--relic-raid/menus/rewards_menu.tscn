@@ -1,35 +1,36 @@
-[gd_scene load_steps=17 format=3 uid="uid://bvm7ds3g3b8os"]
+[gd_scene load_steps=18 format=3 uid="uid://bvm7ds3g3b8os"]
 
 [ext_resource type="Script" uid="uid://c2ss1316x3okq" path="res://menus/rewards_menu.gd" id="1_tj4mn"]
 [ext_resource type="PackedScene" uid="uid://dacestg0nqsfx" path="res://menus/level_rankedselect.tscn" id="2_bfhl7"]
 [ext_resource type="Texture2D" uid="uid://dq7mhgln81iyk" path="res://assets/ui/icon_pvp.png" id="2_g0u5n"]
 [ext_resource type="SpriteFrames" uid="uid://bj7kppdwycf3i" path="res://assets/obstacles/relic_spriteframe.tres" id="3_x425d"]
 [ext_resource type="Texture2D" uid="uid://dwphcswg5bw86" path="res://assets/ui/icon_nowifi.png" id="4_0c5jo"]
+[ext_resource type="Texture2D" uid="uid://dq44ccg3ysg6j" path="res://assets/ui/options_container.png" id="4_e6daq"]
 [ext_resource type="Texture2D" uid="uid://71etip7gdwiv" path="res://assets/ui/container_level_select.png" id="4_f2kvv"]
 [ext_resource type="FontFile" uid="uid://camtosjq61o18" path="res://assets/ui/alagard.ttf" id="4_r2w4r"]
 [ext_resource type="Texture2D" uid="uid://bp85pw1gug553" path="res://assets/ui/button_horizontal_1.png" id="5_neg3j"]
 [ext_resource type="SpriteFrames" uid="uid://duukh1em5rexv" path="res://assets/characters/player/player_skin.tres" id="5_wmksu"]
 [ext_resource type="SpriteFrames" uid="uid://bsvml15ne3jhu" path="res://assets/characters/player/accessories/player_accessories.tres" id="6_f885f"]
-[ext_resource type="Texture2D" uid="uid://bwwy323cb3csd" path="res://assets/ui/icon_edit.png" id="9_fr283"]
+[ext_resource type="Texture2D" uid="uid://d4g7f6k0h8el0" path="res://assets/ui/container_player_infinite.png" id="7_o2avd"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jjo3o"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o2avd"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e3rur"]
+texture = ExtResource("5_neg3j")
+modulate_color = Color(1.2, 1.2, 1.2, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oegxx"]
+texture = ExtResource("5_neg3j")
+modulate_color = Color(1.5, 1.5, 1.5, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n3tpw"]
+texture = ExtResource("5_neg3j")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rpn3k"]
 texture = ExtResource("5_neg3j")
 texture_margin_left = 3.0
 texture_margin_right = 3.0
 modulate_color = Color(0, 0, 0, 0.384314)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_seq2h"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_84rmg"]
-texture = ExtResource("9_fr283")
-modulate_color = Color(1.2, 1.2, 1.2, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6b2yn"]
-texture = ExtResource("9_fr283")
-modulate_color = Color(1.5, 1.5, 1.5, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bj2a8"]
-texture = ExtResource("9_fr283")
 
 [node name="rewards_menu" type="Control"]
 layout_mode = 3
@@ -47,72 +48,109 @@ position = Vector2(112, 78)
 scale = Vector2(2, 2)
 texture = ExtResource("2_g0u5n")
 
-[node name="Label" type="Label" parent="IconPvp"]
-offset_left = -20.0
-offset_top = -9.0
-offset_right = 20.0
-offset_bottom = 14.0
-theme_override_colors/font_color = Color(0.470588, 0.364706, 0.701961, 1)
-theme_override_colors/font_outline_color = Color(0.121569, 0.0901961, 0.2, 1)
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 0
+[node name="level_rankedselect" parent="." instance=ExtResource("2_bfhl7")]
+layout_mode = 2
+offset_left = 16.0
+offset_top = 100.0
+offset_right = 16.0
+offset_bottom = 100.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.666667)
+
+[node name="Node2D" type="Node2D" parent="."]
+visible = false
+z_index = 2
+position = Vector2(112, 203)
+
+[node name="OptionsContainer" type="Sprite2D" parent="Node2D"]
+position = Vector2(0, -52)
+scale = Vector2(1, 0.46875)
+texture = ExtResource("4_e6daq")
+
+[node name="title" type="Label" parent="Node2D"]
+z_index = 1
+offset_left = -77.0
+offset_top = -104.0
+offset_right = 51.0
+offset_bottom = -86.0
+scale = Vector2(1.2, 1.2)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.588235)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
-theme_override_constants/shadow_outline_size = 7
+theme_override_constants/shadow_outline_size = 9
 theme_override_fonts/font = ExtResource("4_r2w4r")
 theme_override_font_sizes/font_size = 16
-text = "PVP"
+text = "CREATE A 
+NAME"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
-[node name="IconNowifi" type="Sprite2D" parent="."]
-position = Vector2(114, 176)
-scale = Vector2(2, 2)
-texture = ExtResource("4_0c5jo")
+[node name="Buttonchangename" type="Button" parent="Node2D"]
+z_index = 1
+offset_left = -36.0
+offset_top = -40.0
+offset_right = 36.0
+offset_bottom = -16.0
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("4_r2w4r")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o2avd")
+theme_override_styles/hover = SubResource("StyleBoxTexture_e3rur")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_oegxx")
+theme_override_styles/normal = SubResource("StyleBoxTexture_n3tpw")
+text = "confirm"
 
-[node name="GridContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 146.0
-offset_right = 208.0
-offset_bottom = 386.0
-size_flags_horizontal = 3
-theme_override_constants/separation = 100
-alignment = 1
-
-[node name="config" type="Node2D" parent="GridContainer"]
-position = Vector2(42, 25)
-scale = Vector2(1.5, 1.5)
-
-[node name="ContainerLevelSelect" type="Sprite2D" parent="GridContainer/config"]
-show_behind_parent = true
-position = Vector2(36, 0.666679)
-scale = Vector2(0.916667, 0.458334)
-texture = ExtResource("4_f2kvv")
-
-[node name="TextEdit" type="TextEdit" parent="GridContainer/config"]
-offset_left = 4.66667
-offset_top = -6.0
-offset_right = 89.6667
-offset_bottom = 15.0
+[node name="TextEdit" type="TextEdit" parent="Node2D"]
+z_index = 1
+offset_left = -48.0
+offset_top = -58.0
+offset_right = 80.0
+offset_bottom = -34.0
 scale = Vector2(0.75, 0.75)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("4_r2w4r")
 theme_override_font_sizes/font_size = 16
-theme_override_styles/normal = SubResource("StyleBoxTexture_jjo3o")
+theme_override_styles/normal = SubResource("StyleBoxTexture_rpn3k")
 placeholder_text = "name"
 
-[node name="playerwins_label" type="Label" parent="GridContainer/config"]
+[node name="playerscore" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ContainerLevelSelect" type="Sprite2D" parent="playerscore"]
+modulate = Color(0.8, 0.8, 0.8, 1)
+show_behind_parent = true
+position = Vector2(-0.500004, -56.3333)
+texture = ExtResource("7_o2avd")
+
+[node name="playerwins_label" type="Label" parent="playerscore"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.15625
 anchor_top = -0.0104166
 anchor_right = -0.15625
 anchor_bottom = -0.0104166
-offset_left = -21.0
-offset_top = -8.0
-offset_right = 20.0
-offset_bottom = 25.0
-scale = Vector2(0.65, 0.65)
+offset_left = -64.0
+offset_top = -77.0
+offset_right = 64.0
+offset_bottom = -44.0
 theme_override_colors/font_color = Color(0.647059, 0.6, 0.780392, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0.0705882, 0.0392157, 0.129412, 1)
@@ -124,15 +162,42 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="save" type="Button" parent="GridContainer/config"]
-offset_left = 70.0
-offset_top = -8.6667
-offset_right = 91.0
-offset_bottom = 12.3333
-theme_override_styles/focus = SubResource("StyleBoxEmpty_seq2h")
-theme_override_styles/hover = SubResource("StyleBoxTexture_84rmg")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_6b2yn")
-theme_override_styles/normal = SubResource("StyleBoxTexture_bj2a8")
+[node name="name" type="Label" parent="playerscore"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.15625
+anchor_top = -0.0104166
+anchor_right = -0.15625
+anchor_bottom = -0.0104166
+offset_left = -64.0
+offset_top = -92.0
+offset_right = 64.0
+offset_bottom = -59.0
+theme_override_colors/font_color = Color(0.831333, 0.77, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.0705882, 0.0392157, 0.129412, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_r2w4r")
+theme_override_font_sizes/font_size = 16
+text = "000"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="IconNowifi" type="Sprite2D" parent="."]
+position = Vector2(114, 176)
+scale = Vector2(2, 2)
+texture = ExtResource("4_0c5jo")
+
+[node name="GridContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 112.0
+offset_right = 208.0
+offset_bottom = 118.0
+size_flags_horizontal = 3
+theme_override_constants/separation = 100
+alignment = 1
 
 [node name="pos1" type="Node2D" parent="GridContainer"]
 position = Vector2(42, 69)
@@ -190,7 +255,7 @@ theme_override_colors/font_outline_color = Color(0.0705882, 0.0392157, 0.129412,
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("4_r2w4r")
 theme_override_font_sizes/font_size = 16
-text = "92W"
+text = "2W"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -347,12 +412,4 @@ animation = &"3_jump"
 sprite_frames = ExtResource("6_f885f")
 animation = &"books_jump"
 
-[node name="level_rankedselect" parent="." instance=ExtResource("2_bfhl7")]
-layout_mode = 2
-offset_left = 16.0
-offset_top = 100.0
-offset_right = 16.0
-offset_bottom = 100.0
-mouse_filter = 1
-
-[connection signal="pressed" from="GridContainer/config/save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="Node2D/Buttonchangename" to="." method="_on_buttonchangename_pressed"]

@@ -32,22 +32,6 @@ func _ready():
 	load_level_parts("res://scenes/levels/lvlparts.txt")
 	initialize_infinite_level()
 	
-	if global.selected_level_special == true:
-		var special_material = preload("res://assets/shaders/backmaterial_special.tres")
-		$CanvasLayer/background.material = special_material
-	else:
-		var biome_material = preload("res://assets/shaders/backmaterial_1.tres")
-		if Global.selected_level > 6:
-			biome_material = preload("res://assets/shaders/backmaterial_2.tres")
-		if Global.selected_level > 12:
-			biome_material = preload("res://assets/shaders/backmaterial_3.tres")
-		if Global.selected_level > 18:
-			biome_material = preload("res://assets/shaders/backmaterial_4.tres")
-		if Global.selected_level > 24:
-			biome_material = preload("res://assets/shaders/backmaterial_5.tres")
-		$CanvasLayer/background.material = biome_material
-	if Global.revival != null:
-		player.global_position = Global.revival
 
 func load_level_parts(file_path: String):
 	if not FileAccess.file_exists(file_path):
@@ -108,6 +92,7 @@ func generate_group(group_number: int):
 	var tilemap_layer = TileMapLayer.new()
 	tilemap_layer.name = "TileMapLayer"
 	tilemap_layer.tile_set = base_tilemap.tile_set
+	#tilemap_layer.modulate = Color(2,0,0)
 	group_node.add_child(tilemap_layer)
 	
 	# Select modules for this group
