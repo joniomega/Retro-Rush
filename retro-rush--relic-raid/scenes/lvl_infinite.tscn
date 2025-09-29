@@ -716,7 +716,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAJAAAAAAAAAAIAAAAFAAE
 tile_set = SubResource("TileSet_bgwlp")
 
 [node name="player" parent="." instance=ExtResource("4_bgwlp")]
-position = Vector2(96, -163)
+position = Vector2(96, 71)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_djmpo")

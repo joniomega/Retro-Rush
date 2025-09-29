@@ -480,7 +480,7 @@ show_behind_parent = true
 position = Vector2(112, -26)
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("12_6cgk5")
-animation = &"1"
+animation = &"pvpmatch"
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="Control/CanvasLayer/win"]
 position = Vector2(112, -7)

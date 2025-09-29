@@ -236,6 +236,67 @@ func die():
 			else:
 				tree.change_scene_to_file("res://scenes/lvl_0.tscn")
 
+func die_infinite():
+	$animation.play("die")
+	$sound_die.play()
+	_play_animation("fall")
+	Global.points = Global.points + score
+	
+	# Check if this is a new record and update Firebase if online
+	var is_new_record = Global.update_infinite_record(score)
+	
+	var tree = get_tree()
+	await tree.create_timer(0.5).timeout
+	$Control/CanvasLayer/win/AnimatedSprite2D.play("pvpmatch")
+	isdead = true
+	
+	# Update win text based on whether it's a new record
+	if is_new_record:
+		$Control/CanvasLayer/win.text = "[wave][center][color=#d79a00][b]NEW\nRECORD[/b][/color][/center][/wave]"
+		# Update Firebase if player is online
+		if Global.firebase_id != "":
+			update_record_on_firebase()
+	else:
+		$Control/CanvasLayer/win.text = "[center][color=#d8d8d8]Score: %d\nRecord: %d[/color][/center]" % [score, Global.infinite_record]
+		$Control/CanvasLayer/win.add_theme_color_override("font_outline_color", Color(0.3, 0.3, 0.3))
+		$Control/CanvasLayer/score.visible = false
+	
+	$animation.play("win")
+	get_parent().stop_music()
+	await get_tree().create_timer(3).timeout
+	TransitionScreen.transition()
+	await TransitionScreen.on_transition_finished
+	tree.change_scene_to_file("res://menus/mainmenu.tscn")
+
+# NEW: Function to update record on Firebase as "wins"
+func update_record_on_firebase():
+	var http_request = HTTPRequest.new()
+	add_child(http_request)
+	http_request.request_completed.connect(_on_record_update_completed.bind(http_request))
+	
+	var url = "https://retrorush-descend-default-rtdb.europe-west1.firebasedatabase.app/leaderboard/%s.json" % Global.firebase_id
+	var headers = ["Content-Type: application/json"]
+	
+	# Save the record as "wins" in Firebase
+	var body = JSON.stringify({
+		"wins": Global.infinite_record
+	})
+	
+	var error = http_request.request(url, headers, HTTPClient.METHOD_PATCH, body)
+	if error != OK:
+		push_error("Failed to update record on Firebase")
+		http_request.queue_free()
+
+func _on_record_update_completed(result, response_code, headers, body, http_request):
+	http_request.queue_free()
+	
+	if result == HTTPRequest.RESULT_SUCCESS and response_code == 200:
+		print("Record updated on Firebase as wins: ", Global.infinite_record)
+	else:
+		push_error("Failed to update record on Firebase - Status: %d" % response_code)
+		if body:
+			print("Error response:", body.get_string_from_utf8())
+
 # Button press handlers
 func _on_left_button_pressed() -> void:
 	if isdead == false:
@@ -399,12 +460,7 @@ func die_ranked():
 		await TransitionScreen.on_transition_finished
 		tree.change_scene_to_file("res://menus/mainmenu.tscn")
 
-func die_infinite():
-	var tree = get_tree()
-	TransitionScreen.transition()
-	await TransitionScreen.on_transition_finished
-	tree.change_scene_to_file("res://menus/mainmenu.tscn")
-	pass
+
 func get_score() -> int:
 	return score
 
@@ -418,4 +474,3 @@ func _on_button_retry_pressed() -> void:
 		tree.change_scene_to_file("res://scenes/lvl_infinite.tscn")
 	else:
 		tree.change_scene_to_file("res://scenes/lvl_0.tscn")
-	pass # Replace with function body.

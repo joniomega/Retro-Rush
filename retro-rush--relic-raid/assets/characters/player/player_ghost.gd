@@ -5,28 +5,28 @@ const SPEED = 300.0
 @export var username = "none"
 @export var skin = "1"
 @export var accessory = "crest"
-var player
-var relic
 var movement_tween: Tween
 var movement_started := false
 var x_min := 32.0
 var x_max := 160.0
+var starting_y: float = 0.0
 var previous_x: float = 0.0
 
 func _ready():
-	username = Global.ranked_opponent_name
-	skin = Global.ranked_opponent_skin
-	accessory = Global.ranked_opponent_accessory
 	$name.text = username
-	$AnimatedSprite2D.play(skin + "_ghost")
+	$AnimatedSprite2D.play(str(int(skin)) + "_ghost")
 	$AnimatedSprite2D/accessory.play(accessory + "_jump")
 	previous_x = position.x  # Initialize previous position
-
-func _physics_process(delta: float) -> void:
-	if player and not movement_started:
+	
+	# Store the starting Y position
+	starting_y = position.y
+	
+	# Start movement immediately
+	if not movement_started:
 		start_movement()
 		movement_started = true
-		
+
+func _physics_process(delta: float) -> void:
 	# Update sprite flipping based on horizontal movement
 	update_sprite_flipping()
 
@@ -52,19 +52,9 @@ func start_movement():
 	
 	movement_tween = create_tween()
 	
-	# Safely get player score
-	var player_score = 0
-	if player and player.has_method("get_score"):
-		player_score = player.get_score()
-	elif player and "score" in player:
-		player_score = player.score
-	
-	# Determine ghost position relative to player
-	var y_offset = -25 if player_score > Global.ranked_opponent_score else 80
-	
-	# Calculate target position with constraints
+	# Calculate random target position around the starting Y
 	var target_x = randf_range(x_min, x_max)
-	var target_y = player.position.y + y_offset + randf_range(-10, 10)
+	var target_y = starting_y + randf_range(-50, 50)  # Roam ±50 pixels around starting Y
 	var target_position = Vector2(target_x, target_y)
 	
 	# Create irregular movement with random duration

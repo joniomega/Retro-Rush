@@ -94,6 +94,17 @@ real_rewarded_id = "ca-app-pub-8306120320708452/7645370231"
 [node name="takeall" type="Node2D" parent="."]
 position = Vector2(0, 64)
 
+[node name="ButtonPlay" type="Sprite2D" parent="takeall"]
+position = Vector2(48, 163)
+scale = Vector2(2, 2)
+texture = ExtResource("11_3ylhs")
+
+[node name="ButtonPlay2" type="Sprite2D" parent="takeall"]
+position = Vector2(176, 163)
+scale = Vector2(2, 2)
+texture = ExtResource("11_3ylhs")
+flip_h = true
+
 [node name="Button_takeall" type="Button" parent="takeall"]
 offset_left = 48.0
 offset_top = 136.0
@@ -147,17 +158,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_q4qkt")
 theme_override_styles/hover = SubResource("StyleBoxTexture_m7lhn")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_by1br")
 theme_override_styles/normal = SubResource("StyleBoxTexture_r5lyk")
-
-[node name="ButtonPlay" type="Sprite2D" parent="takeall"]
-position = Vector2(28, 160)
-scale = Vector2(2, 2)
-texture = ExtResource("11_3ylhs")
-
-[node name="ButtonPlay2" type="Sprite2D" parent="takeall"]
-position = Vector2(196, 160)
-scale = Vector2(2, 2)
-texture = ExtResource("11_3ylhs")
-flip_h = true
 
 [connection signal="initialization_completed" from="Admob" to="." method="_on_admob_initialization_completed"]
 [connection signal="rewarded_ad_user_earned_reward" from="Admob" to="." method="_on_admob_rewarded_ad_user_earned_reward"]

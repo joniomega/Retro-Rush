@@ -21,11 +21,11 @@ collision_mask = 0
 script = ExtResource("1_38yfo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(0.6, 1, 0.721569, 0.627451)
+modulate = Color(0.6, 1, 0.72, 0.784314)
 z_index = 2
 position = Vector2(16, 16)
 sprite_frames = ExtResource("1_inwe8")
-animation = &"5_ghost"
+animation = &"6_ghost"
 
 [node name="accessory" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
 z_index = 2
@@ -58,4 +58,4 @@ vertical_alignment = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_b7qro")
-volume_db = -17.0
+volume_db = -80.0

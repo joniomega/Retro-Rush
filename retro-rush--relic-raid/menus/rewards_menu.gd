@@ -279,7 +279,7 @@ func update_player_wins(data):
 		if data.has(Global.firebase_id):
 			var player_data = data[Global.firebase_id]
 			var wins = player_data.get("wins", 0)
-			playerwins_label.text = str(wins)  # Removed the "w"
+			playerwins_label.text = str(int(wins))  # Removed the "w"
 		else:
 			playerwins_label.text = "0"
 	else:

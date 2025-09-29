@@ -185,7 +185,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="IconNowifi" type="Sprite2D" parent="."]
-position = Vector2(114, 176)
+position = Vector2(114, 181)
 scale = Vector2(2, 2)
 texture = ExtResource("4_0c5jo")
 

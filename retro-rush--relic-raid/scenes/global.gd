@@ -18,6 +18,9 @@ var firebase_id: String = ""
 var unlocked_hats: Array = []   # always starts with "none" after update_unlocked_items()
 var unlocked_skins: Array = []  # always starts with "1" after update_unlocked_items()
 
+# NEW: Infinite record variable
+var infinite_record: int = 0
+
 # Crafting System
 const CRAFTABLE_ITEMS := {
 	"accessories": ["hat", "spikes", "plant", "crest", "candle", "horns", "books"],
@@ -78,7 +81,8 @@ func save_progress() -> void:
 		"unlocked_skins": unlocked_skins,
 		"player_name": player_name,
 		"firebase_id": firebase_id,
-		# new audio settings
+		"infinite_record": infinite_record,  # NEW: Save the record
+		# audio settings
 		"master_volume": master_volume,
 		"music_volume": music_volume,
 		"effects_volume": effects_volume
@@ -108,6 +112,7 @@ func load_progress() -> void:
 		unlocked_skins = save_data.get("unlocked_skins", ["1"])
 		player_name = save_data.get("player_name", "")
 		firebase_id = save_data.get("firebase_id", "")
+		infinite_record = save_data.get("infinite_record", 0)  # NEW: Load the record
 
 		# audio settings
 		master_volume = save_data.get("master_volume", 0.8)
@@ -115,9 +120,9 @@ func load_progress() -> void:
 		effects_volume = save_data.get("effects_volume", 0.8)
 
 		# apply volumes immediately
-		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(master_volume))
-		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(music_volume))
-		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(effects_volume))
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), master_volume)
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), music_volume)
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), effects_volume)
 
 		# ensure new craft items are tracked
 		for item_type in CRAFTABLE_ITEMS:
@@ -129,39 +134,6 @@ func load_progress() -> void:
 				if not unlocked_rewards.has(item):
 					unlocked_rewards[item] = false
 
-		update_unlocked_items()
-	else:
-		push_error("Failed to load game: ", FileAccess.get_open_error())
-	if not FileAccess.file_exists("user://save.dat"):
-		return
-
-	file = FileAccess.open("user://save.dat", FileAccess.READ)
-	if file:
-		var save_data = file.get_var()
-
-		unlocked_levels = save_data.get("unlocked_levels", [1])
-		points = save_data.get("points", 1000)
-		player_hat = save_data.get("player_hat", "none")
-		player_skin = save_data.get("player_skin", "1")
-		collected_ingredients = save_data.get("collected_ingredients", {})
-		unlocked_rewards = save_data.get("unlocked_rewards", {})
-		unlocked_hats = save_data.get("unlocked_hats", ["none"])
-		unlocked_skins = save_data.get("unlocked_skins", ["1"])
-		player_name = save_data.get("player_name", "")
-		firebase_id = save_data.get("firebase_id", "")
-
-		# Ensure new items are tracked
-		for item_type in CRAFTABLE_ITEMS:
-			for item in CRAFTABLE_ITEMS[item_type]:
-				if not collected_ingredients.has(item + "_1"):
-					collected_ingredients[item + "_1"] = false
-				if not collected_ingredients.has(item + "_2"):
-					collected_ingredients[item + "_2"] = false
-				if not unlocked_rewards.has(item):
-					unlocked_rewards[item] = false
-		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), master_volume)
-		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), music_volume)
-		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), effects_volume)
 		update_unlocked_items()
 	else:
 		push_error("Failed to load game: ", FileAccess.get_open_error())
@@ -181,6 +153,14 @@ func unlock_reward(reward: String) -> void:
 		unlocked_rewards[reward] = true
 		update_unlocked_items()
 		save_progress()
+
+# NEW: Function to update infinite record
+func update_infinite_record(new_score: int) -> bool:
+	if new_score > infinite_record:
+		infinite_record = new_score
+		save_progress()
+		return true
+	return false
 
 # Ranked helpers (unchanged)
 func set_ranked_match(opponent_name: String, score: int, level: int):
