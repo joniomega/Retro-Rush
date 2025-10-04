@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bvm7ds3g3b8os"]
+[gd_scene load_steps=19 format=3 uid="uid://bvm7ds3g3b8os"]
 
 [ext_resource type="Script" uid="uid://c2ss1316x3okq" path="res://menus/rewards_menu.gd" id="1_tj4mn"]
 [ext_resource type="PackedScene" uid="uid://dacestg0nqsfx" path="res://menus/level_rankedselect.tscn" id="2_bfhl7"]
@@ -12,6 +12,7 @@
 [ext_resource type="SpriteFrames" uid="uid://duukh1em5rexv" path="res://assets/characters/player/player_skin.tres" id="5_wmksu"]
 [ext_resource type="SpriteFrames" uid="uid://bsvml15ne3jhu" path="res://assets/characters/player/accessories/player_accessories.tres" id="6_f885f"]
 [ext_resource type="Texture2D" uid="uid://d4g7f6k0h8el0" path="res://assets/ui/container_player_infinite.png" id="7_o2avd"]
+[ext_resource type="PackedScene" uid="uid://boacxm34cq8c3" path="res://assets/craft/ingredient_reward.tscn" id="13_e3rur"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o2avd"]
 
@@ -124,56 +125,67 @@ theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxTexture_rpn3k")
 placeholder_text = "name"
 
-[node name="playerscore" type="Control" parent="."]
+[node name="ui" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="playerscore" type="Control" parent="ui"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="ui/playerscore"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -102.0
+offset_right = 80.0
 grow_horizontal = 2
 grow_vertical = 0
-
-[node name="ContainerLevelSelect" type="Sprite2D" parent="playerscore"]
-modulate = Color(0.8, 0.8, 0.8, 1)
-show_behind_parent = true
-position = Vector2(-0.500004, -56.3333)
 texture = ExtResource("7_o2avd")
 
-[node name="playerwins_label" type="Label" parent="playerscore"]
+[node name="name" type="Label" parent="ui/playerscore"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.15625
-anchor_top = -0.0104166
-anchor_right = -0.15625
-anchor_bottom = -0.0104166
-offset_left = -64.0
-offset_top = -77.0
-offset_right = 64.0
-offset_bottom = -44.0
-theme_override_colors/font_color = Color(0.647059, 0.6, 0.780392, 1)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -65.0
+offset_top = -174.0
+offset_right = 65.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.831333, 0.77, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0.0705882, 0.0392157, 0.129412, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("4_r2w4r")
 theme_override_font_sizes/font_size = 16
-text = "???"
+text = "000"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="name" type="Label" parent="playerscore"]
+[node name="playerwins_label" type="Label" parent="ui/playerscore/name"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.15625
-anchor_top = -0.0104166
-anchor_right = -0.15625
-anchor_bottom = -0.0104166
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
 offset_left = -64.0
-offset_top = -92.0
 offset_right = 64.0
-offset_bottom = -59.0
-theme_override_colors/font_color = Color(0.831333, 0.77, 1, 1)
+offset_bottom = 208.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.647059, 0.6, 0.780392, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0.0705882, 0.0392157, 0.129412, 1)
 theme_override_constants/outline_size = 5
@@ -192,9 +204,9 @@ texture = ExtResource("4_0c5jo")
 [node name="GridContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 16.0
-offset_top = 112.0
+offset_top = 109.0
 offset_right = 208.0
-offset_bottom = 118.0
+offset_bottom = 115.0
 size_flags_horizontal = 3
 theme_override_constants/separation = 100
 alignment = 1
@@ -210,7 +222,7 @@ sprite_frames = ExtResource("3_x425d")
 animation = &"rank1"
 
 [node name="ContainerLevelSelect" type="Sprite2D" parent="GridContainer/pos1"]
-modulate = Color(0.8, 0.8, 0.8, 1)
+modulate = Color(0.6, 0.6, 0.6, 1)
 show_behind_parent = true
 position = Vector2(36, 0.666672)
 scale = Vector2(0.75, 0.458334)
@@ -281,7 +293,7 @@ sprite_frames = ExtResource("3_x425d")
 animation = &"rank2"
 
 [node name="ContainerLevelSelect" type="Sprite2D" parent="GridContainer/pos2"]
-modulate = Color(0.8, 0.8, 0.8, 1)
+modulate = Color(0.6, 0.6, 0.6, 1)
 show_behind_parent = true
 position = Vector2(36, 0.666672)
 scale = Vector2(0.75, 0.458334)
@@ -352,7 +364,7 @@ sprite_frames = ExtResource("3_x425d")
 animation = &"rank3"
 
 [node name="ContainerLevelSelect" type="Sprite2D" parent="GridContainer/pos3"]
-modulate = Color(0.8, 0.8, 0.8, 1)
+modulate = Color(0.6, 0.6, 0.6, 1)
 show_behind_parent = true
 position = Vector2(36, 0.666672)
 scale = Vector2(0.75, 0.458334)
@@ -411,5 +423,10 @@ animation = &"3_jump"
 [node name="accessory" type="AnimatedSprite2D" parent="GridContainer/pos3/skin"]
 sprite_frames = ExtResource("6_f885f")
 animation = &"books_jump"
+
+[node name="ingredient_reward" parent="." instance=ExtResource("13_e3rur")]
+position = Vector2(88, 200)
+skin = "6"
+playername = "Waos87"
 
 [connection signal="pressed" from="Node2D/Buttonchangename" to="." method="_on_buttonchangename_pressed"]

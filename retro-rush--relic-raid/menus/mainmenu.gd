@@ -1,5 +1,5 @@
 extends Node2D
-
+var isonrewards = false
 var global = Global
 @onready var goto_levels = $static_ui/menu/levels
 @onready var menu_levels = $levels
@@ -38,7 +38,7 @@ func _ready() -> void:
 	global.selected_level = 0
 	global.revival = null
 	global.selected_level_special = false
-	$static_ui/points.text = "[left][b][color=#b0ace6]" + str(global.points) + "[/color][/b][/left]"
+	$static_ui/points.text = "[left][b][color=#b0ace6]" + str(global.points)+"c" + "[/color][/b][/left]"
 	if global.points == 0:
 		$static_ui/points.text = "[left][wave][color=#b0ace6][b]0[/b][/color][/wave][/left]"
 	
@@ -100,17 +100,25 @@ func _on_levels_pressed() -> void:
 	$button_press.play()
 	if current_menu != "levels":
 		move_menus("levels")
+	if isonrewards == true:
+		isonrewards = false
+		$rewards/rewards_menu.ui_down()
 
 func _on_craft_pressed() -> void:
 	$static_ui/menu/craft/IconExclamation.visible = false
 	$button_press.play()
 	if current_menu != "craft":
 		move_menus("craft")
+	if isonrewards == true:
+		isonrewards = false
+		$rewards/rewards_menu.ui_down()
 
 func _on_rewards_pressed() -> void:
+	isonrewards = true
 	$button_press.play()
 	if current_menu != "rewards":
 		move_menus("rewards")
+	$rewards/rewards_menu.ui_up()
 
 # Improved touch input handling for swipe detection
 func _unhandled_input(event: InputEvent) -> void:

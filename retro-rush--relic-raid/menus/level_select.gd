@@ -30,13 +30,13 @@ var level_names = {
 	21: "Shrouded Maw",
 	22: "Lost Ossuary",
 	23: "Blighted Chapel",
-	24: "Grim Sepulcher",
+	24: "Grim's Flute",
 	25: "Forsaken Reliquary",
 	26: "Weeping Grotto",
-	27: "Sanguine Pit",
+	27: "Sanguine Bow",
 	28: "Hag's Hollow",
 	29: "Thorned Vault",
-	30: "GOD BIRTH"
+	30: "Happy Place"
 }
 func _ready() -> void:
 	global = Global
@@ -54,7 +54,7 @@ func _ready() -> void:
 		if level_num % 3 == 0 or level_num == 1:
 			button.visible = false
 			button_pay.visible = true
-			$Label.text = $Label.text+"/ 500p"
+			$Label.text = $Label.text+" -500c"
 			$AnimatedSprite2D.play("coin_lock")
 	elif global.unlocked_levels.has(level_num + 1) || level_num == 0:
 		# BEATEN state (next level is unlocked OR it's level 0)

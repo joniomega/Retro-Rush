@@ -1,9 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://boacxm34cq8c3"]
+[gd_scene load_steps=13 format=3 uid="uid://boacxm34cq8c3"]
 
 [ext_resource type="Texture2D" uid="uid://c6ijelrkwpk6t" path="res://assets/ui/button_ingredient_chosse.png" id="1_ah5nu"]
 [ext_resource type="Script" uid="uid://c3ibjrtkgap7v" path="res://assets/craft/ingredient_reward.gd" id="1_s21qu"]
-[ext_resource type="SpriteFrames" uid="uid://uhhxbh4veuvb" path="res://assets/craft/ingredients_sp.tres" id="2_omdy7"]
+[ext_resource type="Texture2D" uid="uid://dq44ccg3ysg6j" path="res://assets/ui/options_container.png" id="2_10k51"]
 [ext_resource type="Texture2D" uid="uid://cm35cdmixpj10" path="res://assets/shine_particle.png" id="3_h3fdt"]
+[ext_resource type="FontFile" uid="uid://camtosjq61o18" path="res://assets/ui/alagard.ttf" id="3_t7ouc"]
+[ext_resource type="SpriteFrames" uid="uid://duukh1em5rexv" path="res://assets/characters/player/player_skin.tres" id="6_1yh1d"]
+[ext_resource type="SpriteFrames" uid="uid://bsvml15ne3jhu" path="res://assets/characters/player/accessories/player_accessories.tres" id="7_q8j78"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cirlo"]
 
@@ -23,19 +26,55 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="ingredient_reward" type="Node2D"]
 script = ExtResource("1_s21qu")
+skin = "5"
 
-[node name="Button" type="Button" parent="."]
-offset_right = 32.0
-offset_bottom = 30.0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.1, 0.1, 0.784314)
+
+[node name="OptionsContainer" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(112, 124)
+scale = Vector2(1.125, 0.46875)
+texture = ExtResource("2_10k51")
+
+[node name="title" type="Label" parent="CanvasLayer"]
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 161.0
+offset_bottom = 127.0
+scale = Vector2(1.2, 1.2)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.588235)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 9
+theme_override_fonts/font = ExtResource("3_t7ouc")
+theme_override_font_sizes/font_size = 16
+text = "CLAIM
+YOUR REWARD"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 64.0
+offset_top = 125.0
+offset_right = 160.0
+offset_bottom = 181.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_cirlo")
 theme_override_styles/hover = SubResource("StyleBoxTexture_ylo4x")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_vne1g")
 theme_override_styles/normal = SubResource("StyleBoxTexture_jcsti")
 
-[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
-position = Vector2(16, 22)
-lifetime = 1.5
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="CanvasLayer"]
+position = Vector2(112, 149)
 texture = ExtResource("3_h3fdt")
+lifetime = 1.5
 emission_shape = 3
 emission_rect_extents = Vector2(7, 1)
 direction = Vector2(0, 0)
@@ -49,9 +88,14 @@ scale_amount_min = 0.1
 scale_amount_max = 0.5
 color_ramp = SubResource("Gradient_xyuh5")
 
-[node name="ingredients_animation" type="AnimatedSprite2D" parent="."]
-position = Vector2(16, 13)
-sprite_frames = ExtResource("2_omdy7")
-animation = &"none"
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer"]
+position = Vector2(112, 144)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("6_1yh1d")
+animation = &"6_jump"
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[node name="accessory" type="AnimatedSprite2D" parent="CanvasLayer/AnimatedSprite2D"]
+sprite_frames = ExtResource("7_q8j78")
+animation = &"none_jump"
+
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]

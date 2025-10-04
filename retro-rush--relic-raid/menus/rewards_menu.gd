@@ -25,8 +25,8 @@ extends Control
 ]
 
 @onready var textedit_name = $Node2D/TextEdit
-@onready var playerwins_label = $playerscore/playerwins_label
-@onready var playername = $playerscore/name
+@onready var playerwins_label = $ui/playerscore/name/playerwins_label
+@onready var playername = $ui/playerscore/name
 @onready var grid_container = $GridContainer
 @onready var level_rankedselect = $level_rankedselect
 @onready var name_input_ui = $Node2D
@@ -41,6 +41,7 @@ var http_request_leaderboard: HTTPRequest  # For leaderboard operations
 var is_creating_player: bool = false
 
 func _ready():
+	$ui/playerscore.visible = false
 	$ColorRect.visible = true
 	$Node2D.visible = true
 	Global.ranked_opponent_name = "none"
@@ -317,3 +318,10 @@ func _on_buttonchangename_pressed() -> void:
 	update_rankedselect_state()
 	# Fade out and remove name input UI after setting name
 	fade_out_name_input_ui()
+
+func ui_up():
+	$ui/playerscore.visible = true
+	pass
+func ui_down():
+	$ui/playerscore.visible = false
+	pass

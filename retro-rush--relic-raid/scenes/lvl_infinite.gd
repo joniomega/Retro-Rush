@@ -60,9 +60,9 @@ func load_level_parts(file_path: String):
 	var current_part_data: Array = []
 	while not file.eof_reached():
 		var line: String = file.get_line().strip_edges()
-		if line.is_empty() or (line.begins_with("#") and not line.begins_with("#START") and not line.begins_with("#MODULAR") and not line.begins_with("#END")):
+		if line.is_empty() or (line.begins_with("#") and not line.begins_with("#START") and not line.begins_with("#MODULAR") and not line.begins_with("#END") and not line.begins_with("#REVIVE")):
 			continue
-		if line.begins_with("#START") or line.begins_with("#MODULAR") or line.begins_with("#END"):
+		if line.begins_with("#START") or line.begins_with("#MODULAR") or line.begins_with("#END") or line.begins_with("#REVIVE"):
 			if current_part_name != "" and current_part_data.size() > 0:
 				level_parts[current_part_name] = current_part_data.duplicate()
 			current_part_name = line.substr(1)

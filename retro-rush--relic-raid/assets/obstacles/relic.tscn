@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://cgwqs0jd4bxvp"]
+[gd_scene load_steps=13 format=3 uid="uid://cgwqs0jd4bxvp"]
 
 [ext_resource type="Script" uid="uid://yik6bkgbowbg" path="res://assets/obstacles/relic.gd" id="1_avswn"]
 [ext_resource type="SpriteFrames" uid="uid://bj7kppdwycf3i" path="res://assets/obstacles/relic_spriteframe.tres" id="2_2btxo"]
+[ext_resource type="Material" uid="uid://dh2stg3d14hrj" path="res://assets/shaders/holo.tres" id="2_q1b4r"]
 [ext_resource type="Texture2D" uid="uid://bgg0jhv1gsjdw" path="res://assets/tilesets/obstacles.png" id="2_w2alc"]
 [ext_resource type="Texture2D" uid="uid://cm35cdmixpj10" path="res://assets/shine_particle.png" id="4_by07q"]
 [ext_resource type="AudioStream" uid="uid://on2o1mlaf5ar" path="res://assets/sounds/soundeffects/pickupCoin (1).wav" id="5_l8fme"]
@@ -38,12 +39,14 @@ script = ExtResource("1_avswn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = -2
+material = ExtResource("2_q1b4r")
 position = Vector2(16, 17)
 sprite_frames = ExtResource("2_2btxo")
 animation = &"ranked"
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
-position = Vector2(16, 17)
+z_index = 1
+position = Vector2(16, 33)
 sprite_frames = SubResource("SpriteFrames_065jb")
 
 [node name="Area2D" type="Area2D" parent="."]

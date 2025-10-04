@@ -187,8 +187,8 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_uhll8")
 placeholder_text = "name"
 
 [node name="OptionsContainer" type="Sprite2D" parent="Node2D"]
-position = Vector2(0, 32)
-scale = Vector2(1, 1.125)
+position = Vector2(4.29153e-06, 32)
+scale = Vector2(1.125, 1.125)
 texture = ExtResource("1_6r3ve")
 
 [node name="title" type="Label" parent="Node2D"]
