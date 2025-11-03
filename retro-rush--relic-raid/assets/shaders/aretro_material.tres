@@ -1,0 +1,20 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c0c3pgwnv20ul"]
+
+[ext_resource type="Shader" uid="uid://by8waoe6g21q" path="res://assets/shaders/vhs.gdshader" id="1_nhwug"]
+
+[resource]
+shader = ExtResource("1_nhwug")
+shader_parameter/resolution = Vector2(1000, 1000)
+shader_parameter/scan_line_amount = 0.5
+shader_parameter/warp_amount = 0.0
+shader_parameter/noise_amount = 0.0
+shader_parameter/interference_amount = 1.0
+shader_parameter/grille_amount = 0.2000000095
+shader_parameter/grille_size = 1.0
+shader_parameter/vignette_amount = 0.6
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/aberation_amount = 0.0
+shader_parameter/roll_line_amount = 0.0
+shader_parameter/roll_speed = -8.0
+shader_parameter/scan_line_strength = -5.0
+shader_parameter/pixel_strength = -4.0

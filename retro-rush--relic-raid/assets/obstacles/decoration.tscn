@@ -155,6 +155,6 @@ script = ExtResource("1_dkhbn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
-position = Vector2(16, 17)
+position = Vector2(16, 16)
 sprite_frames = SubResource("SpriteFrames_0kjbp")
 animation = &"12"

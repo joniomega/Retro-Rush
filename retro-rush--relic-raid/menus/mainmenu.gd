@@ -56,6 +56,10 @@ func _ready() -> void:
 	
 	# Scroll to last unlocked level
 	update_level_scroll()
+	var textlist = ["Back to work!", "Find me relics!","Ready to work?", "Welcome back."]
+	$static_ui/menu/TextureRect/SpeechBubble/Label.text = textlist[randi_range(0, 3)]
+	$static_ui/menu/TextureRect/Animationtalk.play("talk")
+	$audio_talk.play()
 
 func update_level_scroll():
 	if global.unlocked_levels.size() > 0:
@@ -171,4 +175,16 @@ func _on_button_settings_pressed() -> void:
 	var options_menu = preload("res://menus/options_menu.tscn").instantiate()
 	options_menu.is_online = $rewards/rewards_menu.is_online
 	add_child(options_menu) # adds on top of the menu (OptionsMenu root must be a Control with full rect)
+	pass # Replace with function body.
+
+
+func _on_button_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_talk_pressed() -> void:
+	var textlist = ["Back to work!", "Find me relics!","Look for gold.", "Bewere of bugs."]
+	$static_ui/menu/TextureRect/SpeechBubble/Label.text = textlist[randi_range(0, 3)]
+	$static_ui/menu/TextureRect/Animationtalk.play("talk")
+	$audio_talk.play()
 	pass # Replace with function body.
