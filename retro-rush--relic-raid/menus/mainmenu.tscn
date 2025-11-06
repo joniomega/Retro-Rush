@@ -539,7 +539,7 @@ text = "Back to work!"
 autowrap_mode = 3
 
 [node name="ppriest" type="AnimatedSprite2D" parent="static_ui/menu/TextureRect"]
-modulate = Color(0.6117647, 0.7019608, 1, 1)
+modulate = Color(0.92, 0.9386667, 1, 1)
 show_behind_parent = true
 position = Vector2(204.00002, -15)
 scale = Vector2(1.75, 1.75)
@@ -654,7 +654,7 @@ mouse_filter = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_fucbw")
-volume_db = -25.0
+volume_db = -20.0
 autoplay = true
 bus = &"Music"
 
