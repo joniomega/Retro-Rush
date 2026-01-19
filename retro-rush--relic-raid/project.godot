@@ -34,6 +34,7 @@ Global="*res://scenes/global.gd"
 
 window/size/viewport_width=224
 window/size/viewport_height=390
+window/size/mode=3
 window/size/window_width_override=360
 window/size/window_height_override=640
 window/stretch/mode="canvas_items"

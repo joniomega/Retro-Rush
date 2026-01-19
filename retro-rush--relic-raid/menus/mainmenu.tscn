@@ -522,19 +522,22 @@ texture = ExtResource("5_y34tr")
 visible = false
 show_behind_parent = true
 position = Vector2(151, -50)
+scale = Vector2(1.75, 1.75)
 texture = ExtResource("10_8vmut")
 
 [node name="Label" type="Label" parent="static_ui/menu/TextureRect/SpeechBubble"]
-offset_left = -42.0
-offset_top = -28.0
-offset_right = 25.600006
-offset_bottom = 5.0
+offset_left = -22.285713
+offset_top = -14.285721
+offset_right = 48.363632
+offset_bottom = 22.077927
+scale = Vector2(0.55, 0.55)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6666667)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("2_03nbx")
+theme_override_font_sizes/font_size = 16
 text = "Back to work!"
 autowrap_mode = 3
 

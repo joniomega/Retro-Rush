@@ -11,22 +11,22 @@
 [ext_resource type="Texture2D" uid="uid://bk2cyygdoropf" path="res://assets/ui/button_cancel.png" id="9_8hlal"]
 [ext_resource type="Texture2D" uid="uid://j7oelv2btndr" path="res://assets/ui/button_play.png" id="11_3ylhs"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f4f5l"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v0kqo"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q0d82"]
 texture = ExtResource("3_m3e4b")
-modulate_color = Color(0.5, 0.5, 0.5, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ohst2"]
-texture = ExtResource("3_m3e4b")
-modulate_color = Color(1.2, 1.2, 1.2, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wb5r4"]
 texture = ExtResource("3_m3e4b")
 modulate_color = Color(1.5, 1.5, 1.5, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q0d82"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ohst2"]
 texture = ExtResource("3_m3e4b")
+modulate_color = Color(1.2, 1.2, 1.2, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v0kqo"]
+texture = ExtResource("3_m3e4b")
+modulate_color = Color(0.5, 0.5, 0.5, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f4f5l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bfow5"]
 atlas = ExtResource("4_dgrjx")
@@ -55,18 +55,18 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q4qkt"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m7lhn"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r5lyk"]
 texture = ExtResource("9_8hlal")
-modulate_color = Color(1.2, 1.2, 1.2, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_by1br"]
 texture = ExtResource("9_8hlal")
 modulate_color = Color(1.5, 1.5, 1.5, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r5lyk"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m7lhn"]
 texture = ExtResource("9_8hlal")
+modulate_color = Color(1.2, 1.2, 1.2, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q4qkt"]
 
 [node name="special_rewards" type="Control"]
 layout_mode = 3
@@ -112,11 +112,11 @@ offset_right = 176.0
 offset_bottom = 192.0
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_t5b7w")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_f4f5l")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_v0kqo")
-theme_override_styles/hover = SubResource("StyleBoxTexture_ohst2")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_wb5r4")
 theme_override_styles/normal = SubResource("StyleBoxTexture_q0d82")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wb5r4")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ohst2")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_v0kqo")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_f4f5l")
 
 [node name="Label" type="Label" parent="takeall"]
 offset_left = 55.0
@@ -150,14 +150,14 @@ sprite_frames = ExtResource("8_trjha")
 animation = &"6_jump"
 
 [node name="Button" type="Button" parent="takeall"]
-offset_left = 84.0
-offset_top = 192.0
-offset_right = 140.0
-offset_bottom = 248.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_q4qkt")
-theme_override_styles/hover = SubResource("StyleBoxTexture_m7lhn")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_by1br")
+offset_left = 82.0
+offset_top = 190.0
+offset_right = 142.0
+offset_bottom = 250.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_r5lyk")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_by1br")
+theme_override_styles/hover = SubResource("StyleBoxTexture_m7lhn")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_q4qkt")
 
 [connection signal="initialization_completed" from="Admob" to="." method="_on_admob_initialization_completed"]
 [connection signal="rewarded_ad_user_earned_reward" from="Admob" to="." method="_on_admob_rewarded_ad_user_earned_reward"]
