@@ -12,12 +12,14 @@ config_version=5
 
 warnings/check_invalid_track_paths=false
 warnings/check_angle_interpolation_type_conflicting=false
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
 config/name="Retro Rush: Descend"
+config/tags=PackedStringArray("published")
 run/main_scene="res://menus/mainmenu.tscn"
-config/features=PackedStringArray("4.5", "Mobile")
+config/features=PackedStringArray("4.6", "Mobile")
 run/max_fps=60
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/use_filter=false
@@ -34,7 +36,6 @@ Global="*res://scenes/global.gd"
 
 window/size/viewport_width=224
 window/size/viewport_height=390
-window/size/mode=3
 window/size/window_width_override=360
 window/size/window_height_override=640
 window/stretch/mode="canvas_items"

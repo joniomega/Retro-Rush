@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bvm7ds3g3b8os"]
+[gd_scene format=3 uid="uid://bvm7ds3g3b8os"]
 
 [ext_resource type="Script" uid="uid://c2ss1316x3okq" path="res://menus/rewards_menu.gd" id="1_tj4mn"]
 [ext_resource type="PackedScene" uid="uid://dacestg0nqsfx" path="res://menus/level_rankedselect.tscn" id="2_bfhl7"]
@@ -14,18 +14,18 @@
 [ext_resource type="Texture2D" uid="uid://d4g7f6k0h8el0" path="res://assets/ui/container_player_infinite.png" id="7_o2avd"]
 [ext_resource type="PackedScene" uid="uid://boacxm34cq8c3" path="res://assets/craft/ingredient_reward.tscn" id="13_e3rur"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o2avd"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e3rur"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n3tpw"]
 texture = ExtResource("5_neg3j")
-modulate_color = Color(1.2, 1.2, 1.2, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oegxx"]
 texture = ExtResource("5_neg3j")
 modulate_color = Color(1.5, 1.5, 1.5, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n3tpw"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e3rur"]
 texture = ExtResource("5_neg3j")
+modulate_color = Color(1.2, 1.2, 1.2, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o2avd"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rpn3k"]
 texture = ExtResource("5_neg3j")
@@ -33,7 +33,7 @@ texture_margin_left = 3.0
 texture_margin_right = 3.0
 modulate_color = Color(0, 0, 0, 0.384314)
 
-[node name="rewards_menu" type="Control"]
+[node name="rewards_menu" type="Control" unique_id=1370176231]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,19 +44,19 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_tj4mn")
 
-[node name="IconPvp" type="Sprite2D" parent="."]
+[node name="IconPvp" type="Sprite2D" parent="." unique_id=1521320019]
 position = Vector2(112, 78)
 scale = Vector2(2, 2)
 texture = ExtResource("2_g0u5n")
 
-[node name="level_rankedselect" parent="." instance=ExtResource("2_bfhl7")]
-layout_mode = 2
+[node name="level_rankedselect" parent="." unique_id=1886584039 instance=ExtResource("2_bfhl7")]
+layout_mode = 0
 offset_left = 16.0
 offset_top = 100.0
 offset_right = 16.0
 offset_bottom = 100.0
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=418270189]
 visible = false
 z_index = 1
 layout_mode = 1
@@ -67,17 +67,17 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.666667)
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Node2D" type="Node2D" parent="." unique_id=1807063622]
 visible = false
 z_index = 2
 position = Vector2(112, 203)
 
-[node name="OptionsContainer" type="Sprite2D" parent="Node2D"]
+[node name="OptionsContainer" type="Sprite2D" parent="Node2D" unique_id=57670418]
 position = Vector2(0, -52)
 scale = Vector2(1, 0.46875)
 texture = ExtResource("4_e6daq")
 
-[node name="title" type="Label" parent="Node2D"]
+[node name="title" type="Label" parent="Node2D" unique_id=964114063]
 z_index = 1
 offset_left = -77.0
 offset_top = -104.0
@@ -96,7 +96,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Buttonchangename" type="Button" parent="Node2D"]
+[node name="Buttonchangename" type="Button" parent="Node2D" unique_id=918600544]
 z_index = 1
 offset_left = -36.0
 offset_top = -40.0
@@ -105,13 +105,13 @@ offset_bottom = -16.0
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("4_r2w4r")
 theme_override_font_sizes/font_size = 16
-theme_override_styles/focus = SubResource("StyleBoxEmpty_o2avd")
-theme_override_styles/hover = SubResource("StyleBoxTexture_e3rur")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_oegxx")
 theme_override_styles/normal = SubResource("StyleBoxTexture_n3tpw")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_oegxx")
+theme_override_styles/hover = SubResource("StyleBoxTexture_e3rur")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o2avd")
 text = "confirm"
 
-[node name="TextEdit" type="TextEdit" parent="Node2D"]
+[node name="TextEdit" type="TextEdit" parent="Node2D" unique_id=877077338]
 z_index = 1
 offset_left = -48.0
 offset_top = -58.0
@@ -125,10 +125,10 @@ theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxTexture_rpn3k")
 placeholder_text = "name"
 
-[node name="ui" type="CanvasLayer" parent="."]
+[node name="ui" type="CanvasLayer" parent="." unique_id=267684240]
 layer = 0
 
-[node name="playerscore" type="Control" parent="ui"]
+[node name="playerscore" type="Control" parent="ui" unique_id=1421302576]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -139,7 +139,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="ui/playerscore"]
+[node name="TextureRect" type="TextureRect" parent="ui/playerscore" unique_id=1501081106]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -153,7 +153,7 @@ grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("7_o2avd")
 
-[node name="name" type="Label" parent="ui/playerscore"]
+[node name="name" type="Label" parent="ui/playerscore" unique_id=1139054354]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -176,7 +176,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="playerwins_label" type="Label" parent="ui/playerscore/name"]
+[node name="playerwins_label" type="Label" parent="ui/playerscore/name" unique_id=325761777]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -196,12 +196,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="IconNowifi" type="Sprite2D" parent="."]
+[node name="IconNowifi" type="Sprite2D" parent="." unique_id=134936083]
 position = Vector2(114, 181)
 scale = Vector2(2, 2)
 texture = ExtResource("4_0c5jo")
 
-[node name="GridContainer" type="VBoxContainer" parent="."]
+[node name="GridContainer" type="VBoxContainer" parent="." unique_id=1754024865]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 109.0
@@ -211,24 +211,24 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 100
 alignment = 1
 
-[node name="pos1" type="Node2D" parent="GridContainer"]
+[node name="pos1" type="Node2D" parent="GridContainer" unique_id=1588054909]
 position = Vector2(42, 69)
 scale = Vector2(1.5, 1.5)
 
-[node name="level" type="AnimatedSprite2D" parent="GridContainer/pos1"]
+[node name="level" type="AnimatedSprite2D" parent="GridContainer/pos1" unique_id=669586252]
 position = Vector2(-1.33333, 0)
 scale = Vector2(0.75, 0.75)
 sprite_frames = ExtResource("3_x425d")
 animation = &"rank1"
 
-[node name="ContainerLevelSelect" type="Sprite2D" parent="GridContainer/pos1"]
+[node name="ContainerLevelSelect" type="Sprite2D" parent="GridContainer/pos1" unique_id=628369291]
 modulate = Color(0.6, 0.6, 0.6, 1)
 show_behind_parent = true
 position = Vector2(36, 0.666672)
 scale = Vector2(0.75, 0.458334)
 texture = ExtResource("4_f2kvv")
 
-[node name="name" type="Label" parent="GridContainer/pos1"]
+[node name="name" type="Label" parent="GridContainer/pos1" unique_id=1548679296]
 anchors_preset = -1
 anchor_left = -0.15625
 anchor_top = -0.0104166
@@ -245,12 +245,11 @@ theme_override_colors/font_outline_color = Color(0.0705882, 0.0392157, 0.129412,
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("4_r2w4r")
 theme_override_font_sizes/font_size = 16
-text = "????"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="wins" type="Label" parent="GridContainer/pos1"]
+[node name="wins" type="Label" parent="GridContainer/pos1" unique_id=283034512]
 anchors_preset = -1
 anchor_left = -0.15625
 anchor_top = -0.0104166
@@ -267,39 +266,38 @@ theme_override_colors/font_outline_color = Color(0.0705882, 0.0392157, 0.129412,
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("4_r2w4r")
 theme_override_font_sizes/font_size = 16
-text = "2W"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="skin" type="AnimatedSprite2D" parent="GridContainer/pos1"]
+[node name="skin" type="AnimatedSprite2D" parent="GridContainer/pos1" unique_id=1826673706]
 position = Vector2(18, -0.666672)
 scale = Vector2(0.75, 0.75)
 sprite_frames = ExtResource("5_wmksu")
-animation = &"3_jump"
+animation = &"1_jump"
 
-[node name="accessory" type="AnimatedSprite2D" parent="GridContainer/pos1/skin"]
+[node name="accessory" type="AnimatedSprite2D" parent="GridContainer/pos1/skin" unique_id=1399250939]
 sprite_frames = ExtResource("6_f885f")
-animation = &"crest_jump"
+animation = &"none_jump"
 
-[node name="pos2" type="Node2D" parent="GridContainer"]
+[node name="pos2" type="Node2D" parent="GridContainer" unique_id=896308146]
 position = Vector2(42, 113)
 scale = Vector2(1.5, 1.5)
 
-[node name="level" type="AnimatedSprite2D" parent="GridContainer/pos2"]
+[node name="level" type="AnimatedSprite2D" parent="GridContainer/pos2" unique_id=991711216]
 position = Vector2(-1.33333, 0)
 scale = Vector2(0.75, 0.75)
 sprite_frames = ExtResource("3_x425d")
 animation = &"rank2"
 
-[node name="ContainerLevelSelect" type="Sprite2D" parent="GridContainer/pos2"]
+[node name="ContainerLevelSelect" type="Sprite2D" parent="GridContainer/pos2" unique_id=1085838352]
 modulate = Color(0.6, 0.6, 0.6, 1)
 show_behind_parent = true
 position = Vector2(36, 0.666672)
 scale = Vector2(0.75, 0.458334)
 texture = ExtResource("4_f2kvv")
 
-[node name="name" type="Label" parent="GridContainer/pos2"]
+[node name="name" type="Label" parent="GridContainer/pos2" unique_id=2027763683]
 anchors_preset = -1
 anchor_left = -0.15625
 anchor_top = -0.0104166
@@ -316,12 +314,11 @@ theme_override_colors/font_outline_color = Color(0.0705882, 0.0392157, 0.129412,
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("4_r2w4r")
 theme_override_font_sizes/font_size = 16
-text = "????"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="wins" type="Label" parent="GridContainer/pos2"]
+[node name="wins" type="Label" parent="GridContainer/pos2" unique_id=633903558]
 anchors_preset = -1
 anchor_left = -0.15625
 anchor_top = -0.0104166
@@ -338,39 +335,38 @@ theme_override_colors/font_outline_color = Color(0.0705882, 0.0392157, 0.129412,
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("4_r2w4r")
 theme_override_font_sizes/font_size = 16
-text = "92W"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="skin" type="AnimatedSprite2D" parent="GridContainer/pos2"]
+[node name="skin" type="AnimatedSprite2D" parent="GridContainer/pos2" unique_id=920593008]
 position = Vector2(18, -0.666672)
 scale = Vector2(0.75, 0.75)
 sprite_frames = ExtResource("5_wmksu")
-animation = &"3_jump"
+animation = &"1_jump"
 
-[node name="accessory" type="AnimatedSprite2D" parent="GridContainer/pos2/skin"]
+[node name="accessory" type="AnimatedSprite2D" parent="GridContainer/pos2/skin" unique_id=671592775]
 sprite_frames = ExtResource("6_f885f")
-animation = &"books_jump"
+animation = &"none_jump"
 
-[node name="pos3" type="Node2D" parent="GridContainer"]
+[node name="pos3" type="Node2D" parent="GridContainer" unique_id=548297081]
 position = Vector2(42, 157)
 scale = Vector2(1.5, 1.5)
 
-[node name="level" type="AnimatedSprite2D" parent="GridContainer/pos3"]
+[node name="level" type="AnimatedSprite2D" parent="GridContainer/pos3" unique_id=124135327]
 position = Vector2(-1.33333, 0)
 scale = Vector2(0.75, 0.75)
 sprite_frames = ExtResource("3_x425d")
 animation = &"rank3"
 
-[node name="ContainerLevelSelect" type="Sprite2D" parent="GridContainer/pos3"]
+[node name="ContainerLevelSelect" type="Sprite2D" parent="GridContainer/pos3" unique_id=317569259]
 modulate = Color(0.6, 0.6, 0.6, 1)
 show_behind_parent = true
 position = Vector2(36, 0.666672)
 scale = Vector2(0.75, 0.458334)
 texture = ExtResource("4_f2kvv")
 
-[node name="name" type="Label" parent="GridContainer/pos3"]
+[node name="name" type="Label" parent="GridContainer/pos3" unique_id=2064800848]
 anchors_preset = -1
 anchor_left = -0.15625
 anchor_top = -0.0104166
@@ -387,12 +383,11 @@ theme_override_colors/font_outline_color = Color(0.0705882, 0.0392157, 0.129412,
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("4_r2w4r")
 theme_override_font_sizes/font_size = 16
-text = "????"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="wins" type="Label" parent="GridContainer/pos3"]
+[node name="wins" type="Label" parent="GridContainer/pos3" unique_id=699503985]
 anchors_preset = -1
 anchor_left = -0.15625
 anchor_top = -0.0104166
@@ -409,22 +404,21 @@ theme_override_colors/font_outline_color = Color(0.0705882, 0.0392157, 0.129412,
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("4_r2w4r")
 theme_override_font_sizes/font_size = 16
-text = "92W"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="skin" type="AnimatedSprite2D" parent="GridContainer/pos3"]
+[node name="skin" type="AnimatedSprite2D" parent="GridContainer/pos3" unique_id=1330664836]
 position = Vector2(18, -0.666672)
 scale = Vector2(0.75, 0.75)
 sprite_frames = ExtResource("5_wmksu")
-animation = &"3_jump"
+animation = &"1_jump"
 
-[node name="accessory" type="AnimatedSprite2D" parent="GridContainer/pos3/skin"]
+[node name="accessory" type="AnimatedSprite2D" parent="GridContainer/pos3/skin" unique_id=1180933491]
 sprite_frames = ExtResource("6_f885f")
-animation = &"books_jump"
+animation = &"none_jump"
 
-[node name="ingredient_reward" parent="." instance=ExtResource("13_e3rur")]
+[node name="ingredient_reward" parent="." unique_id=90417436 instance=ExtResource("13_e3rur")]
 position = Vector2(88, 200)
 skin = "6"
 playername = "Waos87"

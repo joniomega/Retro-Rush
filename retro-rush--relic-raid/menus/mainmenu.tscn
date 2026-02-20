@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://duae36wgy5yji"]
+[gd_scene format=3 uid="uid://duae36wgy5yji"]
 
 [ext_resource type="Material" uid="uid://b38l1jujf2me6" path="res://assets/shaders/backmaterial_1.tres" id="1_cnoo3"]
 [ext_resource type="Script" uid="uid://c3rmtho8jhren" path="res://menus/mainmenu.gd" id="1_t1nqp"]
@@ -11,8 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://bvm7ds3g3b8os" path="res://menus/rewards_menu.tscn" id="7_pvtqq"]
 [ext_resource type="Texture2D" uid="uid://bbn7cjk6253cn" path="res://assets/ui/icon_exclamation.png" id="7_ssu4i"]
 [ext_resource type="Texture2D" uid="uid://c4w620eitvjr2" path="res://assets/ui/icon_coin.png" id="8_0suj5"]
-[ext_resource type="Texture2D" uid="uid://c3ltth78e4qo6" path="res://assets/ui/speech_bubble.png" id="10_8vmut"]
-[ext_resource type="Texture2D" uid="uid://beoqx7nq03j3t" path="res://assets/characters/ppriest.png" id="10_ikw2n"]
 [ext_resource type="Texture2D" uid="uid://dju8x5pirex76" path="res://assets/ui/button_infinite.png" id="13_ikw2n"]
 [ext_resource type="Texture2D" uid="uid://vhwf51hkm3wa" path="res://assets/ui/button_settings.png" id="13_iplms"]
 [ext_resource type="Material" uid="uid://c0c3pgwnv20ul" path="res://assets/shaders/aretro_material.tres" id="14_iplms"]
@@ -55,137 +53,6 @@ modulate_color = Color(1.2, 1.2, 1.2, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8vmut"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ikw2n"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qdwyh"]
-atlas = ExtResource("10_ikw2n")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_404h8"]
-atlas = ExtResource("10_ikw2n")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ji3dy"]
-atlas = ExtResource("10_ikw2n")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_agwmf"]
-atlas = ExtResource("10_ikw2n")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_8vmut"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qdwyh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_404h8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ji3dy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_agwmf")
-}],
-"loop": true,
-"name": &"new_animation",
-"speed": 3.0
-}]
-
-[sub_resource type="Animation" id="Animation_760ol"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SpeechBubble:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SpeechBubble:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(151, -50)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SpeechBubble:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_8vmut"]
-resource_name = "talk"
-length = 2.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SpeechBubble:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.03333333, 0.5, 2, 2.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SpeechBubble:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 2, 2.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(190, -50), Vector2(151, -50), Vector2(151, -50), Vector2(190, -50)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SpeechBubble:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.03333333, 2.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_83yeg"]
-_data = {
-&"RESET": SubResource("Animation_760ol"),
-&"talk": SubResource("Animation_8vmut")
-}
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_760ol"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_83yeg"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aycp7"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o6awn"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0d1sl"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ut1fv"]
 texture = ExtResource("6_eh4l7")
@@ -239,16 +106,16 @@ stream_0/stream = ExtResource("21_aycp7")
 stream_1/stream = ExtResource("22_o6awn")
 stream_2/stream = ExtResource("23_0d1sl")
 
-[node name="mainmenu" type="Node2D"]
+[node name="mainmenu" type="Node2D" unique_id=865397568]
 script = ExtResource("1_t1nqp")
 
-[node name="background" type="Control" parent="."]
+[node name="background" type="Control" parent="." unique_id=2036942598]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 224.0
 offset_bottom = 392.0
 
-[node name="ColorRect" type="ColorRect" parent="background"]
+[node name="ColorRect" type="ColorRect" parent="background" unique_id=1769929363]
 material = ExtResource("1_cnoo3")
 layout_mode = 1
 anchors_preset = -1
@@ -260,194 +127,197 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 metadata/_edit_use_anchors_ = true
 
-[node name="craft" type="Control" parent="."]
+[node name="craft" type="Control" parent="." unique_id=506655969]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -224.0
 offset_bottom = 390.0
 mouse_filter = 1
 
-[node name="customization_menu" parent="craft" instance=ExtResource("4_pepsx")]
+[node name="customization_menu" parent="craft" unique_id=2070291566 instance=ExtResource("4_pepsx")]
 layout_mode = 1
 
-[node name="levels" type="Control" parent="."]
+[node name="levels" type="Control" parent="." unique_id=1865981349]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 224.0
 offset_bottom = 390.0
 mouse_filter = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="levels"]
+[node name="ScrollContainer" type="ScrollContainer" parent="levels" unique_id=1619456843]
 clip_contents = false
 layout_mode = 0
-offset_left = 17.0
+offset_left = 240.0
 offset_top = 16.0
-offset_right = 225.0
+offset_right = 448.0
 offset_bottom = 362.0
 theme = SubResource("Theme_wbt8x")
 follow_focus = true
 horizontal_scroll_mode = 0
 
-[node name="GridContainer" type="VBoxContainer" parent="levels/ScrollContainer"]
+[node name="GridContainer" type="VBoxContainer" parent="levels/ScrollContainer" unique_id=67688647]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 60
 alignment = 1
 
-[node name="Control4" type="Control" parent="levels/ScrollContainer/GridContainer"]
+[node name="Control4" type="Control" parent="levels/ScrollContainer/GridContainer" unique_id=136396503]
 layout_mode = 2
 
-[node name="level_select1" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+[node name="level_select1" parent="levels/ScrollContainer/GridContainer" unique_id=1588691616 instance=ExtResource("4_idjr4")]
 layout_mode = 2
 level_num = 1
 
-[node name="level_select2" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+[node name="level_select2" parent="levels/ScrollContainer/GridContainer" unique_id=2039148732 instance=ExtResource("4_idjr4")]
 layout_mode = 2
 level_num = 2
 
-[node name="level_select3" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+[node name="level_select3" parent="levels/ScrollContainer/GridContainer" unique_id=153310488 instance=ExtResource("4_idjr4")]
 layout_mode = 2
 level_num = 3
 
-[node name="level_select4" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+[node name="level_select4" parent="levels/ScrollContainer/GridContainer" unique_id=7530158 instance=ExtResource("4_idjr4")]
 layout_mode = 2
 level_num = 4
 
-[node name="level_select5" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+[node name="level_select5" parent="levels/ScrollContainer/GridContainer" unique_id=42133093 instance=ExtResource("4_idjr4")]
 layout_mode = 2
 level_num = 5
 
-[node name="level_select6" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+[node name="level_select6" parent="levels/ScrollContainer/GridContainer" unique_id=1702418814 instance=ExtResource("4_idjr4")]
 layout_mode = 2
 level_num = 6
 
-[node name="level_select7" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+[node name="level_select7" parent="levels/ScrollContainer/GridContainer" unique_id=1030242583 instance=ExtResource("4_idjr4")]
 layout_mode = 2
 level_num = 7
 
-[node name="level_select8" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+[node name="level_select8" parent="levels/ScrollContainer/GridContainer" unique_id=40618990 instance=ExtResource("4_idjr4")]
 layout_mode = 2
 level_num = 8
 
-[node name="level_9" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+[node name="level_9" parent="levels/ScrollContainer/GridContainer" unique_id=1404768023 instance=ExtResource("4_idjr4")]
 layout_mode = 2
 level_num = 9
 
-[node name="level_10" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+[node name="level_10" parent="levels/ScrollContainer/GridContainer" unique_id=171006272 instance=ExtResource("4_idjr4")]
 layout_mode = 2
 level_num = 10
 
-[node name="level_11" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+[node name="level_11" parent="levels/ScrollContainer/GridContainer" unique_id=2099219745 instance=ExtResource("4_idjr4")]
 layout_mode = 2
 level_num = 11
 
-[node name="level_12" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+[node name="level_12" parent="levels/ScrollContainer/GridContainer" unique_id=329736493 instance=ExtResource("4_idjr4")]
 layout_mode = 2
 level_num = 12
 
-[node name="level_13" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+[node name="level_13" parent="levels/ScrollContainer/GridContainer" unique_id=45320454 instance=ExtResource("4_idjr4")]
 layout_mode = 2
 level_num = 13
 
-[node name="level_14" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+[node name="level_14" parent="levels/ScrollContainer/GridContainer" unique_id=801989248 instance=ExtResource("4_idjr4")]
 layout_mode = 2
 level_num = 14
 
-[node name="level_15" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+[node name="level_15" parent="levels/ScrollContainer/GridContainer" unique_id=378615048 instance=ExtResource("4_idjr4")]
 layout_mode = 2
 level_num = 15
 
-[node name="level_16" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+[node name="level_16" parent="levels/ScrollContainer/GridContainer" unique_id=413255617 instance=ExtResource("4_idjr4")]
 layout_mode = 2
 level_num = 16
 
-[node name="level_17" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+[node name="level_17" parent="levels/ScrollContainer/GridContainer" unique_id=460473569 instance=ExtResource("4_idjr4")]
 layout_mode = 2
 level_num = 17
 
-[node name="level_18" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+[node name="level_18" parent="levels/ScrollContainer/GridContainer" unique_id=1327815346 instance=ExtResource("4_idjr4")]
 layout_mode = 2
 level_num = 18
 
-[node name="level_19" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+[node name="level_19" parent="levels/ScrollContainer/GridContainer" unique_id=210971503 instance=ExtResource("4_idjr4")]
 layout_mode = 2
 level_num = 19
 
-[node name="level_20" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+[node name="level_20" parent="levels/ScrollContainer/GridContainer" unique_id=1738239855 instance=ExtResource("4_idjr4")]
 layout_mode = 2
 level_num = 20
 
-[node name="level_21" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+[node name="level_21" parent="levels/ScrollContainer/GridContainer" unique_id=1766522905 instance=ExtResource("4_idjr4")]
 layout_mode = 2
 level_num = 21
 
-[node name="level_22" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+[node name="level_22" parent="levels/ScrollContainer/GridContainer" unique_id=805739047 instance=ExtResource("4_idjr4")]
 layout_mode = 2
 level_num = 22
 
-[node name="level_23" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+[node name="level_23" parent="levels/ScrollContainer/GridContainer" unique_id=790382259 instance=ExtResource("4_idjr4")]
 layout_mode = 2
 level_num = 23
 
-[node name="level_24" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+[node name="level_24" parent="levels/ScrollContainer/GridContainer" unique_id=771707877 instance=ExtResource("4_idjr4")]
 layout_mode = 2
 level_num = 24
 
-[node name="level_25" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+[node name="level_25" parent="levels/ScrollContainer/GridContainer" unique_id=1215393449 instance=ExtResource("4_idjr4")]
 layout_mode = 2
 level_num = 25
 
-[node name="level_26" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+[node name="level_26" parent="levels/ScrollContainer/GridContainer" unique_id=1039667351 instance=ExtResource("4_idjr4")]
 layout_mode = 2
 level_num = 26
 
-[node name="level_27" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+[node name="level_27" parent="levels/ScrollContainer/GridContainer" unique_id=2134588019 instance=ExtResource("4_idjr4")]
 layout_mode = 2
 level_num = 27
 
-[node name="level_28" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+[node name="level_28" parent="levels/ScrollContainer/GridContainer" unique_id=1892476208 instance=ExtResource("4_idjr4")]
 layout_mode = 2
 level_num = 28
 
-[node name="level_29" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+[node name="level_29" parent="levels/ScrollContainer/GridContainer" unique_id=1641959099 instance=ExtResource("4_idjr4")]
 layout_mode = 2
 level_num = 29
 
-[node name="level_30" parent="levels/ScrollContainer/GridContainer" instance=ExtResource("4_idjr4")]
+[node name="level_30" parent="levels/ScrollContainer/GridContainer" unique_id=1301397040 instance=ExtResource("4_idjr4")]
 layout_mode = 2
 level_num = 30
 
-[node name="Control3" type="Control" parent="levels/ScrollContainer/GridContainer"]
+[node name="Control3" type="Control" parent="levels/ScrollContainer/GridContainer" unique_id=2001041023]
 layout_mode = 2
 
-[node name="Control5" type="Control" parent="levels/ScrollContainer/GridContainer"]
+[node name="Control5" type="Control" parent="levels/ScrollContainer/GridContainer" unique_id=1001695474]
 layout_mode = 2
 
-[node name="rewards" type="Control" parent="."]
+[node name="rewards" type="Control" parent="." unique_id=52918681]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 224.0
 offset_right = 448.0
 offset_bottom = 390.0
+mouse_filter = 2
 
-[node name="rewards_menu" parent="rewards" instance=ExtResource("7_pvtqq")]
+[node name="rewards_menu" parent="rewards" unique_id=1605314890 instance=ExtResource("7_pvtqq")]
 layout_mode = 1
+offset_left = -224.0
+offset_right = -223.0
 
-[node name="static_ui" type="CanvasLayer" parent="."]
+[node name="static_ui" type="CanvasLayer" parent="." unique_id=1271691415]
 layer = 0
 
-[node name="PlayerContainer" type="Sprite2D" parent="static_ui"]
+[node name="PlayerContainer" type="Sprite2D" parent="static_ui" unique_id=1543377660]
 position = Vector2(112, 28)
 scale = Vector2(1.75, 1.75)
 texture = ExtResource("5_y34tr")
 flip_v = true
 
-[node name="IconCoin" type="Sprite2D" parent="static_ui"]
+[node name="IconCoin" type="Sprite2D" parent="static_ui" unique_id=1507810197]
 position = Vector2(24, 25)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("8_0suj5")
 
-[node name="points" type="RichTextLabel" parent="static_ui"]
+[node name="points" type="RichTextLabel" parent="static_ui" unique_id=1140443323]
 clip_contents = false
 offset_left = 43.0
 offset_top = 14.0
@@ -471,7 +341,7 @@ text = "[left][b][color=#b0ace6]999[/color][/b][/left]"
 scroll_active = false
 autowrap_mode = 2
 
-[node name="ButtonSettings" type="Button" parent="static_ui"]
+[node name="ButtonSettings" type="Button" parent="static_ui" unique_id=1347034676]
 offset_left = 168.0
 offset_top = 1.0
 offset_right = 196.0
@@ -483,7 +353,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_760ol")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_8vmut")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ikw2n")
 
-[node name="menu" type="Control" parent="static_ui"]
+[node name="menu" type="Control" parent="static_ui" unique_id=40050414]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -492,19 +362,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="PlayerContainer3" type="Sprite2D" parent="static_ui/menu"]
-visible = false
-position = Vector2(112, 402.5)
-scale = Vector2(1.75, 3.03125)
-texture = ExtResource("5_y34tr")
-
-[node name="PlayerContainer2" type="Sprite2D" parent="static_ui/menu"]
-visible = false
-position = Vector2(112, 352)
-scale = Vector2(1.75, 1.75)
-texture = ExtResource("5_y34tr")
-
-[node name="TextureRect" type="TextureRect" parent="static_ui/menu"]
+[node name="TextureRect" type="TextureRect" parent="static_ui/menu" unique_id=92452225]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -518,55 +376,7 @@ grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("5_y34tr")
 
-[node name="SpeechBubble" type="Sprite2D" parent="static_ui/menu/TextureRect"]
-visible = false
-show_behind_parent = true
-position = Vector2(151, -50)
-scale = Vector2(1.75, 1.75)
-texture = ExtResource("10_8vmut")
-
-[node name="Label" type="Label" parent="static_ui/menu/TextureRect/SpeechBubble"]
-offset_left = -22.285713
-offset_top = -14.285721
-offset_right = 48.363632
-offset_bottom = 22.077927
-scale = Vector2(0.55, 0.55)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6666667)
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 1
-theme_override_constants/shadow_outline_size = 0
-theme_override_fonts/font = ExtResource("2_03nbx")
-theme_override_font_sizes/font_size = 16
-text = "Back to work!"
-autowrap_mode = 3
-
-[node name="ppriest" type="AnimatedSprite2D" parent="static_ui/menu/TextureRect"]
-modulate = Color(0.92, 0.9386667, 1, 1)
-show_behind_parent = true
-position = Vector2(204.00002, -15)
-scale = Vector2(1.75, 1.75)
-sprite_frames = SubResource("SpriteFrames_8vmut")
-animation = &"new_animation"
-autoplay = "new_animation"
-
-[node name="Animationtalk" type="AnimationPlayer" parent="static_ui/menu/TextureRect"]
-libraries = {
-&"": SubResource("AnimationLibrary_83yeg")
-}
-
-[node name="talk" type="Button" parent="static_ui/menu/TextureRect"]
-layout_mode = 0
-offset_left = 189.0
-offset_top = -38.0
-offset_right = 224.0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_760ol")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_83yeg")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_aycp7")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_o6awn")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_0d1sl")
-
-[node name="craft" type="Button" parent="static_ui/menu"]
+[node name="craft" type="Button" parent="static_ui/menu" unique_id=1948378965]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -581,12 +391,12 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_7ao8a")
 text = "
 "
 
-[node name="IconExclamation" type="Sprite2D" parent="static_ui/menu/craft"]
+[node name="IconExclamation" type="Sprite2D" parent="static_ui/menu/craft" unique_id=491781924]
 position = Vector2(23, 30)
 scale = Vector2(2, 2)
 texture = ExtResource("7_ssu4i")
 
-[node name="levels" type="Button" parent="static_ui/menu"]
+[node name="levels" type="Button" parent="static_ui/menu" unique_id=1761347679]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -603,13 +413,13 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_3wcau")
 theme_override_styles/hover = SubResource("StyleBoxTexture_pwvs3")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_awlqj")
 
-[node name="IconExclamation2" type="Sprite2D" parent="static_ui/menu/levels"]
+[node name="IconExclamation2" type="Sprite2D" parent="static_ui/menu/levels" unique_id=803881428]
 visible = false
 position = Vector2(40, 35)
 scale = Vector2(2, 2)
 texture = ExtResource("7_ssu4i")
 
-[node name="rewards" type="Button" parent="static_ui/menu"]
+[node name="rewards" type="Button" parent="static_ui/menu" unique_id=909150352]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -625,13 +435,13 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_yvnfu")
 theme_override_styles/hover = SubResource("StyleBoxTexture_h3u65")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_0b6mv")
 
-[node name="IconExclamation3" type="Sprite2D" parent="static_ui/menu/rewards"]
+[node name="IconExclamation3" type="Sprite2D" parent="static_ui/menu/rewards" unique_id=622369773]
 visible = false
 position = Vector2(48, 31)
 scale = Vector2(2, 2)
 texture = ExtResource("7_ssu4i")
 
-[node name="Postprocess" type="Control" parent="."]
+[node name="Postprocess" type="Control" parent="." unique_id=1869704596]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -640,10 +450,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Postprocess"]
+[node name="CanvasLayer" type="CanvasLayer" parent="Postprocess" unique_id=481445968]
 layer = 6
 
-[node name="ColorRect" type="ColorRect" parent="Postprocess/CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="Postprocess/CanvasLayer" unique_id=1019949580]
 material = ExtResource("14_iplms")
 anchors_preset = 15
 anchor_right = 1.0
@@ -655,23 +465,22 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=887461400]
 stream = SubResource("AudioStreamRandomizer_fucbw")
 volume_db = -20.0
 autoplay = true
 bus = &"Music"
 
-[node name="button_press" type="AudioStreamPlayer" parent="."]
+[node name="button_press" type="AudioStreamPlayer" parent="." unique_id=949591886]
 stream = ExtResource("17_60br8")
 volume_db = -20.0
 bus = &"SFX"
 
-[node name="audio_talk" type="AudioStreamPlayer" parent="."]
+[node name="audio_talk" type="AudioStreamPlayer" parent="." unique_id=541478699]
 stream = SubResource("AudioStreamRandomizer_mqfiu")
 volume_db = -25.0
 
 [connection signal="pressed" from="static_ui/ButtonSettings" to="." method="_on_button_settings_pressed"]
-[connection signal="pressed" from="static_ui/menu/TextureRect/talk" to="." method="_on_talk_pressed"]
 [connection signal="pressed" from="static_ui/menu/craft" to="." method="_on_craft_pressed"]
 [connection signal="pressed" from="static_ui/menu/levels" to="." method="_on_levels_pressed"]
 [connection signal="pressed" from="static_ui/menu/rewards" to="." method="_on_rewards_pressed"]

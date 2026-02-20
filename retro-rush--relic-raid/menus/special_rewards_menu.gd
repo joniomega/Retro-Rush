@@ -121,11 +121,3 @@ func _on_admob_rewarded_ad_user_earned_reward(ad_id: String, reward_data: Reward
 	TransitionScreen.transition()
 	await TransitionScreen.on_transition_finished
 	tree.change_scene_to_file("res://menus/mainmenu.tscn")
-
-
-func _on_button_pressed() -> void:
-	var tree = get_tree()
-	TransitionScreen.transition()
-	await TransitionScreen.on_transition_finished
-	tree.change_scene_to_file("res://menus/mainmenu.tscn")
-	pass # Replace with function body.

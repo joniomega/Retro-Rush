@@ -4,8 +4,6 @@ extends CharacterBody2D
 var is_on_moving_platform := false
 var isdead : bool = false
 const SPEED = 80.0
-const JUMP_VELOCITY = -350.0
-var skill_jump: bool = false
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var accessory = Global.player_hat
 @export var skin = Global.player_skin
@@ -15,12 +13,16 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var displayed_score := 0
 
 # Node references
-@onready var score_label = $Control/CanvasLayer/score
+@onready var win_label = $Control/CanvasLayer/ui/win
+@onready var win_deco = $Control/CanvasLayer/ui/win/AnimatedSprite2D
+@onready var score_label = $Control/CanvasLayer/ui/score
 @onready var animation = $AnimatedSprite2D
 @onready var anim_accessory = $AnimatedSprite2D/accessory
 @onready var camera = $Camera2D
 @onready var left_button = $Control/CanvasLayer/left_button
 @onready var right_button = $Control/CanvasLayer/right_button
+@onready var retry_button = $Control/CanvasLayer/ui/ButtonRetry
+@onready var home_button = $Control/CanvasLayer/ui/ButtonHome
 
 # Animation and movement
 var camera_lock_x: float
@@ -43,8 +45,8 @@ var is_swiping := false
 func _ready() -> void:
 	if Global.unlocked_levels.size() == 1 && Global.unlocked_levels[0] == 1:
 		$Control/CanvasLayer/tutorial.visible = true
-		$Control/CanvasLayer/ButtonHome.visible = false
-		$Control/CanvasLayer/ButtonHome.disabled = true
+		home_button.visible = false
+		home_button.disabled = true
 	else:
 		$Control/CanvasLayer/tutorial.visible = false
 	$Control/CanvasLayer/special_rewards.visible = false
@@ -58,7 +60,6 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if isdead:
 		return
-		
 	# Detect touch start
 	if event is InputEventScreenTouch:
 		if event.pressed:
@@ -68,7 +69,6 @@ func _input(event: InputEvent) -> void:
 			is_swiping = false
 			var swipe_end = event.position
 			_process_swipe(swipe_end)
-	
 	# Mouse swipe support (for testing in editor)
 	elif event is InputEventMouseButton:
 		if event.pressed:
@@ -80,7 +80,6 @@ func _input(event: InputEvent) -> void:
 
 func _process_swipe(end_position: Vector2) -> void:
 	var swipe = end_position - swipe_start
-	
 	# Check if it's a valid horizontal swipe
 	if abs(swipe.x) > swipe_min_distance && abs(swipe.x) > abs(swipe.y):
 		if swipe.x > 0:  # Right swipe
@@ -94,17 +93,10 @@ func _physics_process(delta: float) -> void:
 		_on_left_button_pressed()
 	if Input.is_action_just_pressed("ui_right"):
 		_on_right_button_pressed()
-	
 	if not isdead:
-		# Handle jump input
-		if skill_jump and Input.is_action_just_pressed("ui_accept") and is_on_floor():
-			velocity.y = JUMP_VELOCITY
-			_play_animation("jump")
-
 		# Apply gravity
 		if not is_on_floor():
 			velocity.y += gravity * delta
-
 		# Get platform velocity through collisions
 		var platform_velocity = Vector2.ZERO
 		if is_on_floor():
@@ -147,9 +139,7 @@ func _physics_process(delta: float) -> void:
 				animation.flip_h = move_direction < 0
 				anim_accessory.flip_h = move_direction < 0
 				squash_and_stretch()
-
 		move_and_slide()
-
 	camera.global_position.x = camera_lock_x
 
 func _play_animation(anim_name: String) -> void:
@@ -161,11 +151,9 @@ func _play_animation(anim_name: String) -> void:
 func scale_sprite():
 	var tween = create_tween()
 	var original_scale = $AnimatedSprite2D.scale  # Store the current scale
-	
 	# Scale X down to 0 in 0.15 seconds (Y remains unchanged)
 	tween.tween_property($AnimatedSprite2D, "scale", Vector2(0, original_scale.y), 0.1)\
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	
 	# Scale X back to original in 0.15 seconds (Y remains unchanged)
 	tween.tween_property($AnimatedSprite2D, "scale", original_scale, 0.1)\
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
@@ -173,11 +161,9 @@ func scale_sprite():
 func squash_and_stretch() -> void:
 	if current_tween:
 		current_tween.kill()
-	
 	current_tween = create_tween()
 	current_tween.set_trans(Tween.TRANS_BACK)
 	current_tween.set_ease(Tween.EASE_OUT)
-	
 	if not is_on_floor():
 		if velocity.y < 0:  # Jumping up
 			current_tween.tween_property(animation, "scale", jump_squash_scale, 0.1)
@@ -185,11 +171,9 @@ func squash_and_stretch() -> void:
 			current_tween.tween_property(animation, "scale", land_squash_scale, 0.1)
 	else:
 		current_tween.tween_property(animation, "scale", Vector2(1, 1), 0.2)
-
 func reset_scale() -> void:
 	if current_tween:
 		current_tween.kill()
-	
 	current_tween = create_tween()
 	current_tween.tween_property(animation, "scale", 
 		Vector2(sign(animation.scale.x), 1.0), 0.2)
@@ -211,7 +195,6 @@ func shine(increment: int):
 		var interpolated = lerp(displayed_score, target, i / float(steps))
 		score_label.text = str(int(round(interpolated)))
 		await get_tree().create_timer(delay).timeout
-	
 	displayed_score = target
 	score_label.modulate = Color(1, 1, 1)  # Back to normal
 
@@ -241,47 +224,40 @@ func die_infinite():
 	$sound_die.play()
 	_play_animation("fall")
 	Global.points = Global.points + score
-	
 	# Check if this is a new record and update Firebase if online
 	var is_new_record = Global.update_infinite_record(score)
-	
 	var tree = get_tree()
 	await tree.create_timer(0.5).timeout
-	$Control/CanvasLayer/win/AnimatedSprite2D.play("pvpmatch")
+	win_deco.play("pvpmatch")
 	isdead = true
-	
 	# Update win text based on whether it's a new record
 	if is_new_record:
-		$Control/CanvasLayer/win.text = "[wave][center][color=#d79a00][b]NEW\nRECORD[/b][/color][/center][/wave]"
+		win_label.text = "[wave][center][color=#d79a00][b]NEW\nRECORD[/b][/color][/center][/wave]"
 		# Update Firebase if player is online
 		if Global.firebase_id != "":
 			update_record_on_firebase()
 	else:
-		$Control/CanvasLayer/win.text = "[center][color=#d8d8d8]Score: %d\nRecord: %d[/color][/center]" % [score, Global.infinite_record]
-		$Control/CanvasLayer/win.add_theme_color_override("font_outline_color", Color(0.3, 0.3, 0.3))
-		$Control/CanvasLayer/score.visible = false
-	
+		win_label.text = "[center][color=#d8d8d8]Score: %d\nRecord: %d[/color][/center]" % [score, Global.infinite_record]
+		win_label.add_theme_color_override("font_outline_color", Color(0.3, 0.3, 0.3))
+		score_label.visible = false
 	$animation.play("win")
 	get_parent().stop_music()
-	await get_tree().create_timer(3).timeout
-	TransitionScreen.transition()
-	await TransitionScreen.on_transition_finished
-	tree.change_scene_to_file("res://menus/mainmenu.tscn")
+	#await get_tree().create_timer(3).timeout
+	#TransitionScreen.transition()
+	#await TransitionScreen.on_transition_finished
+	#tree.change_scene_to_file("res://menus/mainmenu.tscn")
 
 # NEW: Function to update record on Firebase as "wins"
 func update_record_on_firebase():
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
 	http_request.request_completed.connect(_on_record_update_completed.bind(http_request))
-	
 	var url = "https://retrorush-descend-default-rtdb.europe-west1.firebasedatabase.app/leaderboard/%s.json" % Global.firebase_id
 	var headers = ["Content-Type: application/json"]
-	
 	# Save the record as "wins" in Firebase
 	var body = JSON.stringify({
 		"wins": Global.infinite_record
 	})
-	
 	var error = http_request.request(url, headers, HTTPClient.METHOD_PATCH, body)
 	if error != OK:
 		push_error("Failed to update record on Firebase")
@@ -289,7 +265,6 @@ func update_record_on_firebase():
 
 func _on_record_update_completed(result, response_code, headers, body, http_request):
 	http_request.queue_free()
-	
 	if result == HTTPRequest.RESULT_SUCCESS and response_code == 200:
 		print("Record updated on Firebase as wins: ", Global.infinite_record)
 	else:
@@ -297,34 +272,43 @@ func _on_record_update_completed(result, response_code, headers, body, http_requ
 		if body:
 			print("Error response:", body.get_string_from_utf8())
 
-# Button press handlers
+#MOVEMENT (LEFT AND RIGHT) BUTTONS
 func _on_left_button_pressed() -> void:
 	if isdead == false:
 		if move_direction != -1:
 			scale_sprite()
 		move_direction = -1
-
 func _on_right_button_pressed() -> void:
 	if isdead == false:
 		if move_direction != 1:
 			scale_sprite()
 		move_direction = 1
 
+#HOME BUTTON (allways mainmenu)
 func _on_button_home_pressed() -> void:
 	var tree = get_tree()
 	TransitionScreen.transition()
 	await TransitionScreen.on_transition_finished
 	tree.change_scene_to_file("res://menus/mainmenu.tscn")
+#RETRY BUTTON (level or infinite)
+func _on_button_retry_pressed() -> void:
+	Global.revival = null
+	var tree = get_tree()
+	TransitionScreen.transition()
+	await TransitionScreen.on_transition_finished
+	if Global.selected_level == -1:
+		tree.change_scene_to_file("res://scenes/lvl_infinite.tscn")
+	else:
+		tree.change_scene_to_file("res://scenes/lvl_0.tscn")
 
 func win(type:String):
-	$Control/CanvasLayer/ButtonHome.disabled = true
 	Global.points = Global.points + score
-	$Control/CanvasLayer/win/AnimatedSprite2D.play(type)
+	win_deco.play(type)
 	isdead = true
 	_play_animation("idle")
 	$animation.play("win")
 	get_parent().stop_music()
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(4).timeout
 	var tree = get_tree()
 	TransitionScreen.transition()
 	await TransitionScreen.on_transition_finished
@@ -332,56 +316,15 @@ func win(type:String):
 
 func win_special(type:String):
 	$Control/CanvasLayer/special_rewards.visible = true
-	$Control/CanvasLayer/ButtonHome.disabled = true
 	$Control/CanvasLayer/special_rewards.setup_rewards()
 	var holo_material = preload("res://assets/shaders/holo.tres")
-	$Control/CanvasLayer/win/AnimatedSprite2D.material = holo_material
+	win_deco.material = holo_material
 	Global.points = Global.points + score
-	$Control/CanvasLayer/win/AnimatedSprite2D.play(type)
+	win_deco.play(type)
 	isdead = true
 	_play_animation("idle")
 	$animation.play("win_special")
 	get_parent().stop_music()
-
-func win_ranked(type:String):
-	if score >= Global.ranked_opponent_score:
-		$AudioStreamPlayer2.play()
-		$Control/CanvasLayer/special_rewards.visible = true
-		$Control/CanvasLayer/ButtonHome.disabled = true
-		$Control/CanvasLayer/special_rewards.setup_rewards()
-		var holo_material = preload("res://assets/shaders/holo.tres")
-		$Control/CanvasLayer/win/AnimatedSprite2D.material = holo_material
-		Global.points = Global.points + score
-		$Control/CanvasLayer/win/AnimatedSprite2D.play(type)
-		isdead = true
-		_play_animation("idle")
-		$Control/CanvasLayer/win/AnimatedSprite2D.visible = false
-		$Control/CanvasLayer/win/CPUParticles2D2.emitting = false
-		$Control/CanvasLayer/score.visible = false
-		get_parent().end()
-		$animation.play("win_special")
-		$Control/CanvasLayer/win/AnimatedSprite2D.visible = false
-		$Control/CanvasLayer/win.add_theme_color_override("font_outline_color", Color(0, 0.4, 0))
-		$Control/CanvasLayer/win.text = "[wave][center][color=#50ff00][b]YOU\nWIN[/b][/color][/center][/wave]"
-		$Control/CanvasLayer/win/rankedwin.visible = true
-		$Control/CanvasLayer/win/rankedwin.text = str("[wave][center][color=#07cc00]"+Global.player_name+"[/color] > [color=#cc1d00]"+Global.ranked_opponent_name+"[/color][/center][/wave]"+"\n[center][color=#07cc00]"+str(score)+"[/color] > [color=#cc1d00]"+str(Global.ranked_opponent_score)+"[/color][/center]")
-		get_parent().stop_music()
-		
-		if Global.firebase_id == "":
-			push_error("No Firebase ID - cannot update records")
-			return
-		
-		var http_request = HTTPRequest.new()
-		add_child(http_request)
-		http_request.request_completed.connect(_on_get_data_completed.bind(http_request))
-		
-		var url = "https://retrorush-descend-default-rtdb.europe-west1.firebasedatabase.app/leaderboard/%s.json" % Global.firebase_id
-		var error = http_request.request(url)
-		if error != OK:
-			push_error("Failed to request player data")
-			http_request.queue_free()
-	else:
-		die_ranked()
 
 func _on_get_data_completed(result, response_code, headers, body, http_request):
 	http_request.queue_free()
@@ -435,42 +378,5 @@ func _on_update_completed(result, response_code, headers, body, http_request):
 		if body:
 			print("Error response:", body.get_string_from_utf8())
 
-func die_ranked():
-	if isdead == true:
-		pass
-	else:
-		isdead = true
-		$animation.play("die")
-		$sound_die.play()
-		_play_animation("fall")
-		$Control/CanvasLayer/win/AnimatedSprite2D.visible = false
-		$Control/CanvasLayer/win/CPUParticles2D2.emitting = false
-		$Control/CanvasLayer/score.visible = false
-		get_parent().end()
-		$animation.play("win")
-		$Control/CanvasLayer/win/AnimatedSprite2D.visible = false
-		$Control/CanvasLayer/win.add_theme_color_override("font_outline_color", Color(0.5, 0, 0))
-		$Control/CanvasLayer/win.text = "[wave][center][color=#ff0000][b]YOU\nLOSE[/b][/color][/center][/wave]"
-		$Control/CanvasLayer/win/rankedwin.visible = true
-		$Control/CanvasLayer/win/rankedwin.text = str("[wave][center][color=#cc1d00]"+Global.player_name+"[/color] < [color=#07cc00]"+Global.ranked_opponent_name+"[/color][/center][/wave]"+"\n[center][color=#cc1d00]"+str(score)+"[/color] < [color=#07cc00]"+str(Global.ranked_opponent_score)+"[/color][/center]")
-		
-		var tree = get_tree()
-		await tree.create_timer(3.5).timeout
-		TransitionScreen.transition()
-		await TransitionScreen.on_transition_finished
-		tree.change_scene_to_file("res://menus/mainmenu.tscn")
-
-
 func get_score() -> int:
 	return score
-
-
-func _on_button_retry_pressed() -> void:
-	Global.revival = null
-	var tree = get_tree()
-	TransitionScreen.transition()
-	await TransitionScreen.on_transition_finished
-	if Global.selected_level == -1:
-		tree.change_scene_to_file("res://scenes/lvl_infinite.tscn")
-	else:
-		tree.change_scene_to_file("res://scenes/lvl_0.tscn")

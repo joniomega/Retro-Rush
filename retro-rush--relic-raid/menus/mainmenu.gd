@@ -1,5 +1,5 @@
 extends Node2D
-var isonrewards = false
+var isonrewards = true
 var global = Global
 @onready var goto_levels = $static_ui/menu/levels
 @onready var menu_levels = $levels
@@ -56,10 +56,6 @@ func _ready() -> void:
 	
 	# Scroll to last unlocked level
 	update_level_scroll()
-	var textlist = ["Back to work!", "Find me relics!","Ready to work?", "Welcome back."]
-	$static_ui/menu/TextureRect/SpeechBubble/Label.text = textlist[randi_range(0, 3)]
-	$static_ui/menu/TextureRect/Animationtalk.play("talk")
-	$audio_talk.play()
 
 func update_level_scroll():
 	if global.unlocked_levels.size() > 0:
@@ -72,18 +68,21 @@ func move_menus(target_menu: String):
 	
 	match target_menu:
 		"levels":
+			$rewards/rewards_menu.ui_down()
 			tween.tween_property(menu_levels, "position", level_pos, duration)
 			tween.parallel().tween_property(menu_craft, "position", Vector2(-get_viewport_rect().size.x, craft_pos.y), duration)
 			tween.parallel().tween_property(menu_rewards, "position", Vector2(get_viewport_rect().size.x, reward_pos.y), duration)
 			_set_menu_highlight(goto_levels)
 			
 		"craft":
+			$rewards/rewards_menu.ui_up()
 			tween.tween_property(menu_levels, "position", Vector2(get_viewport_rect().size.x, level_pos.y), duration)
 			tween.parallel().tween_property(menu_craft, "position", level_pos, duration)
 			tween.parallel().tween_property(menu_rewards, "position", Vector2(get_viewport_rect().size.x * 2, reward_pos.y), duration)
 			_set_menu_highlight(goto_craft)
 			
 		"rewards":
+			$rewards/rewards_menu.ui_up()
 			tween.tween_property(menu_levels, "position", Vector2(-get_viewport_rect().size.x, level_pos.y), duration)
 			tween.parallel().tween_property(menu_craft, "position", Vector2(-get_viewport_rect().size.x * 2, craft_pos.y), duration)
 			tween.parallel().tween_property(menu_rewards, "position", level_pos, duration)
@@ -104,25 +103,18 @@ func _on_levels_pressed() -> void:
 	$button_press.play()
 	if current_menu != "levels":
 		move_menus("levels")
-	if isonrewards == true:
-		isonrewards = false
-		$rewards/rewards_menu.ui_down()
 
 func _on_craft_pressed() -> void:
 	$static_ui/menu/craft/IconExclamation.visible = false
 	$button_press.play()
 	if current_menu != "craft":
 		move_menus("craft")
-	if isonrewards == true:
-		isonrewards = false
-		$rewards/rewards_menu.ui_down()
 
 func _on_rewards_pressed() -> void:
 	isonrewards = true
 	$button_press.play()
 	if current_menu != "rewards":
 		move_menus("rewards")
-	$rewards/rewards_menu.ui_up()
 
 # Improved touch input handling for swipe detection
 func _unhandled_input(event: InputEvent) -> void:
@@ -175,16 +167,4 @@ func _on_button_settings_pressed() -> void:
 	var options_menu = preload("res://menus/options_menu.tscn").instantiate()
 	options_menu.is_online = $rewards/rewards_menu.is_online
 	add_child(options_menu) # adds on top of the menu (OptionsMenu root must be a Control with full rect)
-	pass # Replace with function body.
-
-
-func _on_button_pressed() -> void:
-	pass # Replace with function body.
-
-
-func _on_talk_pressed() -> void:
-	var textlist = ["Back to work!", "Find me relics!","Look for gold.", "Bewere of bugs."]
-	$static_ui/menu/TextureRect/SpeechBubble/Label.text = textlist[randi_range(0, 3)]
-	$static_ui/menu/TextureRect/Animationtalk.play("talk")
-	$audio_talk.play()
 	pass # Replace with function body.

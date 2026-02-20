@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d0cxldfjss270"]
+[gd_scene format=3 uid="uid://d0cxldfjss270"]
 
 [ext_resource type="Script" uid="uid://md6am2leixcr" path="res://menus/special_rewards_menu.gd" id="1_j1klk"]
 [ext_resource type="Script" uid="uid://cpmit8mu2r6y2" path="res://addons/AdmobPlugin/Admob.gd" id="2_qb2k2"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://dwphcswg5bw86" path="res://assets/ui/icon_nowifi.png" id="5_p4jcy"]
 [ext_resource type="SpriteFrames" uid="uid://bsvml15ne3jhu" path="res://assets/characters/player/accessories/player_accessories.tres" id="7_yuep4"]
 [ext_resource type="SpriteFrames" uid="uid://duukh1em5rexv" path="res://assets/characters/player/player_skin.tres" id="8_trjha"]
-[ext_resource type="Texture2D" uid="uid://bk2cyygdoropf" path="res://assets/ui/button_cancel.png" id="9_8hlal"]
 [ext_resource type="Texture2D" uid="uid://j7oelv2btndr" path="res://assets/ui/button_play.png" id="11_3ylhs"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q0d82"]
@@ -55,20 +54,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r5lyk"]
-texture = ExtResource("9_8hlal")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_by1br"]
-texture = ExtResource("9_8hlal")
-modulate_color = Color(1.5, 1.5, 1.5, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m7lhn"]
-texture = ExtResource("9_8hlal")
-modulate_color = Color(1.2, 1.2, 1.2, 1)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q4qkt"]
-
-[node name="special_rewards" type="Control"]
+[node name="special_rewards" type="Control" unique_id=1963324966]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -80,7 +66,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_j1klk")
 
-[node name="Admob" type="Node" parent="."]
+[node name="Admob" type="Node" parent="." unique_id=2078040267]
 script = ExtResource("2_qb2k2")
 is_real = true
 debug_application_id = "ca-app-pub-3940256099942544~3347511713"
@@ -91,21 +77,21 @@ debug_rewarded_interstitial_id = "ca-app-pub-3940256099942544/5354046379"
 real_application_id = "ca-app-pub-8306120320708452~7812891194"
 real_rewarded_id = "ca-app-pub-8306120320708452/7645370231"
 
-[node name="takeall" type="Node2D" parent="."]
+[node name="takeall" type="Node2D" parent="." unique_id=133463776]
 position = Vector2(0, 64)
 
-[node name="ButtonPlay" type="Sprite2D" parent="takeall"]
+[node name="ButtonPlay" type="Sprite2D" parent="takeall" unique_id=203779543]
 position = Vector2(48, 163)
 scale = Vector2(2, 2)
 texture = ExtResource("11_3ylhs")
 
-[node name="ButtonPlay2" type="Sprite2D" parent="takeall"]
+[node name="ButtonPlay2" type="Sprite2D" parent="takeall" unique_id=352977593]
 position = Vector2(176, 163)
 scale = Vector2(2, 2)
 texture = ExtResource("11_3ylhs")
 flip_h = true
 
-[node name="Button_takeall" type="Button" parent="takeall"]
+[node name="Button_takeall" type="Button" parent="takeall" unique_id=221738778]
 offset_left = 48.0
 offset_top = 136.0
 offset_right = 176.0
@@ -118,7 +104,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_ohst2")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_v0kqo")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_f4f5l")
 
-[node name="Label" type="Label" parent="takeall"]
+[node name="Label" type="Label" parent="takeall" unique_id=363833387]
 offset_left = 55.0
 offset_top = 151.0
 offset_right = 163.0
@@ -131,35 +117,24 @@ theme_override_fonts/font = ExtResource("2_t5b7w")
 theme_override_font_sizes/font_size = 16
 text = "GET"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="takeall"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="takeall" unique_id=1821054869]
 position = Vector2(152, 160)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_naixw")
 animation = &"ad"
 
-[node name="reward_accessory" type="AnimatedSprite2D" parent="takeall"]
+[node name="reward_accessory" type="AnimatedSprite2D" parent="takeall" unique_id=587067234]
 position = Vector2(112, 178)
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("7_yuep4")
 animation = &"plant_jump"
 
-[node name="reward_skin" type="AnimatedSprite2D" parent="takeall"]
+[node name="reward_skin" type="AnimatedSprite2D" parent="takeall" unique_id=261488219]
 position = Vector2(110, 155)
 scale = Vector2(1.5, 1.5)
 sprite_frames = ExtResource("8_trjha")
 animation = &"6_jump"
 
-[node name="Button" type="Button" parent="takeall"]
-offset_left = 82.0
-offset_top = 190.0
-offset_right = 142.0
-offset_bottom = 250.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_r5lyk")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_by1br")
-theme_override_styles/hover = SubResource("StyleBoxTexture_m7lhn")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_q4qkt")
-
 [connection signal="initialization_completed" from="Admob" to="." method="_on_admob_initialization_completed"]
 [connection signal="rewarded_ad_user_earned_reward" from="Admob" to="." method="_on_admob_rewarded_ad_user_earned_reward"]
 [connection signal="pressed" from="takeall/Button_takeall" to="." method="_on_button_takeall_pressed"]
-[connection signal="pressed" from="takeall/Button" to="." method="_on_button_pressed"]

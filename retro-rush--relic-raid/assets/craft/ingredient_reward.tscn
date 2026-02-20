@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://boacxm34cq8c3"]
+[gd_scene format=3 uid="uid://boacxm34cq8c3"]
 
 [ext_resource type="Texture2D" uid="uid://c6ijelrkwpk6t" path="res://assets/ui/button_ingredient_chosse.png" id="1_ah5nu"]
 [ext_resource type="Script" uid="uid://c3ibjrtkgap7v" path="res://assets/craft/ingredient_reward.gd" id="1_s21qu"]
@@ -8,29 +8,30 @@
 [ext_resource type="SpriteFrames" uid="uid://duukh1em5rexv" path="res://assets/characters/player/player_skin.tres" id="6_1yh1d"]
 [ext_resource type="SpriteFrames" uid="uid://bsvml15ne3jhu" path="res://assets/characters/player/accessories/player_accessories.tres" id="7_q8j78"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cirlo"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ylo4x"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jcsti"]
 texture = ExtResource("1_ah5nu")
-modulate_color = Color(1.2, 1.2, 1.2, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vne1g"]
 texture = ExtResource("1_ah5nu")
 modulate_color = Color(1.5, 1.5, 1.5, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jcsti"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ylo4x"]
 texture = ExtResource("1_ah5nu")
+modulate_color = Color(1.2, 1.2, 1.2, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cirlo"]
 
 [sub_resource type="Gradient" id="Gradient_xyuh5"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[node name="ingredient_reward" type="Node2D"]
+[node name="ingredient_reward" type="Node2D" unique_id=1927013665]
 script = ExtResource("1_s21qu")
 skin = "5"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1702757043]
+visible = false
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1858831441]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -38,12 +39,12 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.1, 0.1, 0.1, 0.784314)
 
-[node name="OptionsContainer" type="Sprite2D" parent="CanvasLayer"]
+[node name="OptionsContainer" type="Sprite2D" parent="CanvasLayer" unique_id=487738040]
 position = Vector2(112, 124)
 scale = Vector2(1.125, 0.46875)
 texture = ExtResource("2_10k51")
 
-[node name="title" type="Label" parent="CanvasLayer"]
+[node name="title" type="Label" parent="CanvasLayer" unique_id=728234105]
 offset_left = 40.0
 offset_top = 40.0
 offset_right = 161.0
@@ -61,17 +62,17 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Button" type="Button" parent="CanvasLayer"]
+[node name="Button" type="Button" parent="CanvasLayer" unique_id=485771948]
 offset_left = 64.0
 offset_top = 125.0
 offset_right = 160.0
 offset_bottom = 181.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_cirlo")
-theme_override_styles/hover = SubResource("StyleBoxTexture_ylo4x")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_vne1g")
 theme_override_styles/normal = SubResource("StyleBoxTexture_jcsti")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vne1g")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ylo4x")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cirlo")
 
-[node name="CPUParticles2D2" type="CPUParticles2D" parent="CanvasLayer"]
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="CanvasLayer" unique_id=1121721885]
 position = Vector2(112, 149)
 texture = ExtResource("3_h3fdt")
 lifetime = 1.5
@@ -88,13 +89,13 @@ scale_amount_min = 0.1
 scale_amount_max = 0.5
 color_ramp = SubResource("Gradient_xyuh5")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer" unique_id=1585167488]
 position = Vector2(112, 144)
 scale = Vector2(1.5, 1.5)
 sprite_frames = ExtResource("6_1yh1d")
 animation = &"6_jump"
 
-[node name="accessory" type="AnimatedSprite2D" parent="CanvasLayer/AnimatedSprite2D"]
+[node name="accessory" type="AnimatedSprite2D" parent="CanvasLayer/AnimatedSprite2D" unique_id=722430056]
 sprite_frames = ExtResource("7_q8j78")
 animation = &"none_jump"
 

@@ -41,7 +41,7 @@ var http_request_leaderboard: HTTPRequest  # For leaderboard operations
 var is_creating_player: bool = false
 
 func _ready():
-	$ui/playerscore.visible = false
+	$ui/playerscore.visible = true
 	$ColorRect.visible = true
 	$Node2D.visible = true
 	Global.ranked_opponent_name = "none"
@@ -320,8 +320,8 @@ func _on_buttonchangename_pressed() -> void:
 	fade_out_name_input_ui()
 
 func ui_up():
-	$ui/playerscore.visible = true
+	$ui/playerscore.visible = false
 	pass
 func ui_down():
-	$ui/playerscore.visible = false
+	$ui/playerscore.visible = true
 	pass
