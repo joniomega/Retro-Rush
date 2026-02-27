@@ -12,8 +12,7 @@ func _ready() -> void:
 	if global.ranked_opponent_score > 1:
 		animation.play("ranked")
 	if global.selected_level_special == true:
-		var holo_material = preload("res://assets/shaders/holo.tres")
-		$AnimatedSprite2D.material = holo_material
+		pass
 	pass
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):

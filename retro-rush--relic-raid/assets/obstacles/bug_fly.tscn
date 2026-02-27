@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://xhdwm1j05nva"]
+[gd_scene format=3 uid="uid://xhdwm1j05nva"]
 
 [ext_resource type="Script" uid="uid://dkn1icphvi6q1" path="res://assets/obstacles/bug_fly.gd" id="1_18ngi"]
 [ext_resource type="Texture2D" uid="uid://b8mqd5gqn71vy" path="res://assets/characters/enemies/bug_dragonfly.png" id="1_yq7w3"]
@@ -158,28 +158,28 @@ stream_0/stream = ExtResource("4_1ubx1")
 stream_1/stream = ExtResource("5_mrmqf")
 stream_2/stream = ExtResource("6_60m51")
 
-[node name="bug_fly" type="Node2D"]
+[node name="bug_fly" type="Node2D" unique_id=526345097]
 
-[node name="enemy" type="CharacterBody2D" parent="."]
+[node name="enemy" type="CharacterBody2D" parent="." unique_id=1107922299]
 position = Vector2(16, 16)
 collision_layer = 2
 script = ExtResource("1_18ngi")
 
-[node name="damage_area" type="Area2D" parent="enemy"]
+[node name="damage_area" type="Area2D" parent="enemy" unique_id=1663957267]
 collision_mask = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy/damage_area"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy/damage_area" unique_id=391146658]
 position = Vector2(-1, 0.5)
 shape = SubResource("RectangleShape2D_ifdyo")
 
-[node name="animation" type="AnimatedSprite2D" parent="enemy"]
+[node name="animation" type="AnimatedSprite2D" parent="enemy" unique_id=1355011426]
 sprite_frames = SubResource("SpriteFrames_o5ypw")
 animation = &"dead"
 autoplay = "fly1"
 frame = 3
 frame_progress = 1.0
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="enemy"]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="enemy" unique_id=774719852]
 position = Vector2(-1, 2)
 emitting = false
 texture = ExtResource("3_ckhqc")
@@ -197,12 +197,12 @@ angle_min = -90.0
 angle_max = 90.0
 color_ramp = SubResource("Gradient_7nvaf")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy" unique_id=1885749212]
 position = Vector2(-1.5, 1.5)
 shape = SubResource("RectangleShape2D_wfxsa")
 debug_color = Color(0.9831, 0, 0.356161, 0.42)
 
-[node name="sound_break" type="AudioStreamPlayer" parent="enemy"]
+[node name="sound_break" type="AudioStreamPlayer" parent="enemy" unique_id=413189289]
 stream = SubResource("AudioStreamRandomizer_0gq0f")
 volume_db = -20.0
 pitch_scale = 2.0

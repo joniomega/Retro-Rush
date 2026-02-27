@@ -227,7 +227,7 @@ func die_infinite():
 	# Check if this is a new record and update Firebase if online
 	var is_new_record = Global.update_infinite_record(score)
 	var tree = get_tree()
-	await tree.create_timer(0.5).timeout
+	await tree.create_timer(1.5).timeout
 	win_deco.play("pvpmatch")
 	isdead = true
 	# Update win text based on whether it's a new record
@@ -240,7 +240,9 @@ func die_infinite():
 		win_label.text = "[center][color=#d8d8d8]Score: %d\nRecord: %d[/color][/center]" % [score, Global.infinite_record]
 		win_label.add_theme_color_override("font_outline_color", Color(0.3, 0.3, 0.3))
 		score_label.visible = false
-	$animation.play("win")
+	$Control/CanvasLayer/special_rewards.visible = true
+	$Control/CanvasLayer/special_rewards.setup_rewards()
+	$animation.play("win_special")
 	get_parent().stop_music()
 	#await get_tree().create_timer(3).timeout
 	#TransitionScreen.transition()
@@ -317,8 +319,6 @@ func win(type:String):
 func win_special(type:String):
 	$Control/CanvasLayer/special_rewards.visible = true
 	$Control/CanvasLayer/special_rewards.setup_rewards()
-	var holo_material = preload("res://assets/shaders/holo.tres")
-	win_deco.material = holo_material
 	Global.points = Global.points + score
 	win_deco.play(type)
 	isdead = true

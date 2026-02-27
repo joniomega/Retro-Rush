@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://cgwqs0jd4bxvp"]
+[gd_scene format=3 uid="uid://cgwqs0jd4bxvp"]
 
 [ext_resource type="Script" uid="uid://yik6bkgbowbg" path="res://assets/obstacles/relic.gd" id="1_avswn"]
 [ext_resource type="SpriteFrames" uid="uid://bj7kppdwycf3i" path="res://assets/obstacles/relic_spriteframe.tres" id="2_2btxo"]
-[ext_resource type="Material" uid="uid://dh2stg3d14hrj" path="res://assets/shaders/holo.tres" id="2_q1b4r"]
 [ext_resource type="Texture2D" uid="uid://bgg0jhv1gsjdw" path="res://assets/tilesets/obstacles.png" id="2_w2alc"]
 [ext_resource type="Texture2D" uid="uid://cm35cdmixpj10" path="res://assets/shine_particle.png" id="4_by07q"]
 [ext_resource type="AudioStream" uid="uid://on2o1mlaf5ar" path="res://assets/sounds/soundeffects/pickupCoin (1).wav" id="5_l8fme"]
@@ -34,29 +33,28 @@ random_pitch = 1.2
 streams_count = 1
 stream_0/stream = ExtResource("5_l8fme")
 
-[node name="relic" type="Node2D"]
+[node name="relic" type="Node2D" unique_id=1260981789]
 script = ExtResource("1_avswn")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=457104576]
 z_index = -2
-material = ExtResource("2_q1b4r")
 position = Vector2(16, 17)
 sprite_frames = ExtResource("2_2btxo")
 animation = &"ranked"
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1195096674]
 z_index = 1
 position = Vector2(16, 33)
 sprite_frames = SubResource("SpriteFrames_065jb")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1833003561]
 collision_mask = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1688192087]
 position = Vector2(16, 28)
 shape = SubResource("RectangleShape2D_2xcsx")
 
-[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="." unique_id=269247259]
 z_index = -1
 position = Vector2(16, 36)
 texture = ExtResource("4_by07q")
@@ -74,12 +72,12 @@ scale_amount_min = 0.1
 scale_amount_max = 0.5
 color_ramp = SubResource("Gradient_0a036")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1386132577]
 stream = SubResource("AudioStreamRandomizer_totkf")
 volume_db = -20.0
 pitch_scale = 1.3
 
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=1889921239]
 stream = ExtResource("6_vjnpy")
 volume_db = -10.0
 

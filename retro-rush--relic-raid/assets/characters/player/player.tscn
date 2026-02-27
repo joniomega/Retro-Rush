@@ -296,12 +296,13 @@ animation = &"candle_walk"
 [node name="particles_die" type="CPUParticles2D" parent="." unique_id=811489501]
 position = Vector2(16, 21)
 emitting = false
+amount = 16
 texture = ExtResource("3_6t7ly")
-lifetime = 0.5
+lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
 emission_shape = 1
-emission_sphere_radius = 6.0
+emission_sphere_radius = 10.0
 spread = 180.0
 gravity = Vector2(0, -20)
 initial_velocity_min = 10.0
@@ -375,7 +376,7 @@ action_mode = 0
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
-offset_bottom = 39.999924
+offset_bottom = 39.999954
 
 [node name="PlayerContainer" type="Sprite2D" parent="Control/CanvasLayer/ui" unique_id=1771222280]
 visible = false
@@ -455,6 +456,7 @@ theme_override_font_sizes/italics_font_size = 32
 theme_override_font_sizes/mono_font_size = 32
 bbcode_enabled = true
 text = "[wave][center][color=#d79a00][b]RELIC RETRIEVED[/b][/color][/center][/wave]"
+scroll_active = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/CanvasLayer/ui/win" unique_id=269065277]
 show_behind_parent = true

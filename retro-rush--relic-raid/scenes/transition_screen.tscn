@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgcbysavx1b6h"]
+[gd_scene format=3 uid="uid://dgcbysavx1b6h"]
 
 [ext_resource type="Script" uid="uid://cdl747ncujnbv" path="res://scenes/transition_screen.gd" id="1_wchs1"]
 [ext_resource type="AudioStream" uid="uid://qfgg6gd32frt" path="res://assets/sounds/soundeffects/sound_button-old-radio-click-97549.mp3" id="2_eyiol"]
@@ -130,21 +130,17 @@ _data = {
 &"fade_to_normal": SubResource("Animation_0qx2e")
 }
 
-[node name="transition_screen" type="CanvasLayer"]
+[node name="transition_screen" type="CanvasLayer" unique_id=1008135580]
 layer = 5
 script = ExtResource("1_wchs1")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_kv7jc")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2105667386]
+libraries/ = SubResource("AnimationLibrary_kv7jc")
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_kv7jc")
-}
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="." unique_id=1718836883]
+libraries/ = SubResource("AnimationLibrary_kv7jc")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=49994475]
 modulate = Color(1, 1, 1, 0)
 z_index = 10
 anchors_preset = 15
@@ -154,21 +150,21 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.101961, 0.0392157, 0.227451, 1)
 
-[node name="button_press" type="AudioStreamPlayer" parent="."]
+[node name="button_press" type="AudioStreamPlayer" parent="." unique_id=1036921651]
 stream = ExtResource("2_eyiol")
 volume_db = -17.0
 
-[node name="Bottom" type="Sprite2D" parent="."]
+[node name="Bottom" type="Sprite2D" parent="." unique_id=1186120207]
 z_index = 10
 position = Vector2(112, 240)
 texture = ExtResource("3_pd3sa")
 
-[node name="Bottom2" type="Sprite2D" parent="Bottom"]
+[node name="Bottom2" type="Sprite2D" parent="Bottom" unique_id=1666712824]
 show_behind_parent = true
 position = Vector2(0, 158)
 texture = ExtResource("3_pd3sa")
 
-[node name="Top" type="Sprite2D" parent="."]
+[node name="Top" type="Sprite2D" parent="." unique_id=1340217463]
 z_index = 10
 position = Vector2(112, 153)
 texture = ExtResource("3_pd3sa")

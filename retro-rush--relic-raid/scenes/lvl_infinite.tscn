@@ -13,6 +13,8 @@
 [ext_resource type="AudioStream" uid="uid://bsqgjo6olmgyh" path="res://assets/sounds/Three Red Hearts - Penultimate.ogg" id="9_s8jya"]
 [ext_resource type="AudioStream" uid="uid://dh6pmhmouomnw" path="res://assets/sounds/Three Red Hearts - Rumble at the Gates.ogg" id="10_w74mk"]
 [ext_resource type="Material" uid="uid://c0c3pgwnv20ul" path="res://assets/shaders/aretro_material.tres" id="11_npo70"]
+[ext_resource type="PackedScene" uid="uid://c6d5uscam1l2a" path="res://assets/obstacles/bug_shinefly.tscn" id="14_bgwlp"]
+[ext_resource type="PackedScene" uid="uid://ccvy85vxpgprk" path="res://assets/obstacles/bug_centipide_spike.tscn" id="15_r0wad"]
 
 [sub_resource type="Animation" id="Animation_hycmu"]
 length = 0.001
@@ -829,3 +831,9 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
+
+[node name="bug_shinefly" parent="." unique_id=1758243256 instance=ExtResource("14_bgwlp")]
+position = Vector2(96, 448)
+
+[node name="bug_centipide_spike" parent="." unique_id=2108654184 instance=ExtResource("15_r0wad")]
+position = Vector2(32, 544)
